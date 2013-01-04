@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Spinner names related Strings -->
+    <!-- Color Spinner -->
+    <array name="ColorNames">
+        <item>Red</item>
+        <item>Green</item>
+        <item>Blue</item>
+        <item>Yellow</item>
+        <item>White</item>
+    </array>
+    <array name="ColorValues">
+        <item>@color/Red</item>
+        <item>@color/Green</item>
+        <item>@color/Blue</item>
+        <item>@color/Yellow</item>
+        <item>@color/White</item>
+    </array>
+
+    <!-- Language Spinner -->
+    <array name="LanguageNames">
+        <item>English</item>
+        <item>Hebrew</item>
+    </array>
+    <array name="LanguageCodes">
+        <item>en</item>
+        <item>He</item>
+    </array>
+
+</resources>

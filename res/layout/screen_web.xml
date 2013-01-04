@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TableRow
+        android:id="@id/ScreenWebTableRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/Size2dp"
+            android:contentDescription="@string/labelSubject"
+            android:text="@string/labelSubject"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="@dimen/Size20dp" />
+
+        <EditText
+            android:id="@id/ScreenWebEditText1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:ems="10"
+            android:hint="@string/ScreenEditHint"
+            android:inputType="text"
+            android:maxLines="@integer/oneLine" />
+
+        <ImageButton
+            android:id="@id/ScreenWebImageButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_web_go"
+            android:contentDescription="@string/btnLableWebSearchGo"
+            android:onClick="onClickWebGo"
+            android:src="@drawable/ic_web_go" />
+    </TableRow>
+
+    <ListView
+        android:id="@id/ScreenWebListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/Size7dp"
+        android:layout_weight="1"
+        tools:ignore="InefficientWeight" >
+    </ListView>
+
+    <Button
+        android:id="@id/ScreenWebButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/Size7dp"
+        android:layout_marginLeft="@dimen/Size7dp"
+        android:layout_marginRight="@dimen/Size7dp"
+        android:onClick="onClickWebCancel"
+        android:text="@string/btnLableCancel" />
+
+</LinearLayout>

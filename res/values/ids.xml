@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Screen Main IDs -->
+    <item name="ScreenMainTableRow1" type="id"/>
+    <item name="ScreenMainImageButton1" type="id"/>
+    <item name="ScreenMainListView" type="id"/>
+    <item name="ScreenMainImageButton2" type="id"/>
+
+    <!-- Screen Edit IDs -->
+    <item name="ScreenEditTableRow1" type="id"/>
+    <item name="ScreenEditTextView1" type="id"/>
+    <item name="ScreenEditEditText1" type="id"/>
+    <item name="ScreenEditImageButton1" type="id"/>
+    <item name="ScreenEditTextView2" type="id"/>
+    <item name="ScreenEditEditText2" type="id"/>
+    <item name="ScreenEditTableRow2" type="id"/>
+    <item name="ScreenEditTextView3" type="id"/>
+    <item name="ScreenEditEditText3" type="id"/>
+    <item name="ScreenEditImageButton2" type="id"/>
+    <item name="ScreenEditImageView1" type="id"/>
+    <item name="ScreenEditButton1" type="id"/>
+    <item name="ScreenEditTableRow3" type="id"/>
+    <item name="ScreenEditButton2" type="id"/>
+    <item name="ScreenEditButton3" type="id"/>
+    <item name="ScreenEditButton4" type="id"/>
+    <!-- Screen Edit IDs -->
+
+    <item name="ScreenWebTableRow" type="id"/>
+    <item name="ScreenWebEditText1" type="id"/>
+    <item name="ScreenWebImageButton1" type="id"/>
+    <item name="ScreenWebListView" type="id"/>
+    <item name="ScreenWebButton" type="id"/>
+
+</resources>

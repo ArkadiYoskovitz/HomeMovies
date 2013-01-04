@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TableRow
+        android:id="@id/ScreenEditTableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@id/ScreenEditTextView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/Size2dp"
+            android:contentDescription="@string/labelSubject"
+            android:text="@string/labelSubject"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="@dimen/Size20dp" />
+
+        <EditText
+            android:id="@id/ScreenEditEditText1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:ems="10"
+            android:hint="@string/ScreenEditHint"
+            android:inputType="text"
+            android:maxLines="@integer/oneLine" />
+
+        <ImageButton
+            android:id="@id/ScreenEditImageButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/Size5dp"
+            android:background="@drawable/ic_color_selector"
+            android:contentDescription="@string/btnLableEditSelectColor"
+            android:onClick="onClickEditSelectColor"
+            android:src="@drawable/ic_color_selector" />
+    </TableRow>
+
+    <TextView
+        android:id="@id/ScreenEditTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/Size2dp"
+        android:contentDescription="@string/labelBody"
+        android:text="@string/labelBody"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="@dimen/Size20dp" />
+
+    <EditText
+        android:id="@id/ScreenEditEditText2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/Size7dp"
+        android:layout_marginRight="@dimen/Size7dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        tools:ignore="InefficientWeight" />
+
+    <TableRow
+        android:id="@id/ScreenEditTableRow2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@id/ScreenEditTextView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/Size2dp"
+            android:contentDescription="@string/labelBody"
+            android:text="@string/labelURL"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="@dimen/Size20dp" />
+
+        <EditText
+            android:id="@id/ScreenEditEditText3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:ems="10"
+            android:inputType="text"
+            android:maxLines="@integer/oneLine" />
+
+        <ImageButton
+            android:id="@id/ScreenEditImageButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/Size5dp"
+            android:background="@drawable/ic_twister"
+            android:contentDescription="@string/btnLableEditShow"
+            android:onClick="onClickEditShow"
+            android:src="@drawable/ic_twister" />
+    </TableRow>
+
+    <ImageView
+        android:id="@id/ScreenEditImageView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/ImagePlaceHolder"
+        android:cropToPadding="true"
+        android:maxHeight="@dimen/Size100dp"
+        android:maxWidth="@dimen/Size100dp"
+        android:padding="@dimen/Size7dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/placeholder" />
+
+    <Button
+        android:id="@id/ScreenEditButton1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickEditEmail"
+        android:text="@string/btnLableEditEmail" />
+
+    <TableRow
+        android:id="@id/ScreenEditTableRow3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <!--  -->
+
+        <Button
+            android:id="@id/ScreenEditButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClickEditCancel"
+            android:text="@string/btnLableCancel" />
+
+        <Button
+            android:id="@id/ScreenEditButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClickEditDelete"
+            android:text="@string/btnLableDelete" />
+
+        <Button
+            android:id="@id/ScreenEditButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClickEditCommit"
+            android:text="@string/btnLableCommit" />
+    </TableRow>
+
+</LinearLayout>

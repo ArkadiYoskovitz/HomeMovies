@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General App related Strings -->
+    <string name="app_name">Home Project Three</string>
+    <string name="menu_settings">Settings</string>
+
+    <!-- Button names related Strings -->
+    <!-- General buttons -->
+    <string name="btnLableCancel">Cancel</string>
+    <string name="btnLableDelete">Delete</string>
+    <string name="btnLableCommit">Save</string>
+
+    <!-- Main screen buttons -->
+    <string name="btnLableMainSettings">Settings</string>
+    <string name="btnLableMainAdd">Add Note</string>
+    <!-- Edit screen buttons -->
+    <string name="btnLableEditSelectColor">Select Color</string>
+    <string name="btnLableEditShow">Show Image</string>
+    <string name="btnLableEditEmail">Email</string>
+    <!-- Web screen buttons -->
+    <string name="btnLableWebSearchGo">Go</string>
+
+    <!-- Label names related Strings -->
+    <!-- Screen Main label -->
+    <string name="note_application">Note Application</string>
+    <!-- Screen Edit label -->
+    <string name="labelSubject">Subject:</string>
+    <string name="labelBody">Body:</string>
+    <string name="labelURL">URL</string>
+    <!-- Screen Web label -->
+    <string name="labelSearch">Search:</string>
+
+    <!-- System Notice related Strings -->
+    <string name="systemNoticeTitle">System Notice</string>
+    <string name="systemNoticeMsg">No Items to display, press the Add Button to add a new Item</string>
+    <string name="systemNoticeButton">OK</string>
+    <!-- Adding Method Selection -->
+    <string name="AddingDialogTitle">System Notice</string>
+    <string name="AddingDialogMsg">Choose how to add an Item</string>
+    <string name="AddingDialogLocal">By Hand</string>
+    <string name="AddingDialogWeb">Web</string>
+    <string name="AddingDialogCancel">Cancel</string>
+    <!-- Spinner names related Strings -->
+    <string name="advence_search">Advence Search</string>
+    <string name="basic_search">Basic Search</string>
+    <!--
+    <string name="rating_star_none">Rating Star None</string>
+    <string name="rating_star_half">Rating Star Half</string>
+    <string name="rating_star_full">Rating Star Full</string>
+    -->
+    <string name="emailHint">John.Appleseed@iCloud.com</string>
+    <string name="single_item_text">Large Text</string>
+    <!--  -->
+    <string name="ScreenEditHint">Default value</string>
+    <!--  -->
+    <string name="color_spinner">Color Spinner</string>
+    <string name="language_spinner">Language Spinner</string>
+    <string name="ImagePlaceHolder">Image PlaceHolder</string>
+
+</resources>

@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScreenMainLinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <TableRow
+        android:id="@id/ScreenMainTableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/note_application"
+            android:textSize="@dimen/Size30dp" />
+
+        <ImageButton
+            android:id="@id/ScreenMainImageButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_settings"
+            android:contentDescription="@string/btnLableMainSettings"
+            android:onClick="onClickSettings"
+            android:src="@drawable/ic_settings" />
+    </TableRow>
+
+    <ListView
+        android:id="@id/ScreenMainListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:ignore="InefficientWeight" >
+    </ListView>
+
+    <ImageButton
+        android:id="@id/ScreenMainImageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/ic_add"
+        android:contentDescription="@string/btnLableMainAdd"
+        android:onClick="onClickMainAdd"
+        android:src="@drawable/ic_add" />
+
+</LinearLayout>
