@@ -57,5 +57,7 @@
     <string name="color_spinner">Color Spinner</string>
     <string name="language_spinner">Language Spinner</string>
     <string name="ImagePlaceHolder">Image PlaceHolder</string>
+    
+    <string name="DownLoadWebErrorMsg">Problem downloading info. Try again later</string>
 
 </resources>

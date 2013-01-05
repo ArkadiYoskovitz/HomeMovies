@@ -29,6 +29,7 @@
     <item name="ScreenWebTableRow" type="id"/>
     <item name="ScreenWebEditText1" type="id"/>
     <item name="ScreenWebImageButton1" type="id"/>
+    <item name="ScreenWebTextView1" type="id"/>
     <item name="ScreenWebListView" type="id"/>
     <item name="ScreenWebButton" type="id"/>
 

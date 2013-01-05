@@ -41,6 +41,16 @@
             android:src="@drawable/ic_web_go" />
     </TableRow>
 
+    <TextView
+        android:id="@id/ScreenWebTextView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/Size7dp"
+        android:layout_marginRight="@dimen/Size7dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FF0000"
+        android:visibility="gone" />
+
     <ListView
         android:id="@id/ScreenWebListView"
         android:layout_width="match_parent"

@@ -1,12 +1,11 @@
 package il.co.All4Students.homemovies;
 
-import il.co.All4Students.homemovies.app.ApplicationPreference;
-import il.co.All4Students.homemovies.core.Item;
+import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_MAIN;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Spinner;
 
 /**
  * Edit screen
@@ -16,13 +15,15 @@ import android.widget.Spinner;
  */
 public class ScreenEdit extends Activity {
 	// Attributes
-	private Item mEditedItem;
-	private ApplicationPreference mSettings;
+	// private Item mEditedItem;
+	// private ApplicationPreference mSettings;
 
 	// System Events
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.screen_edit);
+		Log.d(LOG_TAG_MAIN, "Screen Edit Layout was Created and loaded");
 	}
 
 	@Override

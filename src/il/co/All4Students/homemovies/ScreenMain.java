@@ -44,14 +44,14 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 	private ArrayList<Item> mItemList = new ArrayList<Item>();
 	private Item mReturnedItem;
 	private ListView mListView;
-	private ApplicationPreference mSettings;
+	// private ApplicationPreference mSettings;
 
 	// System Events
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.screen_main);
-		Log.d(LOG_TAG_MAIN, "Activity Main Layout was Created and loaded");
+		Log.d(LOG_TAG_MAIN, "Screen Main Layout was Created and loaded");
 	}
 
 	@Override

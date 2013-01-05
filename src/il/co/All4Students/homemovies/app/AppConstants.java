@@ -7,6 +7,7 @@ public class AppConstants {
 	public static final String LOG_TAG_MAIN = "*** ScreenMain ***";
 	public static final String LOG_TAG_EDIT = "*** ScreenEdit ***";
 	public static final String LOG_TAG_WEB = "*** ScreenWeb ***";
+	public static final String LOG_TAG_WEB_DMovieInfo = "*** AsyncTask DownloadMovieInfo ***";
 
 	public static final String LOG_TAG_ITEM = "*** Item Log ***";
 
@@ -20,4 +21,8 @@ public class AppConstants {
 	public static final int RESULT_CODE_CANCEL = 1;
 	public static final int RESULT_CODE_DELETE = 2;
 	public static final int RESULT_CODE_COMMIT = 3;
+
+	public static final String LOG_TAG_WEB_SITE = "RottenTomatoes";
+	public static final String LOG_TAG_WEB_URL = "http://search.twitter.com/search.json?q=";
+
 }
