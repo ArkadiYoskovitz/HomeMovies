@@ -20,12 +20,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
-import android.widget.ListView;
 
 public class ScreenWeb extends Activity implements OnItemClickListener {
 	// Attributes
 	private ArrayList<Item> mItemList;
-	private ListView mListView;
 	private EditText txtSearch;
 	private DownloadMovieInfo downloadTask;
 

@@ -1,15 +1,13 @@
 package cursspace.asynctaskexample;
 
-import android.os.AsyncTask;
-import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.View;
-import android.widget.Button;
+import android.os.Bundle;
 
+@SuppressLint("Registered")
 public class MainActivity extends Activity {
 
+	@SuppressWarnings("unused")
 	private DownloadImageTask downloadTask;
 
 	@Override
