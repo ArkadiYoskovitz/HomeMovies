@@ -38,6 +38,10 @@ public class Item implements Comparable<Item>, Parcelable {
 		this(_id, subject, body, "", "", 0, 0);
 	}
 
+	public Item(String subject, String body, String urlWeb, int rtID) {
+		this(0, subject, body, urlWeb, "", rtID, 0);
+	}
+
 	public Item(int _id, String subject, String body, String urlWeb,
 			String urlLocal, int rtID, int color) {
 		super();

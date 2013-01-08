@@ -2,7 +2,7 @@
 <resources>
 
     <!-- General App related Strings -->
-    <string name="app_name">Home Project Three</string>
+    <string name="app_name">Home Movies</string>
     <string name="menu_settings">Settings</string>
 
     <!-- Button names related Strings -->

@@ -44,6 +44,7 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 	private ArrayList<Item> mItemList = new ArrayList<Item>();
 	private Item mReturnedItem;
 	private ListView mListView;
+
 	// private ApplicationPreference mSettings;
 
 	// System Events
@@ -55,21 +56,6 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 	}
 
 	@Override
-	protected void onRestart() {
-		super.onRestart();
-	}
-
-	@Override
-	protected void onStart() {
-		super.onStart();
-	}
-
-	@Override
-	protected void onPostCreate(Bundle savedInstanceState) {
-		super.onPostCreate(savedInstanceState);
-	}
-
-	@Override
 	protected void onResume() {
 		super.onResume();
 		Log.d(LOG_TAG_MAIN, "Activity Main Layout was Resumed");
@@ -78,38 +64,6 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 		loadScreenMainList();
 		registerForContextMenu(mListView);
 
-	}
-
-	@Override
-	protected void onPostResume() {
-		super.onPostResume();
-	}
-
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-	}
-
-	@Override
-	protected void onRestoreInstanceState(Bundle savedInstanceState) {
-		super.onRestoreInstanceState(savedInstanceState);
-	}
-
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	@Override
-	protected void onPause() {
-		super.onPause();
-	}
-
-	@Override
-	protected void onStop() {
-		super.onStop();
-	}
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
 	}
 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -148,7 +102,7 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 				break;
 			}
 			break;
-		// Handaling the return of the Add button
+		// Handaling the return of the Add Local button
 		case Item_Add_Local:
 			switch (resultCode) {
 
@@ -167,7 +121,6 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 				Log.d(LOG_TAG_MAIN,
 						"onActivityResult - Item_Add_Local - COMMIT");
 				mReturnedItem = data.getExtras().getParcelable(INTENT_TARGET);
-				// mReturnedItem = fixItemNumber(mReturnedItem);
 				itemHandler.addItem(mReturnedItem);
 				lastItem = itemHandler.getLastItemId();
 				mReturnedItem = itemHandler.getItem(lastItem);
@@ -180,13 +133,15 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 				break;
 			}
 			break;
-		// ////////////////////////////////////////////////////////////////////////////////
+		// Handaling the return of the Add From Web button
 		case Item_Search_Web:
 			switch (resultCode) {
 
 			case RESULT_CODE_CANCEL:
 				Log.d(LOG_TAG_MAIN,
 						"onActivityResult - Item_Search_Web - CANCEL");
+				ColorListAdapter adapter = new ColorListAdapter(this, mItemList);
+				mListView.setAdapter(adapter);
 				break;
 
 			default:
@@ -209,9 +164,9 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 		super.onActivityResult(requestCode, resultCode, data);
 	}
 
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Menu Events
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	/**
 	 * onCreateOptionsMenu
@@ -223,6 +178,34 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 		Log.d(LOG_TAG_MAIN,
 				"Activity Main Option Menue Layout was Created and loaded");
 		return true;
+	}
+
+	/**
+	 * Handling the different available operation
+	 */
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		mListView = (ListView) findViewById(R.id.ScreenMainListView);
+
+		switch (item.getItemId()) {
+		case R.id.optionMenuDeletAllIteams:
+			Log.d(LOG_TAG_MAIN, "optionMenuDeletAllIteams was pressed");
+			ItemsHandler itemHandler = new ItemsHandler(this);
+			itemHandler.deleteAllItems();
+			mItemList.clear();
+			ColorListAdapter adapter = new ColorListAdapter(this, mItemList);
+			mListView.setAdapter(adapter);
+			break;
+
+		case R.id.optionMenuExitSettings:
+			Log.d(LOG_TAG_MAIN, "optionMenuExitSettings was pressed");
+			System.exit(0);
+			break;
+
+		default:
+			break;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	/**
