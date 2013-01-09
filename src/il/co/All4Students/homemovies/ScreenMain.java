@@ -140,8 +140,6 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 			case RESULT_CODE_CANCEL:
 				Log.d(LOG_TAG_MAIN,
 						"onActivityResult - Item_Search_Web - CANCEL");
-				ColorListAdapter adapter = new ColorListAdapter(this, mItemList);
-				mListView.setAdapter(adapter);
 				break;
 
 			default:
@@ -157,8 +155,7 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 		}
 
 		// Handaling the screen refresh
-		ColorListAdapter adapter = new ColorListAdapter(this, mItemList);
-		adapter.notifyDataSetChanged();
+		loadScreenMainList();
 		Log.d(LOG_TAG_MAIN, "View re-loaded");
 
 		super.onActivityResult(requestCode, resultCode, data);
@@ -193,7 +190,7 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 			ItemsHandler itemHandler = new ItemsHandler(this);
 			itemHandler.deleteAllItems();
 			mItemList.clear();
-			ColorListAdapter adapter = new ColorListAdapter(this, mItemList);
+			ColorListAdapter adapter = new ColorListAdapter(ScreenMain.this, mItemList);
 			mListView.setAdapter(adapter);
 			break;
 
@@ -250,7 +247,7 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 			itemHandler.deleteItem(mReturnedItem);
 			mItemList.remove(mReturnedItem);
 
-			ColorListAdapter adapter = new ColorListAdapter(this, mItemList);
+			ColorListAdapter adapter = new ColorListAdapter(ScreenMain.this, mItemList);
 			mListView.setAdapter(adapter);
 			break;
 
@@ -305,8 +302,9 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 			break;
 		}
 
-		ColorListAdapter adapter = new ColorListAdapter(this, mItemList);
+		ColorListAdapter adapter = new ColorListAdapter(ScreenMain.this, mItemList);
 		mListView.setAdapter(adapter);
+
 		Log.d(LOG_TAG_MAIN, "finishe with the layout but still working on it");
 
 		return super.onContextItemSelected(item);
@@ -439,7 +437,7 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 	 */
 	private void loadScreenMainList() {
 		mListView = (ListView) findViewById(R.id.ScreenMainListView);
-		ColorListAdapter adapter = new ColorListAdapter(this, mItemList);
+		ColorListAdapter adapter = new ColorListAdapter(ScreenMain.this, mItemList);
 		mListView.setDivider(new ColorDrawable(this.getResources().getColor(
 				R.color.Crimson)));
 		mListView.setDividerHeight((int) getResources().getDimension(

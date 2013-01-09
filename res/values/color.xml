@@ -111,14 +111,12 @@
     <color name="CornflowerBlue">#6495ED</color>
     <color name="CadetBlue">#5F9EA0</color>
     <color name="DarkOliveGreen">#556B2F</color>
-    <color name="Indigo">#4B0082</color>
     <color name="MediumTurquoise">#48D1CC</color>
     <color name="DarkSlateBlue">#483D8B</color>
     <color name="SteelBlue">#4682B4</color>
     <color name="RoyalBlue">#4169E1</color>
     <color name="Turquoise">#40E0D0</color>
     <color name="MediumSeaGreen">#3CB371</color>
-    <color name="LimeGreen">#32CD32</color>
     <color name="DarkSlateGray">#2F4F4F</color>
     <color name="SeaGreen">#2E8B57</color>
     <color name="ForestGreen">#228B22</color>
@@ -127,7 +125,6 @@
     <color name="MidnightBlue">#191970</color>
     <color name="Aqua">#00FFFF</color>
     <color name="Cyan">#00FFFF</color>
-    <color name="SpringGreen">#00FF7F</color>
     <color name="Lime">#00FF00</color>
     <color name="MediumSpringGreen">#00FA9A</color>
     <color name="DarkTurquoise">#00CED1</color>
@@ -147,5 +144,10 @@
     <color name="category_color">#ff000000</color>
     <color name="preference">#ff0044ff</color>
     <color name="bar_color">#ff060606</color>
+    <!--  -->
+    <color name="color1">#EB8B92</color>
+    <color name="color2">#ECA14E</color>
+    <color name="color3">#2B2324</color>
+    <color name="color4">#F5EDED</color>
 
 </resources>

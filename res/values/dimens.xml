@@ -14,6 +14,11 @@
     <dimen name="Size50dp">50dp</dimen>
     <dimen name="Size70dp">70dp</dimen>
     <dimen name="Size100dp">100dp</dimen>
+    <dimen name="Size200dp">200dp</dimen>
+    <dimen name="Size300dp">300dp</dimen>
+    <dimen name="Size350dp">350dp</dimen>
+    <dimen name="Size400dp">400dp</dimen>
+    <dimen name="Size500dp">500dp</dimen>
     <!--  -->
     <dimen name="bar_height">3dp</dimen>
     <dimen name="space_between_categories">35dp</dimen>

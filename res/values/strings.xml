@@ -59,5 +59,9 @@
     <string name="ImagePlaceHolder">Image PlaceHolder</string>
     
     <string name="DownLoadWebErrorMsg">Problem downloading info. Try again later</string>
+    
+    <string name="labelDefaultColor">Default Color</string>
+    
+    <string name="SCDialogTitle">Select Color</string>
 
 </resources>

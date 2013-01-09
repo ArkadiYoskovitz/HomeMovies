@@ -18,6 +18,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -27,6 +28,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -44,10 +47,11 @@ public class ScreenEdit extends Activity {
 	private final String QUERY_KEY_PARAM = "?q=";
 	private final String API_KEY_PARAM = "&apikey=".intern();
 	private final String DEFAULT_ENCODING = "utf-8";
-	private DownloadImageTask downloadTask;
 
 	// Attributes
+
 	private Item mEditedItem;
+	private DownloadImageTask downloadTask;
 	private ApplicationPreference mSettings;
 
 	// System Events
@@ -78,11 +82,6 @@ public class ScreenEdit extends Activity {
 		} catch (Exception e) {
 			Log.d(LOG_TAG_EDIT, "Unable to load empty Item object");
 		}
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
 	}
 
 	@Override
@@ -126,27 +125,68 @@ public class ScreenEdit extends Activity {
 		text3.setText(url);
 	}
 
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	@Override
-	protected void onPause() {
-		super.onPause();
-	}
-
-	@Override
-	protected void onStop() {
-		super.onStop();
-	}
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-	}
-
-	// Menu Events
-
 	// OnClick Events
 	public void onClickEditSelectColor(View view) {
+		final Dialog SCDialog = new Dialog(ScreenEdit.this);
+		SCDialog.setContentView(R.layout.custom_dialog_colors);
+		SCDialog.setTitle(R.string.SCDialogTitle);
+		SCDialog.setCancelable(false);
+		SCDialog.show();
 
+		Button btnSCDialogColorRed = (Button) SCDialog
+				.findViewById(R.id.CustomDialogColorsButton1);
+		btnSCDialogColorRed.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				mEditedItem.setColor(getResources().getColor(R.color.Red));
+				SCDialog.dismiss();
+			}
+		});
+
+		Button btnSCDialogColorGreen = (Button) SCDialog
+				.findViewById(R.id.CustomDialogColorsButton2);
+		btnSCDialogColorGreen.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				mEditedItem.setColor(getResources().getColor(R.color.Green));
+				SCDialog.dismiss();
+			}
+		});
+
+		Button btnSCDialogColorYellow = (Button) SCDialog
+				.findViewById(R.id.CustomDialogColorsButton3);
+		btnSCDialogColorYellow.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				mEditedItem.setColor(getResources().getColor(R.color.Yellow));
+				SCDialog.dismiss();
+			}
+		});
+
+		Button btnSCDialogColorBlue = (Button) SCDialog
+				.findViewById(R.id.CustomDialogColorsButton4);
+		btnSCDialogColorBlue.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				mEditedItem.setColor(getResources().getColor(R.color.Blue));
+				SCDialog.dismiss();
+			}
+		});
+
+		Button btnSCDialogColorDefault = (Button) SCDialog
+				.findViewById(R.id.CustomDialogColorsButton5);
+		btnSCDialogColorDefault.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				mEditedItem.setColor(ApplicationPreference.getDefaultColor());
+				SCDialog.dismiss();
+			}
+		});
 	}
 
 	public void onClickEditShow(View view) {

@@ -48,6 +48,7 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 	private final String HOST = "http://api.rottentomatoes.com";
 	private final String MOVIE_SEARCH_ENDPOINT = "/api/public/v1.0/movies.json";
 	private final String QUERY_KEY_PARAM = "?q=";
+	private final String PAGE_LIMIT_PARAM = "&page_limit=50";
 	private final String API_KEY_PARAM = "&apikey=".intern();
 	private final String DEFAULT_ENCODING = "utf-8";
 
@@ -118,6 +119,15 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 				lastItem = itemHandler.getLastItemId();
 				mReturnedItem = itemHandler.getItem(lastItem);
 				mItemList.add(mReturnedItem);
+				ListView lv = (ListView) findViewById(R.id.ScreenWebListView);
+
+				ColorListAdapter adapter = new ColorListAdapter(ScreenWeb.this,
+						mItemList);
+				lv.setDivider(new ColorDrawable(ScreenWeb.this.getResources()
+						.getColor(R.color.Crimson)));
+				lv.setDividerHeight((int) ScreenWeb.this.getResources()
+						.getDimension(R.dimen.Size2dp));
+				lv.setAdapter(adapter);
 				break;
 
 			default:
@@ -165,8 +175,8 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 						.append(MOVIE_SEARCH_ENDPOINT)
 						.append(QUERY_KEY_PARAM)
 						.append(URLEncoder.encode(searchString,
-								DEFAULT_ENCODING)).append(API_KEY_PARAM)
-						.append(APP_API_KEY).toString();
+								DEFAULT_ENCODING)).append(PAGE_LIMIT_PARAM)
+						.append(API_KEY_PARAM).append(APP_API_KEY).toString();
 				downloadTask.execute(query);
 			} catch (Exception e) {
 				Log.e(LOG_TAG_WEB_SITE, "Exception: " + e.getMessage());
