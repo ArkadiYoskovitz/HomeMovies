@@ -118,7 +118,7 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 				itemHandler.addItem(mReturnedItem);
 				lastItem = itemHandler.getLastItemId();
 				mReturnedItem = itemHandler.getItem(lastItem);
-				mItemList.add(mReturnedItem);
+				// mItemList.add(mReturnedItem);
 				ListView lv = (ListView) findViewById(R.id.ScreenWebListView);
 
 				ColorListAdapter adapter = new ColorListAdapter(ScreenWeb.this,

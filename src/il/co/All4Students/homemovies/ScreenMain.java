@@ -155,7 +155,11 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 		}
 
 		// Handaling the screen refresh
-		loadScreenMainList();
+		finish();
+		startActivity(getIntent());
+		// loadDateBase();
+		// loadScreenMainTest();
+		// loadScreenMainList();
 		Log.d(LOG_TAG_MAIN, "View re-loaded");
 
 		super.onActivityResult(requestCode, resultCode, data);
@@ -190,7 +194,8 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 			ItemsHandler itemHandler = new ItemsHandler(this);
 			itemHandler.deleteAllItems();
 			mItemList.clear();
-			ColorListAdapter adapter = new ColorListAdapter(ScreenMain.this, mItemList);
+			ColorListAdapter adapter = new ColorListAdapter(ScreenMain.this,
+					mItemList);
 			mListView.setAdapter(adapter);
 			break;
 
@@ -247,7 +252,8 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 			itemHandler.deleteItem(mReturnedItem);
 			mItemList.remove(mReturnedItem);
 
-			ColorListAdapter adapter = new ColorListAdapter(ScreenMain.this, mItemList);
+			ColorListAdapter adapter = new ColorListAdapter(ScreenMain.this,
+					mItemList);
 			mListView.setAdapter(adapter);
 			break;
 
@@ -302,7 +308,8 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 			break;
 		}
 
-		ColorListAdapter adapter = new ColorListAdapter(ScreenMain.this, mItemList);
+		ColorListAdapter adapter = new ColorListAdapter(ScreenMain.this,
+				mItemList);
 		mListView.setAdapter(adapter);
 
 		Log.d(LOG_TAG_MAIN, "finishe with the layout but still working on it");
@@ -437,7 +444,8 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 	 */
 	private void loadScreenMainList() {
 		mListView = (ListView) findViewById(R.id.ScreenMainListView);
-		ColorListAdapter adapter = new ColorListAdapter(ScreenMain.this, mItemList);
+		ColorListAdapter adapter = new ColorListAdapter(ScreenMain.this,
+				mItemList);
 		mListView.setDivider(new ColorDrawable(this.getResources().getColor(
 				R.color.Crimson)));
 		mListView.setDividerHeight((int) getResources().getDimension(
