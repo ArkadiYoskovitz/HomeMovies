@@ -31,12 +31,14 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
@@ -157,6 +159,9 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 
 	// OnClick Events
 	public void onClickWebGo(View view) {
+		InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+
 		txtSearch = (EditText) findViewById(R.id.ScreenWebEditText1);
 		if (txtSearch.getText() != null) {
 			try {
@@ -247,6 +252,7 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 			mDialog.setCancelable(true);
 			mDialog.setMessage("Loading...");
 			mDialog.setProgress(0);
+			mDialog.show();
 
 			// Reset the progress bar
 			TextView errorMsg = (TextView) mActivity

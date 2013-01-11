@@ -1,6 +1,5 @@
 package il.co.All4Students.homemovies;
 
-import static il.co.All4Students.homemovies.app.AppConstants.APP_API_KEY;
 import static il.co.All4Students.homemovies.app.AppConstants.INTENT_TARGET;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_EDIT;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_WEB;
@@ -15,7 +14,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -203,16 +201,16 @@ public class ScreenEdit extends Activity {
 				String searchString = txtSearch.getText().toString();
 				DownloadImageTask downloadTask = new DownloadImageTask(
 						ScreenEdit.this);
-
-				String query = new StringBuilder()
-						.append(HOST)
-						.append(MOVIE_SEARCH_ENDPOINT)
-						.append(QUERY_KEY_PARAM)
-						.append(URLEncoder.encode(searchString,
-								DEFAULT_ENCODING)).append(API_KEY_PARAM)
-						.append(APP_API_KEY).toString();
-
-				downloadTask.execute(query);
+				downloadTask.execute(searchString);
+//				String query = new StringBuilder()
+//						.append(HOST)
+//						.append(MOVIE_SEARCH_ENDPOINT)
+//						.append(QUERY_KEY_PARAM)
+//						.append(URLEncoder.encode(searchString,
+//								DEFAULT_ENCODING)).append(API_KEY_PARAM)
+//						.append(APP_API_KEY).toString();
+//
+//				downloadTask.execute(query);
 			} catch (Exception e) {
 				Log.e(LOG_TAG_WEB_SITE, "Exception: " + e.getMessage());
 			}
@@ -272,6 +270,7 @@ public class ScreenEdit extends Activity {
 		EditText subjectText = (EditText) findViewById(R.id.ScreenEditEditText1);
 		EditText bodyText = (EditText) findViewById(R.id.ScreenEditEditText2);
 		EditText URLText = (EditText) findViewById(R.id.ScreenEditEditText3);
+		
 		if (subjectText.getText().toString().length() == 0) {
 			mEditedItem.setSubject(subjectText.getHint().toString());
 			mEditedItem.setBody(bodyText.getText().toString());
@@ -299,7 +298,7 @@ public class ScreenEdit extends Activity {
 	}
 
 	// Inner Classes
-	public class DownloadImageTask extends AsyncTask<String, Integer, Bitmap> {
+	private class DownloadImageTask extends AsyncTask<String, Integer, Bitmap> {
 
 		private Activity mActivity;
 		private ProgressDialog mDialog;
@@ -324,6 +323,7 @@ public class ScreenEdit extends Activity {
 			mDialog.setCancelable(true);
 			mDialog.setMessage("Loading...");
 			mDialog.setProgress(0);
+			mDialog.show();
 			TextView errorMsg = (TextView) mActivity
 					.findViewById(R.id.ScreenEditTextViewErrorMsg);
 			errorMsg.setVisibility(View.INVISIBLE);

@@ -51,7 +51,7 @@ public class MainActivity extends Activity {
 		searchButton.setOnClickListener(new OnClickListener() {
 			// send an API request when the button is pressed
 			@Override
-			public void onClick(View arg0) {
+			public void onClick(View view) {
 				new RequestTask()
 						.execute("http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey="
 								+ API_KEY
