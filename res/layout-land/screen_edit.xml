@@ -80,6 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/Size2dp"
                 android:contentDescription="@string/labelBody"
+                android:gravity="center"
                 android:text="@string/labelURL"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textSize="@dimen/Size20dp" />
@@ -91,6 +92,7 @@
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:ems="10"
+                android:gravity="center"
                 android:inputType="text"
                 android:maxLines="@integer/oneLine" />
 

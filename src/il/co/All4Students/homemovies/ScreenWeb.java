@@ -216,6 +216,7 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 		lv.setDividerHeight((int) ScreenWeb.this.getResources().getDimension(
 				R.dimen.Size2dp));
 		lv.setAdapter(adapter);
+		//adapter.notifyDataSetChanged();
 	}
 
 	// Inner Classes

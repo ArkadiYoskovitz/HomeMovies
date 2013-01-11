@@ -175,7 +175,7 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.screen_main, menu);
+		getMenuInflater().inflate(R.menu.screen_main_menu_option, menu);
 		Log.d(LOG_TAG_MAIN,
 				"Activity Main Option Menue Layout was Created and loaded");
 		return true;
@@ -189,8 +189,9 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 		mListView = (ListView) findViewById(R.id.ScreenMainListView);
 
 		switch (item.getItemId()) {
-		case R.id.optionMenuDeletAllIteams:
-			Log.d(LOG_TAG_MAIN, "optionMenuDeletAllIteams was pressed");
+		case R.id.screenMainOptionMenuDeletAllIteams:
+			Log.d(LOG_TAG_MAIN,
+					"screenMainOptionMenuDeletAllIteams was pressed");
 			ItemsHandler itemHandler = new ItemsHandler(this);
 			itemHandler.deleteAllItems();
 			mItemList.clear();
@@ -199,7 +200,7 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 			mListView.setAdapter(adapter);
 			break;
 
-		case R.id.optionMenuExitSettings:
+		case R.id.screenMainOptionMenuExitSettings:
 			Log.d(LOG_TAG_MAIN, "optionMenuExitSettings was pressed");
 			System.exit(0);
 			break;
@@ -219,7 +220,7 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 		super.onCreateContextMenu(menu, v, menuInfo);
 
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.context_menu, menu);
+		inflater.inflate(R.menu.screen_main_menu_context, menu);
 	}
 
 	/**
@@ -236,7 +237,7 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 		/*
 		 * Send the choosen item to the editing screen
 		 */
-		case R.id.contextMenuEdit:
+		case R.id.screenMainContextMenuEdit:
 			Log.d(LOG_TAG_MAIN, "contextMenuEdit was pressed");
 			Intent intent = new Intent(ScreenMain.this, ScreenEdit.class);
 			intent.putExtra(INTENT_TARGET, mItemList.get((int) info.id));
@@ -246,7 +247,7 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 		/*
 		 * Remove the item from the DB and from the itemList
 		 */
-		case R.id.contextMenuDelete:
+		case R.id.screenMainContextMenuDelete:
 			Log.d(LOG_TAG_MAIN, "contextMenuDelete was pressed");
 			mReturnedItem = mItemList.get((int) info.id);
 			itemHandler.deleteItem(mReturnedItem);
@@ -261,7 +262,7 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 		 * Call the item selected, get the ID, ubdate the color and return to
 		 * the DB, update the itemList
 		 */
-		case R.id.contextMenuColorSettings:
+		case R.id.screenMainContextMenuColorSettings:
 			Log.d(LOG_TAG_MAIN, "contextMenuColorSettings was pressed");
 			mReturnedItem = mItemList.get((int) info.id);
 			break;

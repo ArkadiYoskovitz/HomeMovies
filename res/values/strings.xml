@@ -27,7 +27,7 @@
     <!-- Screen Edit label -->
     <string name="labelSubject">Subject:</string>
     <string name="labelBody">Body:</string>
-    <string name="labelURL">URL</string>
+    <string name="labelURL">URL:</string>
     <!-- Screen Web label -->
     <string name="labelSearch">Search:</string>
 

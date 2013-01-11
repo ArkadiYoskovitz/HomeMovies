@@ -39,15 +39,8 @@ import android.widget.TextView;
  * 
  */
 public class ScreenEdit extends Activity {
-	// Constants
-	private final String HOST = "http://api.rottentomatoes.com";
-	private final String MOVIE_SEARCH_ENDPOINT = "/api/public/v1.0/movies.json";
-	private final String QUERY_KEY_PARAM = "?q=";
-	private final String API_KEY_PARAM = "&apikey=".intern();
-	private final String DEFAULT_ENCODING = "utf-8";
 
 	// Attributes
-
 	private Item mEditedItem;
 	private DownloadImageTask downloadTask;
 	private ApplicationPreference mSettings;
@@ -202,15 +195,15 @@ public class ScreenEdit extends Activity {
 				DownloadImageTask downloadTask = new DownloadImageTask(
 						ScreenEdit.this);
 				downloadTask.execute(searchString);
-//				String query = new StringBuilder()
-//						.append(HOST)
-//						.append(MOVIE_SEARCH_ENDPOINT)
-//						.append(QUERY_KEY_PARAM)
-//						.append(URLEncoder.encode(searchString,
-//								DEFAULT_ENCODING)).append(API_KEY_PARAM)
-//						.append(APP_API_KEY).toString();
-//
-//				downloadTask.execute(query);
+				// String query = new StringBuilder()
+				// .append(HOST)
+				// .append(MOVIE_SEARCH_ENDPOINT)
+				// .append(QUERY_KEY_PARAM)
+				// .append(URLEncoder.encode(searchString,
+				// DEFAULT_ENCODING)).append(API_KEY_PARAM)
+				// .append(APP_API_KEY).toString();
+				//
+				// downloadTask.execute(query);
 			} catch (Exception e) {
 				Log.e(LOG_TAG_WEB_SITE, "Exception: " + e.getMessage());
 			}
@@ -270,7 +263,7 @@ public class ScreenEdit extends Activity {
 		EditText subjectText = (EditText) findViewById(R.id.ScreenEditEditText1);
 		EditText bodyText = (EditText) findViewById(R.id.ScreenEditEditText2);
 		EditText URLText = (EditText) findViewById(R.id.ScreenEditEditText3);
-		
+
 		if (subjectText.getText().toString().length() == 0) {
 			mEditedItem.setSubject(subjectText.getHint().toString());
 			mEditedItem.setBody(bodyText.getText().toString());
