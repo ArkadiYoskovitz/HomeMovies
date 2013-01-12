@@ -2,6 +2,8 @@ package il.co.All4Students.homemovies;
 
 import static il.co.All4Students.homemovies.app.AppConstants.INTENT_TARGET;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_EDIT;
+import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_MAIN;
+import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_TextToSpeech;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_WEB;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_WEB_SITE;
 import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_CANCEL;
@@ -11,11 +13,14 @@ import il.co.All4Students.homemovies.app.ApplicationPreference;
 import il.co.All4Students.homemovies.core.Item;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Locale;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -24,13 +29,21 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Edit screen
@@ -38,18 +51,27 @@ import android.widget.TextView;
  * @author Arkadi Yoskovitz
  * 
  */
-public class ScreenEdit extends Activity {
+public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener {
 
 	// Attributes
 	private Item mEditedItem;
 	private DownloadImageTask downloadTask;
 	private ApplicationPreference mSettings;
+	private TextToSpeech mTextToSpeech;
+	private boolean mIsLanguageSupported = true;
 
 	// System Events
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.screen_edit);
+		mTextToSpeech = new TextToSpeech(this, this);
+
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
 		try {
 			mEditedItem = getIntent().getExtras().getParcelable(INTENT_TARGET);
 			EditText text1 = (EditText) findViewById(R.id.ScreenEditEditText1);
@@ -70,6 +92,8 @@ public class ScreenEdit extends Activity {
 			}
 
 			text2.setText(mEditedItem.getBody());
+			final ImageView screenEditImage = (ImageView) findViewById(R.id.ScreenEditImageView1);
+			registerForContextMenu(screenEditImage);
 		} catch (Exception e) {
 			Log.d(LOG_TAG_EDIT, "Unable to load empty Item object");
 		}
@@ -87,7 +111,7 @@ public class ScreenEdit extends Activity {
 		finish();
 	}
 
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
@@ -116,7 +140,90 @@ public class ScreenEdit extends Activity {
 		text3.setText(url);
 	}
 
+	@Override
+	protected void onDestroy() {
+		// Don't forget to shutdown!
+		if (mTextToSpeech != null) {
+			mTextToSpeech.stop();
+			mTextToSpeech.shutdown();
+		}
+		super.onDestroy();
+	}
+
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// Menu Events
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * onCreateOptionsMenu
+	 */
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.screen_edit_menu_option, menu);
+		Log.d(LOG_TAG_MAIN,
+				"Activity Edit Option Menu Layout was Created and loaded");
+		return true;
+	}
+
+	/**
+	 * Handling the different available operation
+	 */
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.screenEditOptionMenuShare:
+			ShareDialog ShareDialog = new ShareDialog();
+			ShareDialog.showAlertDialog();
+			break;
+
+		case R.id.screenEditOptionMenuSpeach:
+			speakOut();
+			break;
+
+		default:
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.screen_edit_menu_context, menu);
+	}
+
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.screenEditContextMenuSaveToCard:
+			// do something
+			break;
+		case R.id.screenEditContextMenuRank:
+			// do something
+			break;
+		// ////////////////////
+		case R.id.screenEditContextMenuShare:
+			ShareDialog ShareDialog = new ShareDialog();
+			ShareDialog.showAlertDialog();
+			break;
+
+		default:
+			break;
+		}
+		// ////
+		// end of onContextItemSelected code
+		//
+		//
+		// ///////////
+		return super.onContextItemSelected(item);
+	}
+
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// OnClick Events
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void onClickEditSelectColor(View view) {
 		final Dialog SCDialog = new Dialog(ScreenEdit.this);
 		SCDialog.setContentView(R.layout.custom_dialog_colors);
@@ -195,46 +302,10 @@ public class ScreenEdit extends Activity {
 				DownloadImageTask downloadTask = new DownloadImageTask(
 						ScreenEdit.this);
 				downloadTask.execute(searchString);
-				// String query = new StringBuilder()
-				// .append(HOST)
-				// .append(MOVIE_SEARCH_ENDPOINT)
-				// .append(QUERY_KEY_PARAM)
-				// .append(URLEncoder.encode(searchString,
-				// DEFAULT_ENCODING)).append(API_KEY_PARAM)
-				// .append(APP_API_KEY).toString();
-				//
-				// downloadTask.execute(query);
 			} catch (Exception e) {
 				Log.e(LOG_TAG_WEB_SITE, "Exception: " + e.getMessage());
 			}
 		}
-	}
-
-	public void onClickEditEmail(View view) {
-		itemRefreshFromScreen();
-		Log.d(LOG_TAG_EDIT, "Edit Screen - Email button was pressed");
-
-		EditText subjectText = (EditText) findViewById(R.id.ScreenEditEditText1);
-
-		if (subjectText.getText().toString().length() == 0) {
-			mEditedItem.setSubject(subjectText.getHint().toString());
-		} else {
-			itemRefreshFromScreen();
-		}
-		mSettings = new ApplicationPreference(ScreenEdit.this);
-
-		String emailAddress = mSettings.getEmail().toString();
-
-		String uriText = "mailto:" + emailAddress + "?subject="
-				+ Uri.encode(mEditedItem.getSubject()) + "&body="
-				+ Uri.encode(mEditedItem.getBody()) + "\n\n\n"
-				+ Uri.encode(mEditedItem.getUrlWeb());
-
-		Uri uri = Uri.parse(uriText);
-
-		Intent intent = new Intent(Intent.ACTION_SENDTO);
-		intent.setData(uri);
-		startActivity(Intent.createChooser(intent, "Send email"));
 	}
 
 	public void onClickEditCancel(View view) {
@@ -279,7 +350,28 @@ public class ScreenEdit extends Activity {
 		finish();
 	}
 
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// Additional Events
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	@Override
+	public void onInit(int status) {
+		if (status == TextToSpeech.SUCCESS) {
+			int result = mTextToSpeech.setLanguage(Locale.US);
+			// mTextToSpeech.setPitch(5); // set pitch level
+			// mTextToSpeech.setSpeechRate(2); // set speech speed rate
+			if (result == TextToSpeech.LANG_MISSING_DATA
+					|| result == TextToSpeech.LANG_NOT_SUPPORTED) {
+				Log.e(LOG_TAG_TextToSpeech, "Language is not supported");
+				mIsLanguageSupported = false;
+			}
+		} else {
+			Log.e(LOG_TAG_TextToSpeech, "Initilization Failed");
+		}
+	}
+
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Additional Methods
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	private void itemRefreshFromScreen() {
 		EditText text1 = (EditText) findViewById(R.id.ScreenEditEditText1);
@@ -290,7 +382,22 @@ public class ScreenEdit extends Activity {
 		mEditedItem.setUrlWeb(text3.getText().toString());
 	}
 
+	private void speakOut() {
+		if (mIsLanguageSupported) {
+			String subject = mEditedItem.getSubject();
+			String body = mEditedItem.getBody();
+			mTextToSpeech.speak(subject + "\n" + body,
+					TextToSpeech.QUEUE_FLUSH, null);
+		} else {
+			Toast.makeText(ScreenEdit.this,
+					getResources().getString(R.string.TextToSpeech),
+					Toast.LENGTH_LONG).show();
+		}
+	}
+
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Inner Classes
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private class DownloadImageTask extends AsyncTask<String, Integer, Bitmap> {
 
 		private Activity mActivity;
@@ -303,23 +410,49 @@ public class ScreenEdit extends Activity {
 
 		protected Bitmap doInBackground(String... urls) {
 			Log.d("doInBackground", "starting download of image");
-			Bitmap image = downloadImage(urls[0]);
-			return image;
+			Bitmap bitmap = null;
+			try {
+				URL url = new URL(urls[0]);
+				HttpURLConnection httpCon = (HttpURLConnection) url
+						.openConnection();
+				try {
+					InputStream is = httpCon.getInputStream();
+					int fileLength = httpCon.getContentLength();
+					ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+					int nRead, totalBytesRead = 0;
+					byte[] data = new byte[2048];
+					mDialog.setMax(fileLength);
+					// Read the image bytes in chunks of 2048 bytes
+					while ((nRead = is.read(data, 0, data.length)) != -1) {
+						buffer.write(data, 0, nRead);
+						totalBytesRead += nRead;
+						publishProgress(totalBytesRead);
+					}
+					buffer.flush();
+					byte[] imageArray = buffer.toByteArray();
+					bitmap = BitmapFactory.decodeByteArray(imageArray, 0,
+							imageArray.length);
+				} catch (IOException e) {
+					e.printStackTrace();
+				} finally {
+					httpCon.disconnect();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return bitmap;
 		}
 
 		protected void onPreExecute() {
-			ImageView imageView = (ImageView) mActivity
-					.findViewById(R.id.ScreenEditImageView1);
-			imageView.setImageBitmap(null);
-			// Reset the progress bar
 			mDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 			mDialog.setCancelable(true);
 			mDialog.setMessage("Loading...");
+			mDialog.setMax(9999999);
 			mDialog.setProgress(0);
 			mDialog.show();
 			TextView errorMsg = (TextView) mActivity
 					.findViewById(R.id.ScreenEditTextViewErrorMsg);
-			errorMsg.setVisibility(View.INVISIBLE);
+			errorMsg.setVisibility(View.GONE);
 		}
 
 		protected void onProgressUpdate(Integer... progress) {
@@ -341,36 +474,95 @@ public class ScreenEdit extends Activity {
 			// Close the progress dialog
 			mDialog.dismiss();
 		}
+	}
 
-		private Bitmap downloadImage(String urlString) {
-			URL url;
-			try {
-				url = new URL(urlString);
-				HttpURLConnection httpCon = (HttpURLConnection) url
-						.openConnection();
+	/**
+	 * ShareDialog The class handles the alert dialog foe the diffrent Share
+	 * options that the App implements
+	 * 
+	 * Curentlly: - Email
+	 * 
+	 * in Prograsse: - FaceBook - Tweeter
+	 * 
+	 * @author Arkadi Yoskovitz
+	 */
+	private class ShareDialog {
+		public void showAlertDialog() {
+			LayoutInflater li = LayoutInflater.from(ScreenEdit.this);
 
-				InputStream is = httpCon.getInputStream();
-				int fileLength = httpCon.getContentLength();
-				ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-				int nRead, totalBytesRead = 0;
-				byte[] data = new byte[2048];
-				mDialog.setMax(fileLength);
-				// Read the image bytes in chunks of 2048 bytes
-				while ((nRead = is.read(data, 0, data.length)) != -1) {
-					buffer.write(data, 0, nRead);
-					totalBytesRead += nRead;
-					publishProgress(totalBytesRead);
+			View ShareDialogView = li.inflate(R.layout.custom_dialog_share,
+					null);
+
+			AlertDialog.Builder shareDialog = new AlertDialog.Builder(
+					ScreenEdit.this);
+			shareDialog.setView(ShareDialogView);
+			shareDialog.setTitle(ScreenEdit.this.getResources().getString(
+					R.string.ShareDialogTitle));
+			shareDialog.setIcon(ScreenEdit.this.getResources().getDrawable(
+					R.drawable.ic_dialog_share));
+			shareDialog.create();
+			// Showing Alert Message
+			final AlertDialog SDialog = shareDialog.show();
+
+			View btnEmail = ShareDialogView
+					.findViewById(R.id.customDialogShareButtonAirMail);
+			btnEmail.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					ScreenEdit.this.itemRefreshFromScreen();
+					EditText subjectText = (EditText) findViewById(R.id.ScreenEditEditText1);
+
+					if (subjectText.getText().toString().length() == 0) {
+						mEditedItem
+								.setSubject(subjectText.getHint().toString());
+					} else {
+						ScreenEdit.this.itemRefreshFromScreen();
+					}
+					mSettings = new ApplicationPreference(ScreenEdit.this);
+
+					String emailAddress = mSettings.getEmail().toString();
+
+					String uriText = "mailto:" + emailAddress + "?subject="
+							+ Uri.encode(mEditedItem.getSubject()) + "&body="
+							+ Uri.encode(mEditedItem.getBody()) + "\n\n\n"
+							+ Uri.encode(mEditedItem.getUrlWeb());
+
+					Uri uri = Uri.parse(uriText);
+
+					Intent intent = new Intent(Intent.ACTION_SENDTO);
+					intent.setData(uri);
+					startActivity(Intent.createChooser(intent, "Send email"));
+					SDialog.dismiss();
 				}
-				buffer.flush();
-				byte[] image = buffer.toByteArray();
-				Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0,
-						image.length);
-				return bitmap;
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return null;
-		}
+			});
 
+			View btnFaceBook = ShareDialogView
+					.findViewById(R.id.customDialogShareButtonFaceBook);
+			btnFaceBook.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					Toast.makeText(ScreenEdit.this,
+							"FaceBook is unavlible at this time",
+							Toast.LENGTH_SHORT).show();
+					SDialog.dismiss();
+				}
+			});
+
+			View btnTweeter = ShareDialogView
+					.findViewById(R.id.customDialogShareButtonTweeter);
+			btnTweeter.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					Toast.makeText(ScreenEdit.this,
+							"Tweeter is unavlible at this time",
+							Toast.LENGTH_SHORT).show();
+					SDialog.dismiss();
+				}
+			});
+
+		}
 	}
 }

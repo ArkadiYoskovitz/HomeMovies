@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-   <item
-        android:id="@+id/contextMenuShare"
+    <item
+        android:id="@+id/screenEditContextMenuShare"
         android:title="Share"/>
+    <item
+        android:id="@+id/screenEditContextMenuSaveToCard"
+        android:title="Save Picture"/>
+    <item
+        android:id="@+id/screenEditContextMenuRank"
+        android:title="Rank Film"/>
 
 </menu>

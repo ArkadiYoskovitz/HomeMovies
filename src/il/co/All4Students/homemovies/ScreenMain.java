@@ -20,18 +20,22 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * Main Activity of the App handels the IO to the DB
@@ -44,10 +48,13 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 	private ArrayList<Item> mItemList = new ArrayList<Item>();
 	private Item mReturnedItem;
 	private ListView mListView;
+	private ApplicationPreference mSettings;
 
 	// private ApplicationPreference mSettings;
 
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// System Events
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -242,6 +249,16 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 			Intent intent = new Intent(ScreenMain.this, ScreenEdit.class);
 			intent.putExtra(INTENT_TARGET, mItemList.get((int) info.id));
 			startActivityForResult(intent, Item_Edit);
+			break;
+
+		/*
+		 * Share the choosen item
+		 */
+		case R.id.screenMainContextMenuShare:
+			Log.d(LOG_TAG_MAIN, "contextMenuEdit was pressed");
+			ShareDialog ShareDialog = new ShareDialog(
+					mItemList.get((int) info.id));
+			ShareDialog.showAlertDialog();
 			break;
 
 		/*
@@ -453,6 +470,98 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 				R.dimen.Size2dp));
 		mListView.setAdapter(adapter);
 		mListView.setOnItemClickListener(this);
+	}
+
+	// Inner Classes
+	/**
+	 * ShareDialog The class handles the alert dialog foe the diffrent Share
+	 * options that the App implements
+	 * 
+	 * Curentlly: - Email
+	 * 
+	 * in Prograsse: - FaceBook - Tweeter
+	 * 
+	 * @author Arkadi Yoskovitz
+	 */
+	private class ShareDialog {
+		// Attributes
+		private Item mItem;
+
+		// COnstractors
+		public ShareDialog(Item mItem) {
+			super();
+			this.mItem = mItem;
+		}
+
+		// Additional Methods
+		public void showAlertDialog() {
+			LayoutInflater li = LayoutInflater.from(ScreenMain.this);
+
+			View ShareDialogView = li.inflate(R.layout.custom_dialog_share,
+					null);
+
+			AlertDialog.Builder shareDialog = new AlertDialog.Builder(
+					ScreenMain.this);
+			shareDialog.setView(ShareDialogView);
+			shareDialog.setTitle(ScreenMain.this.getResources().getString(
+					R.string.ShareDialogTitle));
+			shareDialog.setIcon(ScreenMain.this.getResources().getDrawable(
+					R.drawable.ic_dialog_share));
+			shareDialog.create();
+			// Showing Alert Message
+			final AlertDialog SDialog = shareDialog.show();
+
+			View btnEmail = ShareDialogView
+					.findViewById(R.id.customDialogShareButtonAirMail);
+			btnEmail.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					mSettings = new ApplicationPreference(ScreenMain.this);
+
+					String emailAddress = mSettings.getEmail().toString();
+
+					String uriText = "mailto:" + emailAddress + "?subject="
+							+ Uri.encode(mItem.getSubject()) + "&body="
+							+ Uri.encode(mItem.getBody()) + "\n\n\n"
+							+ Uri.encode(mItem.getUrlWeb());
+
+					Uri uri = Uri.parse(uriText);
+
+					Intent intent = new Intent(Intent.ACTION_SENDTO);
+					intent.setData(uri);
+					startActivity(Intent.createChooser(intent, "Send email"));
+					SDialog.dismiss();
+				}
+			});
+
+			View btnFaceBook = ShareDialogView
+					.findViewById(R.id.customDialogShareButtonFaceBook);
+			btnFaceBook.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					Toast.makeText(ScreenMain.this,
+							"FaceBook is unavlible at this time",
+							Toast.LENGTH_SHORT).show();
+					SDialog.dismiss();
+				}
+			});
+
+			View btnTweeter = ShareDialogView
+					.findViewById(R.id.customDialogShareButtonTweeter);
+			btnTweeter.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					Toast.makeText(ScreenMain.this,
+							"Tweeter is unavlible at this time",
+							Toast.LENGTH_SHORT).show();
+					SDialog.dismiss();
+				}
+			});
+
+		}
 	}
 
 }

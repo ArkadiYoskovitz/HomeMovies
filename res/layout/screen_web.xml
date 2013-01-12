@@ -15,8 +15,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/Size2dp"
-            android:contentDescription="@string/labelSubject"
-            android:text="@string/labelSubject"
+            android:contentDescription="@string/labelSearch"
+            android:text="@string/labelSearch"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textSize="@dimen/Size20dp" />
 

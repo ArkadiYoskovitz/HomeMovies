@@ -160,7 +160,9 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 	// OnClick Events
 	public void onClickWebGo(View view) {
 		InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+		inputManager.hideSoftInputFromWindow(
+				getCurrentFocus().getWindowToken(),
+				InputMethodManager.HIDE_NOT_ALWAYS);
 
 		txtSearch = (EditText) findViewById(R.id.ScreenWebEditText1);
 		if (txtSearch.getText() != null) {
@@ -216,7 +218,7 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 		lv.setDividerHeight((int) ScreenWeb.this.getResources().getDimension(
 				R.dimen.Size2dp));
 		lv.setAdapter(adapter);
-		//adapter.notifyDataSetChanged();
+		// adapter.notifyDataSetChanged();
 	}
 
 	// Inner Classes

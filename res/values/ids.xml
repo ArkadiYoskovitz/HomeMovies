@@ -18,13 +18,12 @@
     <item name="ScreenEditTextView3" type="id"/>
     <item name="ScreenEditEditText3" type="id"/>
     <item name="ScreenEditImageButton2" type="id"/>
+    <item name="ScreenEditTextViewErrorMsg" type="id"/>
     <item name="ScreenEditImageView1" type="id"/>
-    <item name="ScreenEditButton1" type="id"/>
     <item name="ScreenEditTableRow3" type="id"/>
+    <item name="ScreenEditButton1" type="id"/>
     <item name="ScreenEditButton2" type="id"/>
     <item name="ScreenEditButton3" type="id"/>
-    <item name="ScreenEditButton4" type="id"/>
-    <item name="ScreenEditTextViewErrorMsg" type="id"/>
     <!-- Screen Edit IDs -->
 
     <item name="ScreenWebTableRow" type="id"/>

@@ -5,6 +5,9 @@
         android:id="@+id/screenMainContextMenuEdit"
         android:title="Edit"/>
     <item
+        android:id="@+id/screenMainContextMenuShare"
+        android:title="Share"/>
+    <item
         android:id="@+id/screenMainContextMenuColorSettings"
         android:title="Color">
 

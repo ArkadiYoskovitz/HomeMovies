@@ -211,33 +211,36 @@ public final class R {
         public static final int email_speed=0x7f020006;
         public static final int ic_add=0x7f020007;
         public static final int ic_color_selector=0x7f020008;
-        public static final int ic_dialog_notice=0x7f020009;
-        public static final int ic_launcher=0x7f02000a;
-        public static final int ic_rating_star_full=0x7f02000b;
-        public static final int ic_rating_star_half=0x7f02000c;
-        public static final int ic_rating_star_none=0x7f02000d;
-        public static final int ic_settings=0x7f02000e;
-        public static final int ic_web_go=0x7f02000f;
-        public static final int placeholder=0x7f020010;
-        public static final int spinner_bluegradient=0x7f020011;
-        public static final int spinner_btn_dropdown=0x7f020012;
+        public static final int ic_dialog_airmail=0x7f020009;
+        public static final int ic_dialog_facebook=0x7f02000a;
+        public static final int ic_dialog_notice=0x7f02000b;
+        public static final int ic_dialog_share=0x7f02000c;
+        public static final int ic_dialog_tweeter=0x7f02000d;
+        public static final int ic_launcher=0x7f02000e;
+        public static final int ic_rating_star_full=0x7f02000f;
+        public static final int ic_rating_star_half=0x7f020010;
+        public static final int ic_rating_star_none=0x7f020011;
+        public static final int ic_settings=0x7f020012;
+        public static final int ic_web_go=0x7f020013;
+        public static final int placeholder=0x7f020014;
+        public static final int spinner_bluegradient=0x7f020015;
+        public static final int spinner_btn_dropdown=0x7f020016;
     }
     public static final class id {
-        public static final int CustomDialogColorsButton1=0x7f07001c;
-        public static final int CustomDialogColorsButton2=0x7f07001d;
-        public static final int CustomDialogColorsButton3=0x7f07001f;
-        public static final int CustomDialogColorsButton4=0x7f070020;
-        public static final int CustomDialogColorsButton5=0x7f070022;
-        public static final int ScreenEditButton1=0x7f07000f;
-        public static final int ScreenEditButton2=0x7f070011;
-        public static final int ScreenEditButton3=0x7f070012;
-        public static final int ScreenEditButton4=0x7f070013;
+        public static final int CustomDialogColorsButton1=0x7f07001b;
+        public static final int CustomDialogColorsButton2=0x7f07001c;
+        public static final int CustomDialogColorsButton3=0x7f07001e;
+        public static final int CustomDialogColorsButton4=0x7f07001f;
+        public static final int CustomDialogColorsButton5=0x7f070021;
+        public static final int ScreenEditButton1=0x7f070011;
+        public static final int ScreenEditButton2=0x7f070012;
+        public static final int ScreenEditButton3=0x7f070013;
         public static final int ScreenEditEditText1=0x7f070006;
         public static final int ScreenEditEditText2=0x7f070009;
         public static final int ScreenEditEditText3=0x7f07000c;
         public static final int ScreenEditImageButton1=0x7f070007;
         public static final int ScreenEditImageButton2=0x7f07000d;
-        public static final int ScreenEditImageView1=0x7f07000e;
+        public static final int ScreenEditImageView1=0x7f07000f;
         /**  Screen Edit IDs 
          */
         public static final int ScreenEditTableRow1=0x7f070004;
@@ -246,125 +249,154 @@ public final class R {
         public static final int ScreenEditTextView1=0x7f070005;
         public static final int ScreenEditTextView2=0x7f070008;
         public static final int ScreenEditTextView3=0x7f07000b;
-        public static final int ScreenEditTextViewErrorMsg=0x7f070014;
+        public static final int ScreenEditTextViewErrorMsg=0x7f07000e;
         public static final int ScreenMainImageButton1=0x7f070001;
         public static final int ScreenMainImageButton2=0x7f070003;
-        public static final int ScreenMainLinearLayout1=0x7f070025;
+        public static final int ScreenMainLinearLayout1=0x7f07002d;
         public static final int ScreenMainListView=0x7f070002;
         /**  Screen Main IDs 
          */
         public static final int ScreenMainTableRow1=0x7f070000;
-        public static final int ScreenWebButton=0x7f07001a;
-        public static final int ScreenWebEditText1=0x7f070016;
-        public static final int ScreenWebImageButton1=0x7f070017;
-        public static final int ScreenWebListView=0x7f070019;
+        public static final int ScreenWebButton=0x7f070019;
+        public static final int ScreenWebEditText1=0x7f070015;
+        public static final int ScreenWebImageButton1=0x7f070016;
+        public static final int ScreenWebListView=0x7f070018;
         /**  Screen Edit IDs 
          */
-        public static final int ScreenWebTableRow=0x7f070015;
-        public static final int ScreenWebTextView1=0x7f070018;
-        public static final int SubContextMenuColorBlue=0x7f07002c;
-        public static final int SubContextMenuColorDefault=0x7f07002d;
-        public static final int SubContextMenuColorGreen=0x7f07002a;
-        public static final int SubContextMenuColorRed=0x7f070029;
-        public static final int SubContextMenuColorYellow=0x7f07002b;
-        public static final int contextMenuShare=0x7f070026;
-        public static final int rowLinearLayout=0x7f070023;
-        public static final int rowTitle=0x7f070024;
-        public static final int screenMainContextMenuColorSettings=0x7f070028;
-        public static final int screenMainContextMenuDelete=0x7f07002e;
-        public static final int screenMainContextMenuEdit=0x7f070027;
-        public static final int screenMainOptionMenuDeletAllIteams=0x7f070031;
-        public static final int screenMainOptionMenuExitSettings=0x7f070030;
-        public static final int screenMainOptionMenuSettings=0x7f07002f;
-        public static final int tableRow1=0x7f07001b;
-        public static final int tableRow2=0x7f07001e;
-        public static final int tableRow3=0x7f070021;
+        public static final int ScreenWebTableRow=0x7f070014;
+        public static final int ScreenWebTextView1=0x7f070017;
+        public static final int SubContextMenuColorBlue=0x7f07003a;
+        public static final int SubContextMenuColorDefault=0x7f07003b;
+        public static final int SubContextMenuColorGreen=0x7f070038;
+        public static final int SubContextMenuColorRed=0x7f070037;
+        public static final int SubContextMenuColorYellow=0x7f070039;
+        public static final int customDialogShareButtonAirMail=0x7f070024;
+        public static final int customDialogShareButtonFaceBook=0x7f070027;
+        public static final int customDialogShareButtonTweeter=0x7f07002a;
+        public static final int customDialogShareImageIcon1=0x7f070023;
+        public static final int customDialogShareImageIcon2=0x7f070026;
+        public static final int customDialogShareImageIcon3=0x7f070029;
+        public static final int customDialogShareTableRow1=0x7f070022;
+        public static final int customDialogShareTableRow2=0x7f070025;
+        public static final int customDialogShareTableRow3=0x7f070028;
+        public static final int rowLinearLayout=0x7f07002b;
+        public static final int rowTitle=0x7f07002c;
+        public static final int screenEditContextMenuRank=0x7f070030;
+        public static final int screenEditContextMenuSaveToCard=0x7f07002f;
+        public static final int screenEditContextMenuShare=0x7f07002e;
+        public static final int screenEditOptionMenuSettings=0x7f070031;
+        public static final int screenEditOptionMenuShare=0x7f070032;
+        public static final int screenEditOptionMenuSpeach=0x7f070033;
+        public static final int screenMainContextMenuColorSettings=0x7f070036;
+        public static final int screenMainContextMenuDelete=0x7f07003c;
+        public static final int screenMainContextMenuEdit=0x7f070034;
+        public static final int screenMainContextMenuShare=0x7f070035;
+        public static final int screenMainOptionMenuDeletAllIteams=0x7f07003e;
+        public static final int screenMainOptionMenuExitSettings=0x7f07003d;
+        public static final int screenMainOptionMenuSearch=0x7f07003f;
+        public static final int screenMainOptionMenuSettings=0x7f070040;
+        public static final int tableRow1=0x7f07001a;
+        public static final int tableRow2=0x7f07001d;
+        public static final int tableRow3=0x7f070020;
     }
     public static final class integer {
         public static final int oneLine=0x7f080000;
     }
     public static final class layout {
         public static final int custom_dialog_colors=0x7f030000;
-        public static final int list_row=0x7f030001;
-        public static final int screen_edit=0x7f030002;
-        public static final int screen_main=0x7f030003;
-        public static final int screen_web=0x7f030004;
+        public static final int custom_dialog_rank=0x7f030001;
+        public static final int custom_dialog_share=0x7f030002;
+        public static final int list_row=0x7f030003;
+        public static final int screen_edit=0x7f030004;
+        public static final int screen_main=0x7f030005;
+        public static final int screen_web=0x7f030006;
     }
     public static final class menu {
         public static final int screen_edit_menu_context=0x7f0b0000;
-        public static final int screen_main_menu_context=0x7f0b0001;
-        public static final int screen_main_menu_option=0x7f0b0002;
+        public static final int screen_edit_menu_option=0x7f0b0001;
+        public static final int screen_main_menu_context=0x7f0b0002;
+        public static final int screen_main_menu_option=0x7f0b0003;
     }
     public static final class string {
-        public static final int AddingDialogCancel=0x7f090017;
-        public static final int AddingDialogLocal=0x7f090015;
-        public static final int AddingDialogMsg=0x7f090014;
+        public static final int AddingDialogCancel=0x7f090015;
+        public static final int AddingDialogLocal=0x7f090013;
         /**  Adding Method Selection 
          */
-        public static final int AddingDialogTitle=0x7f090013;
-        public static final int AddingDialogWeb=0x7f090016;
-        public static final int DownLoadWebErrorMsg=0x7f090020;
-        public static final int ImagePlaceHolder=0x7f09001f;
-        public static final int SCDialogTitle=0x7f090022;
+        public static final int AddingDialogMsg=0x7f090012;
+        public static final int AddingDialogWeb=0x7f090014;
+        public static final int DescriptionAirMail=0x7f09001b;
+        public static final int DescriptionFaceBook=0x7f09001c;
+        public static final int DescriptionTweeter=0x7f09001d;
+        public static final int DownLoadWebErrorMsg=0x7f090025;
+        /**  Image Description 
+         */
+        public static final int ImagePlaceHolder=0x7f09001a;
+        public static final int SCDialogTitle=0x7f090027;
         /**   
          */
-        public static final int ScreenEditHint=0x7f09001c;
+        public static final int ScreenEditHint=0x7f090022;
+        public static final int ShareDialogEmail=0x7f090017;
+        public static final int ShareDialogFaceBook=0x7f090018;
+        /**  Share Selection 
+         */
+        public static final int ShareDialogTitle=0x7f090016;
+        public static final int ShareDialogTweeter=0x7f090019;
+        public static final int TextToSpeech=0x7f090028;
         /**  Spinner names related Strings 
          */
-        public static final int advence_search=0x7f090018;
+        public static final int advence_search=0x7f09001e;
         /**  General App related Strings 
          */
         public static final int app_name=0x7f090000;
-        public static final int basic_search=0x7f090019;
+        public static final int basic_search=0x7f09001f;
         /**  Button names related Strings 
  General buttons 
          */
-        public static final int btnLableCancel=0x7f090002;
-        public static final int btnLableCommit=0x7f090004;
-        public static final int btnLableDelete=0x7f090003;
-        public static final int btnLableEditEmail=0x7f090009;
+        public static final int btnLableCancel=0x7f090001;
+        public static final int btnLableCommit=0x7f090003;
+        public static final int btnLableDelete=0x7f090002;
+        public static final int btnLableEditEmail=0x7f090008;
         /**  Edit screen buttons 
          */
-        public static final int btnLableEditSelectColor=0x7f090007;
-        public static final int btnLableEditShow=0x7f090008;
-        public static final int btnLableMainAdd=0x7f090006;
+        public static final int btnLableEditSelectColor=0x7f090006;
+        public static final int btnLableEditShow=0x7f090007;
+        public static final int btnLableMainAdd=0x7f090005;
         /**  Main screen buttons 
          */
-        public static final int btnLableMainSettings=0x7f090005;
+        public static final int btnLableMainSettings=0x7f090004;
         /**  Web screen buttons 
          */
-        public static final int btnLableWebSearchGo=0x7f09000a;
+        public static final int btnLableWebSearchGo=0x7f090009;
         /**   
          */
-        public static final int color_spinner=0x7f09001d;
+        public static final int color_spinner=0x7f090023;
         /** 
     <string name="rating_star_none">Rating Star None</string>
     <string name="rating_star_half">Rating Star Half</string>
     <string name="rating_star_full">Rating Star Full</string>
     
          */
-        public static final int emailHint=0x7f09001a;
-        public static final int labelBody=0x7f09000d;
-        public static final int labelDefaultColor=0x7f090021;
+        public static final int emailHint=0x7f090020;
+        public static final int labelBody=0x7f09000c;
+        public static final int labelDefaultColor=0x7f090026;
         /**  Screen Web label 
          */
-        public static final int labelSearch=0x7f09000f;
+        public static final int labelSearch=0x7f09000e;
         /**  Screen Edit label 
          */
-        public static final int labelSubject=0x7f09000c;
-        public static final int labelURL=0x7f09000e;
-        public static final int language_spinner=0x7f09001e;
-        public static final int menu_settings=0x7f090001;
+        public static final int labelSubject=0x7f09000b;
+        public static final int labelURL=0x7f09000d;
+        public static final int language_spinner=0x7f090024;
         /**  Label names related Strings 
  Screen Main label 
          */
-        public static final int note_application=0x7f09000b;
-        public static final int single_item_text=0x7f09001b;
-        public static final int systemNoticeButton=0x7f090012;
-        public static final int systemNoticeMsg=0x7f090011;
+        public static final int note_application=0x7f09000a;
+        public static final int single_item_text=0x7f090021;
+        public static final int systemNoticeButton=0x7f090011;
+        public static final int systemNoticeMsg=0x7f090010;
         /**  System Notice related Strings 
          */
-        public static final int systemNoticeTitle=0x7f090010;
+        public static final int systemNoticeTitle=0x7f09000f;
     }
     public static final class style {
         /** 
