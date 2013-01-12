@@ -19,6 +19,8 @@
     <!-- Web screen buttons -->
     <string name="btnLableWebSearchGo">Go</string>
     <string name="btnLableSearch">Search</string>
+    <string name="btnLableClear">Clear</string>
+
     <!-- Label names related Strings -->
     <!-- Screen Main label -->
     <string name="note_application">My Movies</string>

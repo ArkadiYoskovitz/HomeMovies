@@ -10,14 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
-public class ColorListAdapter extends BaseAdapter {
-
+public class ColorListAdapter extends BaseAdapter implements Filterable {
+	// Attributes
 	private static LayoutInflater mInflater = null;
 	private ArrayList<Item> mData = new ArrayList<Item>();
 	private Context mContext;
 
+	// Constractors
 	public ColorListAdapter(Context Context, ArrayList<Item> data) {
 		this.mContext = Context;
 		this.mData = data;
@@ -25,6 +28,7 @@ public class ColorListAdapter extends BaseAdapter {
 				.getSystemService(android.content.Context.LAYOUT_INFLATER_SERVICE);
 	}
 
+	// Get/Set Methods
 	public int getCount() {
 		return mData.size();
 	}
@@ -52,4 +56,10 @@ public class ColorListAdapter extends BaseAdapter {
 		rowView.setBackgroundColor(item.getColor());
 		return rowView;
 	}
+
+	@Override
+	public Filter getFilter() {
+		return null;
+	}
+
 }

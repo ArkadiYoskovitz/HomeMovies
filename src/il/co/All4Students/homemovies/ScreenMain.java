@@ -35,6 +35,8 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -216,50 +218,55 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 		case R.id.screenMainOptionMenuSearch:
 			mSettings = new ApplicationPreference(ScreenMain.this);
 			final Dialog setSubjectDialog = new Dialog(this);
-			setSubjectDialog
-					.setContentView(R.layout.custom_dialog_search);
+			setSubjectDialog.setContentView(R.layout.custom_dialog_search);
 			setSubjectDialog.setTitle(R.string.labelSearch);
-			// EditText et = (EditText) setSubjectDialog
-			// .findViewById(R.id.dialogEditText1);
-			// et.setHint(getResources().getString(R.string.labelDefualtSubject));
-			// et.setText(mSettings.getSubject());
+			EditText et = (EditText) setSubjectDialog
+					.findViewById(R.id.customDialogSearchEditText1);
+			final String searchString = et.getText().toString();
 			// setSubjectDialog.setCancelable(false);
-			// setSubjectDialog.show();
-			//
-			// Button btnDialogCancel = (Button) setSubjectDialog
-			// .findViewById(R.id.button7);
-			// btnDialogCancel.setOnClickListener(new OnClickListener() {
-			//
-			// @Override
-			// public void onClick(View v) {
-			// setSubjectDialog.dismiss();
-			// }
-			// });
-			//
-			// Button btnDialogCommit = (Button) setSubjectDialog
-			// .findViewById(R.id.button8);
-			// btnDialogCommit.setOnClickListener(new OnClickListener() {
-			//
-			// @Override
-			// public void onClick(View v) {
-			// EditText subjectToSave = (EditText) setSubjectDialog
-			// .findViewById(R.id.dialogEditText1);
-			// mSettings = new ApplicationPreference(MainActivity.this);
-			// if (subjectToSave.length() == 0) {
-			// mSettings.setSubject(ApplicationPreference
-			// .getDefaultSubject());
-			// } else {
-			// mSettings
-			// .setSubject(subjectToSave.getText().toString());
-			// }
-			// setSubjectDialog.dismiss();
-			// }
-			// });
-			//
+			setSubjectDialog.show();
+
+			Button btnDialogCancel = (Button) setSubjectDialog
+					.findViewById(R.id.customDialogSearchButton1);
+			btnDialogCancel.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					setSubjectDialog.dismiss();
+				}
+			});
+
+			Button btnDialogClear = (Button) setSubjectDialog
+					.findViewById(R.id.customDialogSearchButton2);
+			btnDialogClear.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+
+					setSubjectDialog.dismiss();
+				}
+			});
+			Button btnDialogSearch = (Button) setSubjectDialog
+					.findViewById(R.id.customDialogSearchButton3);
+			btnDialogSearch.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					mListView = (ListView) ScreenMain.this
+							.findViewById(R.id.ScreenMainListView);
+					mListView.setTextFilterEnabled(true);
+					ColorListAdapter adapter = new ColorListAdapter(
+							ScreenMain.this, mItemList);
+					adapter.getFilter().filter(searchString);
+					adapter.notifyDataSetChanged();
+					setSubjectDialog.dismiss();
+				}
+			});
 			break;
 
 		case R.id.screenMainOptionMenuSettings:
 			break;
+
 		default:
 			break;
 		}
