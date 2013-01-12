@@ -15,7 +15,6 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@id/ScreenEditTextView1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/Size2dp"
@@ -48,7 +47,6 @@
         </TableRow>
 
         <TextView
-            android:id="@id/ScreenEditTextView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/Size2dp"
@@ -75,7 +73,6 @@
             android:gravity="center" >
 
             <TextView
-                android:id="@id/ScreenEditTextView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/Size2dp"

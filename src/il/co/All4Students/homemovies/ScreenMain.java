@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -212,6 +213,53 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 			System.exit(0);
 			break;
 
+		case R.id.screenMainOptionMenuSearch:
+			mSettings = new ApplicationPreference(ScreenMain.this);
+			final Dialog setSubjectDialog = new Dialog(this);
+			setSubjectDialog
+					.setContentView(R.layout.custom_dialog_search);
+			setSubjectDialog.setTitle(R.string.labelSearch);
+			// EditText et = (EditText) setSubjectDialog
+			// .findViewById(R.id.dialogEditText1);
+			// et.setHint(getResources().getString(R.string.labelDefualtSubject));
+			// et.setText(mSettings.getSubject());
+			// setSubjectDialog.setCancelable(false);
+			// setSubjectDialog.show();
+			//
+			// Button btnDialogCancel = (Button) setSubjectDialog
+			// .findViewById(R.id.button7);
+			// btnDialogCancel.setOnClickListener(new OnClickListener() {
+			//
+			// @Override
+			// public void onClick(View v) {
+			// setSubjectDialog.dismiss();
+			// }
+			// });
+			//
+			// Button btnDialogCommit = (Button) setSubjectDialog
+			// .findViewById(R.id.button8);
+			// btnDialogCommit.setOnClickListener(new OnClickListener() {
+			//
+			// @Override
+			// public void onClick(View v) {
+			// EditText subjectToSave = (EditText) setSubjectDialog
+			// .findViewById(R.id.dialogEditText1);
+			// mSettings = new ApplicationPreference(MainActivity.this);
+			// if (subjectToSave.length() == 0) {
+			// mSettings.setSubject(ApplicationPreference
+			// .getDefaultSubject());
+			// } else {
+			// mSettings
+			// .setSubject(subjectToSave.getText().toString());
+			// }
+			// setSubjectDialog.dismiss();
+			// }
+			// });
+			//
+			break;
+
+		case R.id.screenMainOptionMenuSettings:
+			break;
 		default:
 			break;
 		}

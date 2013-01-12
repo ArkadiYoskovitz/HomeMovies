@@ -29,6 +29,8 @@ public class ItemsDbConstants {
 	public static final String KEY_URLWEB = "urlWeb";
 	public static final String KEY_URLLOCAL = "urlLocal";
 	public static final String KEY_RT_ID = "rt_ID";
+	public static final String KEY_RANK = "rank";
+	public static final String KEY_VIEWD = "viewd";
 	public static final String KEY_COLOR = "color";
 
 	// Helper static fields

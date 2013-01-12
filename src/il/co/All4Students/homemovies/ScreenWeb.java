@@ -352,7 +352,7 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 						.findViewById(R.id.ScreenWebTextView1);
 				errorMsg.setVisibility(View.VISIBLE);
 				errorMsg.setText(mActivity.getResources().getString(
-						R.string.DownLoadWebErrorMsg));
+						R.string.ErrorMsgDownLoadWeb));
 			}
 			mDialog.dismiss();
 			ScreenWeb.this.mItemList = mItemList;

@@ -16,10 +16,9 @@
     <!-- Edit screen buttons -->
     <string name="btnLableEditSelectColor">Select Color</string>
     <string name="btnLableEditShow">Show Image</string>
-    <string name="btnLableEditEmail">Email</string>
     <!-- Web screen buttons -->
     <string name="btnLableWebSearchGo">Go</string>
-
+    <string name="btnLableSearch">Search</string>
     <!-- Label names related Strings -->
     <!-- Screen Main label -->
     <string name="note_application">My Movies</string>
@@ -50,9 +49,11 @@
     <string name="DescriptionAirMail">Air Mail</string>
     <string name="DescriptionFaceBook">FaceBook</string>
     <string name="DescriptionTweeter">Tweeter</string>
-    <!-- Spinner names related Strings -->
-    <string name="advence_search">Advence Search</string>
-    <string name="basic_search">Basic Search</string>
+
+    <!-- Error Msg -->
+    <string name="ErrorMsgDownLoadWeb">Problem downloading info. Try again later</string>
+    <string name="ErrorMsgTextToSpeech">Language is not supported</string>
+
     <!--
     <string name="rating_star_none">Rating Star None</string>
     <string name="rating_star_half">Rating Star Half</string>
@@ -65,9 +66,7 @@
     <!--  -->
     <string name="color_spinner">Color Spinner</string>
     <string name="language_spinner">Language Spinner</string>
-    <string name="DownLoadWebErrorMsg">Problem downloading info. Try again later</string>
     <string name="labelDefaultColor">Default Color</string>
     <string name="SCDialogTitle">Select Color</string>
-    <string name="TextToSpeech">Language is not supported</string>
 
 </resources>

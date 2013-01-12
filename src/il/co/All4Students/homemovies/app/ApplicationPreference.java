@@ -18,11 +18,13 @@ public class ApplicationPreference {
 	private static final String KEY_EMAIL = "Email";
 	private static final String KEY_COLOR = "Color";
 	private static final String KEY_LANGUAGE = "Language";
+	private static final String KEY_SORT = "sort";
 	// Application Preference Default values
 	private static final String DEFAULT_SUBJECT = "Default Topic";
 	private static final String DEFAULT_EMAIL = "John.Appleseed@iCloud.com";
 	private static final int DEFAULT_COLOR = 0xffffffff;
 	private static final String DEFAULT_LANGUAGE = "EN";
+	private static final String DEFAULT_SORT = "ID";
 
 	private final SharedPreferences settings;
 
@@ -41,78 +43,54 @@ public class ApplicationPreference {
 	/*
 	 * Get / Set Methods
 	 */
-	/**
-	 * 
-	 * @param subject
-	 */
 	public void setSubject(String subject) {
 		Editor editor = settings.edit();
 		editor.putString(KEY_SUBJECT, subject);
 		editor.commit();
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public String getSubject() {
 		return settings.getString(KEY_SUBJECT, DEFAULT_SUBJECT);
 	}
 
-	/**
-	 * 
-	 * @param email
-	 */
 	public void setEmail(String email) {
 		Editor editor = settings.edit();
 		editor.putString(KEY_EMAIL, email);
 		editor.commit();
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public String getEmail() {
 		return settings.getString(KEY_EMAIL, DEFAULT_EMAIL);
 	}
 
-	/**
-	 * 
-	 * @param color
-	 */
 	public void setColor(int color) {
 		Editor editor = settings.edit();
 		editor.putInt(KEY_COLOR, color);
 		editor.commit();
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public int getColor() {
 		return settings.getInt(KEY_COLOR, DEFAULT_COLOR);
 	}
 
-	/**
-	 * Set the Language in the preferences
-	 * 
-	 * @param language
-	 *            to save into preferences
-	 */
 	public void setLanguage(String language) {
 		Editor editor = settings.edit();
-		editor.putString(KEY_EMAIL, language);
+		editor.putString(KEY_LANGUAGE, language);
 		editor.commit();
 	}
 
-	/**
-	 * 
-	 * @return language stored in preferences
-	 */
 	public String getLanguage() {
 		return settings.getString(KEY_LANGUAGE, DEFAULT_LANGUAGE);
+	}
+
+	public void setSort(String Sort) {
+		Editor editor = settings.edit();
+		editor.putString(KEY_SORT, Sort);
+		editor.commit();
+	}
+
+	public String getSort() {
+		return settings.getString(KEY_SORT, DEFAULT_SORT);
 	}
 
 	// //////////////////////////////////////////////
@@ -133,4 +111,7 @@ public class ApplicationPreference {
 		return DEFAULT_LANGUAGE;
 	}
 
+	public static String getDefaultSort() {
+		return DEFAULT_SORT;
+	}
 }

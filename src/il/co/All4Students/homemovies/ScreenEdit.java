@@ -23,6 +23,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -39,6 +40,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -213,11 +215,6 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 		default:
 			break;
 		}
-		// ////
-		// end of onContextItemSelected code
-		//
-		//
-		// ///////////
 		return super.onContextItemSelected(item);
 	}
 
@@ -225,6 +222,11 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	// OnClick Events
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void onClickEditSelectColor(View view) {
+		InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		inputManager.hideSoftInputFromWindow(
+				getCurrentFocus().getWindowToken(),
+				InputMethodManager.HIDE_NOT_ALWAYS);
+
 		final Dialog SCDialog = new Dialog(ScreenEdit.this);
 		SCDialog.setContentView(R.layout.custom_dialog_colors);
 		SCDialog.setTitle(R.string.SCDialogTitle);
@@ -288,6 +290,11 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	}
 
 	public void onClickEditShow(View view) {
+		InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		inputManager.hideSoftInputFromWindow(
+				getCurrentFocus().getWindowToken(),
+				InputMethodManager.HIDE_NOT_ALWAYS);
+
 		EditText txtSearch = (EditText) findViewById(R.id.ScreenEditEditText3);
 		if (txtSearch.getText() != null) {
 			try {
@@ -390,7 +397,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 					TextToSpeech.QUEUE_FLUSH, null);
 		} else {
 			Toast.makeText(ScreenEdit.this,
-					getResources().getString(R.string.TextToSpeech),
+					getResources().getString(R.string.ErrorMsgTextToSpeech),
 					Toast.LENGTH_LONG).show();
 		}
 	}

@@ -5,7 +5,7 @@
     android:orientation="vertical" >
 
     <TableRow
-        android:id="@+id/tableRow1"
+        android:id="@id/customDialogColorsTableRow1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/Size10dp"
@@ -13,14 +13,14 @@
         android:layout_marginTop="@dimen/Size10dp" >
 
         <Button
-            android:id="@+id/CustomDialogColorsButton1"
+            android:id="@id/customDialogColorsButton1"
             android:layout_width="@dimen/Size200dp"
             android:layout_height="@dimen/Size50dp"
             android:layout_weight="1"
             android:background="@color/Red" />
 
         <Button
-            android:id="@+id/CustomDialogColorsButton2"
+            android:id="@id/customDialogColorsButton2"
             android:layout_width="@dimen/Size200dp"
             android:layout_height="@dimen/Size50dp"
             android:layout_weight="1"
@@ -28,21 +28,21 @@
     </TableRow>
 
     <TableRow
-        android:id="@+id/tableRow2"
+        android:id="@id/customDialogColorsTableRow2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/Size10dp"
         android:layout_marginRight="@dimen/Size10dp" >
 
         <Button
-            android:id="@+id/CustomDialogColorsButton3"
+            android:id="@id/customDialogColorsButton3"
             android:layout_width="@dimen/Size200dp"
             android:layout_height="@dimen/Size50dp"
             android:layout_weight="1"
             android:background="@color/Yellow" />
 
         <Button
-            android:id="@+id/CustomDialogColorsButton4"
+            android:id="@id/customDialogColorsButton4"
             android:layout_width="@dimen/Size200dp"
             android:layout_height="@dimen/Size50dp"
             android:layout_weight="1"
@@ -50,7 +50,7 @@
     </TableRow>
 
     <TableRow
-        android:id="@+id/tableRow3"
+        android:id="@id/customDialogColorsTableRow3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/Size10dp"
@@ -58,7 +58,7 @@
         android:layout_marginRight="@dimen/Size10dp" >
 
         <Button
-            android:id="@+id/CustomDialogColorsButton5"
+            android:id="@id/customDialogColorsButton5"
             android:layout_width="@dimen/Size400dp"
             android:layout_height="@dimen/Size50dp"
             android:layout_weight="1"

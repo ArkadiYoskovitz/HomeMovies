@@ -5,10 +5,12 @@ import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.DATABASE_VER
 import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.KEY_BODY;
 import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.KEY_COLOR;
 import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.KEY_ID;
+import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.KEY_RANK;
 import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.KEY_RT_ID;
 import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.KEY_SUBJECT;
 import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.KEY_URLLOCAL;
 import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.KEY_URLWEB;
+import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.KEY_VIEWD;
 import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.LOG_TAG;
 import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.SELECT_HELPER;
 import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.TABLE_ITEMS;
@@ -56,6 +58,8 @@ public class ItemsHandler {
 			values.put(KEY_URLWEB, item.getUrlWeb());
 			values.put(KEY_URLLOCAL, item.getUrlLocal());
 			values.put(KEY_RT_ID, item.getRt_ID());
+			values.put(KEY_RANK, item.getRank());
+			values.put(KEY_VIEWD, item.getViewd());
 			values.put(KEY_COLOR, item.getColor());
 
 			// Inserting Row
@@ -80,7 +84,7 @@ public class ItemsHandler {
 			Cursor cursor = db
 					.query(TABLE_ITEMS, new String[] { KEY_ID, KEY_SUBJECT,
 							KEY_BODY, KEY_URLWEB, KEY_URLLOCAL, KEY_RT_ID,
-							KEY_COLOR }, KEY_ID + "=?",
+							KEY_RANK, KEY_VIEWD, KEY_COLOR }, KEY_ID + "=?",
 							new String[] { String.valueOf(id) }, null, null,
 							null, null);
 			if (cursor != null)
@@ -90,7 +94,9 @@ public class ItemsHandler {
 					cursor.getString(1), cursor.getString(2),
 					cursor.getString(3), cursor.getString(4),
 					Integer.parseInt(cursor.getString(5)),
-					Integer.parseInt(cursor.getString(6)));
+					Integer.parseInt(cursor.getString(6)),
+					Boolean.parseBoolean(cursor.getString(7)),
+					Integer.parseInt(cursor.getString(8)));
 
 			cursor.close();
 		} catch (SQLException e) {
@@ -129,7 +135,9 @@ public class ItemsHandler {
 					item.setUrlWeb(cursor.getString(3));
 					item.setUrlLocal(cursor.getString(4));
 					item.setRt_ID(Integer.parseInt(cursor.getString(5)));
-					item.setColor(Integer.parseInt(cursor.getString(6)));
+					item.setRank(Integer.parseInt(cursor.getString(6)));
+					item.setViewd(Boolean.parseBoolean(cursor.getString(7)));
+					item.setColor(Integer.parseInt(cursor.getString(8)));
 					// Adding item to list
 					itemList.add(item);
 				} while (cursor.moveToNext());
@@ -161,6 +169,8 @@ public class ItemsHandler {
 			values.put(KEY_URLWEB, item.getUrlWeb());
 			values.put(KEY_URLLOCAL, item.getUrlLocal());
 			values.put(KEY_RT_ID, item.getRt_ID());
+			values.put(KEY_RANK, item.getRank());
+			values.put(KEY_VIEWD, item.getViewd());
 			values.put(KEY_COLOR, item.getColor());
 
 			// updating row
@@ -279,7 +289,9 @@ public class ItemsHandler {
 					item.setUrlWeb(cursor.getString(3));
 					item.setUrlLocal(cursor.getString(4));
 					item.setRt_ID(Integer.parseInt(cursor.getString(5)));
-					item.setColor(Integer.parseInt(cursor.getString(6)));
+					item.setRank(Integer.parseInt(cursor.getString(6)));
+					item.setViewd(Boolean.parseBoolean(cursor.getString(7)));
+					item.setColor(Integer.parseInt(cursor.getString(8)));
 					itemList.add(item);
 				} while (cursor.moveToNext());
 			}

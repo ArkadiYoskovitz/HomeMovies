@@ -14,36 +14,38 @@ public class Item implements Comparable<Item>, Parcelable {
 	private String urlWeb;
 	private String urlLocal;
 	private int rt_ID;
+	private int rank;
+	private boolean viewd;
 	private int color;
 
 	// ////////////////////////////////////////////////////////////////////////////////////////////////
 	// Constractor
 	public Item() {
-		this(0, "", "", "", "", 0, 0);
+		this(0, "", "", "", "", 0, 0, false, 0);
 	}
 
 	public Item(String subject) {
-		this(0, subject, "", "", "", 0, 0);
+		this(0, subject, "", "", "", 0, 0, false, 0);
 	}
 
 	public Item(String subject, String body) {
-		this(0, subject, body, "", "", 0, 0);
+		this(0, subject, body, "", "", 0, 0, false, 0);
 	}
 
 	public Item(String subject, String body, int color) {
-		this(0, subject, body, "", "", 0, color);
+		this(0, subject, body, "", "", 0, 0, false, color);
 	}
 
 	public Item(int _id, String subject, String body) {
-		this(_id, subject, body, "", "", 0, 0);
+		this(_id, subject, body, "", "", 0, 0, false, 0);
 	}
 
 	public Item(String subject, String body, String urlWeb, int rtID) {
-		this(0, subject, body, urlWeb, "", rtID, 0);
+		this(0, subject, body, urlWeb, "", rtID, 0, false, 0);
 	}
 
 	public Item(int _id, String subject, String body, String urlWeb,
-			String urlLocal, int rtID, int color) {
+			String urlLocal, int rtID, int rank, boolean watched, int color) {
 		super();
 		set_id(_id);
 		setSubject(subject);
@@ -51,6 +53,8 @@ public class Item implements Comparable<Item>, Parcelable {
 		setUrlWeb(urlWeb);
 		setUrlLocal(urlLocal);
 		setRt_ID(rtID);
+		setRank(rank);
+		setViewd(watched);
 		setColor(color);
 		printID();
 	}
@@ -84,6 +88,8 @@ public class Item implements Comparable<Item>, Parcelable {
 		out.writeString(urlWeb);
 		out.writeString(urlLocal);
 		out.writeInt(rt_ID);
+		out.writeInt(rank);
+		out.writeByte((byte) (viewd ? 1 : 0));
 		out.writeInt(color);
 
 	}
@@ -95,6 +101,8 @@ public class Item implements Comparable<Item>, Parcelable {
 		urlWeb = in.readString();
 		urlLocal = in.readString();
 		rt_ID = in.readInt();
+		rank = in.readInt();
+		viewd = in.readByte() == 1;
 		color = in.readInt();
 	}
 
@@ -153,6 +161,22 @@ public class Item implements Comparable<Item>, Parcelable {
 		this.rt_ID = rt_ID;
 	}
 
+	public int getRank() {
+		return rank;
+	}
+
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+
+	public boolean getViewd() {
+		return viewd;
+	}
+
+	public void setViewd(boolean viewd) {
+		this.viewd = viewd;
+	}
+
 	public int getColor() {
 		return color;
 	}
@@ -176,7 +200,8 @@ public class Item implements Comparable<Item>, Parcelable {
 	public String toStringTwo() {
 		return "Item [_id=" + _id + ", subject=" + subject + ", body=" + body
 				+ ", urlWeb=" + urlWeb + ", urlLocal=" + urlLocal + ", rt_ID="
-				+ rt_ID + ", color=" + color + "]";
+				+ rt_ID + ", rank=" + rank + ", viewd=" + viewd + ", color="
+				+ color + "]";
 	}
 
 	@Override
@@ -186,11 +211,13 @@ public class Item implements Comparable<Item>, Parcelable {
 		result = prime * result + _id;
 		result = prime * result + ((body == null) ? 0 : body.hashCode());
 		result = prime * result + color;
+		result = prime * result + rank;
 		result = prime * result + rt_ID;
 		result = prime * result + ((subject == null) ? 0 : subject.hashCode());
 		result = prime * result
 				+ ((urlLocal == null) ? 0 : urlLocal.hashCode());
 		result = prime * result + ((urlWeb == null) ? 0 : urlWeb.hashCode());
+		result = prime * result + (viewd ? 1231 : 1237);
 		return result;
 	}
 
@@ -212,6 +239,8 @@ public class Item implements Comparable<Item>, Parcelable {
 			return false;
 		if (color != other.color)
 			return false;
+		if (rank != other.rank)
+			return false;
 		if (rt_ID != other.rt_ID)
 			return false;
 		if (subject == null) {
@@ -228,6 +257,8 @@ public class Item implements Comparable<Item>, Parcelable {
 			if (other.urlWeb != null)
 				return false;
 		} else if (!urlWeb.equals(other.urlWeb))
+			return false;
+		if (viewd != other.viewd)
 			return false;
 		return true;
 	}

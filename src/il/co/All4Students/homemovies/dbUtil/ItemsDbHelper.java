@@ -5,10 +5,12 @@ import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.DATABASE_VER
 import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.KEY_BODY;
 import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.KEY_COLOR;
 import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.KEY_ID;
+import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.KEY_RANK;
 import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.KEY_RT_ID;
 import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.KEY_SUBJECT;
 import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.KEY_URLLOCAL;
 import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.KEY_URLWEB;
+import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.KEY_VIEWD;
 import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.LOG_TAG;
 import static il.co.All4Students.homemovies.dbUtil.ItemsDbConstants.TABLE_ITEMS;
 import android.content.Context;
@@ -49,6 +51,8 @@ public class ItemsDbHelper extends SQLiteOpenHelper {
 					.append(KEY_URLWEB).append(" TEXT NOT NULL, ")
 					.append(KEY_URLLOCAL).append(" TEXT NOT NULL, ")
 					.append(KEY_RT_ID).append(" INTEGER NOT NULL, ")
+					.append(KEY_RANK).append(" INTEGER NOT NULL, ")
+					.append(KEY_VIEWD).append(" INTEGER NOT NULL, ")
 					.append(KEY_COLOR).append(" INTEGER NOT NULL )").toString();
 
 			db.execSQL(CREATE_ITEM_TABLE);

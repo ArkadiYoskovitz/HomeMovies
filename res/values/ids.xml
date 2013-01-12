@@ -6,16 +6,19 @@
     <item name="ScreenMainImageButton1" type="id"/>
     <item name="ScreenMainListView" type="id"/>
     <item name="ScreenMainImageButton2" type="id"/>
-
+    <!-- Screen Web IDs -->
+    <item name="ScreenWebTableRow" type="id"/>
+    <item name="ScreenWebEditText1" type="id"/>
+    <item name="ScreenWebImageButton1" type="id"/>
+    <item name="ScreenWebTextView1" type="id"/>
+    <item name="ScreenWebListView" type="id"/>
+    <item name="ScreenWebButton" type="id"/>
     <!-- Screen Edit IDs -->
     <item name="ScreenEditTableRow1" type="id"/>
-    <item name="ScreenEditTextView1" type="id"/>
     <item name="ScreenEditEditText1" type="id"/>
     <item name="ScreenEditImageButton1" type="id"/>
-    <item name="ScreenEditTextView2" type="id"/>
     <item name="ScreenEditEditText2" type="id"/>
     <item name="ScreenEditTableRow2" type="id"/>
-    <item name="ScreenEditTextView3" type="id"/>
     <item name="ScreenEditEditText3" type="id"/>
     <item name="ScreenEditImageButton2" type="id"/>
     <item name="ScreenEditTextViewErrorMsg" type="id"/>
@@ -24,13 +27,34 @@
     <item name="ScreenEditButton1" type="id"/>
     <item name="ScreenEditButton2" type="id"/>
     <item name="ScreenEditButton3" type="id"/>
-    <!-- Screen Edit IDs -->
 
-    <item name="ScreenWebTableRow" type="id"/>
-    <item name="ScreenWebEditText1" type="id"/>
-    <item name="ScreenWebImageButton1" type="id"/>
-    <item name="ScreenWebTextView1" type="id"/>
-    <item name="ScreenWebListView" type="id"/>
-    <item name="ScreenWebButton" type="id"/>
+    <!-- List Row View IDs -->
+    <item name="rowTitle" type="id"/>
+
+    <!-- Custom Dialog Share View IDs -->
+    <item name="customDialogShareTableRow1" type="id"/>
+    <item name="customDialogShareImageIcon1" type="id"/>
+    <item name="customDialogShareButtonAirMail" type="id"/>
+    <item name="customDialogShareTableRow2" type="id"/>
+    <item name="customDialogShareImageIcon2" type="id"/>
+    <item name="customDialogShareButtonFaceBook" type="id"/>
+    <item name="customDialogShareTableRow3" type="id"/>
+    <item name="customDialogShareImageIcon3" type="id"/>
+    <item name="customDialogShareButtonTweeter" type="id"/>
+    <!-- Custom Dialog Search View IDs -->
+    <item name="customDialogSearchEditText1" type="id"/>
+    <item name="customDialogSearchTableRow1" type="id"/>
+    <item name="customDialogSearchButton1" type="id"/>
+    <item name="customDialogSearchButton2" type="id"/>
+
+    <!-- Custom Dialog Color View IDs -->
+    <item name="customDialogColorsTableRow1" type="id"/>
+    <item name="customDialogColorsButton1" type="id"/>
+    <item name="customDialogColorsButton2" type="id"/>
+    <item name="customDialogColorsTableRow2" type="id"/>
+    <item name="customDialogColorsButton3" type="id"/>
+    <item name="customDialogColorsButton4" type="id"/>
+    <item name="customDialogColorsTableRow3" type="id"/>
+    <item name="customDialogColorsButton5" type="id"/>
 
 </resources>
