@@ -532,12 +532,12 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 						ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 						int nRead, totalBytesRead = 0;
 						byte[] data = new byte[2048];
-						mDialog.setMax(fileLength);
+						// mDialog.setMax(fileLength);
 						// Read the image bytes in chunks of 2048 bytes
 						while ((nRead = is.read(data, 0, data.length)) != -1) {
 							buffer.write(data, 0, nRead);
 							totalBytesRead += nRead;
-							publishProgress(totalBytesRead);
+							publishProgress(totalBytesRead / fileLength * 100);
 						}
 						buffer.flush();
 						byte[] imageArray = buffer.toByteArray();
@@ -569,7 +569,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 			mDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 			mDialog.setCancelable(true);
 			mDialog.setMessage("Loading...");
-			mDialog.setMax(9999999);
+			mDialog.setMax(100);
 			mDialog.setProgress(0);
 			mDialog.show();
 			TextView errorMsg = (TextView) mActivity
