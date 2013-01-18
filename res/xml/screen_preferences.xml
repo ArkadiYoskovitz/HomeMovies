@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="Personal Settings" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="checkboxPref"
+            android:summary="This can be true or false"
+            android:title="Checkbox" />
+
+        <EditTextPreference
+            android:defaultValue="Empty"
+            android:key="editTextPref"
+            android:summary="You can input text here"
+            android:title="TextToInput" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Drink Settings" >
+        <ListPreference
+            android:defaultValue="en"
+            android:entries="@array/LanguageNames"
+            android:entryValues="@array/LanguageCodes"
+            android:key="beerPref"
+            android:summary="The volume of your beer, in ounces."
+            android:title="Beer Size" />
+
+        <RingtonePreference
+            android:name="Ringtone"
+            android:key="ringtonePref"
+            android:summary="Select a ringtone"
+            android:title="RingTones" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -12,19 +12,19 @@ import android.content.SharedPreferences.Editor;
 
 public class ApplicationPreference {
 	// Attributes
-	static final String PREF_FILE_NAME = "AppPreff";
+	static final String PREF_FILE_NAME = "HomeMoviesAppPreff";
 	// Application Preference Keys
 	private static final String KEY_SUBJECT = "Subject";
 	private static final String KEY_EMAIL = "Email";
 	private static final String KEY_COLOR = "Color";
 	private static final String KEY_LANGUAGE = "Language";
-	private static final String KEY_SORT = "sort";
+	private static final String KEY_SORT_METHOD = "sort";
 	// Application Preference Default values
 	private static final String DEFAULT_SUBJECT = "Default Topic";
 	private static final String DEFAULT_EMAIL = "John.Appleseed@iCloud.com";
 	private static final int DEFAULT_COLOR = 0xffffffff;
 	private static final String DEFAULT_LANGUAGE = "EN";
-	private static final String DEFAULT_SORT = "ID";
+	private static final int DEFAULT_SORT_METHOD = 0;
 
 	private final SharedPreferences settings;
 
@@ -83,14 +83,14 @@ public class ApplicationPreference {
 		return settings.getString(KEY_LANGUAGE, DEFAULT_LANGUAGE);
 	}
 
-	public void setSort(String Sort) {
+	public void setSortMethod(String Sort) {
 		Editor editor = settings.edit();
-		editor.putString(KEY_SORT, Sort);
+		editor.putString(KEY_SORT_METHOD, Sort);
 		editor.commit();
 	}
 
-	public String getSort() {
-		return settings.getString(KEY_SORT, DEFAULT_SORT);
+	public int getSortMethod() {
+		return settings.getInt(KEY_SORT_METHOD, DEFAULT_SORT_METHOD);
 	}
 
 	// //////////////////////////////////////////////
@@ -111,7 +111,7 @@ public class ApplicationPreference {
 		return DEFAULT_LANGUAGE;
 	}
 
-	public static String getDefaultSort() {
-		return DEFAULT_SORT;
+	public static int getDefaultSort() {
+		return DEFAULT_SORT_METHOD;
 	}
 }

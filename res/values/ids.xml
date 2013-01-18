@@ -4,8 +4,11 @@
     <!-- Screen Main IDs -->
     <item name="ScreenMainTableRow1" type="id"/>
     <item name="ScreenMainImageButton1" type="id"/>
-    <item name="ScreenMainListView" type="id"/>
+    <item name="ScreenMainTableRow2" type="id"/>
+    <item name="ScreenMainEditText1" type="id"/>
     <item name="ScreenMainImageButton2" type="id"/>
+    <item name="ScreenMainListView" type="id"/>
+    <item name="ScreenMainImageButton3" type="id"/>
     <!-- Screen Web IDs -->
     <item name="ScreenWebTableRow" type="id"/>
     <item name="ScreenWebEditText1" type="id"/>
@@ -41,12 +44,12 @@
     <item name="customDialogShareTableRow3" type="id"/>
     <item name="customDialogShareImageIcon3" type="id"/>
     <item name="customDialogShareButtonTweeter" type="id"/>
+
     <!-- Custom Dialog Search View IDs -->
-    <item name="customDialogSearchEditText1" type="id"/>
+
     <item name="customDialogSearchTableRow1" type="id"/>
     <item name="customDialogSearchButton1" type="id"/>
     <item name="customDialogSearchButton2" type="id"/>
-    <item name="customDialogSearchButton3" type="id"/>
 
     <!-- Custom Dialog Color View IDs -->
     <item name="customDialogColorsTableRow1" type="id"/>

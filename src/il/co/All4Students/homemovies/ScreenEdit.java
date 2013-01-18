@@ -1,10 +1,10 @@
 package il.co.All4Students.homemovies;
 
 import static il.co.All4Students.homemovies.app.AppConstants.INTENT_TARGET;
-import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_EDIT;
-import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_MAIN;
+import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_SCREEN_EDIT;
+import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_SCREEN_MAIN;
+import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_SCREEN_WEB;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_TextToSpeech;
-import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_WEB;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_WEB_SITE;
 import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_CANCEL;
 import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_COMMIT;
@@ -21,12 +21,13 @@ import java.util.Locale;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -41,7 +42,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -97,7 +97,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 			final ImageView screenEditImage = (ImageView) findViewById(R.id.ScreenEditImageView1);
 			registerForContextMenu(screenEditImage);
 		} catch (Exception e) {
-			Log.d(LOG_TAG_EDIT, "Unable to load empty Item object");
+			Log.d(LOG_TAG_SCREEN_EDIT, "Unable to load empty Item object");
 		}
 	}
 
@@ -105,7 +105,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	public void onBackPressed() {
 		itemRefreshFromScreen();
 
-		Log.d(LOG_TAG_EDIT, "Edit Screen - Cancel button was pressed");
+		Log.d(LOG_TAG_SCREEN_EDIT, "Edit Screen - Cancel button was pressed");
 
 		Intent returnIntent = new Intent();
 		returnIntent.putExtra(INTENT_TARGET, mEditedItem);
@@ -124,6 +124,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 		outState.putString("subject", text1.getText().toString());
 		outState.putString("body", text2.getText().toString());
 		outState.putString("url", text3.getText().toString());
+		outState.putParcelable("mItem", mEditedItem);
 	}
 
 	@Override
@@ -136,15 +137,16 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 		String subject = savedInstanceState.getString("subject");
 		String body = savedInstanceState.getString("body");
 		String url = savedInstanceState.getString("url");
+		mEditedItem = savedInstanceState.getParcelable("mItem");
 
 		text1.setText(subject);
 		text2.setText(body);
 		text3.setText(url);
+
 	}
 
 	@Override
 	protected void onDestroy() {
-		// Don't forget to shutdown!
 		if (mTextToSpeech != null) {
 			mTextToSpeech.stop();
 			mTextToSpeech.shutdown();
@@ -161,9 +163,9 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.screen_edit_menu_option, menu);
-		Log.d(LOG_TAG_MAIN,
+		closeKeybord();
+		Log.d(LOG_TAG_SCREEN_MAIN,
 				"Activity Edit Option Menu Layout was Created and loaded");
 		return true;
 	}
@@ -195,6 +197,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 		super.onCreateContextMenu(menu, v, menuInfo);
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.screen_edit_menu_context, menu);
+		closeKeybord();
 	}
 
 	@Override
@@ -222,85 +225,82 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	// OnClick Events
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void onClickEditSelectColor(View view) {
-		InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		inputManager.hideSoftInputFromWindow(
-				getCurrentFocus().getWindowToken(),
-				InputMethodManager.HIDE_NOT_ALWAYS);
+		closeKeybord();
 
-		final Dialog SCDialog = new Dialog(ScreenEdit.this);
-		SCDialog.setContentView(R.layout.custom_dialog_colors);
-		SCDialog.setTitle(R.string.SCDialogTitle);
-		SCDialog.setCancelable(false);
-		SCDialog.show();
+		Intent intent = new Intent(ScreenEdit.this, ScreenPreferences.class);
+		startActivity(intent);
 
-		Button btnSCDialogColorRed = (Button) SCDialog
-				.findViewById(R.id.CustomDialogColorsButton1);
-		btnSCDialogColorRed.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				mEditedItem.setColor(getResources().getColor(R.color.Red));
-				SCDialog.dismiss();
-			}
-		});
-
-		Button btnSCDialogColorGreen = (Button) SCDialog
-				.findViewById(R.id.CustomDialogColorsButton2);
-		btnSCDialogColorGreen.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				mEditedItem.setColor(getResources().getColor(R.color.Green));
-				SCDialog.dismiss();
-			}
-		});
-
-		Button btnSCDialogColorYellow = (Button) SCDialog
-				.findViewById(R.id.CustomDialogColorsButton3);
-		btnSCDialogColorYellow.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				mEditedItem.setColor(getResources().getColor(R.color.Yellow));
-				SCDialog.dismiss();
-			}
-		});
-
-		Button btnSCDialogColorBlue = (Button) SCDialog
-				.findViewById(R.id.CustomDialogColorsButton4);
-		btnSCDialogColorBlue.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				mEditedItem.setColor(getResources().getColor(R.color.Blue));
-				SCDialog.dismiss();
-			}
-		});
-
-		Button btnSCDialogColorDefault = (Button) SCDialog
-				.findViewById(R.id.CustomDialogColorsButton5);
-		btnSCDialogColorDefault.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				mEditedItem.setColor(ApplicationPreference.getDefaultColor());
-				SCDialog.dismiss();
-			}
-		});
+		// final Dialog SCDialog = new Dialog(ScreenEdit.this);
+		// SCDialog.setContentView(R.layout.custom_dialog_colors);
+		// SCDialog.setTitle(R.string.SCDialogTitle);
+		// SCDialog.setCancelable(false);
+		// SCDialog.show();
+		//
+		// Button btnSCDialogColorRed = (Button) SCDialog
+		// .findViewById(R.id.customDialogColorsButton1);
+		// btnSCDialogColorRed.setOnClickListener(new OnClickListener() {
+		//
+		// @Override
+		// public void onClick(View v) {
+		// mEditedItem.setColor(getResources().getColor(R.color.Red));
+		// SCDialog.dismiss();
+		// }
+		// });
+		//
+		// Button btnSCDialogColorGreen = (Button) SCDialog
+		// .findViewById(R.id.customDialogColorsButton2);
+		// btnSCDialogColorGreen.setOnClickListener(new OnClickListener() {
+		//
+		// @Override
+		// public void onClick(View v) {
+		// mEditedItem.setColor(getResources().getColor(R.color.Green));
+		// SCDialog.dismiss();
+		// }
+		// });
+		//
+		// Button btnSCDialogColorYellow = (Button) SCDialog
+		// .findViewById(R.id.customDialogColorsButton3);
+		// btnSCDialogColorYellow.setOnClickListener(new OnClickListener() {
+		//
+		// @Override
+		// public void onClick(View v) {
+		// mEditedItem.setColor(getResources().getColor(R.color.Yellow));
+		// SCDialog.dismiss();
+		// }
+		// });
+		//
+		// Button btnSCDialogColorBlue = (Button) SCDialog
+		// .findViewById(R.id.customDialogColorsButton4);
+		// btnSCDialogColorBlue.setOnClickListener(new OnClickListener() {
+		//
+		// @Override
+		// public void onClick(View v) {
+		// mEditedItem.setColor(getResources().getColor(R.color.Blue));
+		// SCDialog.dismiss();
+		// }
+		// });
+		//
+		// Button btnSCDialogColorDefault = (Button) SCDialog
+		// .findViewById(R.id.customDialogColorsButton5);
+		// btnSCDialogColorDefault.setOnClickListener(new OnClickListener() {
+		//
+		// @Override
+		// public void onClick(View v) {
+		// mEditedItem.setColor(ApplicationPreference.getDefaultColor());
+		// SCDialog.dismiss();
+		// }
+		// });
 	}
 
 	public void onClickEditShow(View view) {
-		InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		inputManager.hideSoftInputFromWindow(
-				getCurrentFocus().getWindowToken(),
-				InputMethodManager.HIDE_NOT_ALWAYS);
+		closeKeybord();
 
 		EditText txtSearch = (EditText) findViewById(R.id.ScreenEditEditText3);
 		if (txtSearch.getText() != null) {
 			try {
 				if (downloadTask != null) {
 					if (downloadTask.getStatus() != AsyncTask.Status.FINISHED) {
-						Log.d(LOG_TAG_WEB,
+						Log.d(LOG_TAG_SCREEN_WEB,
 								"onClickWebGo - no need to start a new task");
 						return;
 					}
@@ -316,9 +316,10 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	}
 
 	public void onClickEditCancel(View view) {
+		closeKeybord();
 		itemRefreshFromScreen();
 
-		Log.d(LOG_TAG_EDIT, "Edit Screen - Cancel button was pressed");
+		Log.d(LOG_TAG_SCREEN_EDIT, "Edit Screen - Cancel button was pressed");
 
 		Intent returnIntent = new Intent();
 		returnIntent.putExtra(INTENT_TARGET, mEditedItem);
@@ -327,9 +328,10 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	}
 
 	public void onClickEditDelete(View view) {
+		closeKeybord();
 		itemRefreshFromScreen();
 
-		Log.d(LOG_TAG_EDIT, "Edit Screen - Delete button was pressed");
+		Log.d(LOG_TAG_SCREEN_EDIT, "Edit Screen - Delete button was pressed");
 
 		Intent returnIntent = new Intent();
 		returnIntent.putExtra(INTENT_TARGET, mEditedItem);
@@ -338,6 +340,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	}
 
 	public void onClickEditCommit(View view) {
+		closeKeybord();
 		EditText subjectText = (EditText) findViewById(R.id.ScreenEditEditText1);
 		EditText bodyText = (EditText) findViewById(R.id.ScreenEditEditText2);
 		EditText URLText = (EditText) findViewById(R.id.ScreenEditEditText3);
@@ -349,7 +352,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 		} else {
 			itemRefreshFromScreen();
 		}
-		Log.d(LOG_TAG_EDIT, "Edit Screen - Commit button was pressed");
+		Log.d(LOG_TAG_SCREEN_EDIT, "Edit Screen - Commit button was pressed");
 
 		Intent returnIntent = new Intent();
 		returnIntent.putExtra(INTENT_TARGET, mEditedItem);
@@ -402,86 +405,16 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 		}
 	}
 
+	private void closeKeybord() {
+		InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		inputManager.hideSoftInputFromWindow(
+				getCurrentFocus().getWindowToken(),
+				InputMethodManager.HIDE_NOT_ALWAYS);
+	}
+
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Inner Classes
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	private class DownloadImageTask extends AsyncTask<String, Integer, Bitmap> {
-
-		private Activity mActivity;
-		private ProgressDialog mDialog;
-
-		DownloadImageTask(Activity activity) {
-			mActivity = activity;
-			mDialog = new ProgressDialog(mActivity);
-		}
-
-		protected Bitmap doInBackground(String... urls) {
-			Log.d("doInBackground", "starting download of image");
-			Bitmap bitmap = null;
-			try {
-				URL url = new URL(urls[0]);
-				HttpURLConnection httpCon = (HttpURLConnection) url
-						.openConnection();
-				try {
-					InputStream is = httpCon.getInputStream();
-					int fileLength = httpCon.getContentLength();
-					ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-					int nRead, totalBytesRead = 0;
-					byte[] data = new byte[2048];
-					mDialog.setMax(fileLength);
-					// Read the image bytes in chunks of 2048 bytes
-					while ((nRead = is.read(data, 0, data.length)) != -1) {
-						buffer.write(data, 0, nRead);
-						totalBytesRead += nRead;
-						publishProgress(totalBytesRead);
-					}
-					buffer.flush();
-					byte[] imageArray = buffer.toByteArray();
-					bitmap = BitmapFactory.decodeByteArray(imageArray, 0,
-							imageArray.length);
-				} catch (IOException e) {
-					e.printStackTrace();
-				} finally {
-					httpCon.disconnect();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return bitmap;
-		}
-
-		protected void onPreExecute() {
-			mDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-			mDialog.setCancelable(true);
-			mDialog.setMessage("Loading...");
-			mDialog.setMax(9999999);
-			mDialog.setProgress(0);
-			mDialog.show();
-			TextView errorMsg = (TextView) mActivity
-					.findViewById(R.id.ScreenEditTextViewErrorMsg);
-			errorMsg.setVisibility(View.GONE);
-		}
-
-		protected void onProgressUpdate(Integer... progress) {
-			mDialog.show();
-			mDialog.setProgress(progress[0]);
-		}
-
-		protected void onPostExecute(Bitmap result) {
-			if (result != null) {
-				ImageView imageView = (ImageView) mActivity
-						.findViewById(R.id.ScreenEditImageView1);
-				imageView.setImageBitmap(result);
-			} else {
-				TextView errorMsg = (TextView) mActivity
-						.findViewById(R.id.ScreenEditTextViewErrorMsg);
-				errorMsg.setVisibility(View.VISIBLE);
-				errorMsg.setText("Problem downloading image. Try again later");
-			}
-			// Close the progress dialog
-			mDialog.dismiss();
-		}
-	}
 
 	/**
 	 * ShareDialog The class handles the alert dialog foe the diffrent Share
@@ -572,4 +505,109 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 
 		}
 	}
+
+	private class DownloadImageTask extends AsyncTask<String, Integer, Bitmap> {
+
+		private Activity mActivity;
+		private ProgressDialog mDialog;
+
+		DownloadImageTask(Activity activity) {
+			mActivity = activity;
+			mDialog = new ProgressDialog(mActivity);
+		}
+
+		@Override
+		protected Bitmap doInBackground(String... urls) {
+			Log.d("doInBackground", "starting download of image");
+			Bitmap bitmap = null;
+
+			if (isOnline()) {
+				try {
+					URL url = new URL(urls[0]);
+					HttpURLConnection httpCon = (HttpURLConnection) url
+							.openConnection();
+					try {
+						InputStream is = httpCon.getInputStream();
+						int fileLength = httpCon.getContentLength();
+						ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+						int nRead, totalBytesRead = 0;
+						byte[] data = new byte[2048];
+						mDialog.setMax(fileLength);
+						// Read the image bytes in chunks of 2048 bytes
+						while ((nRead = is.read(data, 0, data.length)) != -1) {
+							buffer.write(data, 0, nRead);
+							totalBytesRead += nRead;
+							publishProgress(totalBytesRead);
+						}
+						buffer.flush();
+						byte[] imageArray = buffer.toByteArray();
+						bitmap = BitmapFactory.decodeByteArray(imageArray, 0,
+								imageArray.length);
+					} catch (IOException e) {
+						e.printStackTrace();
+					} finally {
+						httpCon.disconnect();
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else {
+				if (mEditedItem.getUrlLocal().length() != 0) {
+					try {
+						// bitmap =
+						// Images.Media.getBitmap(getContentResolver(),);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return bitmap;
+		}
+
+		@Override
+		protected void onPreExecute() {
+			mDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+			mDialog.setCancelable(true);
+			mDialog.setMessage("Loading...");
+			mDialog.setMax(9999999);
+			mDialog.setProgress(0);
+			mDialog.show();
+			TextView errorMsg = (TextView) mActivity
+					.findViewById(R.id.ScreenEditTextViewErrorMsg);
+			errorMsg.setVisibility(View.GONE);
+		}
+
+		@Override
+		protected void onProgressUpdate(Integer... progress) {
+			mDialog.show();
+			mDialog.setProgress(progress[0]);
+		}
+
+		@Override
+		protected void onPostExecute(Bitmap resultImage) {
+			if (resultImage != null) {
+				ImageView imageView = (ImageView) mActivity
+						.findViewById(R.id.ScreenEditImageView1);
+				imageView.setImageBitmap(resultImage);
+			} else {
+				TextView errorMsg = (TextView) mActivity
+						.findViewById(R.id.ScreenEditTextViewErrorMsg);
+				errorMsg.setVisibility(View.VISIBLE);
+				errorMsg.setText("Problem downloading image. Try again later");
+			}
+			// Close the progress dialog
+			mDialog.dismiss();
+		}
+
+		// Additional Methods
+		public boolean isOnline() {
+			ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+			NetworkInfo netInfo = cm.getActiveNetworkInfo();
+			if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+				return true;
+			}
+			return false;
+		}
+	}
+
 }

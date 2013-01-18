@@ -3,21 +3,30 @@ package il.co.All4Students.homemovies;
 import static il.co.All4Students.homemovies.app.AppConstants.APP_API_KEY;
 import static il.co.All4Students.homemovies.app.AppConstants.INTENT_TARGET;
 import static il.co.All4Students.homemovies.app.AppConstants.Item_Add_Web;
-import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_MAIN;
-import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_WEB;
+import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_SCREEN_MAIN;
+import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_SCREEN_WEB;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_WEB_DMovieInfo;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_WEB_SITE;
 import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_CANCEL;
 import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_COMMIT;
 import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_DELETE;
+import static il.co.All4Students.homemovies.app.AppConstants.SortByID;
+import static il.co.All4Students.homemovies.app.AppConstants.SortByRTID;
+import static il.co.All4Students.homemovies.app.AppConstants.SortByRank;
+import static il.co.All4Students.homemovies.app.AppConstants.SortBySubject;
+import il.co.All4Students.homemovies.app.ApplicationPreference;
 import il.co.All4Students.homemovies.core.Item;
+import il.co.All4Students.homemovies.core.ItemCompareRTID;
+import il.co.All4Students.homemovies.core.ItemCompareRank;
+import il.co.All4Students.homemovies.core.ItemCompareSubject;
 import il.co.All4Students.homemovies.dbUtil.ItemsHandler;
-import il.co.All4Students.homemovies.uiUtil.ColorListAdapter;
+import il.co.All4Students.homemovies.uiUtil.ItemListAdapter;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -59,13 +68,14 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 	private Item mReturnedItem;
 	private EditText txtSearch;
 	private DownloadMovieInfo downloadTask;
+	private ItemListAdapter mAdapter;
 
 	// System Events
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.screen_web);
-		Log.d(LOG_TAG_MAIN, "Screen Web Layout was Created and loaded");
+		Log.d(LOG_TAG_SCREEN_MAIN, "Screen Web Layout was Created and loaded");
 
 	}
 
@@ -102,18 +112,18 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 			switch (resultCode) {
 
 			case RESULT_CODE_CANCEL:
-				Log.d(LOG_TAG_MAIN,
+				Log.d(LOG_TAG_SCREEN_MAIN,
 						"onActivityResult - Item_Add_Local - CANCEL");
 				break;
 
 			case RESULT_CODE_DELETE:
-				Log.d(LOG_TAG_MAIN,
+				Log.d(LOG_TAG_SCREEN_MAIN,
 						"onActivityResult - Item_Add_Local - Delete");
-				Log.d(LOG_TAG_MAIN, "No item was added, just log for now");
+				Log.d(LOG_TAG_SCREEN_MAIN, "No item was added, just log for now");
 				break;
 
 			case RESULT_CODE_COMMIT:
-				Log.d(LOG_TAG_MAIN,
+				Log.d(LOG_TAG_SCREEN_MAIN,
 						"onActivityResult - Item_Add_Local - COMMIT");
 				mReturnedItem = data.getExtras().getParcelable(INTENT_TARGET);
 				// mReturnedItem = fixItemNumber(mReturnedItem);
@@ -122,18 +132,17 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 				mReturnedItem = itemHandler.getItem(lastItem);
 				// mItemList.add(mReturnedItem);
 				ListView lv = (ListView) findViewById(R.id.ScreenWebListView);
-
-				ColorListAdapter adapter = new ColorListAdapter(ScreenWeb.this,
-						mItemList);
+				sortCompareable();
+				mAdapter = new ItemListAdapter(mItemList, ScreenWeb.this);
 				lv.setDivider(new ColorDrawable(ScreenWeb.this.getResources()
 						.getColor(R.color.Crimson)));
 				lv.setDividerHeight((int) ScreenWeb.this.getResources()
 						.getDimension(R.dimen.Size2dp));
-				lv.setAdapter(adapter);
+				lv.setAdapter(mAdapter);
 				break;
 
 			default:
-				Log.d(LOG_TAG_MAIN,
+				Log.d(LOG_TAG_SCREEN_MAIN,
 						"onActivityResult - Item_Add_Local - default");
 				break;
 			}
@@ -141,14 +150,15 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 		// ////////////////////////////////////////////////////////////////////////////////
 
 		default:
-			Log.d(LOG_TAG_MAIN, "onActivityResult - default - default");
+			Log.d(LOG_TAG_SCREEN_MAIN, "onActivityResult - default - default");
 			break;
 		}
 
 		// Handaling the screen refresh
-		ColorListAdapter adapter = new ColorListAdapter(this, mItemList);
-		adapter.notifyDataSetChanged();
-		Log.d(LOG_TAG_MAIN, "View re-loaded");
+		sortCompareable();
+		mAdapter = new ItemListAdapter(mItemList, this);
+		mAdapter.notifyDataSetChanged();
+		Log.d(LOG_TAG_SCREEN_MAIN, "View re-loaded");
 
 		super.onActivityResult(requestCode, resultCode, data);
 	}
@@ -159,17 +169,13 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 
 	// OnClick Events
 	public void onClickWebGo(View view) {
-		InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-		inputManager.hideSoftInputFromWindow(
-				getCurrentFocus().getWindowToken(),
-				InputMethodManager.HIDE_NOT_ALWAYS);
-
+		closeKeybord();
 		txtSearch = (EditText) findViewById(R.id.ScreenWebEditText1);
 		if (txtSearch.getText() != null) {
 			try {
 				if (downloadTask != null) {
 					if (downloadTask.getStatus() != AsyncTask.Status.FINISHED) {
-						Log.d(LOG_TAG_WEB,
+						Log.d(LOG_TAG_SCREEN_WEB,
 								"onClickWebGo - no need to start a new task");
 						return;
 					}
@@ -193,7 +199,8 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 	}
 
 	public void onClickWebCancel(View view) {
-		Log.d(LOG_TAG_WEB, "Edit Screen - Cancel button was pressed");
+		closeKeybord();
+		Log.d(LOG_TAG_SCREEN_WEB, "Edit Screen - Cancel button was pressed");
 		Intent returnIntent = new Intent();
 		setResult(RESULT_CODE_CANCEL, returnIntent);
 		finish();
@@ -202,7 +209,8 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		Log.d(LOG_TAG_MAIN, "ScreenWeb - An Item was clicked from the list");
+		closeKeybord();
+		Log.d(LOG_TAG_SCREEN_MAIN, "ScreenWeb - An Item was clicked from the list");
 		Intent intent = new Intent(ScreenWeb.this, ScreenEdit.class);
 		intent.putExtra(INTENT_TARGET, mItemList.get(position));
 		startActivityForResult(intent, Item_Add_Web);
@@ -211,14 +219,47 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 	// Additional Methods
 	private void RefreshScreen() {
 		ListView lv = (ListView) findViewById(R.id.ScreenWebListView);
-		ColorListAdapter adapter = new ColorListAdapter(ScreenWeb.this,
-				mItemList);
+		sortCompareable();
+		mAdapter = new ItemListAdapter(mItemList, ScreenWeb.this);
 		lv.setDivider(new ColorDrawable(ScreenWeb.this.getResources().getColor(
 				R.color.Crimson)));
 		lv.setDividerHeight((int) ScreenWeb.this.getResources().getDimension(
 				R.dimen.Size2dp));
-		lv.setAdapter(adapter);
-		// adapter.notifyDataSetChanged();
+		lv.setAdapter(mAdapter);
+	}
+
+	private void sortCompareable() {
+		int sortMethod = new ApplicationPreference(ScreenWeb.this)
+				.getSortMethod();
+		if (mItemList != null) {
+			switch (sortMethod) {
+			case SortByID:
+				Collections.sort(mItemList);
+				break;
+
+			case SortByRank:
+				Collections.sort(mItemList, new ItemCompareRank());
+				break;
+
+			case SortByRTID:
+				Collections.sort(mItemList, new ItemCompareRTID());
+				break;
+
+			case SortBySubject:
+				Collections.sort(mItemList, new ItemCompareSubject());
+				break;
+
+			default:
+				break;
+			}
+		}
+	}
+
+	private void closeKeybord() {
+		InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+		inputManager.hideSoftInputFromWindow(
+				getCurrentFocus().getWindowToken(),
+				InputMethodManager.HIDE_NOT_ALWAYS);
 	}
 
 	// Inner Classes
@@ -339,13 +380,13 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 				// refresh mListView
 				mListView = (ListView) mActivity
 						.findViewById(R.id.ScreenWebListView);
-				ColorListAdapter adapter = new ColorListAdapter(mActivity,
-						mItemList);
+				sortCompareable();
+				mAdapter = new ItemListAdapter(mItemList, mActivity);
 				mListView.setDivider(new ColorDrawable(mActivity.getResources()
 						.getColor(R.color.Crimson)));
 				mListView.setDividerHeight((int) mActivity.getResources()
 						.getDimension(R.dimen.Size2dp));
-				mListView.setAdapter(adapter);
+				mListView.setAdapter(mAdapter);
 				mListView.setOnItemClickListener(ScreenWeb.this);
 			} else {
 				TextView errorMsg = (TextView) mActivity
@@ -362,6 +403,5 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 		protected void onCancelled() {
 			super.onCancelled();
 		}
-
 	}
 }

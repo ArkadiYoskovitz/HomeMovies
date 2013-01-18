@@ -13,14 +13,14 @@
         android:layout_marginTop="@dimen/Size10dp" >
 
         <Button
-            android:id="@+id/CustomDialogColorsButton1"
+            android:id="@+id/customDialogRankButton1"
             android:layout_width="@dimen/Size200dp"
             android:layout_height="@dimen/Size50dp"
             android:layout_weight="1"
             android:background="@color/Red" />
 
         <Button
-            android:id="@+id/CustomDialogColorsButton2"
+            android:id="@+id/customDialogRankButton2"
             android:layout_width="@dimen/Size200dp"
             android:layout_height="@dimen/Size50dp"
             android:layout_weight="1"
@@ -35,14 +35,14 @@
         android:layout_marginRight="@dimen/Size10dp" >
 
         <Button
-            android:id="@+id/CustomDialogColorsButton3"
+            android:id="@+id/customDialogRankButton3"
             android:layout_width="@dimen/Size200dp"
             android:layout_height="@dimen/Size50dp"
             android:layout_weight="1"
             android:background="@color/Yellow" />
 
         <Button
-            android:id="@+id/CustomDialogColorsButton4"
+            android:id="@+id/customDialogRankButton4"
             android:layout_width="@dimen/Size200dp"
             android:layout_height="@dimen/Size50dp"
             android:layout_weight="1"
@@ -58,7 +58,7 @@
         android:layout_marginRight="@dimen/Size10dp" >
 
         <Button
-            android:id="@+id/CustomDialogColorsButton5"
+            android:id="@+id/customDialogRankButton5"
             android:layout_width="@dimen/Size400dp"
             android:layout_height="@dimen/Size50dp"
             android:layout_weight="1"

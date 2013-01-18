@@ -12,6 +12,7 @@
 
     <!-- Main screen buttons -->
     <string name="btnLableMainSettings">Settings</string>
+    <string name="btnLableMainSearch">Search</string>
     <string name="btnLableMainAdd">Add Note</string>
     <!-- Edit screen buttons -->
     <string name="btnLableEditSelectColor">Select Color</string>
@@ -37,7 +38,7 @@
     <string name="systemNoticeButton">OK</string>
     <!-- Adding Method Selection -->
     <string name="AddingDialogMsg">Choose how to add an Item</string>
-    <string name="AddingDialogLocal">By Hand</string>
+    <string name="AddingDialogLocal">Manually</string>
     <string name="AddingDialogWeb">Web</string>
     <string name="AddingDialogCancel">Cancel</string>
 
@@ -52,6 +53,8 @@
     <string name="DescriptionFaceBook">FaceBook</string>
     <string name="DescriptionTweeter">Tweeter</string>
 
+    <!-- Search Method Selection -->
+    <string name="btnLableEnableSearch">Enable Search</string>
     <!-- Error Msg -->
     <string name="ErrorMsgDownLoadWeb">Problem downloading info. Try again later</string>
     <string name="ErrorMsgTextToSpeech">Language is not supported</string>
