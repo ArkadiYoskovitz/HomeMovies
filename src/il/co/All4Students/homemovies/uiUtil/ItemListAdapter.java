@@ -11,6 +11,7 @@ import il.co.All4Students.homemovies.core.Item;
 import il.co.All4Students.homemovies.core.ItemCompareRTID;
 import il.co.All4Students.homemovies.core.ItemCompareRank;
 import il.co.All4Students.homemovies.core.ItemCompareSubject;
+import il.co.All4Students.homemovies.dbUtil.ItemsHandler;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,6 +23,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.RatingBar;
@@ -85,14 +88,22 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 			rowCheckBox.setVisibility(View.GONE);
 		}
 
-		// rowCheckBox.setOnClickListener(new View.OnClickListener() {
-		// @Override
-		// public void onClick(View view) {
-		// mItem.setViewd(!mItem.getViewd());
-		// ItemsHandler itemHandler = new ItemsHandler(mContext);
-		// itemHandler.updateItem(mItem);
-		// }
-		// });
+		rowCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+
+				if (buttonView.isChecked()) {
+					mItem.setViewd(buttonView.isChecked());
+				} else {
+					mItem.setViewd(buttonView.isChecked());
+				}
+
+				ItemsHandler itemHandler = new ItemsHandler(mContext);
+				itemHandler.updateItem(mItem);
+			}
+		});
 
 		return rowView;
 	}

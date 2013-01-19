@@ -102,18 +102,21 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		case Item_Edit:
 			switch (resultCode) {
 			case RESULT_CODE_CANCEL:
-				Log.d(LOG_TAG_SCREEN_MAIN,"onActivityResult - Item_Edit - CANCEL");
+				Log.d(LOG_TAG_SCREEN_MAIN,
+						"onActivityResult - Item_Edit - CANCEL");
 				break;
 
 			case RESULT_CODE_DELETE:
-				Log.d(LOG_TAG_SCREEN_MAIN,"onActivityResult - Item_Edit - DELETE");
+				Log.d(LOG_TAG_SCREEN_MAIN,
+						"onActivityResult - Item_Edit - DELETE");
 				mReturnedItem = data.getExtras().getParcelable(INTENT_TARGET);
 				itemHandler.deleteItem(mReturnedItem);
 				mItemList.remove(mReturnedItem);
 				break;
 
 			case RESULT_CODE_COMMIT:
-				Log.d(LOG_TAG_SCREEN_MAIN,"onActivityResult - Item_Edit - COMMIT");
+				Log.d(LOG_TAG_SCREEN_MAIN,
+						"onActivityResult - Item_Edit - COMMIT");
 				mReturnedItem = data.getExtras().getParcelable(INTENT_TARGET);
 				itemHandler.updateItem(mReturnedItem);
 				lastItem = itemHandler.getLastItemId();
@@ -122,7 +125,8 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 				break;
 
 			default:
-				Log.d(LOG_TAG_SCREEN_MAIN,"onActivityResult - Item_Edit - default");
+				Log.d(LOG_TAG_SCREEN_MAIN,
+						"onActivityResult - Item_Edit - default");
 				break;
 			}
 			break;
@@ -131,12 +135,15 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 			switch (resultCode) {
 
 			case RESULT_CODE_CANCEL:
-				Log.d(LOG_TAG_SCREEN_MAIN,"onActivityResult - Item_Add_Local - CANCEL");
+				Log.d(LOG_TAG_SCREEN_MAIN,
+						"onActivityResult - Item_Add_Local - CANCEL");
 				break;
 
 			case RESULT_CODE_DELETE:
-				Log.d(LOG_TAG_SCREEN_MAIN,"onActivityResult - Item_Add_Local - Delete");
-				Log.d(LOG_TAG_SCREEN_MAIN,"No item was added, just log for now");
+				Log.d(LOG_TAG_SCREEN_MAIN,
+						"onActivityResult - Item_Add_Local - Delete");
+				Log.d(LOG_TAG_SCREEN_MAIN,
+						"No item was added, just log for now");
 				break;
 
 			case RESULT_CODE_COMMIT:
@@ -150,7 +157,8 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 				break;
 
 			default:
-				Log.d(LOG_TAG_SCREEN_MAIN,"onActivityResult - Item_Add_Local - default");
+				Log.d(LOG_TAG_SCREEN_MAIN,
+						"onActivityResult - Item_Add_Local - default");
 				break;
 			}
 			break;
@@ -159,11 +167,13 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 			switch (resultCode) {
 
 			case RESULT_CODE_CANCEL:
-				Log.d(LOG_TAG_SCREEN_MAIN,"onActivityResult - Item_Search_Web - CANCEL");
+				Log.d(LOG_TAG_SCREEN_MAIN,
+						"onActivityResult - Item_Search_Web - CANCEL");
 				break;
 
 			default:
-				Log.d(LOG_TAG_SCREEN_MAIN,"onActivityResult - Item_Search_Web - default");
+				Log.d(LOG_TAG_SCREEN_MAIN,
+						"onActivityResult - Item_Search_Web - default");
 				break;
 			}
 			break;
@@ -460,8 +470,9 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 							.append(cn.getBody()).append(" ,UrlLocal: ")
 							.append(cn.getUrlLocal()).append(" ,UrlWeb: ")
 							.append(cn.getUrlWeb()).append(" ,Rt_ID: ")
-							.append(cn.getRt_ID()).append(" ,Color: ")
-							.append(cn.getColor());
+							.append(cn.getRt_ID()).append(" ,Viewed: ")
+							.append(cn.getViewd()).append(" ,Color: ")
+							.append(cn.getColor()).append("\n\n");
 					Log.d(LOG_TAG_SCREEN_MAIN, logEntry.toString());
 				}
 			} catch (Exception e) {
