@@ -20,17 +20,16 @@
 
     <!-- Web screen buttons -->
     <string name="btnLableWebSearchGo">Go</string>
-    <string name="btnLableSearch">Search</string>
 
     <!-- Label names related Strings -->
     <!-- Screen Main label -->
     <string name="note_application">My Movies</string>
-    
+
     <!-- Screen Edit label -->
     <string name="labelSubject">Subject:</string>
     <string name="labelBody">Body:</string>
     <string name="labelURL">URL:</string>
-   
+
     <!-- Screen Web label -->
     <string name="labelSearch">Search:</string>
 
@@ -38,7 +37,7 @@
     <string name="systemNoticeTitle">System Notice</string>
     <string name="systemNoticeMsg">No Items to display, press the Add Button to add a new Item</string>
     <string name="systemNoticeButton">OK</string>
-    
+
     <!-- Adding Method Selection -->
     <string name="AddingDialogMsg">Choose how to add an Item</string>
     <string name="AddingDialogLocal">Manually</string>
@@ -55,27 +54,11 @@
     <string name="DescriptionAirMail">Air Mail</string>
     <string name="DescriptionFaceBook">FaceBook</string>
     <string name="DescriptionTweeter">Tweeter</string>
-
-    <!-- Search Method Selection -->
-    <string name="btnLableEnableSearch">Enable Search</string>
-    <!-- Error Msg -->
     <string name="ErrorMsgDownLoadWeb">Problem downloading info. Try again later</string>
     <string name="ErrorMsgTextToSpeech">Language is not supported</string>
-
-    <!--
-    <string name="rating_star_none">Rating Star None</string>
-    <string name="rating_star_half">Rating Star Half</string>
-    <string name="rating_star_full">Rating Star Full</string>
-    -->
+    <!--  -->
     <string name="emailHint">John.Appleseed@iCloud.com</string>
-    <string name="single_item_text">Large Text</string>
-    <!--  -->
     <string name="ScreenEditHint">Default value</string>
-    <!--  -->
-    <string name="color_spinner">Color Spinner</string>
-    <string name="language_spinner">Language Spinner</string>
-    <string name="labelDefaultColor">Default Color</string>
-    <string name="SCDialogTitle">Select Color</string>
     <string name="rowHolderText">Rihanna Love the way lie Rihanna Love the way lie</string>
     <string name="rowIconDescription">Icon Description</string>
 

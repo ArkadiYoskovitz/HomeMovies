@@ -59,7 +59,7 @@ public class ItemsHandler {
 			values.put(KEY_URLLOCAL, item.getUrlLocal());
 			values.put(KEY_RT_ID, item.getRt_ID());
 			values.put(KEY_RANK, item.getRank());
-			values.put(KEY_VIEWD, item.getViewd());
+			values.put(KEY_VIEWD, item.getIntViewd());
 			values.put(KEY_COLOR, item.getColor());
 
 			// Inserting Row
@@ -95,8 +95,8 @@ public class ItemsHandler {
 					cursor.getString(3), cursor.getString(4),
 					Integer.parseInt(cursor.getString(5)),
 					Integer.parseInt(cursor.getString(6)),
-					Boolean.parseBoolean(cursor.getString(7)),
-					Integer.parseInt(cursor.getString(8)));
+					(cursor.getInt(7) == 1), Integer.parseInt(cursor
+							.getString(8)));
 
 			cursor.close();
 		} catch (SQLException e) {
@@ -136,7 +136,7 @@ public class ItemsHandler {
 					item.setUrlLocal(cursor.getString(4));
 					item.setRt_ID(Integer.parseInt(cursor.getString(5)));
 					item.setRank(Integer.parseInt(cursor.getString(6)));
-					item.setViewd(Boolean.parseBoolean(cursor.getString(7)));
+					item.setViewd(cursor.getInt(7) == 1);
 					item.setColor(Integer.parseInt(cursor.getString(8)));
 					// Adding item to list
 					itemList.add(item);
@@ -170,7 +170,7 @@ public class ItemsHandler {
 			values.put(KEY_URLLOCAL, item.getUrlLocal());
 			values.put(KEY_RT_ID, item.getRt_ID());
 			values.put(KEY_RANK, item.getRank());
-			values.put(KEY_VIEWD, item.getViewd());
+			values.put(KEY_VIEWD, item.getIntViewd());
 			values.put(KEY_COLOR, item.getColor());
 
 			// updating row
@@ -290,7 +290,7 @@ public class ItemsHandler {
 					item.setUrlLocal(cursor.getString(4));
 					item.setRt_ID(Integer.parseInt(cursor.getString(5)));
 					item.setRank(Integer.parseInt(cursor.getString(6)));
-					item.setViewd(Boolean.parseBoolean(cursor.getString(7)));
+					item.setViewd((cursor.getInt(7) == 1));
 					item.setColor(Integer.parseInt(cursor.getString(8)));
 					itemList.add(item);
 				} while (cursor.moveToNext());

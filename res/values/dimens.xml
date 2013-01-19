@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="Size0dp">0dp</dimen>
     <dimen name="Size2dp">2dp</dimen>
     <dimen name="Size3dp">3dp</dimen>
     <dimen name="Size5dp">5dp</dimen>
     <dimen name="Size7dp">7dp</dimen>
-    <dimen name="Size10dp">10dp</dimen>
     <dimen name="Size15dp">15dp</dimen>
     <dimen name="Size20dp">20dp</dimen>
     <dimen name="Size25dp">25dp</dimen>
     <dimen name="Size30dp">30dp</dimen>
-    <dimen name="Size40dp">40dp</dimen>
-    <dimen name="Size50dp">50dp</dimen>
-    <dimen name="Size70dp">70dp</dimen>
-    <dimen name="Size100dp">100dp</dimen>
-    <dimen name="Size200dp">200dp</dimen>
-    <dimen name="Size300dp">300dp</dimen>
-    <dimen name="Size350dp">350dp</dimen>
-    <dimen name="Size400dp">400dp</dimen>
-    <dimen name="Size500dp">500dp</dimen>
-    <!--  -->
-    <dimen name="bar_height">3dp</dimen>
-    <dimen name="space_between_categories">35dp</dimen>
-    <dimen name="side_padding">50dp</dimen>
-    <dimen name="category_font_size">20sp</dimen>
-    <dimen name="label_font_size">18sp</dimen>
-    <dimen name="selection_font_size">18sp</dimen>
 
 </resources>

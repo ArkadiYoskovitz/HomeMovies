@@ -173,8 +173,8 @@ public class Item implements Comparable<Item>, Parcelable {
 		return viewd;
 	}
 
-	public void setViewd(boolean viewd) {
-		this.viewd = viewd;
+	public void setViewd(boolean isViewd) {
+		this.viewd = isViewd;
 	}
 
 	public int getColor() {
@@ -187,6 +187,23 @@ public class Item implements Comparable<Item>, Parcelable {
 
 	// ////////////////////////////////////////////////////////////////////////////////////////////////
 	// Additional Methods
+
+	public int getIntViewd() {
+		if (viewd) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
+	public void setIntViewd(int in) {
+		if (in == 1) {
+			this.viewd = true;
+		} else {
+			this.viewd = false;
+		}
+	}
+
 	@Override
 	public int compareTo(Item another) {
 		return this.get_id() - another.get_id();

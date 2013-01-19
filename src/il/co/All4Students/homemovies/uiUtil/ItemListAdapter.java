@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.RatingBar;
@@ -34,6 +35,7 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 	private ArrayList<Item> mOriginalItemList;
 	private Context mContext;
 	private Filter itemFilter;
+	private Item mItem;
 
 	// Constractors
 	public ItemListAdapter(ArrayList<Item> itemList, Context context) {
@@ -68,17 +70,29 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 		} else {
 			rowView = convertView;
 		}
-
 		TextView rowTitle = (TextView) rowView.findViewById(R.id.rowTitle);
-		RatingBar rowRank = (RatingBar) rowView.findViewById(R.id.RowRating);
-		Item item = mItemList.get(position);
-		rowTitle.setText(item.toString());
-		rowRank.setRating(item.getRank());
-		rowView.setBackgroundColor(item.getColor());
+		RatingBar rowRank = (RatingBar) rowView.findViewById(R.id.rowRating);
+		CheckBox rowCheckBox = (CheckBox) rowView
+				.findViewById(R.id.rowCheckBox);
+		mItem = mItemList.get(position);
+		rowTitle.setText(mItem.toString());
+		rowRank.setRating(mItem.getRank());
+		rowCheckBox.setChecked(mItem.getViewd());
+		rowView.setBackgroundColor(mItem.getColor());
 
 		if (mContext instanceof ScreenWeb) {
 			rowRank.setVisibility(View.GONE);
+			rowCheckBox.setVisibility(View.GONE);
 		}
+
+		// rowCheckBox.setOnClickListener(new View.OnClickListener() {
+		// @Override
+		// public void onClick(View view) {
+		// mItem.setViewd(!mItem.getViewd());
+		// ItemsHandler itemHandler = new ItemsHandler(mContext);
+		// itemHandler.updateItem(mItem);
+		// }
+		// });
 
 		return rowView;
 	}
@@ -91,7 +105,6 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 	public Filter getFilter() {
 		if (itemFilter == null)
 			itemFilter = new ItemFilter();
-
 		return itemFilter;
 	}
 
@@ -118,7 +131,6 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 
 				results.values = nItemList;
 				results.count = nItemList.size();
-
 			}
 			return results;
 		}
@@ -127,7 +139,6 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 		@Override
 		protected void publishResults(CharSequence constraint,
 				FilterResults results) {
-
 			// Now we have to inform the adapter about the new list filtered
 			if (results.count == 0)
 				notifyDataSetInvalidated();
@@ -135,7 +146,6 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 				mItemList = (ArrayList<Item>) results.values;
 				notifyDataSetChanged();
 			}
-
 		}
 
 	}

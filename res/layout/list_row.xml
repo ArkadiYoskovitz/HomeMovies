@@ -41,7 +41,7 @@
         android:typeface="sans" />
 
     <RatingBar
-        android:id="@+id/RowRating"
+        android:id="@+id/rowRating"
         style="@style/CustomRatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,5 +52,14 @@
         android:numStars="10"
         android:rating="2.5"
         android:stepSize="0.1" />
+
+    <CheckBox
+        android:id="@+id/rowCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/rowRating"
+        android:layout_alignParentRight="true"
+        android:clickable="true"
+        android:focusable="false" />
 
 </RelativeLayout>

@@ -2,6 +2,5 @@
 <resources>
 
     <integer name="lineOne">1</integer>
-    <integer name="lineTwo">2</integer>
 
 </resources>
