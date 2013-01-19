@@ -30,7 +30,7 @@
             android:ems="10"
             android:hint="@string/ScreenEditHint"
             android:inputType="text"
-            android:maxLines="@integer/oneLine" />
+            android:maxLines="@integer/lineOne" />
 
         <ImageButton
             android:id="@id/ScreenWebImageButton1"
@@ -42,7 +42,6 @@
             android:contentDescription="@string/btnLableWebSearchGo"
             android:onClick="onClickWebGo"
             android:src="@drawable/ic_web_go" />
-
     </TableRow>
 
     <TextView

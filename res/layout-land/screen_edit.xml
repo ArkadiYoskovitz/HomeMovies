@@ -27,7 +27,7 @@
             android:ems="10"
             android:hint="@string/ScreenEditHint"
             android:inputType="text"
-            android:maxLines="@integer/oneLine" >
+            android:maxLines="@integer/lineOne" >
 
             <requestFocus />
         </EditText>
@@ -77,7 +77,7 @@
                 android:ems="10"
                 android:gravity="center"
                 android:inputType="text"
-                android:maxLines="@integer/oneLine" />
+                android:maxLines="@integer/lineOne" />
 
             <ImageButton
                 android:id="@id/ScreenEditImageButton1"
@@ -108,7 +108,7 @@
             android:cropToPadding="true"
             android:padding="@dimen/Size7dp"
             android:scaleType="centerInside"
-            android:src="@drawable/placeholder" />
+            android:src="@drawable/ic_placeholder" />
 
         <TableRow
             android:id="@id/ScreenEditTableRow2"

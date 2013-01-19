@@ -46,7 +46,7 @@
             android:ellipsize="end"
             android:ems="10"
             android:inputType="text"
-            android:maxLines="@integer/oneLine" />
+            android:maxLines="@integer/lineOne" />
 
         <ImageButton
             android:id="@id/ScreenMainImageButton2"

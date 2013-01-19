@@ -174,62 +174,55 @@ public final class R {
     }
     public static final class dimen {
         public static final int Size0dp=0x7f070000;
-        public static final int Size100dp=0x7f07000c;
-        public static final int Size10dp=0x7f070004;
-        public static final int Size15dp=0x7f070005;
-        public static final int Size200dp=0x7f07000d;
-        public static final int Size20dp=0x7f070006;
-        public static final int Size25dp=0x7f070007;
+        public static final int Size100dp=0x7f07000d;
+        public static final int Size10dp=0x7f070005;
+        public static final int Size15dp=0x7f070006;
+        public static final int Size200dp=0x7f07000e;
+        public static final int Size20dp=0x7f070007;
+        public static final int Size25dp=0x7f070008;
         public static final int Size2dp=0x7f070001;
-        public static final int Size300dp=0x7f07000e;
-        public static final int Size30dp=0x7f070008;
-        public static final int Size350dp=0x7f07000f;
-        public static final int Size400dp=0x7f070010;
-        public static final int Size40dp=0x7f070009;
-        public static final int Size500dp=0x7f070011;
-        public static final int Size50dp=0x7f07000a;
-        public static final int Size5dp=0x7f070002;
-        public static final int Size70dp=0x7f07000b;
-        public static final int Size7dp=0x7f070003;
+        public static final int Size300dp=0x7f07000f;
+        public static final int Size30dp=0x7f070009;
+        public static final int Size350dp=0x7f070010;
+        public static final int Size3dp=0x7f070002;
+        public static final int Size400dp=0x7f070011;
+        public static final int Size40dp=0x7f07000a;
+        public static final int Size500dp=0x7f070012;
+        public static final int Size50dp=0x7f07000b;
+        public static final int Size5dp=0x7f070003;
+        public static final int Size70dp=0x7f07000c;
+        public static final int Size7dp=0x7f070004;
         /**   
          */
-        public static final int bar_height=0x7f070012;
-        public static final int category_font_size=0x7f070015;
-        public static final int label_font_size=0x7f070016;
-        public static final int selection_font_size=0x7f070017;
-        public static final int side_padding=0x7f070014;
-        public static final int space_between_categories=0x7f070013;
+        public static final int bar_height=0x7f070013;
+        public static final int category_font_size=0x7f070016;
+        public static final int label_font_size=0x7f070017;
+        public static final int selection_font_size=0x7f070018;
+        public static final int side_padding=0x7f070015;
+        public static final int space_between_categories=0x7f070014;
     }
     public static final class drawable {
-        public static final int bluegradient=0x7f020000;
-        public static final int btn_dropdown=0x7f020001;
-        public static final int btn_dropdown_normal=0x7f020002;
-        public static final int btn_dropdown_pressed=0x7f020003;
-        public static final int custom_ratingbar=0x7f020004;
-        public static final int custom_ratingbar_empty=0x7f020005;
-        public static final int custom_ratingbar_filled=0x7f020006;
-        public static final int email_air=0x7f020007;
-        public static final int email_net=0x7f020008;
-        public static final int email_speed=0x7f020009;
-        public static final int ic_add=0x7f02000a;
-        public static final int ic_color_selector=0x7f02000b;
-        public static final int ic_dialog_airmail=0x7f02000c;
-        public static final int ic_dialog_facebook=0x7f02000d;
-        public static final int ic_dialog_notice=0x7f02000e;
-        public static final int ic_dialog_share=0x7f02000f;
-        public static final int ic_dialog_tweeter=0x7f020010;
-        public static final int ic_launcher=0x7f020011;
-        public static final int ic_rating_star_full=0x7f020012;
-        public static final int ic_rating_star_half=0x7f020013;
-        public static final int ic_rating_star_none=0x7f020014;
-        public static final int ic_settings=0x7f020015;
-        public static final int ic_web_go=0x7f020016;
-        public static final int placeholder=0x7f020017;
-        public static final int spinner_bluegradient=0x7f020018;
-        public static final int spinner_btn_dropdown=0x7f020019;
+        public static final int custom_ratingbar=0x7f020000;
+        public static final int custom_ratingbar_empty=0x7f020001;
+        public static final int custom_ratingbar_filled=0x7f020002;
+        public static final int ic_add=0x7f020003;
+        public static final int ic_color_selector=0x7f020004;
+        public static final int ic_dialog_airmail=0x7f020005;
+        public static final int ic_dialog_facebook=0x7f020006;
+        public static final int ic_dialog_notice=0x7f020007;
+        public static final int ic_dialog_share=0x7f020008;
+        public static final int ic_dialog_tweeter=0x7f020009;
+        public static final int ic_launcher=0x7f02000a;
+        public static final int ic_list_placeholder=0x7f02000b;
+        public static final int ic_placeholder=0x7f02000c;
+        public static final int ic_rating_star_full=0x7f02000d;
+        public static final int ic_rating_star_half=0x7f02000e;
+        public static final int ic_rating_star_none=0x7f02000f;
+        public static final int ic_settings=0x7f020010;
+        public static final int ic_web_go=0x7f020011;
     }
     public static final class id {
-        public static final int RowRating=0x7f080038;
+        public static final int RowRating=0x7f080039;
         public static final int ScreenEditButton1=0x7f080015;
         public static final int ScreenEditButton2=0x7f080016;
         public static final int ScreenEditButton3=0x7f080017;
@@ -247,7 +240,7 @@ public final class R {
         public static final int ScreenMainImageButton1=0x7f080001;
         public static final int ScreenMainImageButton2=0x7f080004;
         public static final int ScreenMainImageButton3=0x7f080006;
-        public static final int ScreenMainLinearLayout1=0x7f080039;
+        public static final int ScreenMainLinearLayout1=0x7f08003a;
         public static final int ScreenMainListView=0x7f080005;
         /**  Screen Main IDs 
          */
@@ -293,29 +286,31 @@ public final class R {
         public static final int customDialogShareTableRow2=0x7f08001c;
         public static final int customDialogShareTableRow3=0x7f08001f;
         public static final int getRating=0x7f080035;
-        public static final int rowLinearLayout=0x7f080037;
+        public static final int list_image=0x7f080038;
+        public static final int rowThumbnail=0x7f080037;
         /**  List Row View IDs 
          */
         public static final int rowTitle=0x7f080018;
-        public static final int screenEditContextMenuRank=0x7f08003c;
-        public static final int screenEditContextMenuSaveToCard=0x7f08003b;
-        public static final int screenEditContextMenuShare=0x7f08003a;
-        public static final int screenEditOptionMenuShare=0x7f08003d;
-        public static final int screenEditOptionMenuSpeach=0x7f08003e;
-        public static final int screenMainContextMenuDelete=0x7f080041;
-        public static final int screenMainContextMenuEdit=0x7f08003f;
-        public static final int screenMainContextMenuShare=0x7f080040;
-        public static final int screenMainOptionMenuDeletAllIteams=0x7f080043;
-        public static final int screenMainOptionMenuExitSettings=0x7f080042;
-        public static final int screenMainOptionMenuSearch=0x7f080044;
-        public static final int screenMainOptionMenuSettings=0x7f080045;
+        public static final int screenEditContextMenuRank=0x7f08003d;
+        public static final int screenEditContextMenuSaveToCard=0x7f08003c;
+        public static final int screenEditContextMenuShare=0x7f08003b;
+        public static final int screenEditOptionMenuShare=0x7f08003e;
+        public static final int screenEditOptionMenuSpeach=0x7f08003f;
+        public static final int screenMainContextMenuDelete=0x7f080042;
+        public static final int screenMainContextMenuEdit=0x7f080040;
+        public static final int screenMainContextMenuShare=0x7f080041;
+        public static final int screenMainOptionMenuDeletAllIteams=0x7f080044;
+        public static final int screenMainOptionMenuExitSettings=0x7f080043;
+        public static final int screenMainOptionMenuSearch=0x7f080045;
+        public static final int screenMainOptionMenuSettings=0x7f080046;
         public static final int setRating=0x7f080036;
         public static final int tableRow1=0x7f08002d;
         public static final int tableRow2=0x7f080030;
         public static final int tableRow3=0x7f080033;
     }
     public static final class integer {
-        public static final int oneLine=0x7f090000;
+        public static final int lineOne=0x7f090000;
+        public static final int lineTwo=0x7f090001;
     }
     public static final class layout {
         public static final int custom_dialog_colors=0x7f030000;
@@ -410,6 +405,8 @@ public final class R {
  Screen Main label 
          */
         public static final int note_application=0x7f0a000c;
+        public static final int rowHolderText=0x7f0a002a;
+        public static final int rowIconDescription=0x7f0a002b;
         public static final int single_item_text=0x7f0a0024;
         public static final int systemNoticeButton=0x7f0a0013;
         public static final int systemNoticeMsg=0x7f0a0012;

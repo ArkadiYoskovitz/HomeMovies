@@ -73,5 +73,7 @@
     <string name="language_spinner">Language Spinner</string>
     <string name="labelDefaultColor">Default Color</string>
     <string name="SCDialogTitle">Select Color</string>
+    <string name="rowHolderText">Rihanna Love the way lie Rihanna Love the way lie</string>
+    <string name="rowIconDescription">Icon Description</string>
 
 </resources>

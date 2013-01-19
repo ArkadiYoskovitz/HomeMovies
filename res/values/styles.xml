@@ -32,7 +32,7 @@
         <item name="android:paddingRight">15dp</item>
     </style>
 
-    <style name="CustomRatingBar" parent="?android:attr/ratingBarStyleIndicator">
+    <style name="CustomRatingBar" parent="@android:attr/ratingBarStyleIndicator">
         <item name="android:progressDrawable">@drawable/custom_ratingbar</item>
         <item name="android:minHeight">@dimen/Size20dp</item>
         <item name="android:maxHeight">@dimen/Size20dp</item>
