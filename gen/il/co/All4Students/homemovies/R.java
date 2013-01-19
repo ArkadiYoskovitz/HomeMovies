@@ -203,10 +203,10 @@ public final class R {
     }
     public static final class drawable {
         public static final int custom_ratingbar=0x7f020000;
-        public static final int custom_ratingbar_empty=0x7f020001;
-        public static final int custom_ratingbar_filled=0x7f020002;
-        public static final int ic_add=0x7f020003;
-        public static final int ic_color_selector=0x7f020004;
+        public static final int custom_ratingbar_full=0x7f020001;
+        public static final int custom_ratingbar_half=0x7f020002;
+        public static final int custom_ratingbar_none=0x7f020003;
+        public static final int ic_add=0x7f020004;
         public static final int ic_dialog_airmail=0x7f020005;
         public static final int ic_dialog_facebook=0x7f020006;
         public static final int ic_dialog_notice=0x7f020007;
@@ -294,8 +294,8 @@ public final class R {
         /**  List Row View IDs 
          */
         public static final int rowTitle=0x7f080018;
-        public static final int screenEditContextMenuRank=0x7f08003f;
-        public static final int screenEditContextMenuSaveToCard=0x7f08003e;
+        public static final int screenEditContextMenuRank=0x7f08003e;
+        public static final int screenEditContextMenuSaveToCard=0x7f08003f;
         public static final int screenEditContextMenuShare=0x7f08003d;
         public static final int screenEditOptionMenuShare=0x7f080040;
         public static final int screenEditOptionMenuSpeach=0x7f080041;

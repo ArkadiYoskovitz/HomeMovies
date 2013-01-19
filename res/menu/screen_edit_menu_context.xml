@@ -5,10 +5,10 @@
         android:id="@+id/screenEditContextMenuShare"
         android:title="Share"/>
     <item
-        android:id="@+id/screenEditContextMenuSaveToCard"
-        android:title="Save Picture"/>
-    <item
         android:id="@+id/screenEditContextMenuRank"
         android:title="Rank Film"/>
+    <item
+        android:id="@+id/screenEditContextMenuSaveToCard"
+        android:title="Save Picture"/>
 
 </menu>

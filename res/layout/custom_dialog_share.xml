@@ -15,7 +15,7 @@
             android:id="@id/customDialogShareImageIcon1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/Size5dp"
+            android:layout_margin="@dimen/Size7dp"
             android:background="@drawable/ic_dialog_airmail"
             android:contentDescription="@string/DescriptionAirMail" />
 
@@ -23,8 +23,8 @@
             android:id="@id/customDialogShareButtonAirMail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="marquee"
-            android:gravity="center"
+            android:layout_gravity="center"
+            android:ellipsize="middle"
             android:singleLine="true"
             android:text="@string/ShareDialogEmail"
             android:textSize="@dimen/Size25dp"
@@ -42,7 +42,7 @@
             android:id="@id/customDialogShareImageIcon2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/Size5dp"
+            android:layout_margin="@dimen/Size7dp"
             android:background="@drawable/ic_dialog_facebook"
             android:contentDescription="@string/DescriptionFaceBook" />
 
@@ -50,8 +50,8 @@
             android:id="@id/customDialogShareButtonFaceBook"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="marquee"
-            android:gravity="center"
+            android:layout_gravity="center"
+            android:ellipsize="middle"
             android:singleLine="true"
             android:text="@string/ShareDialogFaceBook"
             android:textSize="@dimen/Size25dp"
@@ -69,7 +69,7 @@
             android:id="@id/customDialogShareImageIcon3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/Size5dp"
+            android:layout_margin="@dimen/Size7dp"
             android:background="@drawable/ic_dialog_tweeter"
             android:contentDescription="@string/DescriptionTweeter" />
 
@@ -77,8 +77,8 @@
             android:id="@id/customDialogShareButtonTweeter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ellipsize="marquee"
-            android:gravity="center"
+            android:layout_gravity="center"
+            android:ellipsize="middle"
             android:singleLine="true"
             android:text="@string/ShareDialogTweeter"
             android:textSize="@dimen/Size25dp"
