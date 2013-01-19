@@ -66,4 +66,40 @@
             android:text="@string/labelDefaultColor" />
     </TableRow>
 
+    <EditText
+        android:id="@+id/dialogEditText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/Size10dp"
+        android:layout_marginRight="@dimen/Size10dp"
+        android:ems="10"
+        android:inputType="text"
+        android:textSize="@dimen/Size20dp" >
+
+        <requestFocus />
+    </EditText>
+
+    <TableRow
+        android:id="@+id/dialogTableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/Size10dp"
+        android:layout_marginLeft="@dimen/Size10dp"
+        android:layout_marginRight="@dimen/Size10dp" >
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btnLableCancel" />
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btnLableCommit" />
+    </TableRow>
+
 </LinearLayout>

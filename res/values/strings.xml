@@ -14,21 +14,23 @@
     <string name="btnLableMainSettings">Settings</string>
     <string name="btnLableMainSearch">Search</string>
     <string name="btnLableMainAdd">Add Note</string>
+
     <!-- Edit screen buttons -->
-    <string name="btnLableEditSelectColor">Select Color</string>
     <string name="btnLableEditShow">Show Image</string>
+
     <!-- Web screen buttons -->
     <string name="btnLableWebSearchGo">Go</string>
     <string name="btnLableSearch">Search</string>
-    <string name="btnLableClear">Clear</string>
 
     <!-- Label names related Strings -->
     <!-- Screen Main label -->
     <string name="note_application">My Movies</string>
+    
     <!-- Screen Edit label -->
     <string name="labelSubject">Subject:</string>
     <string name="labelBody">Body:</string>
     <string name="labelURL">URL:</string>
+   
     <!-- Screen Web label -->
     <string name="labelSearch">Search:</string>
 
@@ -36,6 +38,7 @@
     <string name="systemNoticeTitle">System Notice</string>
     <string name="systemNoticeMsg">No Items to display, press the Add Button to add a new Item</string>
     <string name="systemNoticeButton">OK</string>
+    
     <!-- Adding Method Selection -->
     <string name="AddingDialogMsg">Choose how to add an Item</string>
     <string name="AddingDialogLocal">Manually</string>
