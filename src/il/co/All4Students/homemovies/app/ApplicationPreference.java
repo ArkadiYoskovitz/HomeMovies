@@ -11,21 +11,23 @@ import android.content.SharedPreferences.Editor;
  */
 
 public class ApplicationPreference {
-	// Attributes
+
+	// Constants
 	static final String PREF_FILE_NAME = "HomeMoviesAppPreff";
+
 	// Application Preference Keys
-	private static final String KEY_SUBJECT = "Subject";
-	private static final String KEY_EMAIL = "Email";
-	private static final String KEY_COLOR = "Color";
-	private static final String KEY_LANGUAGE = "Language";
-	private static final String KEY_SORT_METHOD = "sort";
+	private static final String KEY_SUBJECT = "AppPreffSubject";
+	private static final String KEY_EMAIL = "AppPreffEmail";
+	private static final String KEY_LANGUAGE = "AppPreffLanguage";
+	private static final String KEY_SORT_METHOD = "AppPreffSortMethods";
+
 	// Application Preference Default values
 	private static final String DEFAULT_SUBJECT = "Default Topic";
 	private static final String DEFAULT_EMAIL = "John.Appleseed@iCloud.com";
-	private static final int DEFAULT_COLOR = 0xffffffff;
 	private static final String DEFAULT_LANGUAGE = "EN";
 	private static final int DEFAULT_SORT_METHOD = 0;
 
+	// Attributes
 	private final SharedPreferences settings;
 
 	// Constractors
@@ -63,16 +65,6 @@ public class ApplicationPreference {
 		return settings.getString(KEY_EMAIL, DEFAULT_EMAIL);
 	}
 
-	public void setColor(int color) {
-		Editor editor = settings.edit();
-		editor.putInt(KEY_COLOR, color);
-		editor.commit();
-	}
-
-	public int getColor() {
-		return settings.getInt(KEY_COLOR, DEFAULT_COLOR);
-	}
-
 	public void setLanguage(String language) {
 		Editor editor = settings.edit();
 		editor.putString(KEY_LANGUAGE, language);
@@ -101,10 +93,6 @@ public class ApplicationPreference {
 
 	public static String getDefaultEmail() {
 		return DEFAULT_EMAIL;
-	}
-
-	public static int getDefaultColor() {
-		return DEFAULT_COLOR;
 	}
 
 	public static String getDefaultLanguage() {

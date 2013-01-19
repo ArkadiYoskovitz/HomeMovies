@@ -17,16 +17,14 @@
     <item name="ScreenWebListView" type="id"/>
     <item name="ScreenWebButton" type="id"/>
     <!-- Screen Edit IDs -->
-    <item name="ScreenEditTableRow1" type="id"/>
     <item name="ScreenEditEditText1" type="id"/>
-    <item name="ScreenEditImageButton1" type="id"/>
     <item name="ScreenEditEditText2" type="id"/>
-    <item name="ScreenEditTableRow2" type="id"/>
+    <item name="ScreenEditTableRow1" type="id"/>
     <item name="ScreenEditEditText3" type="id"/>
-    <item name="ScreenEditImageButton2" type="id"/>
+    <item name="ScreenEditImageButton1" type="id"/>
     <item name="ScreenEditTextViewErrorMsg" type="id"/>
     <item name="ScreenEditImageView1" type="id"/>
-    <item name="ScreenEditTableRow3" type="id"/>
+    <item name="ScreenEditTableRow2" type="id"/>
     <item name="ScreenEditButton1" type="id"/>
     <item name="ScreenEditButton2" type="id"/>
     <item name="ScreenEditButton3" type="id"/>

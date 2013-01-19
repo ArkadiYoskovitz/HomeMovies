@@ -5,6 +5,7 @@ import static il.co.All4Students.homemovies.app.AppConstants.SortByRTID;
 import static il.co.All4Students.homemovies.app.AppConstants.SortByRank;
 import static il.co.All4Students.homemovies.app.AppConstants.SortBySubject;
 import il.co.All4Students.homemovies.R;
+import il.co.All4Students.homemovies.ScreenWeb;
 import il.co.All4Students.homemovies.app.ApplicationPreference;
 import il.co.All4Students.homemovies.core.Item;
 import il.co.All4Students.homemovies.core.ItemCompareRTID;
@@ -22,16 +23,17 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 @SuppressLint("DefaultLocale")
 public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 	// Attributes
 	private static LayoutInflater mInflater = null;
-	private ArrayList<Item> mItemList;// = new ArrayList<Item>();
+	private ArrayList<Item> mItemList;
+	private ArrayList<Item> mOriginalItemList;
 	private Context mContext;
 	private Filter itemFilter;
-	private ArrayList<Item> mOriginalItemList;
 
 	// Constractors
 	public ItemListAdapter(ArrayList<Item> itemList, Context context) {
@@ -67,10 +69,16 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 			rowView = convertView;
 		}
 
-		TextView textTitle = (TextView) rowView.findViewById(R.id.rowTitle);
+		TextView rowTitle = (TextView) rowView.findViewById(R.id.rowTitle);
+		RatingBar rowRank = (RatingBar) rowView.findViewById(R.id.RowRating);
 		Item item = mItemList.get(position);
-		textTitle.setText(item.toString());
+		rowTitle.setText(item.toString());
+		rowRank.setRating(item.getRank());
 		rowView.setBackgroundColor(item.getColor());
+
+		if (mContext instanceof ScreenWeb) {
+			rowRank.setVisibility(View.GONE);
+		}
 
 		return rowView;
 	}

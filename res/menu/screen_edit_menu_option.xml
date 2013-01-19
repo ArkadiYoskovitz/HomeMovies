@@ -2,18 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/screenEditOptionMenuSettings"
-        android:icon="@android:drawable/ic_menu_preferences"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="Settings"/>
-    <item
         android:id="@+id/screenEditOptionMenuShare"
         android:icon="@android:drawable/ic_menu_share"
         android:title="Share"/>
     <item
         android:id="@+id/screenEditOptionMenuSpeach"
-        android:icon="@android:drawable/ic_menu_share"
+        android:icon="@android:drawable/ic_media_pause"
         android:title="Speach"/>
 
 </menu>

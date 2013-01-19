@@ -9,42 +9,25 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <TableRow
-            android:id="@id/ScreenEditTableRow1"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/Size2dp"
+            android:contentDescription="@string/labelSubject"
+            android:text="@string/labelSubject"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textSize="@dimen/Size20dp" />
+
+        <EditText
+            android:id="@id/ScreenEditEditText1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/Size2dp"
-                android:contentDescription="@string/labelSubject"
-                android:text="@string/labelSubject"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textSize="@dimen/Size20dp" />
-
-            <EditText
-                android:id="@id/ScreenEditEditText1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ellipsize="end"
-                android:ems="10"
-                android:hint="@string/ScreenEditHint"
-                android:inputType="text"
-                android:maxLines="@integer/oneLine" />
-
-            <ImageButton
-                android:id="@id/ScreenEditImageButton1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/Size5dp"
-                android:background="@drawable/ic_color_selector"
-                android:contentDescription="@string/btnLableEditSelectColor"
-                android:onClick="onClickEditSelectColor"
-                android:src="@drawable/ic_color_selector" />
-        </TableRow>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:ems="10"
+            android:hint="@string/ScreenEditHint"
+            android:inputType="text"
+            android:maxLines="@integer/oneLine" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -67,7 +50,7 @@
             tools:ignore="InefficientWeight" />
 
         <TableRow
-            android:id="@id/ScreenEditTableRow2"
+            android:id="@id/ScreenEditTableRow1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center" >
@@ -92,7 +75,7 @@
                 android:maxLines="@integer/oneLine" />
 
             <ImageButton
-                android:id="@id/ScreenEditImageButton2"
+                android:id="@id/ScreenEditImageButton1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -125,7 +108,7 @@
             android:src="@drawable/placeholder" />
 
         <TableRow
-            android:id="@id/ScreenEditTableRow3"
+            android:id="@id/ScreenEditTableRow2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 

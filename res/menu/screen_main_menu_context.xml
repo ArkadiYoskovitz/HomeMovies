@@ -8,29 +8,6 @@
         android:id="@+id/screenMainContextMenuShare"
         android:title="Share"/>
     <item
-        android:id="@+id/screenMainContextMenuColorSettings"
-        android:title="Color">
-
-        <!-- "Color" sub-menu -->
-        <menu>
-            <item
-                android:id="@+id/SubContextMenuColorRed"
-                android:title="Red"/>
-            <item
-                android:id="@+id/SubContextMenuColorGreen"
-                android:title="Green"/>
-            <item
-                android:id="@+id/SubContextMenuColorYellow"
-                android:title="Yellow"/>
-            <item
-                android:id="@+id/SubContextMenuColorBlue"
-                android:title="Blue"/>
-            <item
-                android:id="@+id/SubContextMenuColorDefault"
-                android:title="Default Color"/>
-        </menu>
-    </item>
-    <item
         android:id="@+id/screenMainContextMenuDelete"
         android:title="Delete"/>
 

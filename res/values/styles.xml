@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -30,6 +30,12 @@
         <item name="android:shadowRadius">2</item>
         <item name="android:paddingLeft">15dp</item>
         <item name="android:paddingRight">15dp</item>
+    </style>
+
+    <style name="CustomRatingBar" parent="?android:attr/ratingBarStyleIndicator">
+        <item name="android:progressDrawable">@drawable/custom_ratingbar</item>
+        <item name="android:minHeight">@dimen/Size20dp</item>
+        <item name="android:maxHeight">@dimen/Size20dp</item>
     </style>
 
 </resources>

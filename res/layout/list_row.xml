@@ -10,6 +10,17 @@
         android:id="@+id/rowTitle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:text="@string/single_item_text"
         android:textSize="@dimen/Size25dp" />
+
+    <RatingBar
+        android:id="@+id/RowRating"
+        style="@style/CustomRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:rating="3.5"
+        android:stepSize="0.1" />
 
 </LinearLayout>

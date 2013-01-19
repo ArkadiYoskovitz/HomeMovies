@@ -2,6 +2,7 @@ package il.co.All4Students.homemovies;
 
 import static il.co.All4Students.homemovies.app.AppConstants.INTENT_TARGET;
 import static il.co.All4Students.homemovies.app.AppConstants.Item_Add_Local;
+import static il.co.All4Students.homemovies.app.AppConstants.Item_App_Settings;
 import static il.co.All4Students.homemovies.app.AppConstants.Item_Edit;
 import static il.co.All4Students.homemovies.app.AppConstants.Item_Search_Web;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_SCREEN_MAIN;
@@ -27,6 +28,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -55,7 +58,8 @@ import android.widget.Toast;
  * @author Arkadi Yoskovitz
  * 
  */
-public class ScreenMain extends Activity implements OnItemClickListener {
+public class ScreenMain extends Activity implements OnItemClickListener,
+		OnSharedPreferenceChangeListener {
 	// Attributes
 	private ArrayList<Item> mItemList = new ArrayList<Item>();
 	private Item mReturnedItem;
@@ -98,18 +102,21 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 		case Item_Edit:
 			switch (resultCode) {
 			case RESULT_CODE_CANCEL:
-				Log.d(LOG_TAG_SCREEN_MAIN, "onActivityResult - Item_Edit - CANCEL");
+				Log.d(LOG_TAG_SCREEN_MAIN,
+						"onActivityResult - Item_Edit - CANCEL");
 				break;
 
 			case RESULT_CODE_DELETE:
-				Log.d(LOG_TAG_SCREEN_MAIN, "onActivityResult - Item_Edit - DELETE");
+				Log.d(LOG_TAG_SCREEN_MAIN,
+						"onActivityResult - Item_Edit - DELETE");
 				mReturnedItem = data.getExtras().getParcelable(INTENT_TARGET);
 				itemHandler.deleteItem(mReturnedItem);
 				mItemList.remove(mReturnedItem);
 				break;
 
 			case RESULT_CODE_COMMIT:
-				Log.d(LOG_TAG_SCREEN_MAIN, "onActivityResult - Item_Edit - COMMIT");
+				Log.d(LOG_TAG_SCREEN_MAIN,
+						"onActivityResult - Item_Edit - COMMIT");
 				mReturnedItem = data.getExtras().getParcelable(INTENT_TARGET);
 				itemHandler.updateItem(mReturnedItem);
 				lastItem = itemHandler.getLastItemId();
@@ -118,7 +125,8 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 				break;
 
 			default:
-				Log.d(LOG_TAG_SCREEN_MAIN, "onActivityResult - Item_Edit - default");
+				Log.d(LOG_TAG_SCREEN_MAIN,
+						"onActivityResult - Item_Edit - default");
 				break;
 			}
 			break;
@@ -134,7 +142,8 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 			case RESULT_CODE_DELETE:
 				Log.d(LOG_TAG_SCREEN_MAIN,
 						"onActivityResult - Item_Add_Local - Delete");
-				Log.d(LOG_TAG_SCREEN_MAIN, "No item was added, just log for now");
+				Log.d(LOG_TAG_SCREEN_MAIN,
+						"No item was added, just log for now");
 				break;
 
 			case RESULT_CODE_COMMIT:
@@ -168,6 +177,18 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 				break;
 			}
 			break;
+		// Handaling the return of the Add From Web button
+		case Item_App_Settings:
+			switch (resultCode) {
+
+			case RESULT_CODE_CANCEL:
+				loadScreenMainList();
+				break;
+
+			default:
+				break;
+			}
+			break;
 		// ////////////////////////////////////////////////////////////////////////////////
 		default:
 			Log.d(LOG_TAG_SCREEN_MAIN, "onActivityResult - default - default");
@@ -175,12 +196,9 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 		}
 
 		// Handaling the screen refresh
-		finish();
-		startActivity(getIntent());
-		// loadDateBase();
-		// loadScreenMainTest();
-		// loadScreenMainList();
-		Log.d(LOG_TAG_SCREEN_MAIN, "View re-loaded");
+		// finish();
+		// startActivity(getIntent());
+		// Log.d(LOG_TAG_SCREEN_MAIN, "View re-loaded");
 
 		super.onActivityResult(requestCode, resultCode, data);
 	}
@@ -194,6 +212,7 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.screen_main_menu_option, menu);
 		Log.d(LOG_TAG_SCREEN_MAIN,
@@ -201,9 +220,6 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 		return true;
 	}
 
-	/**
-	 * Handling the different available operation
-	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		mListView = (ListView) findViewById(R.id.ScreenMainListView);
@@ -258,8 +274,8 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 			break;
 
 		case R.id.screenMainOptionMenuSettings:
-			// Intent i = new Intent(ScreenMain.this, ScreenPreferences.class);
-			// startActivity(i);
+//			Intent intent = new Intent(ScreenMain.this, ScreenPreferences.class);
+//			startActivityForResult(intent, Item_App_Settings);
 			break;
 
 		default:
@@ -280,9 +296,6 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 		inflater.inflate(R.menu.screen_main_menu_context, menu);
 	}
 
-	/**
-	 * onContextItemSelected
-	 */
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
@@ -324,53 +337,6 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 			mListView.setAdapter(mAdapter);
 			break;
 
-		/*
-		 * Call the item selected, get the ID, ubdate the color and return to
-		 * the DB, update the itemList
-		 */
-		case R.id.screenMainContextMenuColorSettings:
-			Log.d(LOG_TAG_SCREEN_MAIN, "contextMenuColorSettings was pressed");
-			mReturnedItem = mItemList.get((int) info.id);
-			break;
-
-		case R.id.SubContextMenuColorRed:
-			Log.d(LOG_TAG_SCREEN_MAIN, "SubContextMenuColorRed was pressed");
-			mReturnedItem.setColor(getResources().getColor(R.color.Red));
-			itemHandler.updateItem(mReturnedItem);
-			Log.d(LOG_TAG_SCREEN_MAIN, "finised setting the color "
-					+ itemHandler.getItem(mReturnedItem.get_id()).toStringTwo());
-			break;
-
-		case R.id.SubContextMenuColorGreen:
-			Log.d(LOG_TAG_SCREEN_MAIN, "SubContextMenuColorGreen was pressed");
-			mReturnedItem.setColor(getResources().getColor(R.color.Green));
-			itemHandler.updateItem(mReturnedItem);
-			Log.d(LOG_TAG_SCREEN_MAIN, "finised setting the color "
-					+ itemHandler.getItem(mReturnedItem.get_id()).toStringTwo());
-			break;
-
-		case R.id.SubContextMenuColorYellow:
-			Log.d(LOG_TAG_SCREEN_MAIN, "SubContextMenuColorYellow was pressed");
-			mReturnedItem.setColor(getResources().getColor(R.color.Yellow));
-			itemHandler.updateItem(mReturnedItem);
-			Log.d(LOG_TAG_SCREEN_MAIN, "finised setting the color "
-					+ itemHandler.getItem(mReturnedItem.get_id()).toStringTwo());
-			break;
-
-		case R.id.SubContextMenuColorBlue:
-			Log.d(LOG_TAG_SCREEN_MAIN, "SubContextMenuColorBlue was pressed");
-			mReturnedItem.setColor(getResources().getColor(R.color.Blue));
-			itemHandler.updateItem(mReturnedItem);
-			Log.d(LOG_TAG_SCREEN_MAIN, "finised setting the color "
-					+ itemHandler.getItem(mReturnedItem.get_id()).toStringTwo());
-			break;
-
-		case R.id.SubContextMenuColorDefault:
-			Log.d(LOG_TAG_SCREEN_MAIN, "SubContextMenuColorDefault was pressed");
-			mReturnedItem.setColor(ApplicationPreference.getDefaultColor());
-			itemHandler.updateItem(mReturnedItem);
-			break;
-
 		default:
 			break;
 		}
@@ -379,7 +345,8 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 				ScreenMain.this);
 		mListView.setAdapter(mAdapter);
 
-		Log.d(LOG_TAG_SCREEN_MAIN, "finishe with the layout but still working on it");
+		Log.d(LOG_TAG_SCREEN_MAIN,
+				"finishe with the layout but still working on it");
 
 		return super.onContextItemSelected(item);
 	}
@@ -395,7 +362,8 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 	 * @param view
 	 */
 	public void onClickSettings(View view) {
-		Log.d(LOG_TAG_SCREEN_MAIN, "Activity Main - Settings Button was pressed");
+		Log.d(LOG_TAG_SCREEN_MAIN,
+				"Activity Main - Settings Button was pressed");
 		openOptionsMenu();
 	}
 
@@ -420,7 +388,7 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 				});
 		AddingMethod.setNeutralButton(R.string.AddingDialogWeb,
 				new DialogInterface.OnClickListener() {
-					// SENDIJNG THE COMMEND TO OPEN THE WEB SEARCH VIEW
+
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						Intent intent = new Intent(ScreenMain.this,
@@ -431,7 +399,7 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 				});
 		AddingMethod.setPositiveButton(R.string.AddingDialogLocal,
 				new DialogInterface.OnClickListener() {
-					// SENDIJNG THE COMMEND TO OPEN THE ADD ITEM LOCOLY
+
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						Intent intent = new Intent(ScreenMain.this,
@@ -447,10 +415,18 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		Log.d(LOG_TAG_SCREEN_MAIN, "Activity Main - An Item was clicked from the list");
+		Log.d(LOG_TAG_SCREEN_MAIN,
+				"Activity Main - An Item was clicked from the list");
 		Intent intent = new Intent(ScreenMain.this, ScreenEdit.class);
 		intent.putExtra(INTENT_TARGET, mItemList.get(position));
 		startActivityForResult(intent, Item_Edit);
+	}
+
+	// /////
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+			String key) {
+		loadScreenMainList();
 	}
 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -559,7 +535,7 @@ public class ScreenMain extends Activity implements OnItemClickListener {
 		// Attributes
 		private Item mItem;
 
-		// COnstractors
+		// Constractors
 		public ShareDialog(Item mItem) {
 			super();
 			this.mItem = mItem;

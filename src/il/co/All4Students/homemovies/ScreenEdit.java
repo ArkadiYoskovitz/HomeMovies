@@ -2,7 +2,6 @@ package il.co.All4Students.homemovies;
 
 import static il.co.All4Students.homemovies.app.AppConstants.INTENT_TARGET;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_SCREEN_EDIT;
-import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_SCREEN_MAIN;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_SCREEN_WEB;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_TextToSpeech;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_WEB_SITE;
@@ -113,7 +112,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 		finish();
 	}
 
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
@@ -163,16 +162,12 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
 		getMenuInflater().inflate(R.menu.screen_edit_menu_option, menu);
 		closeKeybord();
-		Log.d(LOG_TAG_SCREEN_MAIN,
-				"Activity Edit Option Menu Layout was Created and loaded");
 		return true;
 	}
 
-	/**
-	 * Handling the different available operation
-	 */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -180,7 +175,6 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 			ShareDialog ShareDialog = new ShareDialog();
 			ShareDialog.showAlertDialog();
 			break;
-
 		case R.id.screenEditOptionMenuSpeach:
 			speakOut();
 			break;
@@ -191,6 +185,9 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 		return super.onOptionsItemSelected(item);
 	}
 
+	/**
+	 * onCreateContextMenu
+	 */
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
@@ -204,12 +201,14 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	public boolean onContextItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.screenEditContextMenuSaveToCard:
-			// do something
+			Toast.makeText(ScreenEdit.this,
+					"Save To Card curentlly unavalible", Toast.LENGTH_SHORT)
+					.show();
 			break;
 		case R.id.screenEditContextMenuRank:
-			// do something
+			Toast.makeText(ScreenEdit.this, "Rank curentlly unavalible",
+					Toast.LENGTH_SHORT).show();
 			break;
-		// ////////////////////
 		case R.id.screenEditContextMenuShare:
 			ShareDialog ShareDialog = new ShareDialog();
 			ShareDialog.showAlertDialog();
@@ -221,77 +220,9 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 		return super.onContextItemSelected(item);
 	}
 
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// OnClick Events
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public void onClickEditSelectColor(View view) {
-		closeKeybord();
-
-		Intent intent = new Intent(ScreenEdit.this, ScreenPreferences.class);
-		startActivity(intent);
-
-		// final Dialog SCDialog = new Dialog(ScreenEdit.this);
-		// SCDialog.setContentView(R.layout.custom_dialog_colors);
-		// SCDialog.setTitle(R.string.SCDialogTitle);
-		// SCDialog.setCancelable(false);
-		// SCDialog.show();
-		//
-		// Button btnSCDialogColorRed = (Button) SCDialog
-		// .findViewById(R.id.customDialogColorsButton1);
-		// btnSCDialogColorRed.setOnClickListener(new OnClickListener() {
-		//
-		// @Override
-		// public void onClick(View v) {
-		// mEditedItem.setColor(getResources().getColor(R.color.Red));
-		// SCDialog.dismiss();
-		// }
-		// });
-		//
-		// Button btnSCDialogColorGreen = (Button) SCDialog
-		// .findViewById(R.id.customDialogColorsButton2);
-		// btnSCDialogColorGreen.setOnClickListener(new OnClickListener() {
-		//
-		// @Override
-		// public void onClick(View v) {
-		// mEditedItem.setColor(getResources().getColor(R.color.Green));
-		// SCDialog.dismiss();
-		// }
-		// });
-		//
-		// Button btnSCDialogColorYellow = (Button) SCDialog
-		// .findViewById(R.id.customDialogColorsButton3);
-		// btnSCDialogColorYellow.setOnClickListener(new OnClickListener() {
-		//
-		// @Override
-		// public void onClick(View v) {
-		// mEditedItem.setColor(getResources().getColor(R.color.Yellow));
-		// SCDialog.dismiss();
-		// }
-		// });
-		//
-		// Button btnSCDialogColorBlue = (Button) SCDialog
-		// .findViewById(R.id.customDialogColorsButton4);
-		// btnSCDialogColorBlue.setOnClickListener(new OnClickListener() {
-		//
-		// @Override
-		// public void onClick(View v) {
-		// mEditedItem.setColor(getResources().getColor(R.color.Blue));
-		// SCDialog.dismiss();
-		// }
-		// });
-		//
-		// Button btnSCDialogColorDefault = (Button) SCDialog
-		// .findViewById(R.id.customDialogColorsButton5);
-		// btnSCDialogColorDefault.setOnClickListener(new OnClickListener() {
-		//
-		// @Override
-		// public void onClick(View v) {
-		// mEditedItem.setColor(ApplicationPreference.getDefaultColor());
-		// SCDialog.dismiss();
-		// }
-		// });
-	}
-
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void onClickEditShow(View view) {
 		closeKeybord();
 
@@ -360,9 +291,9 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 		finish();
 	}
 
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Additional Events
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	@Override
 	public void onInit(int status) {
 		if (status == TextToSpeech.SUCCESS) {
@@ -379,9 +310,9 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 		}
 	}
 
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Additional Methods
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	private void itemRefreshFromScreen() {
 		EditText text1 = (EditText) findViewById(R.id.ScreenEditEditText1);
@@ -412,9 +343,9 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 				InputMethodManager.HIDE_NOT_ALWAYS);
 	}
 
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Inner Classes
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	/**
 	 * ShareDialog The class handles the alert dialog foe the diffrent Share
@@ -506,6 +437,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 		}
 	}
 
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private class DownloadImageTask extends AsyncTask<String, Integer, Bitmap> {
 
 		private Activity mActivity;
@@ -530,14 +462,15 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 						InputStream is = httpCon.getInputStream();
 						int fileLength = httpCon.getContentLength();
 						ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-						int nRead, totalBytesRead = 0;
+						int nRead, total = 0;
 						byte[] data = new byte[2048];
 						// mDialog.setMax(fileLength);
 						// Read the image bytes in chunks of 2048 bytes
 						while ((nRead = is.read(data, 0, data.length)) != -1) {
 							buffer.write(data, 0, nRead);
-							totalBytesRead += nRead;
-							publishProgress(totalBytesRead / fileLength * 100);
+							total += nRead;
+							publishProgress(""
+									+ (int) ((total * 100) / fileLength));
 						}
 						buffer.flush();
 						byte[] imageArray = buffer.toByteArray();
@@ -581,6 +514,10 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 		protected void onProgressUpdate(Integer... progress) {
 			mDialog.show();
 			mDialog.setProgress(progress[0]);
+		}
+
+		private void publishProgress(String... progress) {
+			mDialog.setProgress(Integer.parseInt(progress[0]));
 		}
 
 		@Override

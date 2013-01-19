@@ -15,6 +15,7 @@ public class AppConstants {
 	public static final int Item_Add_Local = 2;
 	public static final int Item_Add_Web = 3;
 	public static final int Item_Search_Web = 4;
+	public static final int Item_App_Settings = 5;
 
 	public static final int RESULT_CODE_CANCEL = 1;
 	public static final int RESULT_CODE_DELETE = 2;
