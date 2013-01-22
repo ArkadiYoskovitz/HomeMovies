@@ -49,6 +49,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TableRow;
 import android.widget.Toast;
 
@@ -320,9 +321,17 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		 */
 		case R.id.screenMainContextMenuShare:
 			Log.d(LOG_TAG_SCREEN_MAIN, "contextMenuEdit was pressed");
-			ShareDialog ShareDialog = new ShareDialog(
+			ShareDialog shareDialog = new ShareDialog(
 					mItemList.get((int) info.id));
-			ShareDialog.showAlertDialog();
+			shareDialog.showAlertDialog();
+			break;
+		/*
+		 * Share the choosen item
+		 */
+		case R.id.screenMainContextMenuRank:
+			Log.d(LOG_TAG_SCREEN_MAIN, "contextMenuEdit was pressed");
+			RankDialog rankDialog = new RankDialog(mItemList.get((int) info.id));
+			rankDialog.showRankDialog();
 			break;
 
 		/*
@@ -538,9 +547,9 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		private Item mItem;
 
 		// Constractors
-		public ShareDialog(Item mItem) {
+		public ShareDialog(Item item) {
 			super();
-			this.mItem = mItem;
+			this.mItem = item;
 		}
 
 		// Additional Methods
@@ -614,4 +623,57 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		}
 	}
 
+	private class RankDialog {
+		// Attributes
+		private Item mItem;
+		private RatingBar mRankBar;
+
+		// Constractors
+		public RankDialog(Item item) {
+			super();
+			this.mItem = item;
+		}
+
+		// Additional Methods
+		public void showRankDialog() {
+			LayoutInflater li = LayoutInflater.from(ScreenMain.this);
+
+			View RankDialogView = li.inflate(R.layout.custom_dialog_rank, null);
+
+			AlertDialog.Builder rankDialog = new AlertDialog.Builder(
+					ScreenMain.this);
+			rankDialog.setView(RankDialogView);
+			rankDialog.setTitle(ScreenMain.this.getResources().getString(
+					R.string.RankDialogTitle));
+			rankDialog.setTitle(ScreenMain.this.getResources().getString(
+					R.string.RankDialogMsg));
+			rankDialog.create();
+			// Showing Alert Message
+			final AlertDialog RDialog = rankDialog.show();
+
+			mRankBar = (RatingBar) RankDialogView
+					.findViewById(R.id.customDialogRankBar);
+			mRankBar.setRating((float) (mItem.getRank() / 10));
+			View btnCancel = RankDialogView
+					.findViewById(R.id.customDialogRankButtonCancel);
+			btnCancel.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					RDialog.dismiss();
+				}
+			});
+
+			View btnCommit = RankDialogView
+					.findViewById(R.id.customDialogRankButtonCommit);
+			btnCommit.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					mItem.setRank((int) (mRankBar.getRating() * 10));
+					ItemsHandler itemHandler = new ItemsHandler(ScreenMain.this);
+					itemHandler.updateItem(mItem);
+					RDialog.dismiss();
+				}
+			});
+		}
+	}
 }

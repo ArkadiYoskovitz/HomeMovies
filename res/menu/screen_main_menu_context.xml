@@ -8,6 +8,9 @@
         android:id="@+id/screenMainContextMenuShare"
         android:title="Share"/>
     <item
+        android:id="@+id/screenMainContextMenuRank"
+        android:title="Rank Item"/>
+    <item
         android:id="@+id/screenMainContextMenuDelete"
         android:title="Delete"/>
 

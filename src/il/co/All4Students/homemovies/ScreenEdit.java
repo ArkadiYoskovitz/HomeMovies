@@ -10,6 +10,7 @@ import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_COMMIT;
 import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_DELETE;
 import il.co.All4Students.homemovies.app.ApplicationPreference;
 import il.co.All4Students.homemovies.core.Item;
+import il.co.All4Students.homemovies.dbUtil.ItemsHandler;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -43,6 +44,7 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,6 +62,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	private ApplicationPreference mSettings;
 	private TextToSpeech mTextToSpeech;
 	private boolean mIsLanguageSupported = true;
+	private RatingBar mRankBar;
 
 	// System Events
 	@Override
@@ -173,7 +176,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 		switch (item.getItemId()) {
 		case R.id.screenEditOptionMenuShare:
 			ShareDialog ShareDialog = new ShareDialog();
-			ShareDialog.showAlertDialog();
+			ShareDialog.showShareDialog();
 			break;
 		case R.id.screenEditOptionMenuSpeach:
 			speakOut();
@@ -205,13 +208,15 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 					"Save To Card curentlly unavalible", Toast.LENGTH_SHORT)
 					.show();
 			break;
+
 		case R.id.screenEditContextMenuRank:
-			Toast.makeText(ScreenEdit.this, "Rank curentlly unavalible",
-					Toast.LENGTH_SHORT).show();
+			RankDialog RankDialog = new RankDialog();
+			RankDialog.showRankDialog();
 			break;
+
 		case R.id.screenEditContextMenuShare:
 			ShareDialog ShareDialog = new ShareDialog();
-			ShareDialog.showAlertDialog();
+			ShareDialog.showShareDialog();
 			break;
 
 		default:
@@ -358,7 +363,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	 * @author Arkadi Yoskovitz
 	 */
 	private class ShareDialog {
-		public void showAlertDialog() {
+		public void showShareDialog() {
 			LayoutInflater li = LayoutInflater.from(ScreenEdit.this);
 
 			View ShareDialogView = li.inflate(R.layout.custom_dialog_share,
@@ -366,6 +371,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 
 			AlertDialog.Builder shareDialog = new AlertDialog.Builder(
 					ScreenEdit.this);
+
 			shareDialog.setView(ShareDialogView);
 			shareDialog.setTitle(ScreenEdit.this.getResources().getString(
 					R.string.ShareDialogTitle));
@@ -434,6 +440,49 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 				}
 			});
 
+		}
+	}
+
+	private class RankDialog {
+		public void showRankDialog() {
+			LayoutInflater li = LayoutInflater.from(ScreenEdit.this);
+
+			View RankDialogView = li.inflate(R.layout.custom_dialog_rank, null);
+
+			AlertDialog.Builder rankDialog = new AlertDialog.Builder(
+					ScreenEdit.this);
+			rankDialog.setView(RankDialogView);
+			rankDialog.setTitle(ScreenEdit.this.getResources().getString(
+					R.string.RankDialogTitle));
+			rankDialog.setTitle(ScreenEdit.this.getResources().getString(
+					R.string.RankDialogMsg));
+			rankDialog.create();
+			// Showing Alert Message
+			final AlertDialog RDialog = rankDialog.show();
+
+			mRankBar = (RatingBar) RankDialogView
+					.findViewById(R.id.customDialogRankBar);
+			mRankBar.setRating((float) (mEditedItem.getRank() / 10));
+			View btnCancel = RankDialogView
+					.findViewById(R.id.customDialogRankButtonCancel);
+			btnCancel.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					RDialog.dismiss();
+				}
+			});
+
+			View btnCommit = RankDialogView
+					.findViewById(R.id.customDialogRankButtonCommit);
+			btnCommit.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					mEditedItem.setRank((int) (mRankBar.getRating() * 10));
+					ItemsHandler itemHandler = new ItemsHandler(ScreenEdit.this);
+					itemHandler.updateItem(mEditedItem);
+					RDialog.dismiss();
+				}
+			});
 		}
 	}
 

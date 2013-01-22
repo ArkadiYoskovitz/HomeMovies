@@ -49,6 +49,11 @@
     <string name="ShareDialogEmail">Email</string>
     <string name="ShareDialogFaceBook">Click to Post</string>
     <string name="ShareDialogTweeter">Click to Tweet</string>
+    
+    <!-- Rank Selection -->
+    <string name="RankDialogTitle">Rank</string>
+    <string name="RankDialogMsg">Set Item rank</string>
+
     <!-- Image Description -->
     <string name="ImagePlaceHolder">Image PlaceHolder</string>
     <string name="DescriptionAirMail">Air Mail</string>

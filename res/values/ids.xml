@@ -43,20 +43,10 @@
     <item name="customDialogShareImageIcon3" type="id"/>
     <item name="customDialogShareButtonTweeter" type="id"/>
 
-    <!-- Custom Dialog Search View IDs -->
-
-    <item name="customDialogSearchTableRow1" type="id"/>
-    <item name="customDialogSearchButton1" type="id"/>
-    <item name="customDialogSearchButton2" type="id"/>
-
     <!-- Custom Dialog Color View IDs -->
-    <item name="customDialogColorsTableRow1" type="id"/>
-    <item name="customDialogColorsButton1" type="id"/>
-    <item name="customDialogColorsButton2" type="id"/>
-    <item name="customDialogColorsTableRow2" type="id"/>
-    <item name="customDialogColorsButton3" type="id"/>
-    <item name="customDialogColorsButton4" type="id"/>
-    <item name="customDialogColorsTableRow3" type="id"/>
-    <item name="customDialogColorsButton5" type="id"/>
+    <item name="customDialogRankBar" type="id"/>
+    <item name="customDialogRankTableRow" type="id"/>
+    <item name="customDialogRankButtonCancel" type="id"/>
+    <item name="customDialogRankButtonCommit" type="id"/>
 
 </resources>

@@ -79,7 +79,7 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 				.findViewById(R.id.rowCheckBox);
 		mItem = mItemList.get(position);
 		rowTitle.setText(mItem.toString());
-		rowRank.setRating(mItem.getRank());
+		rowRank.setRating((float) (mItem.getRank() / 10));
 		rowCheckBox.setChecked(mItem.getViewd());
 		rowView.setBackgroundColor(mItem.getColor());
 
@@ -95,9 +95,9 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 					boolean isChecked) {
 
 				if (buttonView.isChecked()) {
-					mItem.setViewd(buttonView.isChecked());
+					mItem.setViewd(true);
 				} else {
-					mItem.setViewd(buttonView.isChecked());
+					mItem.setViewd(false);
 				}
 
 				ItemsHandler itemHandler = new ItemsHandler(mContext);
