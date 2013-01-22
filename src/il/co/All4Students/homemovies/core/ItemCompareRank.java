@@ -6,6 +6,6 @@ public class ItemCompareRank implements Comparator<Item> {
 
 	@Override
 	public int compare(Item lhs, Item rhs) {
-		return lhs.getRank() - rhs.getRank();
+		return rhs.getRank() - lhs.getRank();
 	}
 }

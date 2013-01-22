@@ -92,6 +92,20 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 	}
 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putParcelableArrayList("Main mItemList", mItemList);
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+		mItemList = savedInstanceState.getParcelableArrayList("Main mItemList");
+		loadScreenMainList();
+	}
+
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Activity sending info Events
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	@Override

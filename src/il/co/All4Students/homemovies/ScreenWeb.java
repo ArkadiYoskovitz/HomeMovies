@@ -59,7 +59,7 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 	private final String HOST = "http://api.rottentomatoes.com";
 	private final String MOVIE_SEARCH_ENDPOINT = "/api/public/v1.0/movies.json";
 	private final String QUERY_KEY_PARAM = "?q=";
-	private final String PAGE_LIMIT_PARAM = "&page_limit=50";
+	private final String PAGE_LIMIT_PARAM = "&page_limit=50&page=1";
 	private final String API_KEY_PARAM = "&apikey=".intern();
 	private final String DEFAULT_ENCODING = "utf-8";
 
@@ -69,6 +69,7 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 	private EditText txtSearch;
 	private DownloadMovieInfo downloadTask;
 	private ItemListAdapter mAdapter;
+	private ListView mListView;
 
 	// System Events
 	@Override
@@ -119,7 +120,8 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 			case RESULT_CODE_DELETE:
 				Log.d(LOG_TAG_SCREEN_MAIN,
 						"onActivityResult - Item_Add_Local - Delete");
-				Log.d(LOG_TAG_SCREEN_MAIN, "No item was added, just log for now");
+				Log.d(LOG_TAG_SCREEN_MAIN,
+						"No item was added, just log for now");
 				break;
 
 			case RESULT_CODE_COMMIT:
@@ -131,14 +133,14 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 				lastItem = itemHandler.getLastItemId();
 				mReturnedItem = itemHandler.getItem(lastItem);
 				// mItemList.add(mReturnedItem);
-				ListView lv = (ListView) findViewById(R.id.ScreenWebListView);
+				mListView = (ListView) findViewById(R.id.ScreenWebListView);
 				sortCompareable();
 				mAdapter = new ItemListAdapter(mItemList, ScreenWeb.this);
-				lv.setDivider(new ColorDrawable(ScreenWeb.this.getResources()
-						.getColor(R.color.Crimson)));
-				lv.setDividerHeight((int) ScreenWeb.this.getResources()
+				mListView.setDivider(new ColorDrawable(ScreenWeb.this
+						.getResources().getColor(R.color.Crimson)));
+				mListView.setDividerHeight((int) ScreenWeb.this.getResources()
 						.getDimension(R.dimen.Size2dp));
-				lv.setAdapter(mAdapter);
+				mListView.setAdapter(mAdapter);
 				break;
 
 			default:
@@ -210,7 +212,8 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
 		closeKeybord();
-		Log.d(LOG_TAG_SCREEN_MAIN, "ScreenWeb - An Item was clicked from the list");
+		Log.d(LOG_TAG_SCREEN_MAIN,
+				"ScreenWeb - An Item was clicked from the list");
 		Intent intent = new Intent(ScreenWeb.this, ScreenEdit.class);
 		intent.putExtra(INTENT_TARGET, mItemList.get(position));
 		startActivityForResult(intent, Item_Add_Web);
@@ -218,19 +221,21 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 
 	// Additional Methods
 	private void RefreshScreen() {
-		ListView lv = (ListView) findViewById(R.id.ScreenWebListView);
+		mListView = (ListView) findViewById(R.id.ScreenWebListView);
 		sortCompareable();
 		mAdapter = new ItemListAdapter(mItemList, ScreenWeb.this);
-		lv.setDivider(new ColorDrawable(ScreenWeb.this.getResources().getColor(
-				R.color.Crimson)));
-		lv.setDividerHeight((int) ScreenWeb.this.getResources().getDimension(
-				R.dimen.Size2dp));
-		lv.setAdapter(mAdapter);
+		mListView.setDivider(new ColorDrawable(ScreenWeb.this.getResources()
+				.getColor(R.color.Crimson)));
+		mListView.setDividerHeight((int) ScreenWeb.this.getResources()
+				.getDimension(R.dimen.Size2dp));
+		mListView.setAdapter(mAdapter);
+		mAdapter.notifyDataSetChanged();
+		mListView.setOnItemClickListener(this);
+
 	}
 
 	private void sortCompareable() {
-		int sortMethod = new ApplicationPreference(ScreenWeb.this)
-				.getSortMethod();
+		int sortMethod = new ApplicationPreference(ScreenWeb.this).getSortMethod();
 		if (mItemList != null) {
 			switch (sortMethod) {
 			case SortByID:
@@ -269,7 +274,6 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 		private Activity mActivity;
 		private ProgressDialog mDialog;
 		private ArrayList<Item> mItemList;
-		private ListView mListView;
 
 		// ///////////////////////////////////////////////////////////////////////////////////
 		// JSON Node names

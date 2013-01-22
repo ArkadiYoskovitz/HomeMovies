@@ -18,7 +18,6 @@ import java.util.Collections;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +51,7 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 				.getSystemService(android.content.Context.LAYOUT_INFLATER_SERVICE);
 	}
 
-	// Get/Set Methods
+	// Adapter Methods
 	public int getCount() {
 		return mItemList.size();
 	}
@@ -81,7 +80,6 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 		mItem = mItemList.get(position);
 		rowTitle.setText(mItem.toString());
 		rowRank.setRating(((float) mItem.getRank()) / 10);
-		Log.d("logtag", rowRank.getRating() + "");
 		rowCheckBox.setChecked(mItem.getViewd());
 		rowView.setBackgroundColor(mItem.getColor());
 
@@ -110,6 +108,7 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 		return rowView;
 	}
 
+	// Additional Methods
 	public void resetData() {
 		mItemList = mOriginalItemList;
 	}
@@ -121,6 +120,7 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 		return itemFilter;
 	}
 
+	// Inner Classes
 	@SuppressLint("DefaultLocale")
 	private class ItemFilter extends Filter {
 
@@ -163,6 +163,7 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 
 	}
 
+	// Additional Methods
 	private void sortCompareable(ArrayList<Item> itemList) {
 		int sortMethod = new ApplicationPreference(mContext).getSortMethod();
 		if (itemList != null) {
