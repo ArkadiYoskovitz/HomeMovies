@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="@drawable/bluegradient"
     android:orientation="vertical" >
 
     <RatingBar
@@ -12,7 +13,7 @@
         android:layout_margin="@dimen/Size15dp"
         android:gravity="center"
         android:numStars="10"
-        android:stepSize="1" />
+        android:stepSize="0.5" />
 
     <TableRow
         android:id="@id/customDialogRankTableRow"
@@ -25,7 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/btnLableCancel" />
+            android:text="@string/btnLableCancel"
+            android:textColor="@color/White" />
 
         <Button
             android:id="@id/customDialogRankButtonCommit"
@@ -33,7 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/btnLableCommit" />
+            android:text="@string/btnLableCommit"
+            android:textColor="@color/White" />
     </TableRow>
 
 </LinearLayout>

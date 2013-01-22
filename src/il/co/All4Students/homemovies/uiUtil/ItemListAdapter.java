@@ -18,6 +18,7 @@ import java.util.Collections;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,7 +80,8 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 				.findViewById(R.id.rowCheckBox);
 		mItem = mItemList.get(position);
 		rowTitle.setText(mItem.toString());
-		rowRank.setRating((float) (mItem.getRank() / 10));
+		rowRank.setRating(((float) mItem.getRank()) / 10);
+		Log.d("logtag", rowRank.getRating() + "");
 		rowCheckBox.setChecked(mItem.getViewd());
 		rowView.setBackgroundColor(mItem.getColor());
 

@@ -462,7 +462,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 
 			mRankBar = (RatingBar) RankDialogView
 					.findViewById(R.id.customDialogRankBar);
-			mRankBar.setRating((float) (mEditedItem.getRank() / 10));
+			mRankBar.setRating(((float) mEditedItem.getRank()) / 10);
 			View btnCancel = RankDialogView
 					.findViewById(R.id.customDialogRankButtonCancel);
 			btnCancel.setOnClickListener(new OnClickListener() {

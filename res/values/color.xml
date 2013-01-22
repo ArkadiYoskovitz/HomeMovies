@@ -2,5 +2,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <color name="Crimson">#DC143C</color>
+    <color name="White">#FFFFFF</color>
 
 </resources>

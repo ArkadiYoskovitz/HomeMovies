@@ -233,8 +233,6 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 			itemHandler.deleteAllItems();
 			mItemList.clear();
 			sortCompareable();
-			mAdapter = new ItemListAdapter(mItemList, ScreenMain.this);
-			mListView.setAdapter(mAdapter);
 			break;
 
 		case R.id.screenMainOptionMenuExitSettings:
@@ -283,6 +281,8 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		default:
 			break;
 		}
+		mAdapter.notifyDataSetChanged();
+
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -310,7 +310,7 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		 * Send the choosen item to the editing screen
 		 */
 		case R.id.screenMainContextMenuEdit:
-			Log.d(LOG_TAG_SCREEN_MAIN, "contextMenuEdit was pressed");
+			Log.d(LOG_TAG_SCREEN_MAIN, "screenMainContextMenuEdit was pressed");
 			Intent intent = new Intent(ScreenMain.this, ScreenEdit.class);
 			intent.putExtra(INTENT_TARGET, mItemList.get((int) info.id));
 			startActivityForResult(intent, Item_Edit);
@@ -320,7 +320,7 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		 * Share the choosen item
 		 */
 		case R.id.screenMainContextMenuShare:
-			Log.d(LOG_TAG_SCREEN_MAIN, "contextMenuEdit was pressed");
+			Log.d(LOG_TAG_SCREEN_MAIN, "screenMainContextMenuShare was pressed");
 			ShareDialog shareDialog = new ShareDialog(
 					mItemList.get((int) info.id));
 			shareDialog.showAlertDialog();
@@ -329,7 +329,7 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		 * Share the choosen item
 		 */
 		case R.id.screenMainContextMenuRank:
-			Log.d(LOG_TAG_SCREEN_MAIN, "contextMenuEdit was pressed");
+			Log.d(LOG_TAG_SCREEN_MAIN, "screenMainContextMenuRank was pressed");
 			RankDialog rankDialog = new RankDialog(mItemList.get((int) info.id));
 			rankDialog.showRankDialog();
 			break;
@@ -338,25 +338,19 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		 * Remove the item from the DB and from the itemList
 		 */
 		case R.id.screenMainContextMenuDelete:
-			Log.d(LOG_TAG_SCREEN_MAIN, "contextMenuDelete was pressed");
+			Log.d(LOG_TAG_SCREEN_MAIN,
+					"screenMainContextMenuDelete was pressed");
 			mReturnedItem = mItemList.get((int) info.id);
 			itemHandler.deleteItem(mReturnedItem);
 			mItemList.remove(mReturnedItem);
 			sortCompareable();
-			mAdapter = new ItemListAdapter(mItemList, ScreenMain.this);
-			mListView.setAdapter(mAdapter);
 			break;
 
 		default:
 			break;
 		}
 
-		ScreenMain.this.mAdapter = new ItemListAdapter(mItemList,
-				ScreenMain.this);
-		mListView.setAdapter(mAdapter);
-
-		Log.d(LOG_TAG_SCREEN_MAIN,
-				"finishe with the layout but still working on it");
+		mAdapter.notifyDataSetChanged();
 
 		return super.onContextItemSelected(item);
 	}
@@ -653,7 +647,7 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 
 			mRankBar = (RatingBar) RankDialogView
 					.findViewById(R.id.customDialogRankBar);
-			mRankBar.setRating((float) (mItem.getRank() / 10));
+			mRankBar.setRating(((float) mItem.getRank()) / 10);
 			View btnCancel = RankDialogView
 					.findViewById(R.id.customDialogRankButtonCancel);
 			btnCancel.setOnClickListener(new OnClickListener() {
@@ -669,8 +663,16 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 				@Override
 				public void onClick(View v) {
 					mItem.setRank((int) (mRankBar.getRating() * 10));
+					Log.d("logtag", mItem.getRank() + "");
 					ItemsHandler itemHandler = new ItemsHandler(ScreenMain.this);
 					itemHandler.updateItem(mItem);
+					mItemList.clear();
+					mItemList = itemHandler.getAllItems();
+					ScreenMain.this.mAdapter = new ItemListAdapter(mItemList,
+							ScreenMain.this);
+					ScreenMain.this.mListView
+							.setAdapter(ScreenMain.this.mAdapter);
+					ScreenMain.this.mAdapter.notifyDataSetChanged();
 					RDialog.dismiss();
 				}
 			});

@@ -22,6 +22,7 @@ public final class R {
     }
     public static final class color {
         public static final int Crimson=0x7f060000;
+        public static final int White=0x7f060001;
     }
     public static final class dimen {
         public static final int Size15dp=0x7f070004;
@@ -34,24 +35,25 @@ public final class R {
         public static final int Size7dp=0x7f070003;
     }
     public static final class drawable {
-        public static final int custom_ratingbar=0x7f020000;
-        public static final int custom_ratingbar_full=0x7f020001;
-        public static final int custom_ratingbar_half=0x7f020002;
-        public static final int custom_ratingbar_none=0x7f020003;
-        public static final int ic_add=0x7f020004;
-        public static final int ic_dialog_airmail=0x7f020005;
-        public static final int ic_dialog_facebook=0x7f020006;
-        public static final int ic_dialog_notice=0x7f020007;
-        public static final int ic_dialog_share=0x7f020008;
-        public static final int ic_dialog_tweeter=0x7f020009;
-        public static final int ic_launcher=0x7f02000a;
-        public static final int ic_list_placeholder=0x7f02000b;
-        public static final int ic_placeholder=0x7f02000c;
-        public static final int ic_rating_star_full=0x7f02000d;
-        public static final int ic_rating_star_half=0x7f02000e;
-        public static final int ic_rating_star_none=0x7f02000f;
-        public static final int ic_settings=0x7f020010;
-        public static final int ic_web_go=0x7f020011;
+        public static final int bluegradient=0x7f020000;
+        public static final int custom_ratingbar=0x7f020001;
+        public static final int custom_ratingbar_full=0x7f020002;
+        public static final int custom_ratingbar_half=0x7f020003;
+        public static final int custom_ratingbar_none=0x7f020004;
+        public static final int ic_add=0x7f020005;
+        public static final int ic_dialog_airmail=0x7f020006;
+        public static final int ic_dialog_facebook=0x7f020007;
+        public static final int ic_dialog_notice=0x7f020008;
+        public static final int ic_dialog_share=0x7f020009;
+        public static final int ic_dialog_tweeter=0x7f02000a;
+        public static final int ic_launcher=0x7f02000b;
+        public static final int ic_list_placeholder=0x7f02000c;
+        public static final int ic_placeholder=0x7f02000d;
+        public static final int ic_rating_star_full=0x7f02000e;
+        public static final int ic_rating_star_half=0x7f02000f;
+        public static final int ic_rating_star_none=0x7f020010;
+        public static final int ic_settings=0x7f020011;
+        public static final int ic_web_go=0x7f020012;
     }
     public static final class id {
         public static final int ScreenEditButton1=0x7f080015;

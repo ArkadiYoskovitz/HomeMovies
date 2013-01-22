@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="@drawable/bluegradient"
     android:orientation="vertical" >
 
     <TableRow
@@ -27,6 +28,7 @@
             android:ellipsize="middle"
             android:singleLine="true"
             android:text="@string/ShareDialogEmail"
+            android:textColor="@color/White"
             android:textSize="@dimen/Size25dp"
             android:typeface="sans" />
     </TableRow>
@@ -54,6 +56,7 @@
             android:ellipsize="middle"
             android:singleLine="true"
             android:text="@string/ShareDialogFaceBook"
+            android:textColor="@color/White"
             android:textSize="@dimen/Size25dp"
             android:typeface="sans" />
     </TableRow>
@@ -81,6 +84,7 @@
             android:ellipsize="middle"
             android:singleLine="true"
             android:text="@string/ShareDialogTweeter"
+            android:textColor="@color/White"
             android:textSize="@dimen/Size25dp"
             android:typeface="sans" />
     </TableRow>
