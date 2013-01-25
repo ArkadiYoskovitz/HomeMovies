@@ -8,7 +8,11 @@
         android:id="@+id/screenEditContextMenuRank"
         android:title="Rank Film"/>
     <item
+        android:id="@+id/screenEditContextMenuViewed"
+        android:title="Seen"/>
+    <item
         android:id="@+id/screenEditContextMenuSaveToCard"
         android:title="Save Picture"/>
 
 </menu>
+

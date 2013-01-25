@@ -17,7 +17,7 @@
         android:padding="@dimen/Size3dp" >
 
         <ImageView
-            android:id="@+id/list_image"
+            android:id="@+id/rowImage"
             android:layout_width="50dip"
             android:layout_height="50dip"
             android:contentDescription="@string/rowIconDescription"
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/rowRating"
         android:layout_alignParentRight="true"
-        android:clickable="true"
+        android:clickable="false"
         android:focusable="false" />
 
 </RelativeLayout>

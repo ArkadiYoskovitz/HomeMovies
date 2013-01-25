@@ -20,12 +20,14 @@ public class ApplicationPreference {
 	private static final String KEY_EMAIL = "AppPreffEmail";
 	private static final String KEY_LANGUAGE = "AppPreffLanguage";
 	private static final String KEY_SORT_METHOD = "AppPreffSortMethods";
+	private static final String KEY_ENABLE_COLOR = "AppPreffEnableColor";
 
 	// Application Preference Default values
 	private static final String DEFAULT_SUBJECT = "Default Topic";
 	private static final String DEFAULT_EMAIL = "John.Appleseed@iCloud.com";
 	private static final String DEFAULT_LANGUAGE = "EN";
 	private static final int DEFAULT_SORT_METHOD = 0;
+	private static final boolean DEFAULT_ENABLE_COLOR = true;
 
 	// Attributes
 	private final SharedPreferences settings;
@@ -85,6 +87,16 @@ public class ApplicationPreference {
 		return settings.getInt(KEY_SORT_METHOD, DEFAULT_SORT_METHOD);
 	}
 
+	public void setEnableColor(Boolean isColored) {
+		Editor editor = settings.edit();
+		editor.putBoolean(KEY_ENABLE_COLOR, isColored);
+		editor.commit();
+	}
+
+	public boolean getEnableColor() {
+		return settings.getBoolean(KEY_ENABLE_COLOR, DEFAULT_ENABLE_COLOR);
+	}
+
 	// //////////////////////////////////////////////
 
 	public static String getDefaultSubject() {
@@ -99,7 +111,12 @@ public class ApplicationPreference {
 		return DEFAULT_LANGUAGE;
 	}
 
-	public static int getDefaultSort() {
+	public static int getDefaultSortMethod() {
 		return DEFAULT_SORT_METHOD;
 	}
+
+	public static boolean isDefaultEnableColor() {
+		return DEFAULT_ENABLE_COLOR;
+	}
+
 }

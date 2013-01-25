@@ -49,7 +49,7 @@
     <string name="ShareDialogEmail">Email</string>
     <string name="ShareDialogFaceBook">Click to Post</string>
     <string name="ShareDialogTweeter">Click to Tweet</string>
-    
+
     <!-- Rank Selection -->
     <string name="RankDialogTitle">Rank</string>
     <string name="RankDialogMsg">Set Item rank</string>
@@ -64,6 +64,7 @@
     <!--  -->
     <string name="emailHint">John.Appleseed@iCloud.com</string>
     <string name="ScreenEditHint">Default value</string>
+    <string name="checkBoxLableScreenEdit">Seen this film</string>
     <string name="rowHolderText">Rihanna Love the way lie Rihanna Love the way lie</string>
     <string name="rowIconDescription">Icon Description</string>
 

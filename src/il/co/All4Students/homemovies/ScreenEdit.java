@@ -42,6 +42,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -77,10 +78,15 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	protected void onResume() {
 		super.onResume();
 		try {
-			mEditedItem = getIntent().getExtras().getParcelable(INTENT_TARGET);
+			if (mEditedItem == null) {
+				mEditedItem = getIntent().getExtras().getParcelable(
+						INTENT_TARGET);
+			}
 			EditText text1 = (EditText) findViewById(R.id.ScreenEditEditText1);
 			EditText text2 = (EditText) findViewById(R.id.ScreenEditEditText2);
 			EditText text3 = (EditText) findViewById(R.id.ScreenEditEditText3);
+			CheckBox checkBox = (CheckBox) findViewById(R.id.ScreenEditCheckBox);
+			final ImageView screenEditImage = (ImageView) findViewById(R.id.ScreenEditImageView1);
 			mSettings = new ApplicationPreference(ScreenEdit.this);
 
 			if (mEditedItem.getSubject().length() == 0) {
@@ -96,10 +102,13 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 			}
 
 			text2.setText(mEditedItem.getBody());
-			final ImageView screenEditImage = (ImageView) findViewById(R.id.ScreenEditImageView1);
+
+			checkBox.setChecked(mEditedItem.getViewd());
+
 			registerForContextMenu(screenEditImage);
 		} catch (Exception e) {
-			Log.d(LOG_TAG_SCREEN_EDIT, "Unable to load empty Item object");
+			Log.d(LOG_TAG_SCREEN_EDIT, e.getStackTrace().toString());
+			Log.d(LOG_TAG_SCREEN_EDIT, e.getMessage());
 		}
 	}
 
@@ -119,32 +128,14 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		EditText text1 = (EditText) findViewById(R.id.ScreenEditEditText1);
-		EditText text2 = (EditText) findViewById(R.id.ScreenEditEditText2);
-		EditText text3 = (EditText) findViewById(R.id.ScreenEditEditText3);
-
-		outState.putString("subject", text1.getText().toString());
-		outState.putString("body", text2.getText().toString());
-		outState.putString("url", text3.getText().toString());
+		itemRefreshFromScreen();
 		outState.putParcelable("mItem", mEditedItem);
 	}
 
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 		super.onRestoreInstanceState(savedInstanceState);
-		EditText text1 = (EditText) findViewById(R.id.ScreenEditEditText1);
-		EditText text2 = (EditText) findViewById(R.id.ScreenEditEditText2);
-		EditText text3 = (EditText) findViewById(R.id.ScreenEditEditText3);
-
-		String subject = savedInstanceState.getString("subject");
-		String body = savedInstanceState.getString("body");
-		String url = savedInstanceState.getString("url");
 		mEditedItem = savedInstanceState.getParcelable("mItem");
-
-		text1.setText(subject);
-		text2.setText(body);
-		text3.setText(url);
-
 	}
 
 	@Override
@@ -213,7 +204,11 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 			RankDialog RankDialog = new RankDialog();
 			RankDialog.showRankDialog();
 			break;
-
+		case R.id.screenEditContextMenuViewed:
+			CheckBox checkBox = (CheckBox) findViewById(R.id.ScreenEditCheckBox);
+			checkBox.setChecked(!checkBox.isChecked());
+			mEditedItem.setViewd(!mEditedItem.getViewd());
+			break;
 		case R.id.screenEditContextMenuShare:
 			ShareDialog ShareDialog = new ShareDialog();
 			ShareDialog.showShareDialog();
@@ -280,11 +275,13 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 		EditText subjectText = (EditText) findViewById(R.id.ScreenEditEditText1);
 		EditText bodyText = (EditText) findViewById(R.id.ScreenEditEditText2);
 		EditText URLText = (EditText) findViewById(R.id.ScreenEditEditText3);
+		CheckBox checkBox = (CheckBox) findViewById(R.id.ScreenEditCheckBox);
 
 		if (subjectText.getText().toString().length() == 0) {
 			mEditedItem.setSubject(subjectText.getHint().toString());
 			mEditedItem.setBody(bodyText.getText().toString());
 			mEditedItem.setUrlWeb(URLText.getText().toString());
+			mEditedItem.setViewd(checkBox.isChecked());
 		} else {
 			itemRefreshFromScreen();
 		}
@@ -323,9 +320,12 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 		EditText text1 = (EditText) findViewById(R.id.ScreenEditEditText1);
 		EditText text2 = (EditText) findViewById(R.id.ScreenEditEditText2);
 		EditText text3 = (EditText) findViewById(R.id.ScreenEditEditText3);
+		CheckBox checkBox = (CheckBox) findViewById(R.id.ScreenEditCheckBox);
+
 		mEditedItem.setSubject(text1.getText().toString());
 		mEditedItem.setBody(text2.getText().toString());
 		mEditedItem.setUrlWeb(text3.getText().toString());
+		mEditedItem.setViewd(checkBox.isChecked());
 	}
 
 	private void speakOut() {
@@ -525,6 +525,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 						byte[] imageArray = buffer.toByteArray();
 						bitmap = BitmapFactory.decodeByteArray(imageArray, 0,
 								imageArray.length);
+						// save to sdcard
 					} catch (IOException e) {
 						e.printStackTrace();
 					} finally {
@@ -536,6 +537,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 			} else {
 				if (mEditedItem.getUrlLocal().length() != 0) {
 					try {
+						// read from sdcard
 						// bitmap =
 						// Images.Media.getBitmap(getContentResolver(),);
 					} catch (Exception e) {

@@ -11,7 +11,6 @@ import il.co.All4Students.homemovies.core.Item;
 import il.co.All4Students.homemovies.core.ItemCompareRTID;
 import il.co.All4Students.homemovies.core.ItemCompareRank;
 import il.co.All4Students.homemovies.core.ItemCompareSubject;
-import il.co.All4Students.homemovies.dbUtil.ItemsHandler;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,8 +22,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.RatingBar;
@@ -36,6 +33,7 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 	private static LayoutInflater mInflater = null;
 	private ArrayList<Item> mItemList;
 	private ArrayList<Item> mOriginalItemList;
+	private ApplicationPreference mSettings;
 	private Context mContext;
 	private Filter itemFilter;
 	private Item mItem;
@@ -47,6 +45,7 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 		sortCompareable(itemList);
 		this.mItemList = itemList;
 		this.mOriginalItemList = itemList;
+		this.mSettings = new ApplicationPreference(mContext);
 		mInflater = (LayoutInflater) mContext
 				.getSystemService(android.content.Context.LAYOUT_INFLATER_SERVICE);
 	}
@@ -81,29 +80,15 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 		rowTitle.setText(mItem.toString());
 		rowRank.setRating(((float) mItem.getRank()) / 10);
 		rowCheckBox.setChecked(mItem.getViewd());
-		rowView.setBackgroundColor(mItem.getColor());
+
+		if (mSettings.getEnableColor()) {
+			rowView.setBackgroundColor(setColor());
+		}
 
 		if (mContext instanceof ScreenWeb) {
 			rowRank.setVisibility(View.GONE);
 			rowCheckBox.setVisibility(View.GONE);
 		}
-
-		rowCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView,
-					boolean isChecked) {
-
-				if (buttonView.isChecked()) {
-					mItem.setViewd(true);
-				} else {
-					mItem.setViewd(false);
-				}
-
-				ItemsHandler itemHandler = new ItemsHandler(mContext);
-				itemHandler.updateItem(mItem);
-			}
-		});
 
 		return rowView;
 	}
@@ -111,6 +96,77 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 	// Additional Methods
 	public void resetData() {
 		mItemList = mOriginalItemList;
+	}
+
+	private int setColor() {
+		switch (mItem.getRank()) {
+		case 0:
+			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
+			break;
+		case 5:
+			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
+			break;
+		case 10:
+			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
+			break;
+		case 15:
+			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
+			break;
+		case 20:
+			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
+			break;
+		case 25:
+			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
+			break;
+		case 30:
+			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
+			break;
+		case 35:
+			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
+			break;
+		case 40:
+			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
+			break;
+		case 45:
+			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
+			break;
+		case 50:
+			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
+			break;
+		case 55:
+			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
+			break;
+		case 60:
+			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
+			break;
+		case 65:
+			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
+			break;
+		case 70:
+			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
+			break;
+		case 75:
+			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
+			break;
+		case 80:
+			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
+			break;
+		case 85:
+			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
+			break;
+		case 90:
+			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
+			break;
+		case 95:
+			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
+			break;
+		case 100:
+			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
+			break;
+		default:
+			break;
+		}
+		return 0;
 	}
 
 	@Override

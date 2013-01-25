@@ -110,6 +110,12 @@
             android:scaleType="centerInside"
             android:src="@drawable/ic_placeholder" />
 
+        <CheckBox
+            android:id="@id/ScreenEditCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/checkBoxLableScreenEdit" />
+
         <TableRow
             android:id="@id/ScreenEditTableRow2"
             android:layout_width="match_parent"
