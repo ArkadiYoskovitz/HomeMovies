@@ -77,7 +77,6 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.screen_web);
 		Log.d(LOG_TAG_SCREEN_MAIN, "Screen Web Layout was Created and loaded");
-
 	}
 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -235,7 +234,8 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 	}
 
 	private void sortCompareable() {
-		int sortMethod = new ApplicationPreference(ScreenWeb.this).getSortMethod();
+		int sortMethod = new ApplicationPreference(ScreenWeb.this)
+				.getSortMethod();
 		if (mItemList != null) {
 			switch (sortMethod) {
 			case SortByID:

@@ -17,6 +17,7 @@ import java.util.Collections;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,22 +73,26 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 		} else {
 			rowView = convertView;
 		}
+
 		TextView rowTitle = (TextView) rowView.findViewById(R.id.rowTitle);
 		RatingBar rowRank = (RatingBar) rowView.findViewById(R.id.rowRating);
 		CheckBox rowCheckBox = (CheckBox) rowView
 				.findViewById(R.id.rowCheckBox);
+
 		mItem = mItemList.get(position);
+
 		rowTitle.setText(mItem.toString());
 		rowRank.setRating(((float) mItem.getRank()) / 10);
 		rowCheckBox.setChecked(mItem.getViewd());
 
-		if (mSettings.getEnableColor()) {
-			rowView.setBackgroundColor(setColor());
-		}
-
 		if (mContext instanceof ScreenWeb) {
 			rowRank.setVisibility(View.GONE);
 			rowCheckBox.setVisibility(View.GONE);
+			rowCheckBox.setVisibility(View.GONE);
+		} else {
+			if (mSettings.getEnableColor()) {
+				rowView.setBackgroundColor(setColor());
+			}
 		}
 
 		return rowView;
@@ -99,74 +104,98 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 	}
 
 	private int setColor() {
-		switch (mItem.getRank()) {
-		case 0:
-			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
-			break;
-		case 5:
-			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
-			break;
-		case 10:
-			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
-			break;
-		case 15:
-			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
-			break;
-		case 20:
-			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
-			break;
-		case 25:
-			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
-			break;
-		case 30:
-			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
-			break;
-		case 35:
-			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
-			break;
-		case 40:
-			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
-			break;
-		case 45:
-			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
-			break;
-		case 50:
-			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
-			break;
-		case 55:
-			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
-			break;
-		case 60:
-			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
-			break;
-		case 65:
-			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
-			break;
-		case 70:
-			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
-			break;
-		case 75:
-			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
-			break;
-		case 80:
-			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
-			break;
-		case 85:
-			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
-			break;
-		case 90:
-			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
-			break;
-		case 95:
-			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
-			break;
-		case 100:
-			mItem.setColor(mContext.getResources().getColor(R.color.Crimson));
-			break;
-		default:
-			break;
+		// int returnValue = 0;
+		// ////////////////////////////////////////////////////////////////////////////////////////////
+		// int tempRank = mItem.getRank();
+		int tmpRed, tmpGreen, tmpBlue;
+		if (mItem.getRank() <= 50) {
+			tmpRed = 255;
+			tmpGreen = 255 * (mItem.getRank() * 2) / 100;
+			tmpBlue = 0;
+		} else {
+			tmpRed = 255 * (100 - (mItem.getRank() * 2)) / 100;
+			tmpGreen = 255;
+			tmpBlue = 0;
 		}
-		return 0;
+		return Color.rgb(tmpRed, tmpGreen, tmpBlue);
+
+		// if (tempRank <= 50.0) {
+		// // from red to yello
+		// // FF0000 to FFFF00
+		// return 0;
+		// } else {
+		// // from yellow to green
+		// // FFFF00 to 00FF00
+		// }
+		// ////////////////////////////////////////////////////////////////////////////////////////////
+		// switch (mItem.getRank()) {
+		// case 0:
+		// returnValue = mContext.getResources().getColor(R.color.Crimson);
+		// break;
+		// case 5:
+		// returnValue = mContext.getResources().getColor(R.color.Crimson);
+		// break;
+		// case 10:
+		// returnValue = mContext.getResources().getColor(R.color.Crimson);
+		// break;
+		// case 15:
+		// returnValue = mContext.getResources().getColor(R.color.Crimson);
+		// break;
+		// case 20:
+		// returnValue = mContext.getResources().getColor(R.color.Crimson);
+		// break;
+		// case 25:
+		// returnValue = mContext.getResources().getColor(R.color.Crimson);
+		// break;
+		// case 30:
+		// returnValue = mContext.getResources().getColor(R.color.Crimson);
+		// break;
+		// case 35:
+		// returnValue = mContext.getResources().getColor(R.color.Crimson);
+		// break;
+		// case 40:
+		// returnValue = mContext.getResources().getColor(R.color.Crimson);
+		// break;
+		// case 45:
+		// returnValue = mContext.getResources().getColor(R.color.Crimson);
+		// break;
+		// case 50:
+		// returnValue = mContext.getResources().getColor(R.color.Crimson);
+		// break;
+		// case 55:
+		// returnValue = mContext.getResources().getColor(R.color.Crimson);
+		// break;
+		// case 60:
+		// returnValue = mContext.getResources().getColor(R.color.Crimson);
+		// break;
+		// case 65:
+		// returnValue = mContext.getResources().getColor(R.color.Crimson);
+		// break;
+		// case 70:
+		// returnValue = mContext.getResources().getColor(R.color.Crimson);
+		// break;
+		// case 75:
+		// returnValue = mContext.getResources().getColor(R.color.Crimson);
+		// break;
+		// case 80:
+		// returnValue = mContext.getResources().getColor(R.color.Crimson);
+		// break;
+		// case 85:
+		// returnValue = mContext.getResources().getColor(R.color.Crimson);
+		// break;
+		// case 90:
+		// returnValue = mContext.getResources().getColor(R.color.Crimson);
+		// break;
+		// case 95:
+		// returnValue = mContext.getResources().getColor(R.color.Crimson);
+		// break;
+		// case 100:
+		// returnValue = mContext.getResources().getColor(R.color.Crimson);
+		// break;
+		// default:
+		// break;
+		// }
+		// return returnValue;
 	}
 
 	@Override
