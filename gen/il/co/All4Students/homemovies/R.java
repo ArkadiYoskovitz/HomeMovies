@@ -264,6 +264,8 @@ public final class R {
         public static final int screenMainOptionMenuExitSettings=0x7f080036;
         public static final int screenMainOptionMenuSearch=0x7f080038;
         public static final int screenMainOptionMenuSettings=0x7f080039;
+        public static final int screenWebOptionMenuExitSettings=0x7f08003a;
+        public static final int screenWebOptionMenuSettings=0x7f08003b;
     }
     public static final class integer {
         public static final int lineOne=0x7f090000;
@@ -281,6 +283,7 @@ public final class R {
         public static final int screen_edit_menu_option=0x7f0c0001;
         public static final int screen_main_menu_context=0x7f0c0002;
         public static final int screen_main_menu_option=0x7f0c0003;
+        public static final int screen_web_menu_option=0x7f0c0004;
     }
     public static final class string {
         public static final int AddingDialogCancel=0x7f0a0014;

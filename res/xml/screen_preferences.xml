@@ -3,6 +3,11 @@
 
     <PreferenceCategory android:title="Personal Settings" >
         <EditTextPreference
+            android:defaultValue="Default Topic"
+            android:key="AppPreffSubject"
+            android:summary="Set Default Topic"
+            android:title="Subject" />
+        <EditTextPreference
             android:defaultValue="@string/emailHint"
             android:key="AppPreffEmail"
             android:summary="Set Default email"
@@ -15,13 +20,26 @@
             android:key="AppPreffLanguage"
             android:summary="Select language"
             android:title="Language" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="List Settings" >
         <ListPreference
-            android:defaultValue="Default"
+            android:defaultValue="0"
             android:entries="@array/SortMethodNames"
             android:entryValues="@array/SortMethodCodes"
             android:key="AppPreffSortMethods"
             android:summary="Select Sort Method"
             android:title="Sort Method" />
+
+        <CheckBoxPreference
+            android:defaultValue="Yes"
+            android:enabled="true"
+            android:key="AppPreffEnableColor"
+            android:title="Enable Background Color" />
+        <CheckBoxPreference
+            android:defaultValue="Yes"
+            android:enabled="true"
+            android:key="AppPreffEnablePreview"
+            android:title="Enable ListView Preview" />
     </PreferenceCategory>
 
 </PreferenceScreen>

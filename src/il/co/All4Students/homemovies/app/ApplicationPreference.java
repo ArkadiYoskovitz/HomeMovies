@@ -21,6 +21,7 @@ public class ApplicationPreference {
 	private static final String KEY_LANGUAGE = "AppPreffLanguage";
 	private static final String KEY_SORT_METHOD = "AppPreffSortMethods";
 	private static final String KEY_ENABLE_COLOR = "AppPreffEnableColor";
+	private static final String KEY_ENABLE_PREVIEW = "AppPreffEnablePreview";
 
 	// Application Preference Default values
 	private static final String DEFAULT_SUBJECT = "Default Topic";
@@ -28,6 +29,7 @@ public class ApplicationPreference {
 	private static final String DEFAULT_LANGUAGE = "EN";
 	private static final int DEFAULT_SORT_METHOD = 0;
 	private static final boolean DEFAULT_ENABLE_COLOR = true;
+	private static final boolean DEFAULT_ENABLE_PREVIEW = true;
 
 	// Attributes
 	private final SharedPreferences settings;
@@ -44,6 +46,8 @@ public class ApplicationPreference {
 		editor.commit();
 	}
 
+	
+	
 	/*
 	 * Get / Set Methods
 	 */
@@ -77,9 +81,9 @@ public class ApplicationPreference {
 		return settings.getString(KEY_LANGUAGE, DEFAULT_LANGUAGE);
 	}
 
-	public void setSortMethod(String Sort) {
+	public void setSortMethod(int Sort) {
 		Editor editor = settings.edit();
-		editor.putString(KEY_SORT_METHOD, Sort);
+		editor.putInt(KEY_SORT_METHOD, Sort);
 		editor.commit();
 	}
 
@@ -95,6 +99,16 @@ public class ApplicationPreference {
 
 	public boolean getEnableColor() {
 		return settings.getBoolean(KEY_ENABLE_COLOR, DEFAULT_ENABLE_COLOR);
+	}
+
+	public void setEnablePreview(Boolean isPreview) {
+		Editor editor = settings.edit();
+		editor.putBoolean(KEY_ENABLE_PREVIEW, isPreview);
+		editor.commit();
+	}
+
+	public boolean getEnablePreview() {
+		return settings.getBoolean(KEY_ENABLE_PREVIEW, DEFAULT_ENABLE_PREVIEW);
 	}
 
 	// //////////////////////////////////////////////
@@ -119,4 +133,7 @@ public class ApplicationPreference {
 		return DEFAULT_ENABLE_COLOR;
 	}
 
+	public static boolean isDefaultEnablePreview() {
+		return DEFAULT_ENABLE_PREVIEW;
+	}
 }

@@ -3,7 +3,7 @@
 
     <!-- General App related Strings -->
     <string name="app_name">Home Movies</string>
-
+    
     <!-- Button names related Strings -->
     <!-- General buttons -->
     <string name="btnLableCancel">Cancel</string>
@@ -41,12 +41,12 @@
     <!-- Adding Method Selection -->
     <string name="AddingDialogMsg">Choose how to add an Item</string>
     <string name="AddingDialogLocal">Manually</string>
-    <string name="AddingDialogWeb">Web</string>
+    <string name="AddingDialogWeb">Web Search</string>
     <string name="AddingDialogCancel">Cancel</string>
 
     <!-- Share Selection -->
     <string name="ShareDialogTitle">Share</string>
-    <string name="ShareDialogEmail">Email</string>
+    <string name="ShareDialogEmail">Click to Mail</string>
     <string name="ShareDialogFaceBook">Click to Post</string>
     <string name="ShareDialogTweeter">Click to Tweet</string>
 

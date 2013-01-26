@@ -287,9 +287,8 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 			break;
 
 		case R.id.screenMainOptionMenuSettings:
-			// Intent intent = new Intent(ScreenMain.this,
-			// ScreenPreferences.class);
-			// startActivityForResult(intent, Item_App_Settings);
+			Intent intent = new Intent(ScreenMain.this, ScreenPreferences.class);
+			startActivityForResult(intent, Item_App_Settings);
 			break;
 
 		default:

@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Language Spinner -->
     <array name="LanguageNames">
-        <item>English</item>
-        <item>Hebrew</item>
+        <item name="0">English</item>
+        <item name="1">Hebrew</item>
     </array>
     <array name="LanguageCodes">
-        <item>en</item>
-        <item>He</item>
+        <item name="0">en</item>
+        <item name="1">He</item>
     </array>
+
     <!-- Sort Method Spinner -->
     <array name="SortMethodNames">
-        <item>Default</item>
-        <item>Rank</item>
-        <item>RTID</item>
-        <item>Subject</item>
+        <item name="0">Local Film ID</item>
+        <item name="1">Rank</item>
+        <item name="2">Rotten Tomatoes ID</item>
+        <item name="3">Name</item>
     </array>
     <array name="SortMethodCodes">
-        <item>Default</item>
-        <item>Rank</item>
-        <item>RTID</item>
-        <item>Subject</item>
+        <item name="0">"0"</item>
+        <item name="1">"1"</item>
+        <item name="2">"2"</item>
+        <item name="3">"3"</item>
     </array>
 
 </resources>

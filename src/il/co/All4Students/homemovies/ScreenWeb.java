@@ -3,6 +3,7 @@ package il.co.All4Students.homemovies;
 import static il.co.All4Students.homemovies.app.AppConstants.APP_API_KEY;
 import static il.co.All4Students.homemovies.app.AppConstants.INTENT_TARGET;
 import static il.co.All4Students.homemovies.app.AppConstants.Item_Add_Web;
+import static il.co.All4Students.homemovies.app.AppConstants.Item_App_Settings;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_SCREEN_MAIN;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_SCREEN_WEB;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_WEB_DMovieInfo;
@@ -46,6 +47,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -141,7 +144,16 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 						.getDimension(R.dimen.Size2dp));
 				mListView.setAdapter(mAdapter);
 				break;
+			case Item_App_Settings:
+				switch (resultCode) {
 
+				case RESULT_CODE_CANCEL:
+					RefreshScreen();
+					break;
+
+				default:
+					break;
+				}
 			default:
 				Log.d(LOG_TAG_SCREEN_MAIN,
 						"onActivityResult - Item_Add_Local - default");
@@ -168,7 +180,41 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 	// Menu Events
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * onCreateOptionsMenu
+	 */
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		getMenuInflater().inflate(R.menu.screen_web_menu_option, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		mListView = (ListView) findViewById(R.id.ScreenWebListView);
+
+		switch (item.getItemId()) {
+		case R.id.screenWebOptionMenuExitSettings:
+			Log.d(LOG_TAG_SCREEN_MAIN, "optionMenuExitSettings was pressed");
+			System.exit(0);
+			break;
+
+		case R.id.screenWebOptionMenuSettings:
+			Intent intent = new Intent(ScreenWeb.this, ScreenPreferences.class);
+			startActivityForResult(intent, Item_App_Settings);
+			break;
+
+		default:
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// OnClick Events
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	public void onClickWebGo(View view) {
 		closeKeybord();
 		txtSearch = (EditText) findViewById(R.id.ScreenWebEditText1);

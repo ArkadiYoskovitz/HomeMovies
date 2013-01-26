@@ -25,6 +25,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -88,8 +89,12 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 		if (mContext instanceof ScreenWeb) {
 			rowRank.setVisibility(View.GONE);
 			rowCheckBox.setVisibility(View.GONE);
-			rowCheckBox.setVisibility(View.GONE);
 		} else {
+			if (!mSettings.getEnablePreview()) {
+				ImageView rowImage = (ImageView) rowView
+						.findViewById(R.id.rowImage);
+				rowImage.setVisibility(View.GONE);
+			}
 			if (mSettings.getEnableColor()) {
 				rowView.setBackgroundColor(setColor());
 			}
@@ -104,9 +109,6 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 	}
 
 	private int setColor() {
-		// int returnValue = 0;
-		// ////////////////////////////////////////////////////////////////////////////////////////////
-		// int tempRank = mItem.getRank();
 		int tmpRed, tmpGreen, tmpBlue;
 		if (mItem.getRank() <= 50) {
 			tmpRed = 255;
@@ -118,84 +120,6 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 			tmpBlue = 0;
 		}
 		return Color.rgb(tmpRed, tmpGreen, tmpBlue);
-
-		// if (tempRank <= 50.0) {
-		// // from red to yello
-		// // FF0000 to FFFF00
-		// return 0;
-		// } else {
-		// // from yellow to green
-		// // FFFF00 to 00FF00
-		// }
-		// ////////////////////////////////////////////////////////////////////////////////////////////
-		// switch (mItem.getRank()) {
-		// case 0:
-		// returnValue = mContext.getResources().getColor(R.color.Crimson);
-		// break;
-		// case 5:
-		// returnValue = mContext.getResources().getColor(R.color.Crimson);
-		// break;
-		// case 10:
-		// returnValue = mContext.getResources().getColor(R.color.Crimson);
-		// break;
-		// case 15:
-		// returnValue = mContext.getResources().getColor(R.color.Crimson);
-		// break;
-		// case 20:
-		// returnValue = mContext.getResources().getColor(R.color.Crimson);
-		// break;
-		// case 25:
-		// returnValue = mContext.getResources().getColor(R.color.Crimson);
-		// break;
-		// case 30:
-		// returnValue = mContext.getResources().getColor(R.color.Crimson);
-		// break;
-		// case 35:
-		// returnValue = mContext.getResources().getColor(R.color.Crimson);
-		// break;
-		// case 40:
-		// returnValue = mContext.getResources().getColor(R.color.Crimson);
-		// break;
-		// case 45:
-		// returnValue = mContext.getResources().getColor(R.color.Crimson);
-		// break;
-		// case 50:
-		// returnValue = mContext.getResources().getColor(R.color.Crimson);
-		// break;
-		// case 55:
-		// returnValue = mContext.getResources().getColor(R.color.Crimson);
-		// break;
-		// case 60:
-		// returnValue = mContext.getResources().getColor(R.color.Crimson);
-		// break;
-		// case 65:
-		// returnValue = mContext.getResources().getColor(R.color.Crimson);
-		// break;
-		// case 70:
-		// returnValue = mContext.getResources().getColor(R.color.Crimson);
-		// break;
-		// case 75:
-		// returnValue = mContext.getResources().getColor(R.color.Crimson);
-		// break;
-		// case 80:
-		// returnValue = mContext.getResources().getColor(R.color.Crimson);
-		// break;
-		// case 85:
-		// returnValue = mContext.getResources().getColor(R.color.Crimson);
-		// break;
-		// case 90:
-		// returnValue = mContext.getResources().getColor(R.color.Crimson);
-		// break;
-		// case 95:
-		// returnValue = mContext.getResources().getColor(R.color.Crimson);
-		// break;
-		// case 100:
-		// returnValue = mContext.getResources().getColor(R.color.Crimson);
-		// break;
-		// default:
-		// break;
-		// }
-		// return returnValue;
 	}
 
 	@Override

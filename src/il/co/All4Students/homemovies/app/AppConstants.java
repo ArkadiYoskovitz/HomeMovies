@@ -23,7 +23,7 @@ public class AppConstants {
 	public static final int RESULT_CODE_TAKE_PICTURE = 4;
 
 	public static final String LOG_TAG_WEB_SITE = "RottenTomatoes";
-	public static final String APP_API_KEY = "e3hw7dwu5ud24e56873u99b2";
+	public static final String APP_API_KEY = "4wf2dn3wwc7fhgbfnvu6dyxh";
 
 	public static final int SortByID = 0;
 	public static final int SortByRank = 1;
