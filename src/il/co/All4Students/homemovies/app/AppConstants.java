@@ -26,8 +26,8 @@ public class AppConstants {
 	public static final String APP_API_KEY = "4wf2dn3wwc7fhgbfnvu6dyxh";
 
 	public static final int SortByID = 0;
-	public static final int SortByRank = 1;
-	public static final int SortByRTID = 2;
+	public static final int SortByRTID = 1;
+	public static final int SortByRank = 2;
 	public static final int SortBySubject = 3;
 
 }

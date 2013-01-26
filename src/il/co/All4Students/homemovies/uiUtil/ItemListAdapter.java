@@ -86,15 +86,16 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 		rowRank.setRating(((float) mItem.getRank()) / 10);
 		rowCheckBox.setChecked(mItem.getViewd());
 
+		if (!mSettings.getEnablePreview()) {
+			ImageView rowImage = (ImageView) rowView
+					.findViewById(R.id.rowImage);
+			rowImage.setVisibility(View.GONE);
+		}
+
 		if (mContext instanceof ScreenWeb) {
 			rowRank.setVisibility(View.GONE);
 			rowCheckBox.setVisibility(View.GONE);
 		} else {
-			if (!mSettings.getEnablePreview()) {
-				ImageView rowImage = (ImageView) rowView
-						.findViewById(R.id.rowImage);
-				rowImage.setVisibility(View.GONE);
-			}
 			if (mSettings.getEnableColor()) {
 				rowView.setBackgroundColor(setColor());
 			}
@@ -181,12 +182,12 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 				Collections.sort(itemList);
 				break;
 
-			case SortByRank:
-				Collections.sort(itemList, new ItemCompareRank());
-				break;
-
 			case SortByRTID:
 				Collections.sort(itemList, new ItemCompareRTID());
+				break;
+
+			case SortByRank:
+				Collections.sort(itemList, new ItemCompareRank());
 				break;
 
 			case SortBySubject:

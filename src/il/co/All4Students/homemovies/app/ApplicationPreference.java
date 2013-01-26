@@ -46,8 +46,6 @@ public class ApplicationPreference {
 		editor.commit();
 	}
 
-	
-	
 	/*
 	 * Get / Set Methods
 	 */

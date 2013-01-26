@@ -506,6 +506,7 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		mListView.setDividerHeight((int) getResources().getDimension(
 				R.dimen.Size2dp));
 		mListView.setAdapter(mAdapter);
+		mAdapter.notifyDataSetChanged();
 		mListView.setOnItemClickListener(this);
 	}
 
@@ -518,12 +519,12 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 				Collections.sort(mItemList);
 				break;
 
-			case SortByRank:
-				Collections.sort(mItemList, new ItemCompareRank());
-				break;
-
 			case SortByRTID:
 				Collections.sort(mItemList, new ItemCompareRTID());
+				break;
+
+			case SortByRank:
+				Collections.sort(mItemList, new ItemCompareRank());
 				break;
 
 			case SortBySubject:

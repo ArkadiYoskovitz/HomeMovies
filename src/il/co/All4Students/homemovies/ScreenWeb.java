@@ -288,12 +288,12 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 				Collections.sort(mItemList);
 				break;
 
-			case SortByRank:
-				Collections.sort(mItemList, new ItemCompareRank());
-				break;
-
 			case SortByRTID:
 				Collections.sort(mItemList, new ItemCompareRTID());
+				break;
+
+			case SortByRank:
+				Collections.sort(mItemList, new ItemCompareRank());
 				break;
 
 			case SortBySubject:
