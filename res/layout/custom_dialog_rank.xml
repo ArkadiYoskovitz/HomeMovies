@@ -1,42 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/bluegradient"
-    android:orientation="vertical" >
+    android:layout_height="wrap_content" >
 
-    <RatingBar
-        android:id="@id/customDialogRankBar"
-        style="@style/CustomRatingBar"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/Size15dp"
-        android:gravity="center"
-        android:numStars="10"
-        android:stepSize="0.5" />
+        android:background="@drawable/bluegradient"
+        android:orientation="vertical" >
 
-    <TableRow
-        android:id="@id/customDialogRankTableRow"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/Size15dp" >
-
-        <Button
-            android:id="@id/customDialogRankButtonCancel"
-            android:layout_width="match_parent"
+        <RatingBar
+            android:id="@id/customDialogRankBar"
+            style="@style/CustomRatingBar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/btnLableCancel"
-            android:textColor="@color/White" />
-
-        <Button
-            android:id="@id/customDialogRankButtonCommit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_margin="@dimen/Size15dp"
             android:gravity="center"
-            android:text="@string/btnLableCommit"
-            android:textColor="@color/White" />
-    </TableRow>
+            android:numStars="10"
+            android:stepSize="0.5" />
 
-</LinearLayout>
+        <TableRow
+            android:id="@id/customDialogRankTableRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/Size15dp" >
+
+            <Button
+                android:id="@id/customDialogRankButtonCancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/btnLableCancel"
+                android:textColor="@color/White" />
+
+            <Button
+                android:id="@id/customDialogRankButtonCommit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/btnLableCommit"
+                android:textColor="@color/White" />
+        </TableRow>
+    </LinearLayout>
+
+</ScrollView>

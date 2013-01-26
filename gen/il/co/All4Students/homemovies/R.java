@@ -289,6 +289,7 @@ public final class R {
         public static final int AddingDialogCancel=0x7f0a0014;
         public static final int AddingDialogLocal=0x7f0a0012;
         /**  Adding Method Selection 
+ Adding Method Selection 
          */
         public static final int AddingDialogMsg=0x7f0a0011;
         public static final int AddingDialogWeb=0x7f0a0013;
@@ -298,60 +299,77 @@ public final class R {
         public static final int ErrorMsgDownLoadWeb=0x7f0a001f;
         public static final int ErrorMsgTextToSpeech=0x7f0a0020;
         /**  Image Description 
+ Image Description 
          */
         public static final int ImagePlaceHolder=0x7f0a001b;
         public static final int RankDialogMsg=0x7f0a001a;
         /**  Rank Selection 
+ Rank Selection 
          */
         public static final int RankDialogTitle=0x7f0a0019;
         public static final int ScreenEditHint=0x7f0a0022;
         public static final int ShareDialogEmail=0x7f0a0016;
         public static final int ShareDialogFaceBook=0x7f0a0017;
         /**  Share Selection 
+ Share Selection 
          */
         public static final int ShareDialogTitle=0x7f0a0015;
         public static final int ShareDialogTweeter=0x7f0a0018;
         /**  General App related Strings 
+ General App related Strings 
          */
         public static final int app_name=0x7f0a0000;
         /**  Button names related Strings 
+ General buttons 
+ Button names related Strings 
  General buttons 
          */
         public static final int btnLableCancel=0x7f0a0001;
         public static final int btnLableCommit=0x7f0a0003;
         public static final int btnLableDelete=0x7f0a0002;
         /**  Edit screen buttons 
+ Edit screen buttons 
          */
         public static final int btnLableEditShow=0x7f0a0007;
         public static final int btnLableMainAdd=0x7f0a0006;
         public static final int btnLableMainSearch=0x7f0a0005;
         /**  Main screen buttons 
+ Main screen buttons 
          */
         public static final int btnLableMainSettings=0x7f0a0004;
         /**  Web screen buttons 
+ Web screen buttons 
          */
         public static final int btnLableWebSearchGo=0x7f0a0008;
         public static final int checkBoxLableScreenEdit=0x7f0a0023;
         /**   
+  
          */
         public static final int emailHint=0x7f0a0021;
         public static final int labelBody=0x7f0a000b;
         /**  Screen Web label 
+ Screen Web label 
          */
         public static final int labelSearch=0x7f0a000d;
         /**  Screen Edit label 
+ Screen Edit label 
          */
         public static final int labelSubject=0x7f0a000a;
         public static final int labelURL=0x7f0a000c;
         /**  Label names related Strings 
  Screen Main label 
+ Label names related Strings 
+ Screen Main label 
          */
         public static final int note_application=0x7f0a0009;
+        /**  row screen 
+         */
         public static final int rowHolderText=0x7f0a0024;
         public static final int rowIconDescription=0x7f0a0025;
         public static final int systemNoticeButton=0x7f0a0010;
         public static final int systemNoticeMsg=0x7f0a000f;
         /**  System Notice related Strings 
+ System Notice related Strings 
          */
         public static final int systemNoticeTitle=0x7f0a000e;
     }

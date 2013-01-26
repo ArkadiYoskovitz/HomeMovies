@@ -1,92 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/bluegradient"
-    android:orientation="vertical" >
+    android:layout_height="wrap_content" >
 
-    <TableRow
-        android:id="@id/customDialogShareTableRow1"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/Size15dp"
-        android:gravity="center" >
+        android:background="@drawable/bluegradient"
+        android:orientation="vertical" >
 
-        <ImageView
-            android:id="@id/customDialogShareImageIcon1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/Size7dp"
-            android:background="@drawable/ic_dialog_airmail"
-            android:contentDescription="@string/DescriptionAirMail" />
-
-        <TextView
-            android:id="@id/customDialogShareButtonAirMail"
+        <TableRow
+            android:id="@id/customDialogShareTableRow1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:ellipsize="middle"
-            android:singleLine="true"
-            android:text="@string/ShareDialogEmail"
-            android:textColor="@color/White"
-            android:textSize="@dimen/Size25dp"
-            android:typeface="sans" />
-    </TableRow>
+            android:layout_margin="@dimen/Size15dp"
+            android:gravity="center" >
 
-    <TableRow
-        android:id="@id/customDialogShareTableRow2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/Size15dp"
-        android:gravity="center" >
+            <ImageView
+                android:id="@id/customDialogShareImageIcon1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/Size7dp"
+                android:background="@drawable/ic_dialog_airmail"
+                android:contentDescription="@string/DescriptionAirMail" />
 
-        <ImageView
-            android:id="@id/customDialogShareImageIcon2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/Size7dp"
-            android:background="@drawable/ic_dialog_facebook"
-            android:contentDescription="@string/DescriptionFaceBook" />
+            <TextView
+                android:id="@id/customDialogShareButtonAirMail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="middle"
+                android:singleLine="true"
+                android:text="@string/ShareDialogEmail"
+                android:textColor="@color/White"
+                android:textSize="@dimen/Size25dp"
+                android:typeface="sans" />
+        </TableRow>
 
-        <TextView
-            android:id="@id/customDialogShareButtonFaceBook"
+        <TableRow
+            android:id="@id/customDialogShareTableRow2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:ellipsize="middle"
-            android:singleLine="true"
-            android:text="@string/ShareDialogFaceBook"
-            android:textColor="@color/White"
-            android:textSize="@dimen/Size25dp"
-            android:typeface="sans" />
-    </TableRow>
+            android:layout_margin="@dimen/Size15dp"
+            android:gravity="center" >
 
-    <TableRow
-        android:id="@id/customDialogShareTableRow3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/Size15dp"
-        android:gravity="center" >
+            <ImageView
+                android:id="@id/customDialogShareImageIcon2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/Size7dp"
+                android:background="@drawable/ic_dialog_facebook"
+                android:contentDescription="@string/DescriptionFaceBook" />
 
-        <ImageView
-            android:id="@id/customDialogShareImageIcon3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/Size7dp"
-            android:background="@drawable/ic_dialog_tweeter"
-            android:contentDescription="@string/DescriptionTweeter" />
+            <TextView
+                android:id="@id/customDialogShareButtonFaceBook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="middle"
+                android:singleLine="true"
+                android:text="@string/ShareDialogFaceBook"
+                android:textColor="@color/White"
+                android:textSize="@dimen/Size25dp"
+                android:typeface="sans" />
+        </TableRow>
 
-        <TextView
-            android:id="@id/customDialogShareButtonTweeter"
+        <TableRow
+            android:id="@id/customDialogShareTableRow3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:ellipsize="middle"
-            android:singleLine="true"
-            android:text="@string/ShareDialogTweeter"
-            android:textColor="@color/White"
-            android:textSize="@dimen/Size25dp"
-            android:typeface="sans" />
-    </TableRow>
+            android:layout_margin="@dimen/Size15dp"
+            android:gravity="center" >
 
-</LinearLayout>
+            <ImageView
+                android:id="@id/customDialogShareImageIcon3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/Size7dp"
+                android:background="@drawable/ic_dialog_tweeter"
+                android:contentDescription="@string/DescriptionTweeter" />
+
+            <TextView
+                android:id="@id/customDialogShareButtonTweeter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="middle"
+                android:singleLine="true"
+                android:text="@string/ShareDialogTweeter"
+                android:textColor="@color/White"
+                android:textSize="@dimen/Size25dp"
+                android:typeface="sans" />
+        </TableRow>
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General App related Strings -->
+    <string name="app_name">ספריית סרטים בייתית</string>
+    
+    <!-- Button names related Strings -->
+    <!-- General buttons -->
+    <string name="btnLableCancel">ביטול</string>
+    <string name="btnLableDelete">מחק</string>
+    <string name="btnLableCommit">שמור</string>
+
+    <!-- Main screen buttons -->
+    <string name="btnLableMainSettings">הגדרות</string>
+    <string name="btnLableMainSearch">חיפוש</string>
+    <string name="btnLableMainAdd">הוסף פריט</string>
+
+    <!-- Edit screen buttons -->
+    <string name="btnLableEditShow">הצג תמונה</string>
+
+    <!-- Web screen buttons -->
+    <string name="btnLableWebSearchGo">חפש</string>
+
+    <!-- Label names related Strings -->
+    <!-- Screen Main label -->
+    <string name="note_application">הסרטים שלי</string>
+
+    <!-- Screen Edit label -->
+    <string name="labelSubject">נושא:</string>
+    <string name="labelBody">תוכן:</string>
+    <string name="labelURL">URL:</string>
+
+    <!-- Screen Web label -->
+    <string name="labelSearch">חיפוש:</string>
+
+    <!-- System Notice related Strings -->
+    <string name="systemNoticeTitle">הודעת מערכת</string>
+    <string name="systemNoticeMsg">אין פריטים להצגה, לחץ על כפתור ההוספה על מנת להוסיף פריט חדש לרשימה</string>
+    <string name="systemNoticeButton">אישור</string>
+
+    <!-- Adding Method Selection -->
+    <string name="AddingDialogMsg">בחר כיצד להוסיף פריט</string>
+    <string name="AddingDialogLocal">הוסף ידנית</string>
+    <string name="AddingDialogWeb">חפש ברשת</string>
+    <string name="AddingDialogCancel">ביטול</string>
+
+    <!-- Share Selection -->
+    <string name="ShareDialogTitle">שתף</string>
+    <string name="ShareDialogEmail">שלח דוא"ל</string>
+    <string name="ShareDialogFaceBook">Click to Post</string>
+    <string name="ShareDialogTweeter">Click to Tweet</string>
+
+    <!-- Rank Selection -->
+    <string name="RankDialogTitle">דרוג</string>
+    <string name="RankDialogMsg">בחר את דרוג הפריט</string>
+
+    <!-- Image Description -->
+    <string name="ImagePlaceHolder">Image PlaceHolder</string>
+    <string name="DescriptionAirMail">Air Mail</string>
+    <string name="DescriptionFaceBook">FaceBook</string>
+    <string name="DescriptionTweeter">Tweeter</string>
+    <string name="ErrorMsgDownLoadWeb">Problem downloading info. Try again later</string>
+    <string name="ErrorMsgTextToSpeech">השפה הנבחרת אינה נתמכת במכשיר זה</string>
+    <!-- row screen -->
+    <string name="rowHolderText">Rihanna Love the way lie Rihanna Love the way lie</string>
+    <string name="rowIconDescription">Icon Description</string>
+    <!--  -->
+    <string name="emailHint">John.Appleseed@iCloud.com</string>
+    <string name="ScreenEditHint">Default value</string>
+    <string name="checkBoxLableScreenEdit">Seen this film</string>
+
+</resources>
