@@ -236,6 +236,13 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// OnClick Events
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public void onClickEditCamera(View view) {
+		closeKeybord();
+		// implement using camera via intent
+
+		Toast.makeText(this, "test something", Toast.LENGTH_SHORT).show();
+	}
+
 	public void onClickEditShow(View view) {
 		closeKeybord();
 

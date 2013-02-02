@@ -11,6 +11,7 @@ import il.co.All4Students.homemovies.core.Item;
 import il.co.All4Students.homemovies.core.ItemCompareRTID;
 import il.co.All4Students.homemovies.core.ItemCompareRank;
 import il.co.All4Students.homemovies.core.ItemCompareSubject;
+import il.co.All4Students.homemovies.dbUtil.ItemsHandler;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -72,10 +74,14 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.list_row, parent, false);
 			viewHolder = new RowViewHolder();
-			viewHolder.rowTitle = (TextView) convertView.findViewById(R.id.rowTitle);
-			viewHolder.rowRank = (RatingBar) convertView.findViewById(R.id.rowRating);
-			viewHolder.rowCheckBox = (CheckBox) convertView.findViewById(R.id.rowCheckBox);
-			viewHolder.rowImage = (ImageView) convertView.findViewById(R.id.rowImage);
+			viewHolder.rowTitle = (TextView) convertView
+					.findViewById(R.id.rowTitle);
+			viewHolder.rowRank = (RatingBar) convertView
+					.findViewById(R.id.rowRating);
+			viewHolder.rowCheckBox = (CheckBox) convertView
+					.findViewById(R.id.rowCheckBox);
+			viewHolder.rowImage = (ImageView) convertView
+					.findViewById(R.id.rowImage);
 			convertView.setTag(viewHolder);
 		} else {
 			viewHolder = (RowViewHolder) convertView.getTag();
@@ -86,6 +92,19 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 		viewHolder.rowTitle.setText(mItem.toString());
 		viewHolder.rowRank.setRating(((float) mItem.getRank()) / 10);
 		viewHolder.rowCheckBox.setChecked(mItem.getViewd());
+		
+		viewHolder.rowCheckBox
+				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+					@Override
+					public void onCheckedChanged(CompoundButton buttonView,
+							boolean isChecked) {
+						mItem.setViewd(isChecked);
+						ItemsHandler itemHandler = new ItemsHandler(mContext);
+						itemHandler.updateItem(mItem);
+						notifyDataSetChanged();
+					}
+				});
 
 		if (!mSettings.getEnablePreview()) {
 			viewHolder.rowImage.setVisibility(View.GONE);

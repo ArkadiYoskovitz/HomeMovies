@@ -68,6 +68,16 @@
             <CheckBox
                 android:id="@id/ScreenEditCheckBox"
                 android:layout_weight="1" />
+
+            <ImageButton
+                android:id="@id/ScreenEditImageButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/Size2dp"
+                android:background="@android:drawable/ic_menu_camera"
+                android:contentDescription="@string/DescriptionCamera"
+                android:onClick="onClickEditCamera"
+                android:src="@android:drawable/ic_menu_camera" />
         </TableRow>
 
         <TableRow

@@ -57,6 +57,7 @@
     <string name="DescriptionAirMail">Air Mail</string>
     <string name="DescriptionFaceBook">FaceBook</string>
     <string name="DescriptionTweeter">Tweeter</string>
+    <string name="DescriptionCamera">Camera</string>
     <string name="ErrorMsgDownLoadWeb">Problem downloading info. Try again later</string>
     <string name="ErrorMsgTextToSpeech">Language is not supported</string>
 

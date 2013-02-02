@@ -56,7 +56,6 @@ import android.widget.Toast;
  * Main Activity of the App handels the IO to the DB
  * 
  * @author Arkadi Yoskovitz
- * 
  */
 public class ScreenMain extends Activity implements OnItemClickListener,
 		OnSharedPreferenceChangeListener {
