@@ -263,17 +263,18 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 				ScreenMainEditText.addTextChangedListener(new TextWatcher() {
 
 					@Override
-					public void onTextChanged(CharSequence s, int start,
+					public void onTextChanged(CharSequence cs, int start,
 							int before, int count) {
 						if (count < before) {
-							mAdapter.resetData();
+							ScreenMain.this.mAdapter.resetData();
 						}
-						mAdapter.getFilter().filter(
-								ScreenMainEditText.getText().toString());
+						ScreenMain.this.mAdapter.getFilter().filter(cs);
+						ScreenMain.this.mAdapter.notifyDataSetChanged();
+						// ScreenMainEditText.getText().toString());
 					}
 
 					@Override
-					public void beforeTextChanged(CharSequence s, int start,
+					public void beforeTextChanged(CharSequence cs, int start,
 							int count, int after) {
 					}
 

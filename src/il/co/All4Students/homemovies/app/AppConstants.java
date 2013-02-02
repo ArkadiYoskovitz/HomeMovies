@@ -7,6 +7,8 @@ public class AppConstants {
 	public static final String LOG_TAG_SCREEN_MAIN = "*** ScreenMain ***";
 	public static final String LOG_TAG_SCREEN_EDIT = "*** ScreenEdit ***";
 	public static final String LOG_TAG_SCREEN_WEB = "*** ScreenWeb ***";
+	public static final String LOG_TAG_SCREEN_PREFERENCE = "*** ScreenPreference ***";
+
 	public static final String LOG_TAG_WEB_DMovieInfo = "*** AsyncTask DownloadMovieInfo ***";
 	public static final String LOG_TAG_TextToSpeech = "*** TextToSpeech ***";
 	public static final String LOG_TAG_ITEM = "*** Item Log ***";

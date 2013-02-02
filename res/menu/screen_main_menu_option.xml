@@ -3,22 +3,22 @@
     <item
         android:id="@+id/screenMainOptionMenuExitSettings"
         android:orderInCategory="10"
-        android:title="Exit"/>
+        android:title="@string/lableScreenMainOptionMenuExitSettings"/>
     <item
         android:id="@+id/screenMainOptionMenuDeletAllIteams"
         android:icon="@android:drawable/ic_menu_delete"
         android:orderInCategory="20"
-        android:title="Delet All Iteams"/>
+        android:title="@string/lableScreenMainOptionMenuDeletAllIteams"/>
     <item
         android:id="@+id/screenMainOptionMenuSearch"
         android:icon="@android:drawable/ic_menu_search"
         android:orderInCategory="30"
-        android:title="Search"/>
+        android:title="@string/lableScreenMainOptionMenuSearch"/>
     <item
         android:id="@+id/screenMainOptionMenuSettings"
         android:icon="@android:drawable/ic_menu_preferences"
         android:orderInCategory="40"
         android:showAsAction="never"
-        android:title="Settings"/>
+        android:title="@string/lableScreenMainOptionMenuSettings"/>
 
 </menu>

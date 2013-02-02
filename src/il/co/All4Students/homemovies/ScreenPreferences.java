@@ -1,6 +1,10 @@
 package il.co.All4Students.homemovies;
 
 import il.co.All4Students.homemovies.app.ApplicationPreference;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
@@ -14,6 +18,7 @@ import android.preference.PreferenceManager;
 public class ScreenPreferences extends PreferenceActivity {
 	// Attributes
 	private ApplicationPreference mSettings;
+	private String mLanguage;
 
 	// System Events
 	@SuppressWarnings("deprecation")
@@ -27,6 +32,7 @@ public class ScreenPreferences extends PreferenceActivity {
 	protected void onResume() {
 		super.onResume();
 		mSettings = new ApplicationPreference(ScreenPreferences.this);
+		mLanguage = mSettings.getLanguage();
 	}
 
 	@Override
@@ -56,5 +62,17 @@ public class ScreenPreferences extends PreferenceActivity {
 		mSettings.setSortMethod(sortMethod);
 		mSettings.setEnableColor(isColored);
 		mSettings.setEnablePreview(isPreview);
+
+		if (!mLanguage.equals(mSettings.getLanguage())) {
+			AlarmManager mgr = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+			mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 2000,
+					PendingIntent.getActivity(getApplication()
+							.getApplicationContext(), 0,
+							new Intent(getIntent()),
+							Intent.FLAG_ACTIVITY_NEW_TASK));
+			System.exit(2);
+		}
+
 	}
 }

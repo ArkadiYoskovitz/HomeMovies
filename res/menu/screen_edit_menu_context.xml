@@ -3,16 +3,16 @@
 
     <item
         android:id="@+id/screenEditContextMenuShare"
-        android:title="Share"/>
+        android:title="@string/lableScreenEditContextMenuShare"/>
     <item
         android:id="@+id/screenEditContextMenuRank"
-        android:title="Rank Film"/>
+        android:title="@string/lableScreenEditContextMenuRank"/>
     <item
         android:id="@+id/screenEditContextMenuViewed"
-        android:title="Seen"/>
+        android:title="@string/lableScreenEditContextMenuSeen"/>
     <item
         android:id="@+id/screenEditContextMenuSaveToCard"
-        android:title="Save Picture"/>
+        android:title="@string/lableScreenEditContextMenuSaveToCard"/>
 
 </menu>
 

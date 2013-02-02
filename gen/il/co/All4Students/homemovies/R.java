@@ -307,7 +307,7 @@ public final class R {
  Rank Selection 
          */
         public static final int RankDialogTitle=0x7f0a0019;
-        public static final int ScreenEditHint=0x7f0a0022;
+        public static final int ScreenEditHint=0x7f0a0032;
         public static final int ShareDialogEmail=0x7f0a0016;
         public static final int ShareDialogFaceBook=0x7f0a0017;
         /**  Share Selection 
@@ -341,11 +341,11 @@ public final class R {
  Web screen buttons 
          */
         public static final int btnLableWebSearchGo=0x7f0a0008;
-        public static final int checkBoxLableScreenEdit=0x7f0a0023;
-        /**   
+        public static final int checkBoxLableScreenEdit=0x7f0a0033;
+        /**  Mincs 
   
          */
-        public static final int emailHint=0x7f0a0021;
+        public static final int emailHint=0x7f0a0031;
         public static final int labelBody=0x7f0a000b;
         /**  Screen Web label 
  Screen Web label 
@@ -356,16 +356,95 @@ public final class R {
          */
         public static final int labelSubject=0x7f0a000a;
         public static final int labelURL=0x7f0a000c;
+        public static final int lableScreenEditContextMenuRank=0x7f0a002c;
+        public static final int lableScreenEditContextMenuSaveToCard=0x7f0a002e;
+        public static final int lableScreenEditContextMenuSeen=0x7f0a002d;
+        /**  ScreenEdit Context 
+ ScreenEdit Context 
+         */
+        public static final int lableScreenEditContextMenuShare=0x7f0a002b;
+        /**  ScreenEdit Option 
+ ScreenEdit Option 
+         */
+        public static final int lableScreenEditOptionMenuShare=0x7f0a0029;
+        public static final int lableScreenEditOptionMenuSpeach=0x7f0a002a;
+        public static final int lableScreenMainContextMenuDelete=0x7f0a0028;
+        /**  ScreenMain Context 
+ ScreenMain Context 
+         */
+        public static final int lableScreenMainContextMenuEdit=0x7f0a0025;
+        public static final int lableScreenMainContextMenuRank=0x7f0a0027;
+        public static final int lableScreenMainContextMenuShare=0x7f0a0026;
+        public static final int lableScreenMainOptionMenuDeletAllIteams=0x7f0a0022;
+        /**  Menu String Elements 
+ ScreenMain Option 
+ Menu String Elements 
+ ScreenMain Option 
+         */
+        public static final int lableScreenMainOptionMenuExitSettings=0x7f0a0021;
+        public static final int lableScreenMainOptionMenuSearch=0x7f0a0023;
+        public static final int lableScreenMainOptionMenuSettings=0x7f0a0024;
+        /**  ScreenWeb Option 
+ ScreenWeb Option 
+         */
+        public static final int lableScreenWebOptionMenuExitSettings=0x7f0a002f;
+        public static final int lableScreenWebOptionMenuSettings=0x7f0a0030;
         /**  Label names related Strings 
  Screen Main label 
  Label names related Strings 
  Screen Main label 
          */
         public static final int note_application=0x7f0a0009;
+        /**  - Preference Strings - 
+ Preference Category 
+ - Preference Strings - 
+ Preference Category 
+         */
+        public static final int preferenceCategoryTitle1=0x7f0a0036;
+        /**  Preference Strings 
+ Preference Strings 
+         */
+        public static final int preferenceCategoryTitle2=0x7f0a0040;
+        public static final int preferenceEmailDefaultValue=0x7f0a003c;
+        public static final int preferenceEmailSummary=0x7f0a003b;
+        /**  Preference Email 
+ Preference Email 
+         */
+        public static final int preferenceEmailTitle=0x7f0a003a;
+        public static final int preferenceEnableColorDefaultValue=0x7f0a0046;
+        public static final int preferenceEnableColorSummary=0x7f0a0045;
+        /**  Preference EnableColor 
+ Preference EnableColor 
+         */
+        public static final int preferenceEnableColorTitle=0x7f0a0044;
+        public static final int preferenceEnablePreviewDefaultValue=0x7f0a0049;
+        public static final int preferenceEnablePreviewSummary=0x7f0a0048;
+        /**  Preference EnablePreview 
+ Preference EnablePreview 
+         */
+        public static final int preferenceEnablePreviewTitle=0x7f0a0047;
+        public static final int preferenceLanguageDefaultValue=0x7f0a003f;
+        public static final int preferenceLanguageSummary=0x7f0a003e;
+        /**  Preference Language 
+ Preference Language 
+         */
+        public static final int preferenceLanguageTitle=0x7f0a003d;
+        public static final int preferenceSortMethodsDefaultValue=0x7f0a0043;
+        public static final int preferenceSortMethodsSummary=0x7f0a0042;
+        /**  Preference SortMethods 
+ Preference SortMethods 
+         */
+        public static final int preferenceSortMethodsTitle=0x7f0a0041;
+        public static final int preferenceSubjectDefaultValue=0x7f0a0039;
+        public static final int preferenceSubjectSummary=0x7f0a0038;
+        /**  Preference Subject 
+ Preference Subject 
+         */
+        public static final int preferenceSubjectTitle=0x7f0a0037;
         /**  row screen 
          */
-        public static final int rowHolderText=0x7f0a0024;
-        public static final int rowIconDescription=0x7f0a0025;
+        public static final int rowHolderText=0x7f0a0034;
+        public static final int rowIconDescription=0x7f0a0035;
         public static final int systemNoticeButton=0x7f0a0010;
         public static final int systemNoticeMsg=0x7f0a000f;
         /**  System Notice related Strings 

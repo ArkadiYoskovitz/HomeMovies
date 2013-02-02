@@ -49,11 +49,23 @@
             android:inputType="textMultiLine"
             tools:ignore="InefficientWeight" />
 
-        <CheckBox
-            android:id="@id/ScreenEditCheckBox"
-            android:layout_width="wrap_content"
+        <TableRow
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/checkBoxLableScreenEdit" />
+            android:gravity="center" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/Size2dp"
+                android:text="@string/checkBoxLableScreenEdit"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="@dimen/Size20dp" />
+
+            <CheckBox
+                android:id="@id/ScreenEditCheckBox"
+                android:layout_weight="1" />
+        </TableRow>
 
         <TableRow
             android:id="@id/ScreenEditTableRow1"

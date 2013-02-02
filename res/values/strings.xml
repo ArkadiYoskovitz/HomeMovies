@@ -3,7 +3,7 @@
 
     <!-- General App related Strings -->
     <string name="app_name">Home Movies</string>
-    
+
     <!-- Button names related Strings -->
     <!-- General buttons -->
     <string name="btnLableCancel">Cancel</string>
@@ -14,10 +14,8 @@
     <string name="btnLableMainSettings">Settings</string>
     <string name="btnLableMainSearch">Search</string>
     <string name="btnLableMainAdd">Add Note</string>
-
     <!-- Edit screen buttons -->
     <string name="btnLableEditShow">Show Image</string>
-
     <!-- Web screen buttons -->
     <string name="btnLableWebSearchGo">Go</string>
 
@@ -61,11 +59,66 @@
     <string name="DescriptionTweeter">Tweeter</string>
     <string name="ErrorMsgDownLoadWeb">Problem downloading info. Try again later</string>
     <string name="ErrorMsgTextToSpeech">Language is not supported</string>
-    <!--  -->
+
+    <!-- Menu String Elements -->
+    <!-- ScreenMain Option -->
+    <string name="lableScreenMainOptionMenuExitSettings">Exit</string>
+    <string name="lableScreenMainOptionMenuDeletAllIteams">Delet All Iteams</string>
+    <string name="lableScreenMainOptionMenuSearch">Search</string>
+    <string name="lableScreenMainOptionMenuSettings">Settings</string>
+    <!-- ScreenMain Context -->
+    <string name="lableScreenMainContextMenuEdit">Edit</string>
+    <string name="lableScreenMainContextMenuShare">Share</string>
+    <string name="lableScreenMainContextMenuRank">Rank Film</string>
+    <string name="lableScreenMainContextMenuDelete">Delete</string>
+    <!-- ScreenEdit Option -->
+    <string name="lableScreenEditOptionMenuShare">Share</string>
+    <string name="lableScreenEditOptionMenuSpeach">Speech</string>
+    <!-- ScreenEdit Context -->
+    <string name="lableScreenEditContextMenuShare">Share</string>
+    <string name="lableScreenEditContextMenuRank">Rank Film</string>
+    <string name="lableScreenEditContextMenuSeen">Seen</string>
+    <string name="lableScreenEditContextMenuSaveToCard">Save Picture</string>
+    <!-- ScreenWeb Option -->
+    <string name="lableScreenWebOptionMenuExitSettings">Exit</string>
+    <string name="lableScreenWebOptionMenuSettings">Settings</string>
+
+    <!-- Mincs -->
     <string name="emailHint">John.Appleseed@iCloud.com</string>
     <string name="ScreenEditHint">Default value</string>
     <string name="checkBoxLableScreenEdit">Seen this film</string>
     <string name="rowHolderText">Rihanna Love the way lie Rihanna Love the way lie</string>
     <string name="rowIconDescription">Icon Description</string>
+    <!-- - Preference Strings - -->
+    <!-- Preference Category -->
+    <string name="preferenceCategoryTitle1">Personal Settings</string>
+    <!-- Preference Subject -->
+    <string name="preferenceSubjectTitle">Subject</string>
+    <string name="preferenceSubjectSummary">Set Default Topic</string>
+    <string name="preferenceSubjectDefaultValue">Default value</string>
+    <!-- Preference Email -->
+    <string name="preferenceEmailTitle">Email</string>
+    <string name="preferenceEmailSummary">Set Default email</string>
+    <string name="preferenceEmailDefaultValue">John.Appleseed@iCloud.com</string>
+
+    <!-- Preference Language -->
+    <string name="preferenceLanguageTitle">Language</string>
+    <string name="preferenceLanguageSummary">Select language</string>
+    <string name="preferenceLanguageDefaultValue">en</string>
+
+    <!-- Preference Strings -->
+    <string name="preferenceCategoryTitle2">List Settings</string>
+    <!-- Preference SortMethods -->
+    <string name="preferenceSortMethodsTitle">Sort Method</string>
+    <string name="preferenceSortMethodsSummary">Select Sort Method</string>
+    <string name="preferenceSortMethodsDefaultValue">0</string>
+    <!-- Preference EnableColor -->
+    <string name="preferenceEnableColorTitle">Enable Color</string>
+    <string name="preferenceEnableColorSummary">Enable Background Coloring of the film list</string>
+    <string name="preferenceEnableColorDefaultValue">Yes</string>
+    <!-- Preference EnablePreview -->
+    <string name="preferenceEnablePreviewTitle">Enable Preview</string>
+    <string name="preferenceEnablePreviewSummary">Show film icons</string>
+    <string name="preferenceEnablePreviewDefaultValue">Yes</string>
 
 </resources>

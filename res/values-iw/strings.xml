@@ -3,7 +3,7 @@
 
     <!-- General App related Strings -->
     <string name="app_name">ספריית סרטים בייתית</string>
-    
+
     <!-- Button names related Strings -->
     <!-- General buttons -->
     <string name="btnLableCancel">ביטול</string>
@@ -68,5 +68,55 @@
     <string name="emailHint">John.Appleseed@iCloud.com</string>
     <string name="ScreenEditHint">Default value</string>
     <string name="checkBoxLableScreenEdit">Seen this film</string>
+    <!-- Menu String Elements -->
+    <!-- ScreenMain Option -->
+    <string name="lableScreenMainOptionMenuExitSettings">צא מהתוכנה</string>
+    <string name="lableScreenMainOptionMenuDeletAllIteams">מחק ספריה</string>
+    <string name="lableScreenMainOptionMenuSearch">חיפוש</string>
+    <string name="lableScreenMainOptionMenuSettings">הגדרות</string>
+    <!-- ScreenMain Context -->
+    <string name="lableScreenMainContextMenuEdit">ערוך פריט</string>
+    <string name="lableScreenMainContextMenuShare">שתף</string>
+    <string name="lableScreenMainContextMenuRank">דרג</string>
+    <string name="lableScreenMainContextMenuDelete">מחק פריט</string>
+    <!-- ScreenEdit Option -->
+    <string name="lableScreenEditOptionMenuShare">שתף</string>
+    <string name="lableScreenEditOptionMenuSpeach">הקרא טקסט</string>
+    <!-- ScreenEdit Context -->
+    <string name="lableScreenEditContextMenuShare">שתף</string>
+    <string name="lableScreenEditContextMenuRank">דרג</string>
+    <string name="lableScreenEditContextMenuSeen">סמן כנצפה</string>
+    <string name="lableScreenEditContextMenuSaveToCard">Save Picture</string>
+    <!-- ScreenWeb Option -->
+    <string name="lableScreenWebOptionMenuExitSettings">צא מהתוכנה</string>
+    <string name="lableScreenWebOptionMenuSettings">הגדרות</string>
+
+    <!-- - Preference Strings - -->
+    <!-- Preference Category -->
+    <string name="preferenceCategoryTitle1">הגדרות אישיות</string>
+    <!-- Preference Subject -->
+    <string name="preferenceSubjectTitle">נושא</string>
+    <string name="preferenceSubjectSummary">הגדר נושא ברירת מחדל</string>
+    <!-- Preference Email -->
+    <string name="preferenceEmailTitle">דואר אלקטרוני</string>
+    <string name="preferenceEmailSummary">הגדר כתובת דואל ברירת מחדל</string>
+
+    <!-- Preference Language -->
+    <string name="preferenceLanguageTitle">שפה</string>
+    <string name="preferenceLanguageSummary">בחר שפה</string>
+
+    <!-- Preference Strings -->
+    <string name="preferenceCategoryTitle2">הגדרות רשימה</string>
+    <!-- Preference SortMethods -->
+    <string name="preferenceSortMethodsTitle">שיטת מיון</string>
+    <string name="preferenceSortMethodsSummary">בחר שיטת מיון</string>
+
+    <!-- Preference EnableColor -->
+    <string name="preferenceEnableColorTitle">אפשר צביאת רקע</string>
+    <string name="preferenceEnableColorSummary">אפשר צביאת רקע של רשימת הסרטים</string>
+
+    <!-- Preference EnablePreview -->
+    <string name="preferenceEnablePreviewTitle">אפשר תמונות רקע</string>
+    <string name="preferenceEnablePreviewSummary">הצג תמונות סרטים</string>
 
 </resources>

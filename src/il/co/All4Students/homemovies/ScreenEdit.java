@@ -59,7 +59,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 
 	// Attributes
 	private Item mEditedItem;
-	private DownloadImageTask downloadTask;
+	private DownloadImageTask mDownloadTask;
 	private ApplicationPreference mSettings;
 	private TextToSpeech mTextToSpeech;
 	private boolean mIsLanguageSupported = true;
@@ -229,17 +229,16 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 		EditText txtSearch = (EditText) findViewById(R.id.ScreenEditEditText3);
 		if (txtSearch.getText() != null) {
 			try {
-				if (downloadTask != null) {
-					if (downloadTask.getStatus() != AsyncTask.Status.FINISHED) {
+				if (mDownloadTask != null) {
+					if (mDownloadTask.getStatus() != AsyncTask.Status.FINISHED) {
 						Log.d(LOG_TAG_SCREEN_WEB,
 								"onClickWebGo - no need to start a new task");
 						return;
 					}
 				}
 				String searchString = txtSearch.getText().toString();
-				DownloadImageTask downloadTask = new DownloadImageTask(
-						ScreenEdit.this);
-				downloadTask.execute(searchString);
+				mDownloadTask = new DownloadImageTask(ScreenEdit.this);
+				mDownloadTask.execute(searchString);
 			} catch (Exception e) {
 				Log.e(LOG_TAG_WEB_SITE, "Exception: " + e.getMessage());
 			}

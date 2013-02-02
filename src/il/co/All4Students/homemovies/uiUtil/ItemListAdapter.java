@@ -26,6 +26,7 @@ import android.widget.CheckBox;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -66,45 +67,70 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
-		View rowView = convertView;
+		RowViewHolder viewHolder;
 
 		if (convertView == null) {
-			rowView = new View(mContext);
-			rowView = mInflater.inflate(R.layout.list_row, null);
+			convertView = mInflater.inflate(R.layout.list_row, parent, false);
+			viewHolder = new RowViewHolder();
+			viewHolder.rowTitle = (TextView) convertView.findViewById(R.id.rowTitle);
+			viewHolder.rowRank = (RatingBar) convertView.findViewById(R.id.rowRating);
+			viewHolder.rowCheckBox = (CheckBox) convertView.findViewById(R.id.rowCheckBox);
+			viewHolder.rowImage = (ImageView) convertView.findViewById(R.id.rowImage);
+			convertView.setTag(viewHolder);
 		} else {
-			rowView = convertView;
+			viewHolder = (RowViewHolder) convertView.getTag();
 		}
-
-		TextView rowTitle = (TextView) rowView.findViewById(R.id.rowTitle);
-		RatingBar rowRank = (RatingBar) rowView.findViewById(R.id.rowRating);
-		CheckBox rowCheckBox = (CheckBox) rowView
-				.findViewById(R.id.rowCheckBox);
 
 		mItem = mItemList.get(position);
 
-		rowTitle.setText(mItem.toString());
-		rowRank.setRating(((float) mItem.getRank()) / 10);
-		rowCheckBox.setChecked(mItem.getViewd());
+		viewHolder.rowTitle.setText(mItem.toString());
+		viewHolder.rowRank.setRating(((float) mItem.getRank()) / 10);
+		viewHolder.rowCheckBox.setChecked(mItem.getViewd());
 
 		if (!mSettings.getEnablePreview()) {
-			ImageView rowImage = (ImageView) rowView
-					.findViewById(R.id.rowImage);
-			rowImage.setVisibility(View.GONE);
+			viewHolder.rowImage.setVisibility(View.GONE);
 		}
 
 		if (mContext instanceof ScreenWeb) {
-			rowRank.setVisibility(View.GONE);
-			rowCheckBox.setVisibility(View.GONE);
+			viewHolder.rowRank.setVisibility(View.GONE);
+			viewHolder.rowCheckBox.setVisibility(View.GONE);
 		} else {
 			if (mSettings.getEnableColor()) {
-				rowView.setBackgroundColor(setColor());
+				convertView.setBackgroundColor(setColor());
 			}
 		}
 
-		return rowView;
+		return convertView;
 	}
 
 	// Additional Methods
+	private void sortCompareable(ArrayList<Item> itemList) {
+		int sortMethod = new ApplicationPreference(mContext).getSortMethod();
+		if (itemList != null) {
+			switch (sortMethod) {
+			case SortByID:
+				Collections.sort(itemList);
+				break;
+
+			case SortByRTID:
+				Collections.sort(itemList, new ItemCompareRTID());
+				break;
+
+			case SortByRank:
+				Collections.sort(itemList, new ItemCompareRank());
+				break;
+
+			case SortBySubject:
+				Collections.sort(itemList, new ItemCompareSubject());
+				break;
+
+			default:
+				Collections.sort(itemList);
+				break;
+			}
+		}
+	}
+
 	public void resetData() {
 		mItemList = mOriginalItemList;
 	}
@@ -131,6 +157,14 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 	}
 
 	// Inner Classes
+	static class RowViewHolder {
+		LinearLayout rowThumbnail;
+		ImageView rowImage;
+		TextView rowTitle;
+		RatingBar rowRank;
+		CheckBox rowCheckBox;
+	}
+
 	@SuppressLint("DefaultLocale")
 	private class ItemFilter extends Filter {
 
@@ -162,42 +196,9 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 		@Override
 		protected void publishResults(CharSequence constraint,
 				FilterResults results) {
-			// Now we have to inform the adapter about the new list filtered
-			if (results.count == 0)
-				notifyDataSetInvalidated();
-			else {
-				mItemList = (ArrayList<Item>) results.values;
-				notifyDataSetChanged();
-			}
+			mItemList = (ArrayList<Item>) results.values;
+			notifyDataSetChanged();
 		}
 
-	}
-
-	// Additional Methods
-	private void sortCompareable(ArrayList<Item> itemList) {
-		int sortMethod = new ApplicationPreference(mContext).getSortMethod();
-		if (itemList != null) {
-			switch (sortMethod) {
-			case SortByID:
-				Collections.sort(itemList);
-				break;
-
-			case SortByRTID:
-				Collections.sort(itemList, new ItemCompareRTID());
-				break;
-
-			case SortByRank:
-				Collections.sort(itemList, new ItemCompareRank());
-				break;
-
-			case SortBySubject:
-				Collections.sort(itemList, new ItemCompareSubject());
-				break;
-
-			default:
-				Collections.sort(itemList);
-				break;
-			}
-		}
 	}
 }

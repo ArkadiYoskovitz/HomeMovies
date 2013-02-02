@@ -4,10 +4,10 @@
     <item
         android:id="@+id/screenEditOptionMenuShare"
         android:icon="@android:drawable/ic_menu_share"
-        android:title="Share"/>
+        android:title="@string/lableScreenEditOptionMenuShare"/>
     <item
         android:id="@+id/screenEditOptionMenuSpeach"
         android:icon="@android:drawable/ic_media_pause"
-        android:title="Speach"/>
+        android:title="@string/lableScreenEditOptionMenuSpeach"/>
 
 </menu>

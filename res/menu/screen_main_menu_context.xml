@@ -3,15 +3,15 @@
 
     <item
         android:id="@+id/screenMainContextMenuEdit"
-        android:title="Edit"/>
+        android:title="@string/lableScreenMainContextMenuEdit"/>
     <item
         android:id="@+id/screenMainContextMenuShare"
-        android:title="Share"/>
+        android:title="@string/lableScreenMainContextMenuShare"/>
     <item
         android:id="@+id/screenMainContextMenuRank"
-        android:title="Rank Item"/>
+        android:title="@string/lableScreenMainContextMenuRank"/>
     <item
         android:id="@+id/screenMainContextMenuDelete"
-        android:title="Delete"/>
+        android:title="@string/lableScreenMainContextMenuDelete"/>
 
 </menu>

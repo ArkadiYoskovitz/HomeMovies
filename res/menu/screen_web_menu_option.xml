@@ -3,12 +3,12 @@
     <item
         android:id="@+id/screenWebOptionMenuExitSettings"
         android:orderInCategory="10"
-        android:title="Exit"/>
+        android:title="@string/lableScreenWebOptionMenuExitSettings"/>
     <item
         android:id="@+id/screenWebOptionMenuSettings"
         android:icon="@android:drawable/ic_menu_preferences"
         android:orderInCategory="20"
         android:showAsAction="never"
-        android:title="Settings"/>
+        android:title="@string/lableScreenWebOptionMenuSettings"/>
 
 </menu>

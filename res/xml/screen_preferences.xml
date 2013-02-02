@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <PreferenceCategory android:title="Personal Settings" >
+    <PreferenceCategory android:title="@string/preferenceCategoryTitle1" >
         <EditTextPreference
-            android:defaultValue="Default Topic"
+            android:defaultValue="@string/preferenceSubjectDefaultValue"
             android:key="AppPreffSubject"
-            android:summary="Set Default Topic"
-            android:title="Subject" />
+            android:summary="@string/preferenceSubjectSummary"
+            android:title="@string/preferenceSubjectTitle" />
         <EditTextPreference
             android:defaultValue="@string/emailHint"
             android:key="AppPreffEmail"
@@ -14,32 +14,34 @@
             android:title="Email" />
 
         <ListPreference
-            android:defaultValue="en"
+            android:defaultValue="@string/preferenceLanguageDefaultValue"
             android:entries="@array/LanguageNames"
             android:entryValues="@array/LanguageCodes"
             android:key="AppPreffLanguage"
-            android:summary="Select language"
-            android:title="Language" />
+            android:summary="@string/preferenceLanguageSummary"
+            android:title="@string/preferenceLanguageTitle" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="List Settings" >
+    <PreferenceCategory android:title="@string/preferenceCategoryTitle2" >
         <ListPreference
-            android:defaultValue="0"
+            android:defaultValue="@string/preferenceSortMethodsDefaultValue"
             android:entries="@array/SortMethodNames"
             android:entryValues="@array/SortMethodCodes"
             android:key="AppPreffSortMethods"
-            android:summary="Select Sort Method"
-            android:title="Sort Method" />
+            android:summary="@string/preferenceSortMethodsSummary"
+            android:title="@string/preferenceSortMethodsTitle" />
 
         <CheckBoxPreference
-            android:defaultValue="Yes"
+            android:defaultValue="@string/preferenceEnableColorDefaultValue"
             android:enabled="true"
             android:key="AppPreffEnableColor"
-            android:title="Enable Background Color" />
+            android:summary="@string/preferenceEnableColorSummary"
+            android:title="@string/preferenceEnableColorTitle" />
         <CheckBoxPreference
-            android:defaultValue="Yes"
+            android:defaultValue="@string/preferenceEnablePreviewDefaultValue"
             android:enabled="true"
             android:key="AppPreffEnablePreview"
-            android:title="Enable ListView Preview" />
+            android:summary="@string/preferenceEnablePreviewSummary"
+            android:title="@string/preferenceEnablePreviewTitle" />
     </PreferenceCategory>
 
 </PreferenceScreen>
