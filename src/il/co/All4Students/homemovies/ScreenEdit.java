@@ -26,6 +26,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -87,6 +88,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 			EditText text3 = (EditText) findViewById(R.id.ScreenEditEditText3);
 			CheckBox checkBox = (CheckBox) findViewById(R.id.ScreenEditCheckBox);
 			final ImageView screenEditImage = (ImageView) findViewById(R.id.ScreenEditImageView1);
+
 			mSettings = new ApplicationPreference(ScreenEdit.this);
 
 			if (mEditedItem.getSubject().length() == 0) {
@@ -130,12 +132,23 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 		super.onSaveInstanceState(outState);
 		itemRefreshFromScreen();
 		outState.putParcelable("mItem", mEditedItem);
+
+		ImageView imageView = (ImageView) findViewById(R.id.ScreenEditImageView1);
+		BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
+		Bitmap bitmap = drawable.getBitmap();
+		outState.putParcelable("mImage", bitmap);
 	}
 
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 		super.onRestoreInstanceState(savedInstanceState);
 		mEditedItem = savedInstanceState.getParcelable("mItem");
+		Bitmap bitmap = (Bitmap) savedInstanceState.getParcelable("mImage");
+
+		ImageView editImage = (ImageView) findViewById(R.id.ScreenEditImageView1);
+		if (bitmap != null) {
+			editImage.setImageBitmap(bitmap);
+		}
 	}
 
 	@Override
