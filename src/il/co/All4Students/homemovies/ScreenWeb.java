@@ -43,7 +43,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -138,10 +137,6 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 				mListView = (ListView) findViewById(R.id.ScreenWebListView);
 				sortCompareable();
 				mAdapter = new ItemListAdapter(mItemList, ScreenWeb.this);
-				mListView.setDivider(new ColorDrawable(ScreenWeb.this
-						.getResources().getColor(R.color.Crimson)));
-				mListView.setDividerHeight((int) ScreenWeb.this.getResources()
-						.getDimension(R.dimen.Size2dp));
 				mListView.setAdapter(mAdapter);
 				break;
 			case Item_App_Settings:
@@ -269,10 +264,6 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 		mListView = (ListView) findViewById(R.id.ScreenWebListView);
 		sortCompareable();
 		mAdapter = new ItemListAdapter(mItemList, ScreenWeb.this);
-		mListView.setDivider(new ColorDrawable(ScreenWeb.this.getResources()
-				.getColor(R.color.Crimson)));
-		mListView.setDividerHeight((int) ScreenWeb.this.getResources()
-				.getDimension(R.dimen.Size2dp));
 		mListView.setAdapter(mAdapter);
 		mAdapter.notifyDataSetChanged();
 		mListView.setOnItemClickListener(this);
@@ -432,10 +423,6 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 						.findViewById(R.id.ScreenWebListView);
 				sortCompareable();
 				mAdapter = new ItemListAdapter(mItemList, mActivity);
-				mListView.setDivider(new ColorDrawable(mActivity.getResources()
-						.getColor(R.color.Crimson)));
-				mListView.setDividerHeight((int) mActivity.getResources()
-						.getDimension(R.dimen.Size2dp));
 				mListView.setAdapter(mAdapter);
 				mListView.setOnItemClickListener(ScreenWeb.this);
 			} else {

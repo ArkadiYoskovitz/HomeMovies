@@ -30,7 +30,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
@@ -502,10 +501,6 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		mListView = (ListView) findViewById(R.id.ScreenMainListView);
 		sortCompareable();
 		mAdapter = new ItemListAdapter(mItemList, ScreenMain.this);
-		mListView.setDivider(new ColorDrawable(this.getResources().getColor(
-				R.color.Crimson)));
-		mListView.setDividerHeight((int) getResources().getDimension(
-				R.dimen.Size2dp));
 		mListView.setAdapter(mAdapter);
 		mAdapter.notifyDataSetChanged();
 		mListView.setOnItemClickListener(this);

@@ -60,6 +60,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/Size7dp"
         android:layout_weight="1"
+        android:divider="@color/Crimson"
+        android:dividerHeight="@dimen/Size2dp"
         tools:ignore="InefficientWeight" >
     </ListView>
 

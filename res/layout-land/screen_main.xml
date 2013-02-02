@@ -36,6 +36,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:cacheColorHint="@android:color/transparent"
+        android:divider="@color/Crimson"
+        android:dividerHeight="@dimen/Size2dp"
         android:fadingEdge="none"
         android:listSelector="@android:color/transparent"
         tools:ignore="InefficientWeight" >
