@@ -59,13 +59,14 @@
     <string name="DescriptionAirMail">Air Mail</string>
     <string name="DescriptionFaceBook">FaceBook</string>
     <string name="DescriptionTweeter">Tweeter</string>
-    <string name="ErrorMsgDownLoadWeb">Problem downloading info. Try again later</string>
-    <string name="ErrorMsgTextToSpeech">השפה הנבחרת אינה נתמכת במכשיר זה</string>
+    <string name="DescriptionCamera">Camera</string>
+    <string name="DescriptionGallery">Gallery</string>
+    <string name="ErrorMsgDownLoadWeb">ארעה תקלה בלתי צפויה בחיבורת אנא נסה שנית מאוחר יותר</string>
+    <string name="ErrorMsgTextToSpeech">השפה הנבחרת אינה נתמכת במכשיר זה, בדוק את הגדרות המכשיר לרשימה של שפות זמינות</string>
     <!-- row screen -->
     <string name="rowHolderText">Rihanna Love the way lie Rihanna Love the way lie</string>
     <string name="rowIconDescription">Icon Description</string>
     <!--  -->
-    <string name="emailHint">John.Appleseed@iCloud.com</string>
     <string name="ScreenEditHint">Default value</string>
     <string name="checkBoxLableScreenEdit">Seen this film</string>
     <!-- Menu String Elements -->
@@ -97,26 +98,28 @@
     <!-- Preference Subject -->
     <string name="preferenceSubjectTitle">נושא</string>
     <string name="preferenceSubjectSummary">הגדר נושא ברירת מחדל</string>
+    <string name="preferenceSubjectDefaultValue">Default value</string>
     <!-- Preference Email -->
     <string name="preferenceEmailTitle">דואר אלקטרוני</string>
     <string name="preferenceEmailSummary">הגדר כתובת דואל ברירת מחדל</string>
-
+    <string name="preferenceEmailDefaultValue">John.Appleseed@iCloud.com</string>
     <!-- Preference Language -->
     <string name="preferenceLanguageTitle">שפה</string>
     <string name="preferenceLanguageSummary">בחר שפה</string>
-
+    <string name="preferenceLanguageDefaultValue">en</string>
     <!-- Preference Strings -->
     <string name="preferenceCategoryTitle2">הגדרות רשימה</string>
     <!-- Preference SortMethods -->
     <string name="preferenceSortMethodsTitle">שיטת מיון</string>
     <string name="preferenceSortMethodsSummary">בחר שיטת מיון</string>
-
+    <string name="preferenceSortMethodsDefaultValue">0</string>
     <!-- Preference EnableColor -->
     <string name="preferenceEnableColorTitle">אפשר צביאת רקע</string>
     <string name="preferenceEnableColorSummary">אפשר צביאת רקע של רשימת הסרטים</string>
-
+    <string name="preferenceEnableColorDefaultValue">Yes</string>
     <!-- Preference EnablePreview -->
     <string name="preferenceEnablePreviewTitle">אפשר תמונות רקע</string>
     <string name="preferenceEnablePreviewSummary">הצג תמונות סרטים</string>
+    <string name="preferenceEnablePreviewDefaultValue">Yes</string>
 
 </resources>

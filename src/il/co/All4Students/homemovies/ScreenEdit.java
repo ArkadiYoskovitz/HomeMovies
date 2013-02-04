@@ -1,6 +1,7 @@
 package il.co.All4Students.homemovies;
 
 import static il.co.All4Students.homemovies.app.AppConstants.INTENT_TARGET;
+import static il.co.All4Students.homemovies.app.AppConstants.Item_Take_Picture;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_SCREEN_EDIT;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_SCREEN_WEB;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_TextToSpeech;
@@ -10,7 +11,7 @@ import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_COMMIT;
 import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_DELETE;
 import il.co.All4Students.homemovies.app.ApplicationPreference;
 import il.co.All4Students.homemovies.core.Item;
-import il.co.All4Students.homemovies.dbUtil.ItemsHandler;
+import il.co.All4Students.homemovies.util.db.ItemsHandler;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -22,6 +23,7 @@ import java.util.Locale;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -54,7 +56,6 @@ import android.widget.Toast;
  * Edit screen
  * 
  * @author Arkadi Yoskovitz
- * 
  */
 public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener {
 
@@ -161,6 +162,19 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	}
 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// Activity sending info Events
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == Item_Take_Picture) {
+			Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+			ImageView imgTakenPhoto = (ImageView) findViewById(R.id.ScreenEditImageView1);
+			imgTakenPhoto.setImageBitmap(thumbnail);
+		}
+	}
+
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Menu Events
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -238,9 +252,30 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void onClickEditCamera(View view) {
 		closeKeybord();
-		// implement using camera via intent
 
-		Toast.makeText(this, "test something", Toast.LENGTH_SHORT).show();
+		Intent returnIntent = new Intent();
+		returnIntent.putExtra(INTENT_TARGET, mEditedItem);
+		try {
+			Intent cameraIntent = new Intent(
+					android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+			startActivityForResult(cameraIntent, Item_Take_Picture);
+
+		} catch (ActivityNotFoundException NOFOUND) {
+			// display an error message
+
+			Toast toast = Toast.makeText(this,
+					"Whoops - your device doesn't support capturing images!",
+					Toast.LENGTH_SHORT);
+			toast.show();
+		}
+
+	}
+
+	public void onClickEditGallery(View view) {
+		closeKeybord();
+
+		Intent intent = new Intent(ScreenEdit.this, ScreenGrid.class);
+		startActivity(intent);
 	}
 
 	public void onClickEditShow(View view) {
@@ -317,17 +352,23 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	@Override
 	public void onInit(int status) {
-		if (status == TextToSpeech.SUCCESS) {
-			int result = mTextToSpeech.setLanguage(Locale.US);
-			// mTextToSpeech.setPitch(5); // set pitch level
-			// mTextToSpeech.setSpeechRate(2); // set speech speed rate
-			if (result == TextToSpeech.LANG_MISSING_DATA
-					|| result == TextToSpeech.LANG_NOT_SUPPORTED) {
-				Log.e(LOG_TAG_TextToSpeech, "Language is not supported");
-				mIsLanguageSupported = false;
+		try {
+			if (status == TextToSpeech.SUCCESS) {
+				// int result = mTextToSpeech
+				// .setLanguage(new Locale(getBaseContext().getResources()
+				// .getConfiguration().locale.getLanguage()));
+
+				int result = mTextToSpeech.setLanguage(Locale.US);
+
+				if (result == TextToSpeech.LANG_MISSING_DATA
+						|| result == TextToSpeech.LANG_NOT_SUPPORTED) {
+					Log.e(LOG_TAG_TextToSpeech, "Language is not supported");
+					mIsLanguageSupported = false;
+				}
 			}
-		} else {
+		} catch (Exception e) {
 			Log.e(LOG_TAG_TextToSpeech, "Initilization Failed");
+			Log.e(LOG_TAG_TextToSpeech, e.getMessage());
 		}
 	}
 

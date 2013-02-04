@@ -75,6 +75,15 @@
                 android:contentDescription="@string/DescriptionCamera"
                 android:onClick="onClickEditCamera"
                 android:src="@android:drawable/ic_menu_camera" />
+            <ImageButton
+                android:id="@id/ScreenEditImageButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/Size2dp"
+                android:background="@android:drawable/ic_menu_gallery"
+                android:contentDescription="@string/DescriptionGallery"
+                android:onClick="onClickEditGallery"
+                android:src="@android:drawable/ic_menu_gallery" />
         </TableRow>
 
         <TableRow
@@ -103,7 +112,7 @@
                 android:maxLines="@integer/lineOne" />
 
             <ImageButton
-                android:id="@id/ScreenEditImageButton2"
+                android:id="@id/ScreenEditImageButton3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

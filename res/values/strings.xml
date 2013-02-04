@@ -58,8 +58,9 @@
     <string name="DescriptionFaceBook">FaceBook</string>
     <string name="DescriptionTweeter">Tweeter</string>
     <string name="DescriptionCamera">Camera</string>
+    <string name="DescriptionGallery">Gallery</string>
     <string name="ErrorMsgDownLoadWeb">Problem downloading info. Try again later</string>
-    <string name="ErrorMsgTextToSpeech">Language is not supported</string>
+    <string name="ErrorMsgTextToSpeech">This Language is currently not supported on this device, see the device settings for a list of available language</string>
 
     <!-- Menu String Elements -->
     <!-- ScreenMain Option -->
@@ -85,7 +86,6 @@
     <string name="lableScreenWebOptionMenuSettings">Settings</string>
 
     <!-- Mincs -->
-    <string name="emailHint">John.Appleseed@iCloud.com</string>
     <string name="ScreenEditHint">Default value</string>
     <string name="checkBoxLableScreenEdit">Seen this film</string>
     <string name="rowHolderText">Rihanna Love the way lie Rihanna Love the way lie</string>

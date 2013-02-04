@@ -8,10 +8,10 @@
             android:summary="@string/preferenceSubjectSummary"
             android:title="@string/preferenceSubjectTitle" />
         <EditTextPreference
-            android:defaultValue="@string/emailHint"
+            android:defaultValue="@string/preferenceEmailDefaultValue"
             android:key="AppPreffEmail"
-            android:summary="Set Default email"
-            android:title="Email" />
+            android:summary="@string/preferenceEmailSummary"
+            android:title="@string/preferenceEmailTitle" />
 
         <ListPreference
             android:defaultValue="@string/preferenceLanguageDefaultValue"

@@ -18,8 +18,8 @@ import il.co.All4Students.homemovies.core.Item;
 import il.co.All4Students.homemovies.core.ItemCompareRTID;
 import il.co.All4Students.homemovies.core.ItemCompareRank;
 import il.co.All4Students.homemovies.core.ItemCompareSubject;
-import il.co.All4Students.homemovies.dbUtil.ItemsHandler;
-import il.co.All4Students.homemovies.uiUtil.ItemListAdapter;
+import il.co.All4Students.homemovies.util.db.ItemsHandler;
+import il.co.All4Students.homemovies.util.ui.ItemListAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
