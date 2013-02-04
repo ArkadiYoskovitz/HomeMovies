@@ -12,6 +12,7 @@ import il.co.All4Students.homemovies.core.ItemCompareRTID;
 import il.co.All4Students.homemovies.core.ItemCompareRank;
 import il.co.All4Students.homemovies.core.ItemCompareSubject;
 import il.co.All4Students.homemovies.util.db.ItemsHandler;
+import il.co.All4Students.homemovies.util.imageutils.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,6 +20,8 @@ import java.util.Collections;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +42,7 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 	private ArrayList<Item> mItemList;
 	private ArrayList<Item> mOriginalItemList;
 	private ApplicationPreference mSettings;
+	private ImageLoader imageLoader;
 	private Context mContext;
 	private Filter itemFilter;
 	private Item mItem;
@@ -53,6 +57,8 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 		this.mSettings = new ApplicationPreference(mContext);
 		mInflater = (LayoutInflater) mContext
 				.getSystemService(android.content.Context.LAYOUT_INFLATER_SERVICE);
+
+		imageLoader = new ImageLoader(mContext.getApplicationContext());
 	}
 
 	// Adapter Methods
@@ -92,7 +98,7 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 		viewHolder.rowTitle.setText(mItem.toString());
 		viewHolder.rowRank.setRating(((float) mItem.getRank()) / 10);
 		viewHolder.rowCheckBox.setChecked(mItem.getViewd());
-		
+
 		viewHolder.rowCheckBox
 				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -114,9 +120,18 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 			viewHolder.rowRank.setVisibility(View.GONE);
 			viewHolder.rowCheckBox.setVisibility(View.GONE);
 		} else {
+			if (isOnline()) {
+				imageLoader
+						.DisplayImage(mItem.getUrlWeb(), viewHolder.rowImage);
+			} else {
+				if (mItem.getUrlLocal().length() != 0)
+					imageLoader.DisplayImage(mItem.getUrlLocal(),
+							viewHolder.rowImage);
+			}
 			if (mSettings.getEnableColor()) {
 				convertView.setBackgroundColor(setColor());
 			}
+
 		}
 
 		return convertView;
@@ -173,6 +188,17 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 		if (itemFilter == null)
 			itemFilter = new ItemFilter();
 		return itemFilter;
+	}
+
+	// Additional Methods
+	public boolean isOnline() {
+		ConnectivityManager cm = (ConnectivityManager) mContext
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo netInfo = cm.getActiveNetworkInfo();
+		if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+			return true;
+		}
+		return false;
 	}
 
 	// Inner Classes
