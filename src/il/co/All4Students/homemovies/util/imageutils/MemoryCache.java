@@ -43,8 +43,9 @@ public class MemoryCache {
 
 	public void put(String id, Bitmap bitmap) {
 		try {
-			if (cache.containsKey(id))
+			if (cache.containsKey(id)){				
 				size -= getSizeInBytes(cache.get(id));
+			}
 			cache.put(id, bitmap);
 			size += getSizeInBytes(bitmap);
 			checkSize();
