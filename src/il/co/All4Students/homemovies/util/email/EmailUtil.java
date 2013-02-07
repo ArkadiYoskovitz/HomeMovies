@@ -8,10 +8,34 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
+/**
+ * A genaric class, handels sending emails to recipeants
+ * 
+ * @author Arkadi Yoskovitz
+ * 
+ */
 public class EmailUtil {
-	public static void email(Context context, String emailTo, String emailCC,
-			String subject, String emailText, List<String> filePaths) {
-		// need to "send multiple" to get more than one attachment
+	/**
+	 * The basic send email implementation, corently has a few constraints
+	 * 
+	 * @param context
+	 *            - the context from which we called this method this is needed
+	 *            inorder to integrate with the buildin sending via Intent
+	 *            option of the OS
+	 * @param emailTo
+	 *            - our email resipeant, currantly a single resipeant
+	 * @param emailCC
+	 *            - our email CC resipeant, currantly a single resipeant
+	 * @param emailSubject
+	 *            - the mail Title
+	 * @param emailText
+	 *            - the mail content
+	 * @param filePaths
+	 *            - used inorder to send an attachment, can recive more the one,
+	 */
+	public static void sendEmail(Context context, String emailTo,
+			String emailCC, String emailSubject, String emailText,
+			List<String> filePaths) {
 		final Intent emailIntent = new Intent(
 				android.content.Intent.ACTION_SEND_MULTIPLE);
 		emailIntent.setType("text/plain");
@@ -19,15 +43,21 @@ public class EmailUtil {
 				new String[] { emailTo });
 		emailIntent.putExtra(android.content.Intent.EXTRA_CC,
 				new String[] { emailCC });
-		// has to be an ArrayList
-		ArrayList<Uri> uris = new ArrayList<Uri>();
-		// convert from paths to Android friendly Parcelable Uri's
-		for (String file : filePaths) {
-			File fileIn = new File(file);
-			Uri u = Uri.fromFile(fileIn);
-			uris.add(u);
+		emailIntent
+				.putExtra(android.content.Intent.EXTRA_SUBJECT, emailSubject);
+		emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, emailText);
+
+		if (filePaths != null) {
+			// has to be an ArrayList
+			ArrayList<Uri> uris = new ArrayList<Uri>();
+			// convert from paths to Android friendly Parcelable Uri's
+			for (String file : filePaths) {
+				File fileIn = new File(file);
+				Uri u = Uri.fromFile(fileIn);
+				uris.add(u);
+			}
+			emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
 		}
-		emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
 		context.startActivity(Intent.createChooser(emailIntent, "Send mail..."));
 	}
 }

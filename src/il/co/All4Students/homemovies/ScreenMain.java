@@ -19,6 +19,8 @@ import il.co.All4Students.homemovies.core.ItemCompareRTID;
 import il.co.All4Students.homemovies.core.ItemCompareRank;
 import il.co.All4Students.homemovies.core.ItemCompareSubject;
 import il.co.All4Students.homemovies.util.db.ItemsHandler;
+import il.co.All4Students.homemovies.util.email.EmailUtil;
+import il.co.All4Students.homemovies.util.json.JSONHandler;
 import il.co.All4Students.homemovies.util.ui.ItemListAdapter;
 
 import java.util.ArrayList;
@@ -30,7 +32,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -581,18 +582,31 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 				public void onClick(View v) {
 					mSettings = new ApplicationPreference(ScreenMain.this);
 
-					String emailAddress = mSettings.getEmail().toString();
+					String emailToAddress = "";
+					String emailCCAddress = mSettings.getEmail().toString();
+					String emailSubject = mItem.getSubject();
+					String emailText = mItem.getBody() + "\n\n\n"
+							+ mItem.getUrlWeb();
+					ArrayList<String> emailFilePaths = JSONHandler
+							.getURIFromJSON(mItem.getUrlLocal());
 
-					String uriText = "mailto:" + emailAddress + "?subject="
-							+ Uri.encode(mItem.getSubject()) + "&body="
-							+ Uri.encode(mItem.getBody()) + "\n\n\n"
-							+ Uri.encode(mItem.getUrlWeb());
+					EmailUtil.sendEmail(ScreenMain.this, emailToAddress,
+							emailCCAddress, emailSubject, emailText,
+							emailFilePaths);
 
-					Uri uri = Uri.parse(uriText);
-
-					Intent intent = new Intent(Intent.ACTION_SENDTO);
-					intent.setData(uri);
-					startActivity(Intent.createChooser(intent, "Send email"));
+					// String emailAddress = mSettings.getEmail().toString();
+					//
+					// String uriText = "mailto:" + emailAddress + "?subject="
+					// + Uri.encode(mItem.getSubject()) + "&body="
+					// + Uri.encode(mItem.getBody()) + "\n\n\n"
+					// + Uri.encode(mItem.getUrlWeb());
+					//
+					// Uri uri = Uri.parse(uriText);
+					//
+					// Intent intent = new Intent(Intent.ACTION_SENDTO);
+					// intent.setData(uri);
+					// startActivity(Intent.createChooser(intent,
+					// "Send email"));
 					SDialog.dismiss();
 				}
 			});

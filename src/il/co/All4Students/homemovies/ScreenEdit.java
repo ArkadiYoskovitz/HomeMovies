@@ -12,12 +12,15 @@ import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_DELETE;
 import il.co.All4Students.homemovies.app.ApplicationPreference;
 import il.co.All4Students.homemovies.core.Item;
 import il.co.All4Students.homemovies.util.db.ItemsHandler;
+import il.co.All4Students.homemovies.util.email.EmailUtil;
+import il.co.All4Students.homemovies.util.json.JSONHandler;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import android.app.Activity;
@@ -31,7 +34,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -225,6 +227,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 			Toast.makeText(ScreenEdit.this,
 					"Save To Card curentlly unavalible", Toast.LENGTH_SHORT)
 					.show();
+
 			break;
 
 		case R.id.screenEditContextMenuRank:
@@ -458,18 +461,17 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 					}
 					mSettings = new ApplicationPreference(ScreenEdit.this);
 
-					String emailAddress = mSettings.getEmail().toString();
+					String emailToAddress = "";
+					String emailCCAddress = mSettings.getEmail().toString();
+					String emailSubject = mEditedItem.getSubject();
+					String emailText = mEditedItem.getBody() + "\n\n\n"
+							+ mEditedItem.getUrlWeb();
+					ArrayList<String> emailFilePaths = JSONHandler
+							.getURIFromJSON(mEditedItem.getUrlLocal());
 
-					String uriText = "mailto:" + emailAddress + "?subject="
-							+ Uri.encode(mEditedItem.getSubject()) + "&body="
-							+ Uri.encode(mEditedItem.getBody()) + "\n\n\n"
-							+ Uri.encode(mEditedItem.getUrlWeb());
-
-					Uri uri = Uri.parse(uriText);
-
-					Intent intent = new Intent(Intent.ACTION_SENDTO);
-					intent.setData(uri);
-					startActivity(Intent.createChooser(intent, "Send email"));
+					EmailUtil.sendEmail(ScreenEdit.this, emailToAddress,
+							emailCCAddress, emailSubject, emailText,
+							emailFilePaths);
 					SDialog.dismiss();
 				}
 			});
@@ -573,7 +575,6 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 						ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 						int nRead, total = 0;
 						byte[] data = new byte[2048];
-						// mDialog.setMax(fileLength);
 						// Read the image bytes in chunks of 2048 bytes
 						while ((nRead = is.read(data, 0, data.length)) != -1) {
 							buffer.write(data, 0, nRead);

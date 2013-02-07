@@ -117,6 +117,7 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 		}
 
 		if (mContext instanceof ScreenWeb) {
+			viewHolder.rowImage.setVisibility(View.GONE);
 			viewHolder.rowRank.setVisibility(View.GONE);
 			viewHolder.rowCheckBox.setVisibility(View.GONE);
 		} else {
