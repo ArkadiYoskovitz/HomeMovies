@@ -75,6 +75,7 @@
     <string name="lableScreenMainOptionMenuDeletAllIteams">מחק ספריה</string>
     <string name="lableScreenMainOptionMenuSearch">חיפוש</string>
     <string name="lableScreenMainOptionMenuSettings">הגדרות</string>
+    <string name="lableScreenMainOptionMenuSendLog">שלח לוג</string>
     <!-- ScreenMain Context -->
     <string name="lableScreenMainContextMenuEdit">ערוך פריט</string>
     <string name="lableScreenMainContextMenuShare">שתף</string>
@@ -121,5 +122,9 @@
     <string name="preferenceEnablePreviewTitle">אפשר תמונות רקע</string>
     <string name="preferenceEnablePreviewSummary">הצג תמונות סרטים</string>
     <string name="preferenceEnablePreviewDefaultValue">Yes</string>
+     <!-- Preference EnableLog -->
+    <string name="preferenceEnableLogTitle">הפעל לוג</string>
+    <string name="preferenceEnableLogSummary">תעד מידע בלוג</string>
+    <string name="preferenceEnableLogDefaultValue">no</string>
 
 </resources>

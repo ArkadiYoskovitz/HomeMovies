@@ -36,16 +36,12 @@ public class EmailUtil {
 	public static void sendEmail(Context context, String emailTo,
 			String emailCC, String emailSubject, String emailText,
 			List<String> filePaths) {
-		final Intent emailIntent = new Intent(
-				android.content.Intent.ACTION_SEND_MULTIPLE);
+		final Intent emailIntent = new Intent(Intent.ACTION_SEND_MULTIPLE);
 		emailIntent.setType("text/plain");
-		emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL,
-				new String[] { emailTo });
-		emailIntent.putExtra(android.content.Intent.EXTRA_CC,
-				new String[] { emailCC });
-		emailIntent
-				.putExtra(android.content.Intent.EXTRA_SUBJECT, emailSubject);
-		emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, emailText);
+		emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { emailTo });
+		emailIntent.putExtra(Intent.EXTRA_CC, new String[] { emailCC });
+		emailIntent.putExtra(Intent.EXTRA_SUBJECT, emailSubject);
+		emailIntent.putExtra(Intent.EXTRA_TEXT, emailText);
 
 		if (filePaths != null) {
 			// has to be an ArrayList

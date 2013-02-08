@@ -13,6 +13,7 @@ import il.co.All4Students.homemovies.app.ApplicationPreference;
 import il.co.All4Students.homemovies.core.Item;
 import il.co.All4Students.homemovies.util.db.ItemsHandler;
 import il.co.All4Students.homemovies.util.email.EmailUtil;
+import il.co.All4Students.homemovies.util.image.ExternalStogareLoader;
 import il.co.All4Students.homemovies.util.json.JSONHandler;
 
 import java.io.ByteArrayOutputStream;
@@ -224,10 +225,27 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	public boolean onContextItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.screenEditContextMenuSaveToCard:
+			ImageView screenEditImage = (ImageView) findViewById(R.id.ScreenEditImageView1);
+			BitmapDrawable drawable = (BitmapDrawable) screenEditImage
+					.getDrawable();
+			Bitmap bitmap = drawable.getBitmap();
+			ExternalStogareLoader externalStogareLoader = new ExternalStogareLoader(
+					ScreenEdit.this);
+			externalStogareLoader.SaveIamge(bitmap);
+
+			try {
+				String fileURI = externalStogareLoader.getFileURI();
+				ArrayList<String> al = JSONHandler.getURIFromJSON(mEditedItem
+						.getUrlLocal());
+				al.add(fileURI);
+				JSONHandler.putURIintoJSON(al);
+			} catch (Exception e) {
+				e.getStackTrace();
+			}
+
 			Toast.makeText(ScreenEdit.this,
 					"Save To Card curentlly unavalible", Toast.LENGTH_SHORT)
 					.show();
-
 			break;
 
 		case R.id.screenEditContextMenuRank:
@@ -278,6 +296,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 		closeKeybord();
 
 		Intent intent = new Intent(ScreenEdit.this, ScreenGrid.class);
+		intent.putExtra(INTENT_TARGET, mEditedItem);
 		startActivity(intent);
 	}
 

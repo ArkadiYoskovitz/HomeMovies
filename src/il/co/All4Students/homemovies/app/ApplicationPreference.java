@@ -22,6 +22,7 @@ public class ApplicationPreference {
 	private static final String KEY_SORT_METHOD = "AppPreffSortMethods";
 	private static final String KEY_ENABLE_COLOR = "AppPreffEnableColor";
 	private static final String KEY_ENABLE_PREVIEW = "AppPreffEnablePreview";
+	private static final String KEY_ENABLE_LOG = "AppPreffEnableLog";
 
 	// Application Preference Default values
 	private static final String DEFAULT_SUBJECT = "Default Topic";
@@ -30,6 +31,7 @@ public class ApplicationPreference {
 	private static final int DEFAULT_SORT_METHOD = 0;
 	private static final boolean DEFAULT_ENABLE_COLOR = true;
 	private static final boolean DEFAULT_ENABLE_PREVIEW = true;
+	private static final boolean DEFAULT_ENABLE_LOG = true;
 
 	// Attributes
 	private final SharedPreferences settings;
@@ -109,6 +111,16 @@ public class ApplicationPreference {
 		return settings.getBoolean(KEY_ENABLE_PREVIEW, DEFAULT_ENABLE_PREVIEW);
 	}
 
+	public void setEnableLog(Boolean toLog) {
+		Editor editor = settings.edit();
+		editor.putBoolean(KEY_ENABLE_LOG, toLog);
+		editor.commit();
+	}
+
+	public boolean getEnableLog() {
+		return settings.getBoolean(KEY_ENABLE_LOG, DEFAULT_ENABLE_LOG);
+	}
+
 	// //////////////////////////////////////////////
 
 	public static String getDefaultSubject() {
@@ -134,4 +146,9 @@ public class ApplicationPreference {
 	public static boolean isDefaultEnablePreview() {
 		return DEFAULT_ENABLE_PREVIEW;
 	}
+
+	public static boolean isDefaultEnableLog() {
+		return DEFAULT_ENABLE_LOG;
+	}
+
 }

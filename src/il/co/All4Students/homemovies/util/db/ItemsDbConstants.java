@@ -4,7 +4,7 @@ package il.co.All4Students.homemovies.util.db;
  * 
  * @author Arkadi Yoskovitz
  * 
- *         Start ItemsDbConstants
+ *         Start LogDbConstants
  */
 public class ItemsDbConstants {
 	/**

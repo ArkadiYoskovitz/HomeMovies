@@ -42,6 +42,12 @@
             android:key="AppPreffEnablePreview"
             android:summary="@string/preferenceEnablePreviewSummary"
             android:title="@string/preferenceEnablePreviewTitle" />
+        <CheckBoxPreference
+            android:defaultValue="@string/preferenceEnableLogDefaultValue"
+            android:enabled="true"
+            android:key="AppPreffEnableLog"
+            android:summary="@string/preferenceEnableLogSummary"
+            android:title="@string/preferenceEnableLogTitle" />
     </PreferenceCategory>
 
 </PreferenceScreen>

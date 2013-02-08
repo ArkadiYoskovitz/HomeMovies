@@ -12,7 +12,7 @@ import il.co.All4Students.homemovies.core.ItemCompareRTID;
 import il.co.All4Students.homemovies.core.ItemCompareRank;
 import il.co.All4Students.homemovies.core.ItemCompareSubject;
 import il.co.All4Students.homemovies.util.db.ItemsHandler;
-import il.co.All4Students.homemovies.util.imageutils.ImageLoader;
+import il.co.All4Students.homemovies.util.imageWeb.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -120,15 +120,11 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 			viewHolder.rowImage.setVisibility(View.GONE);
 			viewHolder.rowRank.setVisibility(View.GONE);
 			viewHolder.rowCheckBox.setVisibility(View.GONE);
+			viewHolder.rowTitle.setHeight((int) getContext().getResources()
+					.getDimension(R.dimen.Size30dp));
 		} else {
-			if (isOnline()) {
-				imageLoader
-						.DisplayImage(mItem.getUrlWeb(), viewHolder.rowImage);
-			} else {
-				if (mItem.getUrlLocal().length() != 0)
-					imageLoader.DisplayImage(mItem.getUrlLocal(),
-							viewHolder.rowImage);
-			}
+			imageLoader.DisplayImage(mItem.getUrlWeb(), viewHolder.rowImage);
+
 			if (mSettings.getEnableColor()) {
 				convertView.setBackgroundColor(setColor());
 			}

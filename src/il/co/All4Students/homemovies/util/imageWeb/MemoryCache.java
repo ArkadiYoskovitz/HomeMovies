@@ -1,4 +1,4 @@
-package il.co.All4Students.homemovies.util.imageutils;
+package il.co.All4Students.homemovies.util.imageWeb;
 
 import java.util.Collections;
 import java.util.Iterator;

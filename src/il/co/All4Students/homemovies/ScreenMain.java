@@ -1,5 +1,6 @@
 package il.co.All4Students.homemovies;
 
+import static il.co.All4Students.homemovies.app.AppConstants.DeveloperTeam;
 import static il.co.All4Students.homemovies.app.AppConstants.INTENT_TARGET;
 import static il.co.All4Students.homemovies.app.AppConstants.Item_Add_Local;
 import static il.co.All4Students.homemovies.app.AppConstants.Item_App_Settings;
@@ -21,6 +22,7 @@ import il.co.All4Students.homemovies.core.ItemCompareSubject;
 import il.co.All4Students.homemovies.util.db.ItemsHandler;
 import il.co.All4Students.homemovies.util.email.EmailUtil;
 import il.co.All4Students.homemovies.util.json.JSONHandler;
+import il.co.All4Students.homemovies.util.log.util.AppLog;
 import il.co.All4Students.homemovies.util.ui.ItemListAdapter;
 
 import java.util.ArrayList;
@@ -237,7 +239,8 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		mListView = (ListView) findViewById(R.id.ScreenMainListView);
-
+		mSettings = new ApplicationPreference(ScreenMain.this);
+		
 		switch (item.getItemId()) {
 		case R.id.screenMainOptionMenuDeletAllIteams:
 			Log.d(LOG_TAG_SCREEN_MAIN,
@@ -253,6 +256,17 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 			System.exit(0);
 			break;
 
+		case R.id.screenMainOptionMenuSendLog:
+			if (mSettings.getEnableLog()) {
+				AppLog appLog = new AppLog(ScreenMain.this);
+				String log = appLog.getLog();
+				EmailUtil.sendEmail(ScreenMain.this, DeveloperTeam,
+						mSettings.getEmail(), "Bug Report", log, null);
+			} else {
+				Toast.makeText(ScreenMain.this, "Log is not enabled",
+						Toast.LENGTH_SHORT).show();
+			}
+			break;
 		case R.id.screenMainOptionMenuSearch:
 			mTableRow = (TableRow) findViewById(R.id.ScreenMainTableRow2);
 			if (mTableRow.getVisibility() == View.GONE) {
@@ -316,6 +330,7 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
 				.getMenuInfo();
 		mListView = (ListView) findViewById(R.id.ScreenMainListView);
+		mSettings = new ApplicationPreference(ScreenMain.this);
 		ItemsHandler itemHandler = new ItemsHandler(this);
 		switch (item.getItemId()) {
 

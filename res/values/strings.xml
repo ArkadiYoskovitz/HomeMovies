@@ -68,6 +68,7 @@
     <string name="lableScreenMainOptionMenuDeletAllIteams">Delet All Iteams</string>
     <string name="lableScreenMainOptionMenuSearch">Search</string>
     <string name="lableScreenMainOptionMenuSettings">Settings</string>
+    <string name="lableScreenMainOptionMenuSendLog">Send Log</string>
     <!-- ScreenMain Context -->
     <string name="lableScreenMainContextMenuEdit">Edit</string>
     <string name="lableScreenMainContextMenuShare">Share</string>
@@ -121,5 +122,9 @@
     <string name="preferenceEnablePreviewTitle">Enable Preview</string>
     <string name="preferenceEnablePreviewSummary">Show film icons</string>
     <string name="preferenceEnablePreviewDefaultValue">Yes</string>
+    <!-- Preference EnableLog -->
+    <string name="preferenceEnableLogTitle">Enable Log</string>
+    <string name="preferenceEnableLogSummary">Log operations, to sent to developer</string>
+    <string name="preferenceEnableLogDefaultValue">no</string>
 
 </resources>
