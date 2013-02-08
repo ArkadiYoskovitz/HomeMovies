@@ -14,10 +14,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 /**
+ * Start DbHelper
  * 
  * @author Arkadi Yoskovitz
- * 
- *         Start DbHelper
+ * @date 2013-02-08
  */
 public class LogDbHelper extends SQLiteOpenHelper {
 
@@ -62,5 +62,4 @@ public class LogDbHelper extends SQLiteOpenHelper {
 			Log.d(LOG_TAG, "Table upgrade: " + e.getMessage());
 		}
 	}
-
 }

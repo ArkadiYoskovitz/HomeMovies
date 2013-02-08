@@ -2,6 +2,10 @@ package il.co.All4Students.homemovies.core;
 
 import java.util.Comparator;
 
+/**
+ * 
+ * @author Arkadi Yoskovitz
+ */
 public class ItemCompareSubject implements Comparator<Item> {
 
 	@Override

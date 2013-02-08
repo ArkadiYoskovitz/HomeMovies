@@ -5,6 +5,12 @@ import java.util.Locale;
 import android.app.Application;
 import android.content.res.Configuration;
 
+/**
+ * HomeProjectApplication
+ * 
+ * @author Arkadi Yoskovitz
+ * @date 2013-02-08
+ */
 public class HomeProjectApplication extends Application {
 	private ApplicationPreference mSettings;
 	private Locale locale = null;

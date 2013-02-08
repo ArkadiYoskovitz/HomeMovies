@@ -5,11 +5,12 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 /**
+ * This class stores and manages all the preferences ￼￼￼￼￼￼￼￼￼ for the
+ * application
  * 
- * @author Arkadi Yoskovitz This class stores and manages all the preferences
- *         ￼￼￼￼￼￼￼￼￼ for the application
+ * @author Arkadi Yoskovitz
+ * @date 2013-02-08
  */
-
 public class ApplicationPreference {
 
 	// Constants

@@ -17,8 +17,8 @@ import java.util.Set;
 /**
  * 
  * 
- * @author xiaojinghai
- * @date 2011-7-18
+ * @author  Arkadi Yoskovitz
+ * @date 2013-02-08
  */
 
 @SuppressLint("DefaultLocale")

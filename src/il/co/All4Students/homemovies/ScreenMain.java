@@ -56,9 +56,10 @@ import android.widget.TableRow;
 import android.widget.Toast;
 
 /**
- * Main Activity of the App handels the IO to the DB
+ * Main screen
  * 
  * @author Arkadi Yoskovitz
+ * @date 2013-02-08
  */
 public class ScreenMain extends Activity implements OnItemClickListener,
 		OnSharedPreferenceChangeListener {
@@ -240,7 +241,7 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 	public boolean onOptionsItemSelected(MenuItem item) {
 		mListView = (ListView) findViewById(R.id.ScreenMainListView);
 		mSettings = new ApplicationPreference(ScreenMain.this);
-		
+
 		switch (item.getItemId()) {
 		case R.id.screenMainOptionMenuDeletAllIteams:
 			Log.d(LOG_TAG_SCREEN_MAIN,
@@ -560,6 +561,7 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 	 * in Prograsse: - FaceBook - Tweeter
 	 * 
 	 * @author Arkadi Yoskovitz
+	 * @date 2013-02-08
 	 */
 	private class ShareDialog {
 		// Attributes
@@ -655,6 +657,11 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		}
 	}
 
+	/**
+	 * 
+	 * @author Arkadi Yoskovitz
+	 * @date 2013-02-08
+	 */
 	private class RankDialog {
 		// Attributes
 		private Item mItem;

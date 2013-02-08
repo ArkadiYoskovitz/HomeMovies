@@ -59,6 +59,7 @@ import android.widget.Toast;
  * Edit screen
  * 
  * @author Arkadi Yoskovitz
+ * @date 2013-02-08
  */
 public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener {
 
@@ -443,6 +444,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	 * in Prograsse: - FaceBook - Tweeter
 	 * 
 	 * @author Arkadi Yoskovitz
+	 * @date 2013-02-08
 	 */
 	private class ShareDialog {
 		public void showShareDialog() {
@@ -524,6 +526,11 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 		}
 	}
 
+	/**
+	 * 
+	 * @author Arkadi Yoskovitz
+	 * @date 2013-02-08
+	 */
 	private class RankDialog {
 		public void showRankDialog() {
 			LayoutInflater li = LayoutInflater.from(ScreenEdit.this);
@@ -568,6 +575,11 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	}
 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**
+	 * 
+	 * @author Arkadi Yoskovitz
+	 * @date 2013-02-08
+	 */
 	private class DownloadImageTask extends AsyncTask<String, Integer, Bitmap> {
 
 		private Activity mActivity;

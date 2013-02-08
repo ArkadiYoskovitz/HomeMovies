@@ -16,6 +16,7 @@ import android.widget.Toast;
  * Grid screen
  * 
  * @author Arkadi Yoskovitz
+ * @date 2013-02-08
  */
 public class ScreenGrid extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,11 @@ public class ScreenGrid extends Activity {
 		});
 	}
 
+	/**
+	 * 
+	 * @author Arkadi Yoskovitz
+	 * @date 2013-02-08
+	 */
 	public class ImageAdapter extends BaseAdapter {
 		private Context mContext;
 

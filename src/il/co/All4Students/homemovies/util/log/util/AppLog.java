@@ -2,7 +2,11 @@ package il.co.All4Students.homemovies.util.log.util;
 
 import il.co.All4Students.homemovies.util.log.db.LogHandler;
 import android.content.Context;
-
+/**
+ * 
+ * @author Arkadi Yoskovitz
+ * @date 2013-02-08
+ */
 public class AppLog {
 	private Context mContext;
 

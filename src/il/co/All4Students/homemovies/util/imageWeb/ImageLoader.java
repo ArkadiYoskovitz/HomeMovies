@@ -22,7 +22,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.widget.ImageView;
-
+/**
+ * 
+ * @author Arkadi Yoskovitz
+ * @date 2013-02-08
+ */
 public class ImageLoader {
 
 	// Attributes
@@ -40,6 +44,11 @@ public class ImageLoader {
 	}
 
 	// Inner Classes
+	/**
+	 * 
+	 * @author Arkadi Yoskovitz
+	 * @date 2013-02-08
+	 */
 	private class PhotoToLoad {
 		public String url;
 		public ImageView imageView;
@@ -49,7 +58,11 @@ public class ImageLoader {
 			imageView = i;
 		}
 	}
-
+	/**
+	 * 
+	 * @author Arkadi Yoskovitz
+	 * @date 2013-02-08
+	 */
 	class PhotosLoader implements Runnable {
 		PhotoToLoad photoToLoad;
 
@@ -72,7 +85,11 @@ public class ImageLoader {
 			activity.runOnUiThread(bd);
 		}
 	}
-
+	/**
+	 * 
+	 * @author Arkadi Yoskovitz
+	 * @date 2013-02-08
+	 */
 	class BitmapDisplayer implements Runnable {
 		Bitmap bitmap;
 		PhotoToLoad photoToLoad;

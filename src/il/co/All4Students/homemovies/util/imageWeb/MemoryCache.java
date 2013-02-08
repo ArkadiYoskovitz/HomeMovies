@@ -7,7 +7,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 import android.graphics.Bitmap;
 import android.util.Log;
-
+/**
+ * 
+ * @author Arkadi Yoskovitz
+ * @date 2013-02-08
+ */
 public class MemoryCache {
 	// Attributes
 	private static final String TAG = "MemoryCache";

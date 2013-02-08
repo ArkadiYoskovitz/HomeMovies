@@ -14,6 +14,7 @@ import android.preference.PreferenceManager;
  * Preferences screen
  * 
  * @author Arkadi Yoskovitz
+ * @date 2013-02-08
  */
 public class ScreenPreferences extends PreferenceActivity {
 	// Attributes

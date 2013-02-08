@@ -7,6 +7,11 @@ import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 
+/**
+ * 
+ * @author Arkadi Yoskovitz
+ * @date 2013-02-08
+ */
 @SuppressLint("DefaultLocale")
 public class JSONHandler {
 	// JSON Node names

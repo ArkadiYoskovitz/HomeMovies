@@ -5,6 +5,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
+/**
+ * 
+ * @author Arkadi Yoskovitz
+ */
 public class Item implements Comparable<Item>, Parcelable {
 	// ////////////////////////////////////////////////////////////////////////////////////////////////
 	// Attribute
@@ -284,5 +288,4 @@ public class Item implements Comparable<Item>, Parcelable {
 		Log.d(LOG_TAG_ITEM, ((Integer) _id).toString());
 
 	}
-
 }

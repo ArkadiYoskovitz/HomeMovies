@@ -9,10 +9,10 @@ import android.content.Intent;
 import android.net.Uri;
 
 /**
- * A genaric class, handels sending emails to recipeants
+ * A generic class, handel's sending emails to recipients
  * 
  * @author Arkadi Yoskovitz
- * 
+ * @date 2013-02-08
  */
 public class EmailUtil {
 	/**

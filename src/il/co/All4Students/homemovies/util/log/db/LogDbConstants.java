@@ -1,10 +1,10 @@
 package il.co.All4Students.homemovies.util.log.db;
 
 /**
+ * Start LogDbConstants
  * 
  * @author Arkadi Yoskovitz
- * 
- *         Start LogDbConstants
+ * @date 2013-02-08
  */
 public class LogDbConstants {
 	/**

@@ -9,6 +9,11 @@ import android.graphics.Bitmap;
 import android.os.Environment;
 import android.widget.Toast;
 
+/**
+ * 
+ * @author Arkadi Yoskovitz
+ * @date 2013-02-08
+ */
 public class ExternalStogareLoader {
 	// Attributes
 	private Context mContext;

@@ -1,9 +1,14 @@
 package il.co.All4Students.homemovies.app;
 
+/**
+ * 
+ * @author Arkadi Yoskovitz
+ * @date 2013-02-08
+ */
 public class AppConstants {
 
 	public static final String DeveloperTeam = "Arkadi.Yoskovitz@gmail.com";
-	
+
 	public static final String INTENT_TARGET = "co.il.All4Students.HomeProjectThree.Core.Item";
 
 	public static final String LOG_TAG_SCREEN_MAIN = "*** ScreenMain ***";

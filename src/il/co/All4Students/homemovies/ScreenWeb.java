@@ -56,6 +56,12 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+/**
+ * Web Screen
+ * 
+ * @author Arkadi Yoskovitz
+ * @date 2013-02-08
+ */
 public class ScreenWeb extends Activity implements OnItemClickListener {
 	// Constants
 	private final String HOST = "http://api.rottentomatoes.com";
@@ -305,6 +311,11 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 	}
 
 	// Inner Classes
+	/**
+	 * 
+	 * @author Arkadi Yoskovitz
+	 * @date 2013-02-08
+	 */
 	private class DownloadMovieInfo extends AsyncTask<String, Integer, String> {
 		// ///////////////////////////////////////////////////////////////////////////////////
 		// Attributes

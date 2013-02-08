@@ -35,6 +35,12 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+/**
+ * A generic class, handel's the different view list adapter *
+ * 
+ * @author Arkadi Yoskovitz
+ * @date 2013-02-08
+ */
 @SuppressLint("DefaultLocale")
 public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 	// Attributes
@@ -48,6 +54,14 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 	private Item mItem;
 
 	// Constractors
+	/**
+	 * ItemListAdapter - Constructor
+	 * 
+	 * @param itemList
+	 *            - The objects to represent in the ListView
+	 * @param context
+	 *            - The current context
+	 */
 	public ItemListAdapter(ArrayList<Item> itemList, Context context) {
 		super(context, R.layout.list_row, itemList);
 		this.mContext = context;
@@ -62,18 +76,61 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 	}
 
 	// Adapter Methods
+	/**
+	 * How many items are in the data set represented by this Adapter.
+	 * 
+	 * @return Count of items.
+	 */
 	public int getCount() {
 		return mItemList.size();
 	}
 
+	/**
+	 * Get the data item associated with the specified position in the data set.
+	 * 
+	 * @param position
+	 *            - Position of the item whose data we want within the adapter's
+	 *            data set.
+	 * @return The data at the specified position.
+	 */
 	public Item getItem(int position) {
 		return mItemList.get(position);
 	}
 
+	/**
+	 * Get the row id associated with the specified position in the list.
+	 * 
+	 * @param position
+	 *            - The position of the item within the adapter's data set whose
+	 *            row id we want.
+	 * @return The id of the item at the specified position.
+	 */
 	public long getItemId(int position) {
 		return position;
 	}
 
+	/**
+	 * Get a View that displays the data at the specified position in the data
+	 * set. You can either create a View manually or inflate it from an XML
+	 * layout file. When the View is inflated, the parent View (GridView,
+	 * ListView...) will apply default layout parameters unless you use
+	 * inflate(int, android.view.ViewGroup, boolean) to specify a root view and
+	 * to prevent attachment to the root.
+	 * 
+	 * @param position
+	 *            - The position of the item within the adapter's data set of
+	 *            the item whose view we want.
+	 * @param convertView
+	 *            - The old view to reuse, if possible. Note: You should check
+	 *            that this view is non-null and of an appropriate type before
+	 *            using. If it is not possible to convert this view to display
+	 *            the correct data, this method can create a new view.
+	 *            Heterogeneous lists can specify their number of view types, so
+	 *            that this View is always of the right type (see
+	 *            getViewTypeCount() and getItemViewType(int)).
+	 * @param parent
+	 *            - The parent that this view will eventually be attached to
+	 */
 	public View getView(int position, View convertView, ViewGroup parent) {
 		RowViewHolder viewHolder;
 
@@ -130,7 +187,6 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 			}
 
 		}
-
 		return convertView;
 	}
 
@@ -199,6 +255,12 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 	}
 
 	// Inner Classes
+	/**
+	 * RowViewHolder
+	 * 
+	 * @author Arkadi Yoskovitz
+	 * @date 2013-02-08
+	 */
 	static class RowViewHolder {
 		LinearLayout rowThumbnail;
 		ImageView rowImage;
@@ -207,9 +269,31 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 		CheckBox rowCheckBox;
 	}
 
+	/**
+	 * A filter constrains data with a filtering pattern.
+	 * 
+	 * @author Arkadi Yoskovitz
+	 * @date 2013-02-08
+	 */
 	@SuppressLint("DefaultLocale")
 	private class ItemFilter extends Filter {
 
+		/**
+		 * Invoked in a worker thread to filter the data according to the
+		 * constraint.
+		 * 
+		 * Subclasses must implement this method to perform the filtering
+		 * operation.
+		 * 
+		 * Results computed by the filtering operation must be returned as a
+		 * Filter.FilterResults that will then be published in the UI thread
+		 * through publishResults(CharSequence,
+		 * android.widget.Filter.FilterResults).
+		 * 
+		 * @param constraint
+		 *            - the constraint used to filter the data
+		 * @return the results of the filtering operation
+		 */
 		@Override
 		protected FilterResults performFiltering(CharSequence constraint) {
 			FilterResults results = new FilterResults();
@@ -234,6 +318,16 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 			return results;
 		}
 
+		/**
+		 * Invoked in the UI thread to publish the filtering results in the user
+		 * interface. Subclasses must implement this method to display the
+		 * results computed in performFiltering(CharSequence).
+		 * 
+		 * @param constraint
+		 *            - the constraint used to filter the data
+		 * @param results
+		 *            - the results of the filtering operation
+		 */
 		@SuppressWarnings("unchecked")
 		@Override
 		protected void publishResults(CharSequence constraint,
@@ -241,6 +335,5 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 			mItemList = (ArrayList<Item>) results.values;
 			notifyDataSetChanged();
 		}
-
 	}
 }

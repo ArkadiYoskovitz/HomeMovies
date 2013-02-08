@@ -27,9 +27,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 /**
- * @author Arkadi Yoskovitz
+ * DbHandler
  * 
- *         Start DbHandler
+ * @author Arkadi Yoskovitz
+ * @date 2013-02-08
  */
 public class ItemsHandler {
 	private ItemsDbHelper dbhelper;
