@@ -13,7 +13,7 @@ import il.co.All4Students.homemovies.app.ApplicationPreference;
 import il.co.All4Students.homemovies.core.Item;
 import il.co.All4Students.homemovies.util.db.ItemsHandler;
 import il.co.All4Students.homemovies.util.email.EmailUtil;
-import il.co.All4Students.homemovies.util.image.ExternalStogareLoader;
+import il.co.All4Students.homemovies.util.image.ExternalStorageLoader;
 import il.co.All4Students.homemovies.util.json.JSONHandler;
 
 import java.io.ByteArrayOutputStream;
@@ -234,7 +234,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 						.getDrawable();
 				Bitmap bitmap = drawable.getBitmap();
 
-				ExternalStogareLoader externalStogareLoader = new ExternalStogareLoader(
+				ExternalStorageLoader externalStogareLoader = new ExternalStorageLoader(
 						ScreenEdit.this);
 
 				mEditedItem.setUrlLocal(JSONHandler.insertURIintoJSON(

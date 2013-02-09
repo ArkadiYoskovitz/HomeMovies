@@ -14,12 +14,12 @@ import android.widget.Toast;
  * @author Arkadi Yoskovitz
  * @date 2013-02-08
  */
-public class ExternalStogareLoader {
+public class ExternalStorageLoader {
 	// Attributes
 	private Context mContext;
 	private File mFile;
 
-	public ExternalStogareLoader(Context context) {
+	public ExternalStorageLoader(Context context) {
 		super();
 		this.mContext = context;
 
