@@ -22,6 +22,7 @@ public class AppConstants {
 
 	public static final String LOG_TAG_RankDialog = "*** RankDialog Log ***";
 	public static final String LOG_TAG_ImageLoader = "*** ImageLoader Log ***";
+	public static final String LOG_TAG_AppLog = "*** AppLog ***";
 
 	public static final int Item_Edit = 1;
 	public static final int Item_Add_Local = 2;

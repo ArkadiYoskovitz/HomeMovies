@@ -24,6 +24,7 @@ public class ApplicationPreference {
 	private static final String KEY_ENABLE_COLOR = "AppPreffEnableColor";
 	private static final String KEY_ENABLE_PREVIEW = "AppPreffEnablePreview";
 	private static final String KEY_ENABLE_LOG = "AppPreffEnableLog";
+	private static final String KEY_ENABLE_CLEARLOG = "AppPreffEnableClearLog";
 
 	// Application Preference Default values
 	private static final String DEFAULT_SUBJECT = "Default Topic";
@@ -33,6 +34,7 @@ public class ApplicationPreference {
 	private static final boolean DEFAULT_ENABLE_COLOR = true;
 	private static final boolean DEFAULT_ENABLE_PREVIEW = true;
 	private static final boolean DEFAULT_ENABLE_LOG = false;
+	private static final boolean DEFAULT_ENABLE_CLEARLOG = true;
 
 	// Attributes
 	private final SharedPreferences settings;
@@ -121,7 +123,16 @@ public class ApplicationPreference {
 	public boolean getEnableLog() {
 		return settings.getBoolean(KEY_ENABLE_LOG, DEFAULT_ENABLE_LOG);
 	}
+	
+	public void setEnableClearLog(Boolean toLog) {
+		Editor editor = settings.edit();
+		editor.putBoolean(KEY_ENABLE_CLEARLOG, toLog);
+		editor.commit();
+	}
 
+	public boolean getEnableClearLog() {
+		return settings.getBoolean(KEY_ENABLE_CLEARLOG, DEFAULT_ENABLE_CLEARLOG);
+	}
 	// //////////////////////////////////////////////
 
 	public static String getDefaultSubject() {
@@ -152,4 +163,7 @@ public class ApplicationPreference {
 		return DEFAULT_ENABLE_LOG;
 	}
 
+	public static boolean isDefaultEnableClearLog() {
+		return DEFAULT_ENABLE_CLEARLOG;
+	}
 }

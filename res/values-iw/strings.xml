@@ -108,6 +108,7 @@
     <string name="preferenceLanguageTitle">שפה</string>
     <string name="preferenceLanguageSummary">בחר שפה</string>
     <string name="preferenceLanguageDefaultValue">en</string>
+    
     <!-- Preference Strings -->
     <string name="preferenceCategoryTitle2">הגדרות רשימה</string>
     <!-- Preference SortMethods -->
@@ -122,9 +123,16 @@
     <string name="preferenceEnablePreviewTitle">אפשר תמונות רקע</string>
     <string name="preferenceEnablePreviewSummary">הצג תמונות סרטים</string>
     <string name="preferenceEnablePreviewDefaultValue">Yes</string>
-     <!-- Preference EnableLog -->
+    
+    <!-- Preference Strings -->
+    <string name="preferenceCategoryTitle3">הגדרות לוג</string>
+    <!-- Preference EnableLog -->
     <string name="preferenceEnableLogTitle">הפעל לוג</string>
     <string name="preferenceEnableLogSummary">תעד מידע בלוג</string>
     <string name="preferenceEnableLogDefaultValue">no</string>
+    <!-- Preference EnableClearLog -->
+    <string name="preferenceEnableClearLogTitle">מחק לוג</string>
+    <string name="preferenceEnableClearLogSummary"> בטל סימון מחק מסד נתונים</string>
+    <string name="preferenceEnableClearLogDefaultValue">no</string>
 
 </resources>

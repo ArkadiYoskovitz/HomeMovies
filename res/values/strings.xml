@@ -122,9 +122,16 @@
     <string name="preferenceEnablePreviewTitle">Enable Preview</string>
     <string name="preferenceEnablePreviewSummary">Show film icons</string>
     <string name="preferenceEnablePreviewDefaultValue">Yes</string>
+    
+    <!-- Preference Strings -->
+    <string name="preferenceCategoryTitle3">Log Settings</string>
     <!-- Preference EnableLog -->
     <string name="preferenceEnableLogTitle">Enable Log</string>
     <string name="preferenceEnableLogSummary">Log operations, to sent to developer</string>
     <string name="preferenceEnableLogDefaultValue">no</string>
+    <!-- Preference EnableClearLog -->
+    <string name="preferenceEnableClearLogTitle">Log Operations</string>
+    <string name="preferenceEnableClearLogSummary">Uncheck to clear database</string>
+    <string name="preferenceEnableClearLogDefaultValue">no</string>
 
 </resources>

@@ -11,13 +11,13 @@
 //
 //public class DataBaseHelper extends SQLiteOpenHelper {
 //
+//	// Constants
 //	// The Android's default system path of your application database.
-//	private static String DB_PATH = "/data/data/YOUR_PACKAGE/databases/";
-//	// /data/data/il.co.All4Students.homemovies/databases/log_database.db
-//	private static String DB_NAME = "myDBName";
+//	private static String DB_PATH = "/data/data/il.co.All4Students.homemovies/databases/";
+//	private static String DB_NAME = "log_database.db";
 //
+//	// Attributes
 //	private SQLiteDatabase myDataBase;
-//
 //	private final Context myContext;
 //
 //	/**

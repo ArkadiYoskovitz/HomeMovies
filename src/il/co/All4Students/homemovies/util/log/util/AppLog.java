@@ -1,5 +1,6 @@
 package il.co.All4Students.homemovies.util.log.util;
 
+import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_AppLog;
 import il.co.All4Students.homemovies.app.ApplicationPreference;
 import il.co.All4Students.homemovies.util.log.db.LogHandler;
 import android.annotation.SuppressLint;
@@ -25,8 +26,17 @@ public class AppLog {
 		return logHandler.getAllLogs();
 	}
 
+	public static void clearAllLogs(Context context) {
+		try {
+			LogHandler logHandler = new LogHandler(context);
+			logHandler.deleteAllLogs();
+		} catch (Exception e) {
+			AppLog.log(context, LOG_TAG_AppLog, e.getMessage());
+		}
+	}
+
 	public static String getLogLocation(Context context) {
-		LogHandler logHandler = new LogHandler(context);
-		return logHandler.getAllLogs();
+		String s = "/data/data/il.co.All4Students.homemovies/databases/log_database.db";
+		return s;
 	}
 }

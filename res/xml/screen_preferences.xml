@@ -42,12 +42,20 @@
             android:key="AppPreffEnablePreview"
             android:summary="@string/preferenceEnablePreviewSummary"
             android:title="@string/preferenceEnablePreviewTitle" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/preferenceCategoryTitle3" >
         <CheckBoxPreference
             android:defaultValue="@string/preferenceEnableLogDefaultValue"
             android:enabled="true"
             android:key="AppPreffEnableLog"
             android:summary="@string/preferenceEnableLogSummary"
             android:title="@string/preferenceEnableLogTitle" />
+        <CheckBoxPreference
+            android:defaultValue="@string/preferenceEnableClearLogDefaultValue"
+            android:enabled="true"
+            android:key="AppPreffEnableClearLog"
+            android:summary="@string/preferenceEnableClearLogSummary"
+            android:title="@string/preferenceEnableClearLogTitle" />
     </PreferenceCategory>
 
 </PreferenceScreen>

@@ -420,24 +420,34 @@ public final class R {
  Preference Strings 
          */
         public static final int preferenceCategoryTitle2=0x7f0a0042;
+        /**  Preference Strings 
+ Preference Strings 
+         */
+        public static final int preferenceCategoryTitle3=0x7f0a004c;
         public static final int preferenceEmailDefaultValue=0x7f0a003e;
         public static final int preferenceEmailSummary=0x7f0a003d;
         /**  Preference Email 
  Preference Email 
          */
         public static final int preferenceEmailTitle=0x7f0a003c;
+        public static final int preferenceEnableClearLogDefaultValue=0x7f0a0052;
+        public static final int preferenceEnableClearLogSummary=0x7f0a0051;
+        /**  Preference EnableClearLog 
+ Preference EnableClearLog 
+         */
+        public static final int preferenceEnableClearLogTitle=0x7f0a0050;
         public static final int preferenceEnableColorDefaultValue=0x7f0a0048;
         public static final int preferenceEnableColorSummary=0x7f0a0047;
         /**  Preference EnableColor 
  Preference EnableColor 
          */
         public static final int preferenceEnableColorTitle=0x7f0a0046;
-        public static final int preferenceEnableLogDefaultValue=0x7f0a004e;
-        public static final int preferenceEnableLogSummary=0x7f0a004d;
+        public static final int preferenceEnableLogDefaultValue=0x7f0a004f;
+        public static final int preferenceEnableLogSummary=0x7f0a004e;
         /**  Preference EnableLog 
  Preference EnableLog 
          */
-        public static final int preferenceEnableLogTitle=0x7f0a004c;
+        public static final int preferenceEnableLogTitle=0x7f0a004d;
         public static final int preferenceEnablePreviewDefaultValue=0x7f0a004b;
         public static final int preferenceEnablePreviewSummary=0x7f0a004a;
         /**  Preference EnablePreview 
