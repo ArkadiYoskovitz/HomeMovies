@@ -42,7 +42,6 @@ public class EmailUtil {
 		emailIntent.putExtra(Intent.EXTRA_CC, new String[] { emailCC });
 		emailIntent.putExtra(Intent.EXTRA_SUBJECT, emailSubject);
 		emailIntent.putExtra(Intent.EXTRA_TEXT, emailText);
-
 		if (filePaths != null) {
 			// has to be an ArrayList
 			ArrayList<Uri> uris = new ArrayList<Uri>();

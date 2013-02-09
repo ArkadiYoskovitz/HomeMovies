@@ -39,7 +39,7 @@ public class LogDbHelper extends SQLiteOpenHelper {
 					.append("CREATE TABLE IF NOT EXISTS ").append(TABLE_LOG)
 					.append(" ( ").append(KEY_ID)
 					.append(" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ")
-					.append(KEY_LOG).toString();
+					.append(KEY_LOG).append(" TEXT NOT NULL )").toString();
 
 			db.execSQL(CREATE_ITEM_TABLE);
 

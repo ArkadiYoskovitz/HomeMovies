@@ -1,5 +1,7 @@
 package il.co.All4Students.homemovies.app;
 
+import il.co.All4Students.homemovies.util.log.db.LogHandler;
+
 import java.util.Locale;
 
 import android.app.Application;
@@ -30,6 +32,7 @@ public class HomeProjectApplication extends Application {
 			getBaseContext().getResources().updateConfiguration(config,
 					getBaseContext().getResources().getDisplayMetrics());
 		}
+		new LogHandler(this).deleteAllLogs();
 	}
 
 	public ApplicationPreference getSettings() {

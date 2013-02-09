@@ -53,4 +53,13 @@ public class JSONHandler {
 		return localURI;
 	}
 
+	public static String insertURIintoJSON(String jsonString,
+			String stringInfoToInsert) {
+
+		ArrayList<String> tmpArrayList = JSONHandler.getURIFromJSON(jsonString);
+		tmpArrayList.add(stringInfoToInsert);
+		jsonString = JSONHandler.putURIintoJSON(tmpArrayList);
+
+		return jsonString;
+	}
 }

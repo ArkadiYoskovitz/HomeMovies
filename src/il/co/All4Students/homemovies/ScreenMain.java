@@ -80,12 +80,16 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.screen_main);
 		Log.d(LOG_TAG_SCREEN_MAIN, "Screen Main Layout was Created and loaded");
+		AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
+				"Screen Main Layout was Created and loaded");
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
 		Log.d(LOG_TAG_SCREEN_MAIN, "Activity Main Layout was Resumed");
+		AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
+				"Activity Main Layout was Resumed");
 		loadDateBase();
 		loadScreenMainTest();
 		loadScreenMainList();
@@ -259,15 +263,15 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 
 		case R.id.screenMainOptionMenuSendLog:
 			if (mSettings.getEnableLog()) {
-				AppLog appLog = new AppLog(ScreenMain.this);
-				String log = appLog.getLog();
 				EmailUtil.sendEmail(ScreenMain.this, DeveloperTeam,
-						mSettings.getEmail(), "Bug Report", log, null);
+						mSettings.getEmail(), "Bug Report",
+						AppLog.getAllLogs(ScreenMain.this), null);
 			} else {
 				Toast.makeText(ScreenMain.this, "Log is not enabled",
 						Toast.LENGTH_SHORT).show();
 			}
 			break;
+
 		case R.id.screenMainOptionMenuSearch:
 			mTableRow = (TableRow) findViewById(R.id.ScreenMainTableRow2);
 			if (mTableRow.getVisibility() == View.GONE) {
@@ -333,6 +337,7 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		mListView = (ListView) findViewById(R.id.ScreenMainListView);
 		mSettings = new ApplicationPreference(ScreenMain.this);
 		ItemsHandler itemHandler = new ItemsHandler(this);
+
 		switch (item.getItemId()) {
 
 		/*
@@ -340,6 +345,7 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		 */
 		case R.id.screenMainContextMenuEdit:
 			Log.d(LOG_TAG_SCREEN_MAIN, "screenMainContextMenuEdit was pressed");
+
 			Intent intent = new Intent(ScreenMain.this, ScreenEdit.class);
 			intent.putExtra(INTENT_TARGET, mItemList.get((int) info.id));
 			startActivityForResult(intent, Item_Edit);

@@ -17,10 +17,10 @@ public class LogDbConstants {
 	public static final int DATABASE_VERSION = 1;
 
 	// Database Name
-	public static final String DATABASE_NAME = "log.db";
+	public static final String DATABASE_NAME = "log_database.db";
 
 	// Contacts table name
-	public static final String TABLE_LOG = "log";
+	public static final String TABLE_LOG = "log_recording";
 
 	// Contacts Table Columns names
 	public static final String KEY_ID = "_id";
@@ -29,6 +29,4 @@ public class LogDbConstants {
 	// Helper static fields
 	public static final String LOG_TAG = "LogDB";
 	public static final String SELECT_HELPER = "SELECT  * FROM " + TABLE_LOG;
-	public static final String WHERE_SUBJECT = "subject like ?";
-
 }

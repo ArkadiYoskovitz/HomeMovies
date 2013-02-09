@@ -32,7 +32,7 @@ public class ApplicationPreference {
 	private static final int DEFAULT_SORT_METHOD = 0;
 	private static final boolean DEFAULT_ENABLE_COLOR = true;
 	private static final boolean DEFAULT_ENABLE_PREVIEW = true;
-	private static final boolean DEFAULT_ENABLE_LOG = true;
+	private static final boolean DEFAULT_ENABLE_LOG = false;
 
 	// Attributes
 	private final SharedPreferences settings;

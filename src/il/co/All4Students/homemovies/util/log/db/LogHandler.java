@@ -20,10 +20,10 @@ import android.util.Log;
  * @date 2013-02-08
  */
 public class LogHandler {
-	private LogDbHelper dbhelper;
+	private LogDbHelper logDBHelper;
 
 	public LogHandler(Context context) {
-		dbhelper = new LogDbHelper(context, DATABASE_NAME, null,
+		logDBHelper = new LogDbHelper(context, DATABASE_NAME, null,
 				DATABASE_VERSION);
 	}
 
@@ -37,7 +37,7 @@ public class LogHandler {
 	 * @param logString
 	 */
 	public void addLogItem(String logString) {
-		SQLiteDatabase db = dbhelper.getWritableDatabase();
+		SQLiteDatabase db = logDBHelper.getWritableDatabase();
 
 		try {
 			ContentValues values = new ContentValues();
@@ -62,7 +62,7 @@ public class LogHandler {
 		// Select All Query
 		String selectQuery = SELECT_HELPER;
 
-		SQLiteDatabase db = dbhelper.getWritableDatabase();
+		SQLiteDatabase db = logDBHelper.getReadableDatabase();
 		try {
 			Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -70,7 +70,7 @@ public class LogHandler {
 			if (cursor.moveToFirst()) {
 				do {
 					holderString.append(Integer.parseInt(cursor.getString(0)))
-							.append(cursor.getString(1));
+							.append(cursor.getString(1)).append("\n\n");
 				} while (cursor.moveToNext());
 			}
 			cursor.close();
@@ -87,7 +87,7 @@ public class LogHandler {
 	 * Deleting all logs from the Database
 	 */
 	public void deleteAllLogs() {
-		SQLiteDatabase db = dbhelper.getWritableDatabase();
+		SQLiteDatabase db = logDBHelper.getWritableDatabase();
 		try {
 			String sqlDelete = "DELETE FROM " + TABLE_LOG;
 			db.execSQL(sqlDelete);

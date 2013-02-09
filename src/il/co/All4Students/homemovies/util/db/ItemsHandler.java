@@ -122,7 +122,7 @@ public class ItemsHandler {
 		// Select All Query
 		String selectQuery = SELECT_HELPER;
 
-		SQLiteDatabase db = dbhelper.getWritableDatabase();
+		SQLiteDatabase db = dbhelper.getReadableDatabase();
 		try {
 			Cursor cursor = db.rawQuery(selectQuery, null);
 

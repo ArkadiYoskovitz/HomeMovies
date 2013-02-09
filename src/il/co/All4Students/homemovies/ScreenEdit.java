@@ -224,29 +224,30 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
+
 		switch (item.getItemId()) {
+
 		case R.id.screenEditContextMenuSaveToCard:
-			ImageView screenEditImage = (ImageView) findViewById(R.id.ScreenEditImageView1);
-			BitmapDrawable drawable = (BitmapDrawable) screenEditImage
-					.getDrawable();
-			Bitmap bitmap = drawable.getBitmap();
-			ExternalStogareLoader externalStogareLoader = new ExternalStogareLoader(
-					ScreenEdit.this);
-			externalStogareLoader.SaveIamge(bitmap);
-
 			try {
-				String fileURI = externalStogareLoader.getFileURI();
-				ArrayList<String> al = JSONHandler.getURIFromJSON(mEditedItem
-						.getUrlLocal());
-				al.add(fileURI);
-				JSONHandler.putURIintoJSON(al);
-			} catch (Exception e) {
-				e.getStackTrace();
-			}
+				ImageView screenEditImage = (ImageView) findViewById(R.id.ScreenEditImageView1);
+				BitmapDrawable drawable = (BitmapDrawable) screenEditImage
+						.getDrawable();
+				Bitmap bitmap = drawable.getBitmap();
 
-			Toast.makeText(ScreenEdit.this,
-					"Save To Card curentlly unavalible", Toast.LENGTH_SHORT)
-					.show();
+				ExternalStogareLoader externalStogareLoader = new ExternalStogareLoader(
+						ScreenEdit.this);
+
+				mEditedItem.setUrlLocal(JSONHandler.insertURIintoJSON(
+						mEditedItem.getUrlLocal(),
+						externalStogareLoader.SaveIamge(bitmap)));
+
+				ItemsHandler itemsHandler = new ItemsHandler(ScreenEdit.this);
+				itemsHandler.updateItem(mEditedItem);
+			} catch (Exception e) {
+				Toast.makeText(this, "Canot save to card at this time",
+						Toast.LENGTH_SHORT).show();
+				Log.d("onContextItemSelected", e.getStackTrace().toString());
+			}
 			break;
 
 		case R.id.screenEditContextMenuRank:
@@ -485,8 +486,9 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 					String emailToAddress = "";
 					String emailCCAddress = mSettings.getEmail().toString();
 					String emailSubject = mEditedItem.getSubject();
-					String emailText = mEditedItem.getBody() + "\n\n\n"
+					String emailText = mEditedItem.getBody() + " \n\n\n "
 							+ mEditedItem.getUrlWeb();
+
 					ArrayList<String> emailFilePaths = JSONHandler
 							.getURIFromJSON(mEditedItem.getUrlLocal());
 
