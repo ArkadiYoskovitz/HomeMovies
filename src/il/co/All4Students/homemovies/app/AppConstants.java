@@ -20,6 +20,9 @@ public class AppConstants {
 	public static final String LOG_TAG_TextToSpeech = "*** TextToSpeech ***";
 	public static final String LOG_TAG_ITEM = "*** Item Log ***";
 
+	public static final String LOG_TAG_RankDialog = "*** RankDialog Log ***";
+	public static final String LOG_TAG_ImageLoader = "*** ImageLoader Log ***";
+
 	public static final int Item_Edit = 1;
 	public static final int Item_Add_Local = 2;
 	public static final int Item_Add_Web = 3;

@@ -12,20 +12,20 @@ import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_DELETE;
 import il.co.All4Students.homemovies.app.ApplicationPreference;
 import il.co.All4Students.homemovies.core.Item;
 import il.co.All4Students.homemovies.util.db.ItemsHandler;
-import il.co.All4Students.homemovies.util.email.EmailUtil;
+import il.co.All4Students.homemovies.util.dialog.RankDialog;
+import il.co.All4Students.homemovies.util.dialog.ShareDialog;
 import il.co.All4Students.homemovies.util.image.ExternalStorageLoader;
 import il.co.All4Students.homemovies.util.json.JSONHandler;
+import il.co.All4Students.homemovies.util.log.util.AppLog;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Locale;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -41,17 +41,14 @@ import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,7 +66,6 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	private ApplicationPreference mSettings;
 	private TextToSpeech mTextToSpeech;
 	private boolean mIsLanguageSupported = true;
-	private RatingBar mRankBar;
 
 	// System Events
 	@Override
@@ -114,16 +110,15 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 
 			registerForContextMenu(screenEditImage);
 		} catch (Exception e) {
-			Log.d(LOG_TAG_SCREEN_EDIT, e.getStackTrace().toString());
-			Log.d(LOG_TAG_SCREEN_EDIT, e.getMessage());
+			AppLog.log(ScreenEdit.this, LOG_TAG_SCREEN_EDIT, e.getMessage());
 		}
 	}
 
 	@Override
 	public void onBackPressed() {
 		itemRefreshFromScreen();
-
-		Log.d(LOG_TAG_SCREEN_EDIT, "Edit Screen - Cancel button was pressed");
+		AppLog.log(ScreenEdit.this, LOG_TAG_SCREEN_EDIT,
+				"Edit Screen - Cancel button was pressed");
 
 		Intent returnIntent = new Intent();
 		returnIntent.putExtra(INTENT_TARGET, mEditedItem);
@@ -197,7 +192,8 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.screenEditOptionMenuShare:
-			ShareDialog ShareDialog = new ShareDialog();
+			ShareDialog ShareDialog = new ShareDialog(mEditedItem,
+					ScreenEdit.this);
 			ShareDialog.showShareDialog();
 			break;
 		case R.id.screenEditOptionMenuSpeach:
@@ -246,12 +242,13 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 			} catch (Exception e) {
 				Toast.makeText(this, "Canot save to card at this time",
 						Toast.LENGTH_SHORT).show();
-				Log.d("onContextItemSelected", e.getStackTrace().toString());
+				AppLog.log(ScreenEdit.this, "onContextItemSelected", e
+						.getStackTrace().toString());
 			}
 			break;
 
 		case R.id.screenEditContextMenuRank:
-			RankDialog RankDialog = new RankDialog();
+			RankDialog RankDialog = new RankDialog(mEditedItem, ScreenEdit.this);
 			RankDialog.showRankDialog();
 			break;
 		case R.id.screenEditContextMenuViewed:
@@ -260,7 +257,8 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 			mEditedItem.setViewd(!mEditedItem.getViewd());
 			break;
 		case R.id.screenEditContextMenuShare:
-			ShareDialog ShareDialog = new ShareDialog();
+			ShareDialog ShareDialog = new ShareDialog(mEditedItem,
+					ScreenEdit.this);
 			ShareDialog.showShareDialog();
 			break;
 
@@ -307,8 +305,9 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 			try {
 				if (mDownloadTask != null) {
 					if (mDownloadTask.getStatus() != AsyncTask.Status.FINISHED) {
-						Log.d(LOG_TAG_SCREEN_WEB,
+						AppLog.log(ScreenEdit.this, LOG_TAG_SCREEN_WEB,
 								"onClickWebGo - no need to start a new task");
+
 						return;
 					}
 				}
@@ -324,8 +323,8 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	public void onClickEditCancel(View view) {
 		closeKeybord();
 		itemRefreshFromScreen();
-
-		Log.d(LOG_TAG_SCREEN_EDIT, "Edit Screen - Cancel button was pressed");
+		AppLog.log(ScreenEdit.this, LOG_TAG_SCREEN_EDIT,
+				"Edit Screen - Cancel button was pressed");
 
 		Intent returnIntent = new Intent();
 		returnIntent.putExtra(INTENT_TARGET, mEditedItem);
@@ -336,8 +335,8 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	public void onClickEditDelete(View view) {
 		closeKeybord();
 		itemRefreshFromScreen();
-
-		Log.d(LOG_TAG_SCREEN_EDIT, "Edit Screen - Delete button was pressed");
+		AppLog.log(ScreenEdit.this, LOG_TAG_SCREEN_EDIT,
+				"Edit Screen - Delete button was pressed");
 
 		Intent returnIntent = new Intent();
 		returnIntent.putExtra(INTENT_TARGET, mEditedItem);
@@ -360,7 +359,8 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 		} else {
 			itemRefreshFromScreen();
 		}
-		Log.d(LOG_TAG_SCREEN_EDIT, "Edit Screen - Commit button was pressed");
+		AppLog.log(ScreenEdit.this, LOG_TAG_SCREEN_EDIT,
+				"Edit Screen - Commit button was pressed");
 
 		Intent returnIntent = new Intent();
 		returnIntent.putExtra(INTENT_TARGET, mEditedItem);
@@ -432,148 +432,6 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Inner Classes
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	/**
-	 * ShareDialog The class handles the alert dialog foe the diffrent Share
-	 * options that the App implements
-	 * 
-	 * Curentlly: - Email
-	 * 
-	 * in Prograsse: - FaceBook - Tweeter
-	 * 
-	 * @author Arkadi Yoskovitz
-	 * @date 2013-02-08
-	 */
-	private class ShareDialog {
-		public void showShareDialog() {
-			LayoutInflater li = LayoutInflater.from(ScreenEdit.this);
-
-			View ShareDialogView = li.inflate(R.layout.custom_dialog_share,
-					null);
-
-			AlertDialog.Builder shareDialog = new AlertDialog.Builder(
-					ScreenEdit.this);
-
-			shareDialog.setView(ShareDialogView);
-			shareDialog.setTitle(ScreenEdit.this.getResources().getString(
-					R.string.ShareDialogTitle));
-			shareDialog.setIcon(ScreenEdit.this.getResources().getDrawable(
-					R.drawable.ic_dialog_share));
-			shareDialog.create();
-			// Showing Alert Message
-			final AlertDialog SDialog = shareDialog.show();
-
-			View btnEmail = ShareDialogView
-					.findViewById(R.id.customDialogShareButtonAirMail);
-			btnEmail.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					ScreenEdit.this.itemRefreshFromScreen();
-					EditText subjectText = (EditText) findViewById(R.id.ScreenEditEditText1);
-
-					if (subjectText.getText().toString().length() == 0) {
-						mEditedItem
-								.setSubject(subjectText.getHint().toString());
-					} else {
-						ScreenEdit.this.itemRefreshFromScreen();
-					}
-					mSettings = new ApplicationPreference(ScreenEdit.this);
-
-					String emailToAddress = "";
-					String emailCCAddress = mSettings.getEmail().toString();
-					String emailSubject = mEditedItem.getSubject();
-					String emailText = mEditedItem.getBody() + " \n\n\n "
-							+ mEditedItem.getUrlWeb();
-
-					ArrayList<String> emailFilePaths = JSONHandler
-							.getURIFromJSON(mEditedItem.getUrlLocal());
-
-					EmailUtil.sendEmail(ScreenEdit.this, emailToAddress,
-							emailCCAddress, emailSubject, emailText,
-							emailFilePaths);
-					SDialog.dismiss();
-				}
-			});
-
-			View btnFaceBook = ShareDialogView
-					.findViewById(R.id.customDialogShareButtonFaceBook);
-			btnFaceBook.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					Toast.makeText(ScreenEdit.this,
-							"FaceBook is unavlible at this time",
-							Toast.LENGTH_SHORT).show();
-					SDialog.dismiss();
-				}
-			});
-
-			View btnTweeter = ShareDialogView
-					.findViewById(R.id.customDialogShareButtonTweeter);
-			btnTweeter.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					Toast.makeText(ScreenEdit.this,
-							"Tweeter is unavlible at this time",
-							Toast.LENGTH_SHORT).show();
-					SDialog.dismiss();
-				}
-			});
-
-		}
-	}
-
-	/**
-	 * 
-	 * @author Arkadi Yoskovitz
-	 * @date 2013-02-08
-	 */
-	private class RankDialog {
-		public void showRankDialog() {
-			LayoutInflater li = LayoutInflater.from(ScreenEdit.this);
-
-			View RankDialogView = li.inflate(R.layout.custom_dialog_rank, null);
-
-			AlertDialog.Builder rankDialog = new AlertDialog.Builder(
-					ScreenEdit.this);
-			rankDialog.setView(RankDialogView);
-			rankDialog.setTitle(ScreenEdit.this.getResources().getString(
-					R.string.RankDialogTitle));
-			rankDialog.setTitle(ScreenEdit.this.getResources().getString(
-					R.string.RankDialogMsg));
-			rankDialog.create();
-			// Showing Alert Message
-			final AlertDialog RDialog = rankDialog.show();
-
-			mRankBar = (RatingBar) RankDialogView
-					.findViewById(R.id.customDialogRankBar);
-			mRankBar.setRating(((float) mEditedItem.getRank()) / 10);
-			View btnCancel = RankDialogView
-					.findViewById(R.id.customDialogRankButtonCancel);
-			btnCancel.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					RDialog.dismiss();
-				}
-			});
-
-			View btnCommit = RankDialogView
-					.findViewById(R.id.customDialogRankButtonCommit);
-			btnCommit.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					mEditedItem.setRank((int) (mRankBar.getRating() * 10));
-					ItemsHandler itemHandler = new ItemsHandler(ScreenEdit.this);
-					itemHandler.updateItem(mEditedItem);
-					RDialog.dismiss();
-				}
-			});
-		}
-	}
-
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
 	 * 
 	 * @author Arkadi Yoskovitz
@@ -591,7 +449,8 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 
 		@Override
 		protected Bitmap doInBackground(String... urls) {
-			Log.d("doInBackground", "starting download of image");
+			AppLog.log(ScreenEdit.this, "doInBackground",
+					"starting download of image");
 			Bitmap bitmap = null;
 
 			if (isOnline()) {

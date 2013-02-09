@@ -4,7 +4,6 @@ import static il.co.All4Students.homemovies.app.AppConstants.APP_API_KEY;
 import static il.co.All4Students.homemovies.app.AppConstants.INTENT_TARGET;
 import static il.co.All4Students.homemovies.app.AppConstants.Item_Add_Web;
 import static il.co.All4Students.homemovies.app.AppConstants.Item_App_Settings;
-import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_SCREEN_MAIN;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_SCREEN_WEB;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_WEB_DMovieInfo;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_WEB_SITE;
@@ -21,6 +20,7 @@ import il.co.All4Students.homemovies.core.ItemCompareRTID;
 import il.co.All4Students.homemovies.core.ItemCompareRank;
 import il.co.All4Students.homemovies.core.ItemCompareSubject;
 import il.co.All4Students.homemovies.util.db.ItemsHandler;
+import il.co.All4Students.homemovies.util.log.util.AppLog;
 import il.co.All4Students.homemovies.util.ui.ItemListAdapter;
 
 import java.io.ByteArrayOutputStream;
@@ -84,7 +84,8 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.screen_web);
-		Log.d(LOG_TAG_SCREEN_MAIN, "Screen Web Layout was Created and loaded");
+		AppLog.log(ScreenWeb.this, LOG_TAG_SCREEN_WEB,
+				"Screen Web Layout was Created and loaded");
 	}
 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -94,7 +95,7 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 		EditText searchText = (EditText) findViewById(R.id.ScreenWebEditText1);
 		outState.putString("searchText", searchText.getText().toString());
 		outState.putParcelableArrayList("mItemList", mItemList);
-		Log.d("onSaveInstanceState", "onSaveInstanceState");
+		AppLog.log(ScreenWeb.this, LOG_TAG_SCREEN_WEB, "onSaveInstanceState");
 	}
 
 	@Override
@@ -104,7 +105,7 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 		searchText.setText(savedInstanceState.getString("searchText"));
 		mItemList = savedInstanceState.getParcelableArrayList("mItemList");
 		RefreshScreen();
-		Log.d("onRestoreInstanceState", "onRestoreInstanceState");
+		AppLog.log(ScreenWeb.this, LOG_TAG_SCREEN_WEB, "onRestoreInstanceState");
 	}
 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -120,19 +121,19 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 			switch (resultCode) {
 
 			case RESULT_CODE_CANCEL:
-				Log.d(LOG_TAG_SCREEN_MAIN,
+				AppLog.log(ScreenWeb.this, LOG_TAG_SCREEN_WEB,
 						"onActivityResult - Item_Add_Local - CANCEL");
 				break;
 
 			case RESULT_CODE_DELETE:
-				Log.d(LOG_TAG_SCREEN_MAIN,
+				AppLog.log(ScreenWeb.this, LOG_TAG_SCREEN_WEB,
 						"onActivityResult - Item_Add_Local - Delete");
-				Log.d(LOG_TAG_SCREEN_MAIN,
+				AppLog.log(ScreenWeb.this, LOG_TAG_SCREEN_WEB,
 						"No item was added, just log for now");
 				break;
 
 			case RESULT_CODE_COMMIT:
-				Log.d(LOG_TAG_SCREEN_MAIN,
+				AppLog.log(ScreenWeb.this, LOG_TAG_SCREEN_WEB,
 						"onActivityResult - Item_Add_Local - COMMIT");
 				mReturnedItem = data.getExtras().getParcelable(INTENT_TARGET);
 				// mReturnedItem = fixItemNumber(mReturnedItem);
@@ -156,7 +157,7 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 					break;
 				}
 			default:
-				Log.d(LOG_TAG_SCREEN_MAIN,
+				AppLog.log(ScreenWeb.this, LOG_TAG_SCREEN_WEB,
 						"onActivityResult - Item_Add_Local - default");
 				break;
 			}
@@ -164,7 +165,8 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 		// ////////////////////////////////////////////////////////////////////////////////
 
 		default:
-			Log.d(LOG_TAG_SCREEN_MAIN, "onActivityResult - default - default");
+			AppLog.log(ScreenWeb.this, LOG_TAG_SCREEN_WEB,
+					"onActivityResult - default - default");
 			break;
 		}
 
@@ -172,7 +174,7 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 		sortCompareable();
 		mAdapter = new ItemListAdapter(mItemList, this);
 		mAdapter.notifyDataSetChanged();
-		Log.d(LOG_TAG_SCREEN_MAIN, "View re-loaded");
+		AppLog.log(ScreenWeb.this, LOG_TAG_SCREEN_WEB, "View re-loaded");
 
 		super.onActivityResult(requestCode, resultCode, data);
 	}
@@ -197,7 +199,8 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 
 		switch (item.getItemId()) {
 		case R.id.screenWebOptionMenuExitSettings:
-			Log.d(LOG_TAG_SCREEN_MAIN, "optionMenuExitSettings was pressed");
+			AppLog.log(ScreenWeb.this, LOG_TAG_SCREEN_WEB,
+					"optionMenuExitSettings was pressed");
 			System.exit(0);
 			break;
 
@@ -223,7 +226,7 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 			try {
 				if (downloadTask != null) {
 					if (downloadTask.getStatus() != AsyncTask.Status.FINISHED) {
-						Log.d(LOG_TAG_SCREEN_WEB,
+						AppLog.log(ScreenWeb.this, LOG_TAG_SCREEN_WEB,
 								"onClickWebGo - no need to start a new task");
 						return;
 					}
@@ -248,7 +251,8 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 
 	public void onClickWebCancel(View view) {
 		closeKeybord();
-		Log.d(LOG_TAG_SCREEN_WEB, "Edit Screen - Cancel button was pressed");
+		AppLog.log(ScreenWeb.this, LOG_TAG_SCREEN_WEB,
+				"Edit Screen - Cancel button was pressed");
 		Intent returnIntent = new Intent();
 		setResult(RESULT_CODE_CANCEL, returnIntent);
 		finish();
@@ -258,7 +262,7 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
 		closeKeybord();
-		Log.d(LOG_TAG_SCREEN_MAIN,
+		AppLog.log(ScreenWeb.this, LOG_TAG_SCREEN_WEB,
 				"ScreenWeb - An Item was clicked from the list");
 		Intent intent = new Intent(ScreenWeb.this, ScreenEdit.class);
 		intent.putExtra(INTENT_TARGET, mItemList.get(position));
@@ -358,7 +362,7 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 
 		@Override
 		protected String doInBackground(String... params) {
-			Log.d(LOG_TAG_WEB_DMovieInfo,
+			AppLog.log(ScreenWeb.this, LOG_TAG_WEB_DMovieInfo,
 					"starting download of items found at the rotten tomatoes site");
 
 			HttpClient httpclient = new DefaultHttpClient();
@@ -383,7 +387,8 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 					throw new IOException(statusLine.getReasonPhrase());
 				}
 			} catch (Exception e) {
-				Log.d("Test", "Couldn't make a successful request!");
+				AppLog.log(ScreenWeb.this, LOG_TAG_WEB_DMovieInfo,
+						"Couldn't make a successful request!");
 			}
 			return responseString;
 		}
@@ -427,7 +432,8 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 						mItemList.add(item);
 					}
 				} catch (JSONException e) {
-					Log.d("Test", "Failed to parse the JSON response!");
+					AppLog.log(ScreenWeb.this, LOG_TAG_WEB_DMovieInfo,
+							"Failed to parse the JSON response!");
 				}
 				// refresh mListView
 				mListView = (ListView) mActivity

@@ -39,20 +39,17 @@ public class ScreenPreferences extends PreferenceActivity {
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
-		SharedPreferences sharedPrefs = PreferenceManager
-				.getDefaultSharedPreferences(this);
+		
+		SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-		String subject = sharedPrefs.getString("AppPreffSubject",
-				"Default Topic");
-		String email = sharedPrefs.getString("AppPreffEmail",
-				"John.Appleseed@iCloud.com");
+		String subject = sharedPrefs.getString("AppPreffSubject","Default Topic");
+		String email = sharedPrefs.getString("AppPreffEmail","John.Appleseed@iCloud.com");
 		String language = sharedPrefs.getString("AppPreffLanguage", "EN");
-		int sortMethod = Integer.parseInt(sharedPrefs.getString(
-				"AppPreffSortMethods", "0"));
+		int sortMethod = Integer.parseInt(sharedPrefs.getString("AppPreffSortMethods", "0"));
 		boolean isColored = sharedPrefs.getBoolean("AppPreffEnableColor", true);
-		boolean isPreview = sharedPrefs.getBoolean("AppPreffEnablePreview",
-				true);
-
+		boolean isPreview = sharedPrefs.getBoolean("AppPreffEnablePreview",true);
+		boolean toLog = sharedPrefs.getBoolean("AppPreffEnableLog",false);
+		
 		if (email.length() == 0) {
 			mSettings.setEmail("John.Appleseed@iCloud.com.com");
 		}
@@ -63,6 +60,7 @@ public class ScreenPreferences extends PreferenceActivity {
 		mSettings.setSortMethod(sortMethod);
 		mSettings.setEnableColor(isColored);
 		mSettings.setEnablePreview(isPreview);
+		mSettings.setEnableLog(toLog);
 
 		if (!mLanguage.equals(mSettings.getLanguage())) {
 			AlarmManager mgr = (AlarmManager) getSystemService(Context.ALARM_SERVICE);

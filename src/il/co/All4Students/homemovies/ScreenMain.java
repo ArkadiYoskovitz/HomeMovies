@@ -20,8 +20,9 @@ import il.co.All4Students.homemovies.core.ItemCompareRTID;
 import il.co.All4Students.homemovies.core.ItemCompareRank;
 import il.co.All4Students.homemovies.core.ItemCompareSubject;
 import il.co.All4Students.homemovies.util.db.ItemsHandler;
+import il.co.All4Students.homemovies.util.dialog.RankDialog;
+import il.co.All4Students.homemovies.util.dialog.ShareDialog;
 import il.co.All4Students.homemovies.util.email.EmailUtil;
-import il.co.All4Students.homemovies.util.json.JSONHandler;
 import il.co.All4Students.homemovies.util.log.util.AppLog;
 import il.co.All4Students.homemovies.util.ui.ItemListAdapter;
 
@@ -37,21 +38,17 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RatingBar;
 import android.widget.TableRow;
 import android.widget.Toast;
 
@@ -79,7 +76,6 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.screen_main);
-		Log.d(LOG_TAG_SCREEN_MAIN, "Screen Main Layout was Created and loaded");
 		AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
 				"Screen Main Layout was Created and loaded");
 	}
@@ -87,7 +83,6 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 	@Override
 	protected void onResume() {
 		super.onResume();
-		Log.d(LOG_TAG_SCREEN_MAIN, "Activity Main Layout was Resumed");
 		AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
 				"Activity Main Layout was Resumed");
 		loadDateBase();
@@ -123,12 +118,12 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		case Item_Edit:
 			switch (resultCode) {
 			case RESULT_CODE_CANCEL:
-				Log.d(LOG_TAG_SCREEN_MAIN,
+				AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
 						"onActivityResult - Item_Edit - CANCEL");
 				break;
 
 			case RESULT_CODE_DELETE:
-				Log.d(LOG_TAG_SCREEN_MAIN,
+				AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
 						"onActivityResult - Item_Edit - DELETE");
 				mReturnedItem = data.getExtras().getParcelable(INTENT_TARGET);
 				itemHandler.deleteItem(mReturnedItem);
@@ -136,7 +131,7 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 				break;
 
 			case RESULT_CODE_COMMIT:
-				Log.d(LOG_TAG_SCREEN_MAIN,
+				AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
 						"onActivityResult - Item_Edit - COMMIT");
 				mReturnedItem = data.getExtras().getParcelable(INTENT_TARGET);
 				itemHandler.updateItem(mReturnedItem);
@@ -146,7 +141,7 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 				break;
 
 			default:
-				Log.d(LOG_TAG_SCREEN_MAIN,
+				AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
 						"onActivityResult - Item_Edit - default");
 				break;
 			}
@@ -156,19 +151,19 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 			switch (resultCode) {
 
 			case RESULT_CODE_CANCEL:
-				Log.d(LOG_TAG_SCREEN_MAIN,
+				AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
 						"onActivityResult - Item_Add_Local - CANCEL");
 				break;
 
 			case RESULT_CODE_DELETE:
-				Log.d(LOG_TAG_SCREEN_MAIN,
+				AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
 						"onActivityResult - Item_Add_Local - Delete");
-				Log.d(LOG_TAG_SCREEN_MAIN,
+				AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
 						"No item was added, just log for now");
 				break;
 
 			case RESULT_CODE_COMMIT:
-				Log.d(LOG_TAG_SCREEN_MAIN,
+				AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
 						"onActivityResult - Item_Add_Local - COMMIT");
 				mReturnedItem = data.getExtras().getParcelable(INTENT_TARGET);
 				itemHandler.addItem(mReturnedItem);
@@ -178,7 +173,7 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 				break;
 
 			default:
-				Log.d(LOG_TAG_SCREEN_MAIN,
+				AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
 						"onActivityResult - Item_Add_Local - default");
 				break;
 			}
@@ -188,12 +183,12 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 			switch (resultCode) {
 
 			case RESULT_CODE_CANCEL:
-				Log.d(LOG_TAG_SCREEN_MAIN,
+				AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
 						"onActivityResult - Item_Search_Web - CANCEL");
 				break;
 
 			default:
-				Log.d(LOG_TAG_SCREEN_MAIN,
+				AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
 						"onActivityResult - Item_Search_Web - default");
 				break;
 			}
@@ -212,14 +207,15 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 			break;
 		// ////////////////////////////////////////////////////////////////////////////////
 		default:
-			Log.d(LOG_TAG_SCREEN_MAIN, "onActivityResult - default - default");
+			AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
+					"onActivityResult - default - default");
 			break;
 		}
 
 		// Handaling the screen refresh
 		finish();
 		startActivity(getIntent());
-		Log.d(LOG_TAG_SCREEN_MAIN, "View re-loaded");
+		AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN, "View re-loaded");
 
 		super.onActivityResult(requestCode, resultCode, data);
 	}
@@ -236,7 +232,7 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		super.onCreateOptionsMenu(menu);
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.screen_main_menu_option, menu);
-		Log.d(LOG_TAG_SCREEN_MAIN,
+		AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
 				"Activity Main Option Menue Layout was Created and loaded");
 		return true;
 	}
@@ -248,7 +244,7 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 
 		switch (item.getItemId()) {
 		case R.id.screenMainOptionMenuDeletAllIteams:
-			Log.d(LOG_TAG_SCREEN_MAIN,
+			AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
 					"screenMainOptionMenuDeletAllIteams was pressed");
 			ItemsHandler itemHandler = new ItemsHandler(this);
 			itemHandler.deleteAllItems();
@@ -257,7 +253,8 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 			break;
 
 		case R.id.screenMainOptionMenuExitSettings:
-			Log.d(LOG_TAG_SCREEN_MAIN, "optionMenuExitSettings was pressed");
+			AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
+					"optionMenuExitSettings was pressed");
 			System.exit(0);
 			break;
 
@@ -343,7 +340,8 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		 * Send the choosen item to the editing screen
 		 */
 		case R.id.screenMainContextMenuEdit:
-			Log.d(LOG_TAG_SCREEN_MAIN, "screenMainContextMenuEdit was pressed");
+			AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
+					"screenMainContextMenuEdit was pressed");
 
 			Intent intent = new Intent(ScreenMain.this, ScreenEdit.class);
 			intent.putExtra(INTENT_TARGET, mItemList.get((int) info.id));
@@ -354,17 +352,21 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		 * Share the choosen item
 		 */
 		case R.id.screenMainContextMenuShare:
-			Log.d(LOG_TAG_SCREEN_MAIN, "screenMainContextMenuShare was pressed");
+			AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
+					"screenMainContextMenuShare was pressed");
+
 			ShareDialog shareDialog = new ShareDialog(
-					mItemList.get((int) info.id));
-			shareDialog.showAlertDialog();
+					mItemList.get((int) info.id), ScreenMain.this);
+			shareDialog.showShareDialog();
 			break;
 		/*
 		 * Share the choosen item
 		 */
 		case R.id.screenMainContextMenuRank:
-			Log.d(LOG_TAG_SCREEN_MAIN, "screenMainContextMenuRank was pressed");
-			RankDialog rankDialog = new RankDialog(mItemList.get((int) info.id));
+			AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
+					"screenMainContextMenuRank was pressed");
+			RankDialog rankDialog = new RankDialog(
+					mItemList.get((int) info.id), ScreenMain.this);
 			rankDialog.showRankDialog();
 			break;
 
@@ -372,7 +374,7 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		 * Remove the item from the DB and from the itemList
 		 */
 		case R.id.screenMainContextMenuDelete:
-			Log.d(LOG_TAG_SCREEN_MAIN,
+			AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
 					"screenMainContextMenuDelete was pressed");
 			mReturnedItem = mItemList.get((int) info.id);
 			itemHandler.deleteItem(mReturnedItem);
@@ -400,7 +402,7 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 	 * @param view
 	 */
 	public void onClickSettings(View view) {
-		Log.d(LOG_TAG_SCREEN_MAIN,
+		AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
 				"Activity Main - Settings Button was pressed");
 		openOptionsMenu();
 	}
@@ -412,7 +414,8 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 	 * @param view
 	 */
 	public void onClickMainAdd(View view) {
-		Log.d(LOG_TAG_SCREEN_MAIN, "Activity Main - Add Button was pressed");
+		AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
+				"Activity Main - Add Button was pressed");
 		AlertDialog.Builder AddingMethod = new AlertDialog.Builder(this);
 		AddingMethod.setMessage(getString(R.string.AddingDialogMsg));
 		AddingMethod.setCancelable(true);
@@ -453,7 +456,7 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		Log.d(LOG_TAG_SCREEN_MAIN,
+		AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
 				"Activity Main - An Item was clicked from the list");
 		Intent intent = new Intent(ScreenMain.this, ScreenEdit.class);
 		intent.putExtra(INTENT_TARGET, mItemList.get(position));
@@ -497,7 +500,7 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		if (mItemList.isEmpty()) {
 			try {
 				ItemsHandler itemHandler = new ItemsHandler(this);
-				Log.d("Reading: ", "Reading all items..");
+				AppLog.log(ScreenMain.this, "Reading: ", "Reading all items..");
 				mItemList = itemHandler.getAllItems();
 
 				for (Item cn : mItemList) {
@@ -510,7 +513,8 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 							.append(cn.getRt_ID()).append(" ,Viewed: ")
 							.append(cn.getViewd()).append(" ,Color: ")
 							.append(cn.getColor()).append("\n\n");
-					Log.d(LOG_TAG_SCREEN_MAIN, logEntry.toString());
+					AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
+							logEntry.toString());
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -525,6 +529,16 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		mListView.setAdapter(mAdapter);
 		mAdapter.notifyDataSetChanged();
 		mListView.setOnItemClickListener(this);
+	}
+
+	public void refreshList() {
+		ItemsHandler itemHandler = new ItemsHandler(ScreenMain.this);
+		mItemList.clear();
+		mItemList = itemHandler.getAllItems();
+		ScreenMain.this.mAdapter = new ItemListAdapter(mItemList,
+				ScreenMain.this);
+		ScreenMain.this.mListView.setAdapter(ScreenMain.this.mAdapter);
+		ScreenMain.this.mAdapter.notifyDataSetChanged();
 	}
 
 	private void sortCompareable() {
@@ -557,161 +571,74 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Inner Classes
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/**
-	 * ShareDialog The class handles the alert dialog foe the diffrent Share
-	 * options that the App implements
-	 * 
-	 * Curentlly: - Email
-	 * 
-	 * in Prograsse: - FaceBook - Tweeter
-	 * 
-	 * @author Arkadi Yoskovitz
-	 * @date 2013-02-08
-	 */
-	private class ShareDialog {
-		// Attributes
-		private Item mItem;
 
-		// Constractors
-		public ShareDialog(Item item) {
-			super();
-			this.mItem = item;
-		}
-
-		// Additional Methods
-		public void showAlertDialog() {
-			LayoutInflater li = LayoutInflater.from(ScreenMain.this);
-
-			View ShareDialogView = li.inflate(R.layout.custom_dialog_share,
-					null);
-
-			AlertDialog.Builder shareDialog = new AlertDialog.Builder(
-					ScreenMain.this);
-			shareDialog.setView(ShareDialogView);
-			shareDialog.setTitle(ScreenMain.this.getResources().getString(
-					R.string.ShareDialogTitle));
-			shareDialog.setIcon(ScreenMain.this.getResources().getDrawable(
-					R.drawable.ic_dialog_share));
-			shareDialog.create();
-			// Showing Alert Message
-			final AlertDialog SDialog = shareDialog.show();
-
-			View btnEmail = ShareDialogView
-					.findViewById(R.id.customDialogShareButtonAirMail);
-			btnEmail.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					mSettings = new ApplicationPreference(ScreenMain.this);
-
-					String emailToAddress = "";
-					String emailCCAddress = mSettings.getEmail().toString();
-					String emailSubject = mItem.getSubject();
-					String emailText = mItem.getBody() + "\n\n\n"
-							+ mItem.getUrlWeb();
-					ArrayList<String> emailFilePaths = JSONHandler
-							.getURIFromJSON(mItem.getUrlLocal());
-
-					EmailUtil.sendEmail(ScreenMain.this, emailToAddress,
-							emailCCAddress, emailSubject, emailText,
-							emailFilePaths);
-					SDialog.dismiss();
-				}
-			});
-
-			View btnFaceBook = ShareDialogView
-					.findViewById(R.id.customDialogShareButtonFaceBook);
-			btnFaceBook.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					Toast.makeText(ScreenMain.this,
-							"FaceBook is unavlible at this time",
-							Toast.LENGTH_SHORT).show();
-					SDialog.dismiss();
-				}
-			});
-
-			View btnTweeter = ShareDialogView
-					.findViewById(R.id.customDialogShareButtonTweeter);
-			btnTweeter.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					Toast.makeText(ScreenMain.this,
-							"Tweeter is unavlible at this time",
-							Toast.LENGTH_SHORT).show();
-					SDialog.dismiss();
-				}
-			});
-
-		}
-	}
-
-	/**
-	 * 
-	 * @author Arkadi Yoskovitz
-	 * @date 2013-02-08
-	 */
-	private class RankDialog {
-		// Attributes
-		private Item mItem;
-		private RatingBar mRankBar;
-
-		// Constractors
-		public RankDialog(Item item) {
-			super();
-			this.mItem = item;
-		}
-
-		// Additional Methods
-		public void showRankDialog() {
-			LayoutInflater li = LayoutInflater.from(ScreenMain.this);
-
-			View RankDialogView = li.inflate(R.layout.custom_dialog_rank, null);
-
-			AlertDialog.Builder rankDialog = new AlertDialog.Builder(
-					ScreenMain.this);
-			rankDialog.setView(RankDialogView);
-			rankDialog.setTitle(ScreenMain.this.getResources().getString(
-					R.string.RankDialogTitle));
-			rankDialog.setTitle(ScreenMain.this.getResources().getString(
-					R.string.RankDialogMsg));
-			rankDialog.create();
-			// Showing Alert Message
-			final AlertDialog RDialog = rankDialog.show();
-
-			mRankBar = (RatingBar) RankDialogView
-					.findViewById(R.id.customDialogRankBar);
-			mRankBar.setRating(((float) mItem.getRank()) / 10);
-			View btnCancel = RankDialogView
-					.findViewById(R.id.customDialogRankButtonCancel);
-			btnCancel.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					RDialog.dismiss();
-				}
-			});
-
-			View btnCommit = RankDialogView
-					.findViewById(R.id.customDialogRankButtonCommit);
-			btnCommit.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					mItem.setRank((int) (mRankBar.getRating() * 10));
-					Log.d("logtag", mItem.getRank() + "");
-					ItemsHandler itemHandler = new ItemsHandler(ScreenMain.this);
-					itemHandler.updateItem(mItem);
-					mItemList.clear();
-					mItemList = itemHandler.getAllItems();
-					ScreenMain.this.mAdapter = new ItemListAdapter(mItemList,
-							ScreenMain.this);
-					ScreenMain.this.mListView
-							.setAdapter(ScreenMain.this.mAdapter);
-					ScreenMain.this.mAdapter.notifyDataSetChanged();
-					RDialog.dismiss();
-				}
-			});
-		}
-	}
+	// /**
+	// *
+	// * @author Arkadi Yoskovitz
+	// * @date 2013-02-08
+	// */
+	// private class RankDialog {
+	// // Attributes
+	// private Item mItem;
+	// private RatingBar mRankBar;
+	//
+	// // Constractors
+	// public RankDialog(Item item) {
+	// super();
+	// this.mItem = item;
+	// }
+	//
+	// // Additional Methods
+	// public void showRankDialog() {
+	// LayoutInflater li = LayoutInflater.from(ScreenMain.this);
+	//
+	// View RankDialogView = li.inflate(R.layout.custom_dialog_rank, null);
+	//
+	// AlertDialog.Builder rankDialog = new AlertDialog.Builder(
+	// ScreenMain.this);
+	// rankDialog.setView(RankDialogView);
+	// rankDialog.setTitle(ScreenMain.this.getResources().getString(
+	// R.string.RankDialogTitle));
+	// rankDialog.setTitle(ScreenMain.this.getResources().getString(
+	// R.string.RankDialogMsg));
+	// rankDialog.create();
+	// // Showing Alert Message
+	// final AlertDialog RDialog = rankDialog.show();
+	//
+	// mRankBar = (RatingBar) RankDialogView
+	// .findViewById(R.id.customDialogRankBar);
+	// mRankBar.setRating(((float) mItem.getRank()) / 10);
+	// View btnCancel = RankDialogView
+	// .findViewById(R.id.customDialogRankButtonCancel);
+	// btnCancel.setOnClickListener(new OnClickListener() {
+	// @Override
+	// public void onClick(View v) {
+	// RDialog.dismiss();
+	// }
+	// });
+	//
+	// View btnCommit = RankDialogView
+	// .findViewById(R.id.customDialogRankButtonCommit);
+	// btnCommit.setOnClickListener(new OnClickListener() {
+	// @Override
+	// public void onClick(View v) {
+	// mItem.setRank((int) (mRankBar.getRating() * 10));
+	// AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
+	// mItem.getRank() + "");
+	// ItemsHandler itemHandler = new ItemsHandler(ScreenMain.this);
+	// itemHandler.updateItem(mItem);
+	//
+	// mItemList.clear();
+	// mItemList = itemHandler.getAllItems();
+	// ScreenMain.this.mAdapter = new ItemListAdapter(mItemList,
+	// ScreenMain.this);
+	// ScreenMain.this.mListView
+	// .setAdapter(ScreenMain.this.mAdapter);
+	// ScreenMain.this.mAdapter.notifyDataSetChanged();
+	//
+	// RDialog.dismiss();
+	// }
+	// });
+	// }
+	// }
 }

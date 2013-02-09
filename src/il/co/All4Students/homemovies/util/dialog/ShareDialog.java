@@ -26,6 +26,7 @@ import android.widget.Toast;
  * @author Arkadi Yoskovitz
  * @date 2013-02-08
  */
+
 public class ShareDialog {
 	// Attributes
 	private ApplicationPreference mSettings;
@@ -40,7 +41,7 @@ public class ShareDialog {
 	}
 
 	// Additional Methods
-	public void showAlertDialog() {
+	public void showShareDialog() {
 		LayoutInflater li = LayoutInflater.from(mContext);
 
 		View ShareDialogView = li.inflate(R.layout.custom_dialog_share, null);

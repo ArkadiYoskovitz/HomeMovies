@@ -79,7 +79,6 @@ public class Item implements Comparable<Item>, Parcelable {
 		public Item[] newArray(int size) {
 			return new Item[size];
 		}
-
 	};
 
 	// Parcel incoding and De-Coding Methods
@@ -95,7 +94,6 @@ public class Item implements Comparable<Item>, Parcelable {
 		out.writeInt(rank);
 		out.writeByte((byte) (viewd ? 1 : 0));
 		out.writeInt(color);
-
 	}
 
 	public void readFromParcel(Parcel in) {
@@ -286,6 +284,5 @@ public class Item implements Comparable<Item>, Parcelable {
 
 	public void printID() {
 		Log.d(LOG_TAG_ITEM, ((Integer) _id).toString());
-
 	}
 }

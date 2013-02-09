@@ -2,8 +2,11 @@ package il.co.All4Students.homemovies.util.log.db;
 
 import static il.co.All4Students.homemovies.util.log.db.LogDbConstants.DATABASE_NAME;
 import static il.co.All4Students.homemovies.util.log.db.LogDbConstants.DATABASE_VERSION;
+import static il.co.All4Students.homemovies.util.log.db.LogDbConstants.KEY_DATE;
 import static il.co.All4Students.homemovies.util.log.db.LogDbConstants.KEY_ID;
 import static il.co.All4Students.homemovies.util.log.db.LogDbConstants.KEY_LOG;
+import static il.co.All4Students.homemovies.util.log.db.LogDbConstants.KEY_TAG;
+import static il.co.All4Students.homemovies.util.log.db.LogDbConstants.KEY_TIME;
 import static il.co.All4Students.homemovies.util.log.db.LogDbConstants.LOG_TAG;
 import static il.co.All4Students.homemovies.util.log.db.LogDbConstants.TABLE_LOG;
 import android.content.Context;
@@ -39,7 +42,10 @@ public class LogDbHelper extends SQLiteOpenHelper {
 					.append("CREATE TABLE IF NOT EXISTS ").append(TABLE_LOG)
 					.append(" ( ").append(KEY_ID)
 					.append(" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, ")
-					.append(KEY_LOG).append(" TEXT NOT NULL )").toString();
+					.append(KEY_DATE).append(" TEXT NOT NULL, ").append(KEY_TIME)
+					.append(" TEXT NOT NULL, ").append(KEY_TAG)
+					.append(" TEXT NOT NULL, ").append(KEY_LOG)
+					.append(" TEXT NOT NULL )").toString();
 
 			db.execSQL(CREATE_ITEM_TABLE);
 

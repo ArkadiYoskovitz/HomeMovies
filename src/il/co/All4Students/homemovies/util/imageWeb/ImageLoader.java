@@ -1,6 +1,8 @@
 package il.co.All4Students.homemovies.util.imageWeb;
 
+import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_ImageLoader;
 import il.co.All4Students.homemovies.R;
+import il.co.All4Students.homemovies.util.log.util.AppLog;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,7 +22,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.widget.ImageView;
 
 /**
@@ -37,10 +38,12 @@ public class ImageLoader {
 			.synchronizedMap(new WeakHashMap<ImageView, String>());
 	final int stub_id = R.drawable.ic_list_placeholder;
 	ExecutorService executorService;
+	private Context mContext;
 
 	// Constractors
 	public ImageLoader(Context context) {
 		fileCache = new FileCache(context);
+		this.mContext = context;
 		executorService = Executors.newFixedThreadPool(5);
 	}
 
@@ -187,7 +190,7 @@ public class ImageLoader {
 			o2.inSampleSize = scale;
 			return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
 		} catch (FileNotFoundException e) {
-			Log.d("ImageLoader", e.getMessage());
+			AppLog.log(mContext, LOG_TAG_ImageLoader, e.getMessage());
 		}
 		return null;
 	}

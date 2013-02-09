@@ -24,6 +24,9 @@ public class LogDbConstants {
 
 	// Contacts Table Columns names
 	public static final String KEY_ID = "_id";
+	public static final String KEY_DATE = "date";
+	public static final String KEY_TIME = "time";
+	public static final String KEY_TAG = "tag";
 	public static final String KEY_LOG = "log";
 
 	// Helper static fields

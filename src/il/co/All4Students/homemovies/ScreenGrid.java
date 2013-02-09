@@ -1,7 +1,6 @@
 package il.co.All4Students.homemovies;
 
 import static il.co.All4Students.homemovies.app.AppConstants.INTENT_TARGET;
-import il.co.All4Students.homemovies.R.integer;
 import il.co.All4Students.homemovies.app.ApplicationPreference;
 import il.co.All4Students.homemovies.core.Item;
 import android.app.Activity;
