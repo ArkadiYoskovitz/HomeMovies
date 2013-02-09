@@ -284,12 +284,9 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 			startActivityForResult(cameraIntent, Item_Take_Picture);
 
 		} catch (ActivityNotFoundException NOFOUND) {
-			// display an error message
-
-			Toast toast = Toast.makeText(this,
-					"Whoops - your device doesn't support capturing images!",
-					Toast.LENGTH_SHORT);
-			toast.show();
+			Toast.makeText(this,
+					"No Canera found, device doesn't support this feature",
+					Toast.LENGTH_SHORT).show();
 		}
 
 	}

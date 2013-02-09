@@ -288,7 +288,6 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 						}
 						ScreenMain.this.mAdapter.getFilter().filter(cs);
 						ScreenMain.this.mAdapter.notifyDataSetChanged();
-						// ScreenMainEditText.getText().toString());
 					}
 
 					@Override
@@ -616,20 +615,6 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 					EmailUtil.sendEmail(ScreenMain.this, emailToAddress,
 							emailCCAddress, emailSubject, emailText,
 							emailFilePaths);
-
-					// String emailAddress = mSettings.getEmail().toString();
-					//
-					// String uriText = "mailto:" + emailAddress + "?subject="
-					// + Uri.encode(mItem.getSubject()) + "&body="
-					// + Uri.encode(mItem.getBody()) + "\n\n\n"
-					// + Uri.encode(mItem.getUrlWeb());
-					//
-					// Uri uri = Uri.parse(uriText);
-					//
-					// Intent intent = new Intent(Intent.ACTION_SENDTO);
-					// intent.setData(uri);
-					// startActivity(Intent.createChooser(intent,
-					// "Send email"));
 					SDialog.dismiss();
 				}
 			});

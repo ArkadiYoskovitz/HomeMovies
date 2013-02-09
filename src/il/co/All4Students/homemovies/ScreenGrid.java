@@ -1,5 +1,9 @@
 package il.co.All4Students.homemovies;
 
+import static il.co.All4Students.homemovies.app.AppConstants.INTENT_TARGET;
+import il.co.All4Students.homemovies.R.integer;
+import il.co.All4Students.homemovies.app.ApplicationPreference;
+import il.co.All4Students.homemovies.core.Item;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -18,22 +22,60 @@ import android.widget.Toast;
  * @author Arkadi Yoskovitz
  * @date 2013-02-08
  */
-public class ScreenGrid extends Activity {
+public class ScreenGrid extends Activity implements OnItemClickListener {
+	// Attributes
+	private Item mEditedItem;
+	private ApplicationPreference mSettings;
+	private GridView mGridView;
+	private ImageAdapter mAdapter;
+
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// System Events
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.screen_grid);
-
-		GridView gridview = (GridView) findViewById(R.id.gridview);
-		gridview.setAdapter(new ImageAdapter(this));
-
-		gridview.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View v,
-					int position, long id) {
-				Toast.makeText(ScreenGrid.this, "" + position,
-						Toast.LENGTH_SHORT).show();
-			}
-		});
 	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		if (mEditedItem == null) {
+			mEditedItem = getIntent().getExtras().getParcelable(INTENT_TARGET);
+		}
+		mGridView = (GridView) findViewById(R.id.gridview);
+		mAdapter = new ImageAdapter(this);
+		mGridView.setAdapter(mAdapter);
+		mGridView.setOnItemClickListener(this);
+	}
+
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// Activity sending info Events
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// Menu Events
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// OnClick Events
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		Toast.makeText(ScreenGrid.this, Integer.valueOf(position).toString(),
+				Toast.LENGTH_SHORT).show();
+	}
+
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// Additional Methods
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// Inner Classes
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	/**
 	 * 
@@ -86,4 +128,5 @@ public class ScreenGrid extends Activity {
 				R.drawable.sample_3, R.drawable.sample_4, R.drawable.sample_5,
 				R.drawable.sample_6, R.drawable.sample_7 };
 	}
+
 }
