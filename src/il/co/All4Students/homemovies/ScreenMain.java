@@ -19,12 +19,12 @@ import il.co.All4Students.homemovies.core.Item;
 import il.co.All4Students.homemovies.core.ItemCompareRTID;
 import il.co.All4Students.homemovies.core.ItemCompareRank;
 import il.co.All4Students.homemovies.core.ItemCompareSubject;
+import il.co.All4Students.homemovies.util.adapter.ItemListAdapter;
 import il.co.All4Students.homemovies.util.db.ItemsHandler;
 import il.co.All4Students.homemovies.util.dialog.RankDialog;
 import il.co.All4Students.homemovies.util.dialog.ShareDialog;
 import il.co.All4Students.homemovies.util.email.EmailUtil;
 import il.co.All4Students.homemovies.util.log.util.AppLog;
-import il.co.All4Students.homemovies.util.ui.ItemListAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -517,7 +517,8 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 							logEntry.toString());
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
+						e.getMessage().toString());
 			}
 		}
 	}

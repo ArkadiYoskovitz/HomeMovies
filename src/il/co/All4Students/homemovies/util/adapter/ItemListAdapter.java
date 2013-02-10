@@ -1,4 +1,4 @@
-package il.co.All4Students.homemovies.util.ui;
+package il.co.All4Students.homemovies.util.adapter;
 
 import static il.co.All4Students.homemovies.app.AppConstants.SortByID;
 import static il.co.All4Students.homemovies.app.AppConstants.SortByRTID;
@@ -36,7 +36,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 /**
- * A generic class, handel's the different view list adapter *
+ * A generic class, handel's the different view list adapter
  * 
  * @author Arkadi Yoskovitz
  * @date 2013-02-08

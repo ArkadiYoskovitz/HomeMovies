@@ -315,7 +315,8 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 				mDownloadTask = new DownloadImageTask(ScreenEdit.this);
 				mDownloadTask.execute(searchString);
 			} catch (Exception e) {
-				Log.e(LOG_TAG_WEB_SITE, "Exception: " + e.getMessage());
+				AppLog.log(ScreenEdit.this, LOG_TAG_WEB_SITE, "Exception: "
+						+ e.getMessage().toString());
 			}
 		}
 	}
@@ -388,8 +389,10 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 				}
 			}
 		} catch (Exception e) {
-			Log.e(LOG_TAG_TextToSpeech, "Initilization Failed");
-			Log.e(LOG_TAG_TextToSpeech, e.getMessage());
+			AppLog.log(ScreenEdit.this, LOG_TAG_TextToSpeech,
+					"Initilization Failed");
+			AppLog.log(ScreenEdit.this, LOG_TAG_TextToSpeech, e.getMessage()
+					.toString());
 		}
 	}
 
@@ -477,12 +480,14 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 								imageArray.length);
 						// save to sdcard
 					} catch (IOException e) {
-						e.printStackTrace();
+						AppLog.log(mActivity, LOG_TAG_SCREEN_EDIT, e
+								.getStackTrace().toString());
 					} finally {
 						httpCon.disconnect();
 					}
 				} catch (Exception e) {
-					e.printStackTrace();
+					AppLog.log(mActivity, LOG_TAG_SCREEN_EDIT, e
+							.getStackTrace().toString());
 				}
 			} else {
 				if (mEditedItem.getUrlLocal().length() != 0) {
@@ -491,7 +496,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 						// bitmap =
 						// Images.Media.getBitmap(getContentResolver(),);
 					} catch (Exception e) {
-						e.printStackTrace();
+						AppLog.log(ScreenEdit.this, LOG_TAG_SCREEN_EDIT, e.getStackTrace().toString());
 					}
 				}
 			}
