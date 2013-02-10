@@ -5,6 +5,7 @@ import java.util.Comparator;
 /**
  * 
  * @author Arkadi Yoskovitz
+ * @date 2013-02-08
  */
 public class ItemCompareSubject implements Comparator<Item> {
 
