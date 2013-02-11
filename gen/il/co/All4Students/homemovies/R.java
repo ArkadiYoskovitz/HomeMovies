@@ -19,6 +19,22 @@ public final class R {
         public static final int SortMethodNames=0x7f050002;
     }
     public static final class attr {
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int cancelLabel=0x7f010001;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int okLabel=0x7f010000;
     }
     public static final class color {
         public static final int AliceBlue=0x7f06002d;
@@ -178,28 +194,30 @@ public final class R {
         public static final int custom_ratingbar_full=0x7f020002;
         public static final int custom_ratingbar_half=0x7f020003;
         public static final int custom_ratingbar_none=0x7f020004;
-        public static final int ic_add=0x7f020005;
-        public static final int ic_dialog_airmail=0x7f020006;
-        public static final int ic_dialog_facebook=0x7f020007;
-        public static final int ic_dialog_notice=0x7f020008;
-        public static final int ic_dialog_share=0x7f020009;
-        public static final int ic_dialog_tweeter=0x7f02000a;
-        public static final int ic_launcher=0x7f02000b;
-        public static final int ic_list_placeholder=0x7f02000c;
-        public static final int ic_placeholder=0x7f02000d;
-        public static final int ic_rating_star_full=0x7f02000e;
-        public static final int ic_rating_star_half=0x7f02000f;
-        public static final int ic_rating_star_none=0x7f020010;
-        public static final int ic_settings=0x7f020011;
-        public static final int ic_web_go=0x7f020012;
-        public static final int sample_0=0x7f020013;
-        public static final int sample_1=0x7f020014;
-        public static final int sample_2=0x7f020015;
-        public static final int sample_3=0x7f020016;
-        public static final int sample_4=0x7f020017;
-        public static final int sample_5=0x7f020018;
-        public static final int sample_6=0x7f020019;
-        public static final int sample_7=0x7f02001a;
+        public static final int golden_gate=0x7f020005;
+        public static final int ic_add=0x7f020006;
+        public static final int ic_dialog_airmail=0x7f020007;
+        public static final int ic_dialog_facebook=0x7f020008;
+        public static final int ic_dialog_notice=0x7f020009;
+        public static final int ic_dialog_share=0x7f02000a;
+        public static final int ic_dialog_tweeter=0x7f02000b;
+        public static final int ic_launcher=0x7f02000c;
+        public static final int ic_list_placeholder=0x7f02000d;
+        public static final int ic_placeholder=0x7f02000e;
+        public static final int ic_rating_star_full=0x7f02000f;
+        public static final int ic_rating_star_half=0x7f020010;
+        public static final int ic_rating_star_none=0x7f020011;
+        public static final int ic_settings=0x7f020012;
+        public static final int ic_web_go=0x7f020013;
+        public static final int icon=0x7f020014;
+        public static final int sample_0=0x7f020015;
+        public static final int sample_1=0x7f020016;
+        public static final int sample_2=0x7f020017;
+        public static final int sample_3=0x7f020018;
+        public static final int sample_4=0x7f020019;
+        public static final int sample_5=0x7f02001a;
+        public static final int sample_6=0x7f02001b;
+        public static final int sample_7=0x7f02001c;
     }
     public static final class id {
         public static final int ScreenEditButton1=0x7f080018;
@@ -516,4 +534,49 @@ public final class R {
     public static final class xml {
         public static final int screen_preferences=0x7f040000;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a OkCancelBar.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #OkCancelBar_cancelLabel il.co.All4Students.homemovies:cancelLabel}</code></td><td></td></tr>
+           <tr><td><code>{@link #OkCancelBar_okLabel il.co.All4Students.homemovies:okLabel}</code></td><td></td></tr>
+           </table>
+           @see #OkCancelBar_cancelLabel
+           @see #OkCancelBar_okLabel
+         */
+        public static final int[] OkCancelBar = {
+            0x7f010000, 0x7f010001
+        };
+        /**
+          <p>This symbol is the offset where the {@link il.co.All4Students.homemovies.R.attr#cancelLabel}
+          attribute's value can be found in the {@link #OkCancelBar} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:cancelLabel
+        */
+        public static final int OkCancelBar_cancelLabel = 1;
+        /**
+          <p>This symbol is the offset where the {@link il.co.All4Students.homemovies.R.attr#okLabel}
+          attribute's value can be found in the {@link #OkCancelBar} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:okLabel
+        */
+        public static final int OkCancelBar_okLabel = 0;
+    };
 }
