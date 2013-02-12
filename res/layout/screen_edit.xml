@@ -75,6 +75,7 @@
                 android:contentDescription="@string/DescriptionCamera"
                 android:onClick="onClickEditCamera"
                 android:src="@android:drawable/ic_menu_camera" />
+
             <ImageButton
                 android:id="@id/ScreenEditImageButton2"
                 android:layout_width="wrap_content"
@@ -136,7 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/ImagePlaceHolder"
+            android:contentDescription="@string/DescriptionImagePlaceHolder"
             android:cropToPadding="true"
             android:focusable="true"
             android:longClickable="true"

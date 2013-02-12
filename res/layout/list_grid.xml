@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:okCancelBar="http://schemas.android.com/apk/res/il.co.All4Students.homemovies"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -7,27 +8,8 @@
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="Golden Gate"
+        android:contentDescription="@string/DescriptionImagePlaceHolder"
         android:src="@drawable/golden_gate" />
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="#AA000000"
-        android:padding="8dip"
-        android:text="Golden Gate"
-        android:textColor="#ffffffff" />
-    <!--
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="20dip"
-        android:background="#AA000000"
-        android:padding="12dip"
-        android:text="Golden Gate"
-        android:textColor="#ffffffff" />
 
     <il.co.All4Students.homemovies.OkCancelBar
         android:layout_width="fill_parent"
@@ -38,6 +20,5 @@
         android:paddingTop="8dip"
         okCancelBar:cancelLabel="Dont save"
         okCancelBar:okLabel="Save" />
-    -->
 
 </merge>

@@ -53,7 +53,7 @@
     <string name="RankDialogMsg">Set Item rank</string>
 
     <!-- Image Description -->
-    <string name="ImagePlaceHolder">Image PlaceHolder</string>
+    <string name="DescriptionImagePlaceHolder">Image PlaceHolder</string>
     <string name="DescriptionAirMail">Air Mail</string>
     <string name="DescriptionFaceBook">FaceBook</string>
     <string name="DescriptionTweeter">Tweeter</string>

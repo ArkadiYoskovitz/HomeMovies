@@ -132,7 +132,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/ImagePlaceHolder"
+            android:contentDescription="@string/DescriptionImagePlaceHolder"
             android:cropToPadding="true"
             android:padding="@dimen/Size7dp"
             android:scaleType="centerInside"
