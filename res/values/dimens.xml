@@ -9,5 +9,6 @@
     <dimen name="Size20dp">20dp</dimen>
     <dimen name="Size25dp">25dp</dimen>
     <dimen name="Size30dp">30dp</dimen>
+    <dimen name="Size70dp">70dp</dimen>
 
 </resources>

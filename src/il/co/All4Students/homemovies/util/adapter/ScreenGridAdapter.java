@@ -4,18 +4,17 @@ import il.co.All4Students.homemovies.R;
 import il.co.All4Students.homemovies.app.ApplicationPreference;
 import il.co.All4Students.homemovies.core.Item;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
+import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RatingBar;
-import android.widget.TextView;
 
 public class ScreenGridAdapter extends ArrayAdapter<String> {
 	// Attributes
@@ -105,8 +104,20 @@ public class ScreenGridAdapter extends ArrayAdapter<String> {
 	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-
-		return null;
+		GridViewHolder viewHolder;
+// implement a new inflater element, temporary using list_row
+		if (convertView == null) {
+			convertView = mInflater.inflate(R.layout.list_row, parent, false);
+			viewHolder = new GridViewHolder();
+			viewHolder.gridImage = (ImageView) convertView.findViewById(R.id.rowImage);
+			viewHolder.gridImage.setImageURI(Uri.fromFile(new File(mURIList.get(position))));
+			viewHolder.gridImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+			viewHolder.gridImage.setLayoutParams(new GridView.LayoutParams(70, 70));
+			convertView.setTag(viewHolder);
+		} else {
+			viewHolder = (GridViewHolder) convertView.getTag();
+		}
+		return convertView;
 	}
 
 	// Inner Classes
@@ -116,11 +127,7 @@ public class ScreenGridAdapter extends ArrayAdapter<String> {
 	 * @author Arkadi Yoskovitz
 	 * @date 2013-02-08
 	 */
-	static class RowViewHolder {
-		LinearLayout rowThumbnail;
-		ImageView rowImage;
-		TextView rowTitle;
-		RatingBar rowRank;
-		CheckBox rowCheckBox;
+	static class GridViewHolder {
+		ImageView gridImage;
 	}
 }

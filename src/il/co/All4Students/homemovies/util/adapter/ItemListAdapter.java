@@ -137,14 +137,10 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.list_row, parent, false);
 			viewHolder = new RowViewHolder();
-			viewHolder.rowTitle = (TextView) convertView
-					.findViewById(R.id.rowTitle);
-			viewHolder.rowRank = (RatingBar) convertView
-					.findViewById(R.id.rowRating);
-			viewHolder.rowCheckBox = (CheckBox) convertView
-					.findViewById(R.id.rowCheckBox);
-			viewHolder.rowImage = (ImageView) convertView
-					.findViewById(R.id.rowImage);
+			viewHolder.rowTitle = (TextView) convertView.findViewById(R.id.rowTitle);
+			viewHolder.rowRank = (RatingBar) convertView.findViewById(R.id.rowRating);
+			viewHolder.rowCheckBox = (CheckBox) convertView.findViewById(R.id.rowCheckBox);
+			viewHolder.rowImage = (ImageView) convertView.findViewById(R.id.rowImage);
 			convertView.setTag(viewHolder);
 		} else {
 			viewHolder = (RowViewHolder) convertView.getTag();

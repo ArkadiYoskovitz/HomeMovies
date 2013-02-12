@@ -186,6 +186,7 @@ containing a value of this type.
         public static final int Size30dp=0x7f070007;
         public static final int Size3dp=0x7f070001;
         public static final int Size5dp=0x7f070002;
+        public static final int Size70dp=0x7f070008;
         public static final int Size7dp=0x7f070003;
     }
     public static final class drawable {
@@ -307,7 +308,7 @@ containing a value of this type.
     public static final class layout {
         public static final int custom_dialog_rank=0x7f030000;
         public static final int custom_dialog_share=0x7f030001;
-        public static final int list_grid=0x7f030002;
+        public static final int detail_grid=0x7f030002;
         public static final int list_row=0x7f030003;
         public static final int okcancelbar=0x7f030004;
         public static final int okcancelbar_button=0x7f030005;
