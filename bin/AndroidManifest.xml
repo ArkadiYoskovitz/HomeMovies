@@ -49,6 +49,10 @@
             android:name="il.co.All4Students.homemovies.ScreenGrid"
             android:configChanges="locale" >
         </activity>
+        <activity
+            android:name="il.co.All4Students.homemovies.ScreenGridDetail"
+            android:configChanges="locale" >
+        </activity>
     </application>
 
 </manifest>

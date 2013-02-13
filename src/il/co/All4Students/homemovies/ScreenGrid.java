@@ -1,14 +1,21 @@
 package il.co.All4Students.homemovies;
 
 import static il.co.All4Students.homemovies.app.AppConstants.INTENT_TARGET;
-import il.co.All4Students.homemovies.app.ApplicationPreference;
+import static il.co.All4Students.homemovies.app.AppConstants.INTENT_TARGET_URI;
+import static il.co.All4Students.homemovies.app.AppConstants.Item_GridDetails;
+import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_SCREEN_GRIDVIEW;
+import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_CANCEL;
+import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_COMMIT;
+import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_DELETE;
 import il.co.All4Students.homemovies.core.Item;
 import il.co.All4Students.homemovies.util.adapter.ScreenGridAdapter;
 import il.co.All4Students.homemovies.util.json.JSONHandler;
+import il.co.All4Students.homemovies.util.log.util.AppLog;
 
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,11 +31,11 @@ import android.widget.Toast;
  */
 public class ScreenGrid extends Activity implements OnItemClickListener {
 	// Attributes
-	private ApplicationPreference mSettings;
+	private ArrayList<String> mUriList;
 	private ScreenGridAdapter mAdapter;
 	private GridView mGridView;
+	private String mFilePath;
 	private Item mEditedItem;
-	private ArrayList<String> mUriList;
 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// System Events
@@ -44,6 +51,13 @@ public class ScreenGrid extends Activity implements OnItemClickListener {
 		super.onResume();
 		if (mEditedItem == null) {
 			mEditedItem = getIntent().getExtras().getParcelable(INTENT_TARGET);
+			try {
+				mFilePath = getIntent().getExtras()
+						.getString(INTENT_TARGET_URI);
+			} catch (Exception e) {
+				AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW, e
+						.getMessage().toString());
+			}
 			mUriList = JSONHandler.getURIFromJSON(mEditedItem.getUrlLocal());
 
 			mGridView = (GridView) findViewById(R.id.gridview);
@@ -58,10 +72,41 @@ public class ScreenGrid extends Activity implements OnItemClickListener {
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Activity sending info Events
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch (requestCode) {
+		case Item_GridDetails:
+			switch (resultCode) {
+			case RESULT_CODE_CANCEL:
+				AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
+						"onActivityResult - Item_GridDetails - CANCEL");
+				break;
+			case RESULT_CODE_DELETE:
+				AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
+						"onActivityResult - Item_GridDetails - Delete");
+				mUriList.remove(mFilePath);
+				mEditedItem.setUrlLocal(JSONHandler.putURIintoJSON(mUriList));
+				break;
 
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// Menu Events
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			case RESULT_CODE_COMMIT:
+				AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
+						"onActivityResult - Item_GridDetails - COMMIT");
+				break;
+
+			default:
+				AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
+						"onActivityResult - Item_GridDetails - DEFAULT");
+				break;
+			}
+			break;
+
+		default:
+			AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
+					"onActivityResult - default - default");
+			break;
+		}
+	}
 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// OnClick Events
@@ -70,68 +115,15 @@ public class ScreenGrid extends Activity implements OnItemClickListener {
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
+
+		Intent intentGridDetail = new Intent(ScreenGrid.this,
+				ScreenGridDetail.class);
+		intentGridDetail.putExtra(INTENT_TARGET, mEditedItem);
+		intentGridDetail.putExtra(INTENT_TARGET_URI, mUriList.get(position));
+		startActivityForResult(intentGridDetail, Item_GridDetails);
+
 		Toast.makeText(ScreenGrid.this, Integer.valueOf(position).toString(),
 				Toast.LENGTH_SHORT).show();
 	}
-
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// Additional Methods
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// Inner Classes
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//
-	// /**
-	// *
-	// * @author Arkadi Yoskovitz
-	// * @date 2013-02-08
-	// */
-	// public class ImageAdapter extends BaseAdapter {
-	// private Context mContext;
-	//
-	// public ImageAdapter(Context c) {
-	// mContext = c;
-	// }
-	//
-	// public int getCount() {
-	// return mThumbIds.length;
-	// }
-	//
-	// public Object getItem(int position) {
-	// return null;
-	// }
-	//
-	// public long getItemId(int position) {
-	// return 0;
-	// }
-	//
-	// // create a new ImageView for each item referenced by the Adapter
-	// public View getView(int position, View convertView, ViewGroup parent) {
-	// ImageView imageView;
-	// if (convertView == null) {
-	// imageView = new ImageView(mContext);
-	// imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
-	// imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-	// imageView.setPadding(8, 8, 8, 8);
-	// } else {
-	// imageView = (ImageView) convertView;
-	// }
-	//
-	// imageView.setImageResource(mThumbIds[position]);
-	// return imageView;
-	// }
-	//
-	// // references to our images
-	// private Integer[] mThumbIds = { R.drawable.sample_0,
-	// R.drawable.sample_1, R.drawable.sample_2, R.drawable.sample_3,
-	// R.drawable.sample_4, R.drawable.sample_5, R.drawable.sample_6,
-	// R.drawable.sample_7, R.drawable.sample_0, R.drawable.sample_1,
-	// R.drawable.sample_2, R.drawable.sample_3, R.drawable.sample_4,
-	// R.drawable.sample_5, R.drawable.sample_6, R.drawable.sample_7,
-	// R.drawable.sample_0, R.drawable.sample_1, R.drawable.sample_2,
-	// R.drawable.sample_3, R.drawable.sample_4, R.drawable.sample_5,
-	// R.drawable.sample_6, R.drawable.sample_7 };
-	// }
 
 }

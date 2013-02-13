@@ -31,7 +31,7 @@ public class ExternalStorageLoader {
 		}
 	}
 
-	public String SaveIamge(Bitmap finalBitmap) {
+	public String saveIamge(Bitmap finalBitmap) {
 		String root = Environment.getExternalStorageDirectory().toString();
 		File myDir = new File(root + "/HomeMovieStorage/saved_images");
 		myDir.mkdirs();

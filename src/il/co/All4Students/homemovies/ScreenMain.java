@@ -10,16 +10,10 @@ import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_SCREEN_MAIN
 import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_CANCEL;
 import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_COMMIT;
 import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_DELETE;
-import static il.co.All4Students.homemovies.app.AppConstants.SortByID;
-import static il.co.All4Students.homemovies.app.AppConstants.SortByRTID;
-import static il.co.All4Students.homemovies.app.AppConstants.SortByRank;
-import static il.co.All4Students.homemovies.app.AppConstants.SortBySubject;
 import il.co.All4Students.homemovies.app.ApplicationPreference;
 import il.co.All4Students.homemovies.core.Item;
-import il.co.All4Students.homemovies.core.ItemCompareRTID;
-import il.co.All4Students.homemovies.core.ItemCompareRank;
-import il.co.All4Students.homemovies.core.ItemCompareSubject;
 import il.co.All4Students.homemovies.util.adapter.ItemListAdapter;
+import il.co.All4Students.homemovies.util.app.AppUtil;
 import il.co.All4Students.homemovies.util.db.ItemsHandler;
 import il.co.All4Students.homemovies.util.dialog.RankDialog;
 import il.co.All4Students.homemovies.util.dialog.ShareDialog;
@@ -27,7 +21,6 @@ import il.co.All4Students.homemovies.util.email.EmailUtil;
 import il.co.All4Students.homemovies.util.log.util.AppLog;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -249,7 +242,7 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 			ItemsHandler itemHandler = new ItemsHandler(this);
 			itemHandler.deleteAllItems();
 			mItemList.clear();
-			sortCompareable();
+			AppUtil.sortCompareable(ScreenMain.this, mItemList);
 			break;
 
 		case R.id.screenMainOptionMenuExitSettings:
@@ -379,7 +372,7 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 			mReturnedItem = mItemList.get((int) info.id);
 			itemHandler.deleteItem(mReturnedItem);
 			mItemList.remove(mReturnedItem);
-			sortCompareable();
+			AppUtil.sortCompareable(ScreenMain.this, mItemList);
 			break;
 
 		default:
@@ -517,15 +510,15 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 							logEntry.toString());
 				}
 			} catch (Exception e) {
-				AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN,
-						e.getMessage().toString());
+				AppLog.log(ScreenMain.this, LOG_TAG_SCREEN_MAIN, e.getMessage()
+						.toString());
 			}
 		}
 	}
 
 	private void loadScreenMainList() {
 		mListView = (ListView) findViewById(R.id.ScreenMainListView);
-		sortCompareable();
+		AppUtil.sortCompareable(ScreenMain.this, mItemList);
 		mAdapter = new ItemListAdapter(mItemList, ScreenMain.this);
 		mListView.setAdapter(mAdapter);
 		mAdapter.notifyDataSetChanged();
@@ -541,35 +534,4 @@ public class ScreenMain extends Activity implements OnItemClickListener,
 		ScreenMain.this.mListView.setAdapter(ScreenMain.this.mAdapter);
 		ScreenMain.this.mAdapter.notifyDataSetChanged();
 	}
-
-	private void sortCompareable() {
-		int sortMethod = new ApplicationPreference(ScreenMain.this)
-				.getSortMethod();
-		if (mItemList != null) {
-			switch (sortMethod) {
-			case SortByID:
-				Collections.sort(mItemList);
-				break;
-
-			case SortByRTID:
-				Collections.sort(mItemList, new ItemCompareRTID());
-				break;
-
-			case SortByRank:
-				Collections.sort(mItemList, new ItemCompareRank());
-				break;
-
-			case SortBySubject:
-				Collections.sort(mItemList, new ItemCompareSubject());
-				break;
-
-			default:
-				break;
-			}
-		}
-	}
-
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// Inner Classes
-	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

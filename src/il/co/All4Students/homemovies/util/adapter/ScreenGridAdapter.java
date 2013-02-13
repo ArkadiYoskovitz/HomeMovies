@@ -1,8 +1,6 @@
 package il.co.All4Students.homemovies.util.adapter;
 
 import il.co.All4Students.homemovies.R;
-import il.co.All4Students.homemovies.app.ApplicationPreference;
-import il.co.All4Students.homemovies.core.Item;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -16,13 +14,17 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+/**
+ * RowViewHolder
+ * 
+ * @author Arkadi Yoskovitz
+ * @date 2013-02-08
+ */
 public class ScreenGridAdapter extends ArrayAdapter<String> {
 	// Attributes
 	private static LayoutInflater mInflater = null;
-	private ApplicationPreference mSettings;
 	private ArrayList<String> mURIList;
 	private Context mContext;
-	private Item mItem;
 
 	// Constractors
 	/**
@@ -38,7 +40,6 @@ public class ScreenGridAdapter extends ArrayAdapter<String> {
 		super(context, R.layout.list_row, uriList);
 		this.mContext = context;
 		this.mURIList = uriList;
-		this.mSettings = new ApplicationPreference(mContext);
 		mInflater = (LayoutInflater) mContext
 				.getSystemService(android.content.Context.LAYOUT_INFLATER_SERVICE);
 	}
@@ -105,14 +106,16 @@ public class ScreenGridAdapter extends ArrayAdapter<String> {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		GridViewHolder viewHolder;
-// implement a new inflater element, temporary using list_row
 		if (convertView == null) {
-			convertView = mInflater.inflate(R.layout.list_row, parent, false);
+			convertView = mInflater.inflate(R.layout.grid_item, parent, false);
 			viewHolder = new GridViewHolder();
-			viewHolder.gridImage = (ImageView) convertView.findViewById(R.id.rowImage);
-			viewHolder.gridImage.setImageURI(Uri.fromFile(new File(mURIList.get(position))));
+			viewHolder.gridImage = (ImageView) convertView
+					.findViewById(R.id.gridImage);
+			viewHolder.gridImage.setImageURI(Uri.fromFile(new File(mURIList
+					.get(position))));
 			viewHolder.gridImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
-			viewHolder.gridImage.setLayoutParams(new GridView.LayoutParams(70, 70));
+			viewHolder.gridImage.setLayoutParams(new GridView.LayoutParams(70,
+					70));
 			convertView.setTag(viewHolder);
 		} else {
 			viewHolder = (GridViewHolder) convertView.getTag();

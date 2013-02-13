@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import android.app.Activity;
@@ -165,12 +166,22 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == Item_Take_Picture) {
-			Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-			ImageView imgTakenPhoto = (ImageView) findViewById(R.id.ScreenEditImageView1);
-			imgTakenPhoto.setImageBitmap(thumbnail);
+			try {
+				Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+				ImageView imgTakenPhoto = (ImageView) findViewById(R.id.ScreenEditImageView1);
+				imgTakenPhoto.setImageBitmap(thumbnail);
+			} catch (Exception e) {
+				if (data == null) {
+					AppLog.log(ScreenEdit.this, LOG_TAG_SCREEN_EDIT,
+							"Failed to retrive image, intent is empty");
+				} else {
+					AppLog.log(ScreenEdit.this, LOG_TAG_SCREEN_EDIT,
+							"Failed to retrive image");
+				}
+			}
 		}
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -235,10 +246,12 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 
 				mEditedItem.setUrlLocal(JSONHandler.insertURIintoJSON(
 						mEditedItem.getUrlLocal(),
-						externalStogareLoader.SaveIamge(bitmap)));
+						externalStogareLoader.saveIamge(bitmap)));
 
 				ItemsHandler itemsHandler = new ItemsHandler(ScreenEdit.this);
 				itemsHandler.updateItem(mEditedItem);
+				Toast.makeText(this, "Image saved to card", Toast.LENGTH_SHORT)
+						.show();
 			} catch (Exception e) {
 				Toast.makeText(this, "Canot save to card at this time",
 						Toast.LENGTH_SHORT).show();
@@ -436,6 +449,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	// Inner Classes
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
+	 * DownloadImageTask
 	 * 
 	 * @author Arkadi Yoskovitz
 	 * @date 2013-02-08
@@ -492,11 +506,13 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 			} else {
 				if (mEditedItem.getUrlLocal().length() != 0) {
 					try {
-						// read from sdcard
-						// bitmap =
-						// Images.Media.getBitmap(getContentResolver(),);
+						ArrayList<String> tmpArrayList = JSONHandler
+								.getURIFromJSON(mEditedItem.getUrlLocal());
+
+						bitmap = BitmapFactory.decodeFile(tmpArrayList.get(0));
 					} catch (Exception e) {
-						AppLog.log(ScreenEdit.this, LOG_TAG_SCREEN_EDIT, e.getStackTrace().toString());
+						AppLog.log(ScreenEdit.this, LOG_TAG_SCREEN_EDIT, e
+								.getStackTrace().toString());
 					}
 				}
 			}

@@ -10,16 +10,9 @@ import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_WEB_SITE;
 import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_CANCEL;
 import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_COMMIT;
 import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_DELETE;
-import static il.co.All4Students.homemovies.app.AppConstants.SortByID;
-import static il.co.All4Students.homemovies.app.AppConstants.SortByRTID;
-import static il.co.All4Students.homemovies.app.AppConstants.SortByRank;
-import static il.co.All4Students.homemovies.app.AppConstants.SortBySubject;
-import il.co.All4Students.homemovies.app.ApplicationPreference;
 import il.co.All4Students.homemovies.core.Item;
-import il.co.All4Students.homemovies.core.ItemCompareRTID;
-import il.co.All4Students.homemovies.core.ItemCompareRank;
-import il.co.All4Students.homemovies.core.ItemCompareSubject;
 import il.co.All4Students.homemovies.util.adapter.ItemListAdapter;
+import il.co.All4Students.homemovies.util.app.AppUtil;
 import il.co.All4Students.homemovies.util.db.ItemsHandler;
 import il.co.All4Students.homemovies.util.log.util.AppLog;
 
@@ -27,7 +20,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Collections;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -142,7 +134,7 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 				mReturnedItem = itemHandler.getItem(lastItem);
 				// mItemList.add(mReturnedItem);
 				mListView = (ListView) findViewById(R.id.ScreenWebListView);
-				sortCompareable();
+				AppUtil.sortCompareable(ScreenWeb.this, mItemList);
 				mAdapter = new ItemListAdapter(mItemList, ScreenWeb.this);
 				mListView.setAdapter(mAdapter);
 				break;
@@ -171,7 +163,7 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 		}
 
 		// Handaling the screen refresh
-		sortCompareable();
+		AppUtil.sortCompareable(ScreenWeb.this, mItemList);
 		mAdapter = new ItemListAdapter(mItemList, this);
 		mAdapter.notifyDataSetChanged();
 		AppLog.log(ScreenWeb.this, LOG_TAG_SCREEN_WEB, "View re-loaded");
@@ -269,42 +261,18 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 		startActivityForResult(intent, Item_Add_Web);
 	}
 
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Additional Methods
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	private void RefreshScreen() {
 		mListView = (ListView) findViewById(R.id.ScreenWebListView);
-		sortCompareable();
+		AppUtil.sortCompareable(ScreenWeb.this, mItemList);
 		mAdapter = new ItemListAdapter(mItemList, ScreenWeb.this);
 		mListView.setAdapter(mAdapter);
 		mAdapter.notifyDataSetChanged();
 		mListView.setOnItemClickListener(this);
 
-	}
-
-	private void sortCompareable() {
-		int sortMethod = new ApplicationPreference(ScreenWeb.this)
-				.getSortMethod();
-		if (mItemList != null) {
-			switch (sortMethod) {
-			case SortByID:
-				Collections.sort(mItemList);
-				break;
-
-			case SortByRTID:
-				Collections.sort(mItemList, new ItemCompareRTID());
-				break;
-
-			case SortByRank:
-				Collections.sort(mItemList, new ItemCompareRank());
-				break;
-
-			case SortBySubject:
-				Collections.sort(mItemList, new ItemCompareSubject());
-				break;
-
-			default:
-				break;
-			}
-		}
 	}
 
 	private void closeKeybord() {
@@ -314,7 +282,10 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 				InputMethodManager.HIDE_NOT_ALWAYS);
 	}
 
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// Inner Classes
+	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	/**
 	 * 
 	 * @author Arkadi Yoskovitz
@@ -323,12 +294,14 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 	private class DownloadMovieInfo extends AsyncTask<String, Integer, String> {
 		// ///////////////////////////////////////////////////////////////////////////////////
 		// Attributes
-		private Activity mActivity;
-		private ProgressDialog mDialog;
+		// ///////////////////////////////////////////////////////////////////////////////////
 		private ArrayList<Item> mItemList;
+		private ProgressDialog mDialog;
+		private Activity mActivity;
 
 		// ///////////////////////////////////////////////////////////////////////////////////
-		// JSON Node names
+		// Constants - JSON Node names
+		// ///////////////////////////////////////////////////////////////////////////////////
 		final String TAG_MOVIES = "movies";
 		final String TAG_ID = "id";
 		final String TAG_TITLE = "title";
@@ -338,6 +311,7 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 
 		// ///////////////////////////////////////////////////////////////////////////////////
 		// Constractors
+		// ///////////////////////////////////////////////////////////////////////////////////
 		public DownloadMovieInfo(Activity activity) {
 			mActivity = activity;
 			mDialog = new ProgressDialog(mActivity);
@@ -345,6 +319,7 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 
 		// ///////////////////////////////////////////////////////////////////////////////////
 		// Task Events
+		// ///////////////////////////////////////////////////////////////////////////////////
 		@Override
 		protected void onPreExecute() {
 			mItemList = new ArrayList<Item>();
@@ -438,7 +413,7 @@ public class ScreenWeb extends Activity implements OnItemClickListener {
 				// refresh mListView
 				mListView = (ListView) mActivity
 						.findViewById(R.id.ScreenWebListView);
-				sortCompareable();
+				AppUtil.sortCompareable(mActivity, mItemList);
 				mAdapter = new ItemListAdapter(mItemList, mActivity);
 				mListView.setAdapter(mAdapter);
 				mListView.setOnItemClickListener(ScreenWeb.this);

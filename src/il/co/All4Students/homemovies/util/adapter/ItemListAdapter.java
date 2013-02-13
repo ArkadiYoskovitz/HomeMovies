@@ -1,21 +1,14 @@
 package il.co.All4Students.homemovies.util.adapter;
 
-import static il.co.All4Students.homemovies.app.AppConstants.SortByID;
-import static il.co.All4Students.homemovies.app.AppConstants.SortByRTID;
-import static il.co.All4Students.homemovies.app.AppConstants.SortByRank;
-import static il.co.All4Students.homemovies.app.AppConstants.SortBySubject;
 import il.co.All4Students.homemovies.R;
 import il.co.All4Students.homemovies.ScreenWeb;
 import il.co.All4Students.homemovies.app.ApplicationPreference;
 import il.co.All4Students.homemovies.core.Item;
-import il.co.All4Students.homemovies.core.ItemCompareRTID;
-import il.co.All4Students.homemovies.core.ItemCompareRank;
-import il.co.All4Students.homemovies.core.ItemCompareSubject;
+import il.co.All4Students.homemovies.util.app.AppUtil;
 import il.co.All4Students.homemovies.util.db.ItemsHandler;
 import il.co.All4Students.homemovies.util.imageWeb.ImageLoader;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -65,7 +58,7 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 	public ItemListAdapter(ArrayList<Item> itemList, Context context) {
 		super(context, R.layout.list_row, itemList);
 		this.mContext = context;
-		sortCompareable(itemList);
+		AppUtil.sortCompareable(mContext, itemList);
 		this.mItemList = itemList;
 		this.mOriginalItemList = itemList;
 		this.mSettings = new ApplicationPreference(mContext);
@@ -137,10 +130,14 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.list_row, parent, false);
 			viewHolder = new RowViewHolder();
-			viewHolder.rowTitle = (TextView) convertView.findViewById(R.id.rowTitle);
-			viewHolder.rowRank = (RatingBar) convertView.findViewById(R.id.rowRating);
-			viewHolder.rowCheckBox = (CheckBox) convertView.findViewById(R.id.rowCheckBox);
-			viewHolder.rowImage = (ImageView) convertView.findViewById(R.id.rowImage);
+			viewHolder.rowTitle = (TextView) convertView
+					.findViewById(R.id.rowTitle);
+			viewHolder.rowRank = (RatingBar) convertView
+					.findViewById(R.id.rowRating);
+			viewHolder.rowCheckBox = (CheckBox) convertView
+					.findViewById(R.id.rowCheckBox);
+			viewHolder.rowImage = (ImageView) convertView
+					.findViewById(R.id.rowImage);
 			convertView.setTag(viewHolder);
 		} else {
 			viewHolder = (RowViewHolder) convertView.getTag();
@@ -176,7 +173,7 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 			viewHolder.rowTitle.setHeight((int) getContext().getResources()
 					.getDimension(R.dimen.Size30dp));
 		} else {
-			imageLoader.DisplayImage(mItem.getUrlWeb(), viewHolder.rowImage);
+			// imageLoader.DisplayImage(mItem.getUrlWeb(), viewHolder.rowImage);
 
 			if (mSettings.getEnableColor()) {
 				convertView.setBackgroundColor(setColor());
@@ -187,33 +184,6 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 	}
 
 	// Additional Methods
-	private void sortCompareable(ArrayList<Item> itemList) {
-		int sortMethod = new ApplicationPreference(mContext).getSortMethod();
-		if (itemList != null) {
-			switch (sortMethod) {
-			case SortByID:
-				Collections.sort(itemList);
-				break;
-
-			case SortByRTID:
-				Collections.sort(itemList, new ItemCompareRTID());
-				break;
-
-			case SortByRank:
-				Collections.sort(itemList, new ItemCompareRank());
-				break;
-
-			case SortBySubject:
-				Collections.sort(itemList, new ItemCompareSubject());
-				break;
-
-			default:
-				Collections.sort(itemList);
-				break;
-			}
-		}
-	}
-
 	public void resetData() {
 		mItemList = mOriginalItemList;
 	}

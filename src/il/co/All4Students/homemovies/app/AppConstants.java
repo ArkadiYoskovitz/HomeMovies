@@ -10,11 +10,14 @@ public class AppConstants {
 	public static final String DeveloperTeam = "Arkadi.Yoskovitz@gmail.com";
 
 	public static final String INTENT_TARGET = "co.il.All4Students.HomeProjectThree.Core.Item";
+	public static final String INTENT_TARGET_URI = "co.il.All4Students.HomeProjectThree.Core.Item.URI";
 
 	public static final String LOG_TAG_SCREEN_MAIN = "*** ScreenMain ***";
 	public static final String LOG_TAG_SCREEN_EDIT = "*** ScreenEdit ***";
 	public static final String LOG_TAG_SCREEN_WEB = "*** ScreenWeb ***";
 	public static final String LOG_TAG_SCREEN_PREFERENCE = "*** ScreenPreference ***";
+	public static final String LOG_TAG_SCREEN_GRIDVIEW = "*** ScreenGridView ***";
+	public static final String LOG_TAG_SCREEN_GRIDDETAILS = "*** ScreenGridDetails ***";
 
 	public static final String LOG_TAG_WEB_DMovieInfo = "*** AsyncTask DownloadMovieInfo ***";
 	public static final String LOG_TAG_TextToSpeech = "*** TextToSpeech ***";
@@ -30,6 +33,9 @@ public class AppConstants {
 	public static final int Item_Search_Web = 4;
 	public static final int Item_App_Settings = 5;
 	public static final int Item_Take_Picture = 6;
+	
+	public static final int Item_GridDetails = 7;
+	
 
 	public static final int RESULT_CODE_CANCEL = 1;
 	public static final int RESULT_CODE_DELETE = 2;

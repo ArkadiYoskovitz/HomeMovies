@@ -21,13 +21,15 @@ public class OkCancelBar extends LinearLayout {
 				R.styleable.OkCancelBar, 0, 0);
 
 		String text = array.getString(R.styleable.OkCancelBar_okLabel);
-		if (text == null)
+		if (text == null) {
 			text = "Ok";
+		}
 		((Button) findViewById(R.id.okcancelbar_ok)).setText(text);
 
 		text = array.getString(R.styleable.OkCancelBar_cancelLabel);
-		if (text == null)
+		if (text == null) {
 			text = "Cancel";
+		}
 		((Button) findViewById(R.id.okcancelbar_cancel)).setText(text);
 
 		array.recycle();
