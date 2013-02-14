@@ -21,7 +21,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
-import android.widget.Toast;
 
 /**
  * Grid screen
@@ -58,12 +57,15 @@ public class ScreenGrid extends Activity implements OnItemClickListener {
 				AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW, e
 						.getMessage().toString());
 			}
+
 			mUriList = JSONHandler.getURIFromJSON(mEditedItem.getUrlLocal());
 
 			mGridView = (GridView) findViewById(R.id.gridview);
 			mAdapter = new ScreenGridAdapter(ScreenGrid.this, mUriList);
+
 			mGridView.setAdapter(mAdapter);
 			mAdapter.notifyDataSetChanged();
+
 			mGridView.setOnItemClickListener(this);
 		}
 
@@ -75,36 +77,46 @@ public class ScreenGrid extends Activity implements OnItemClickListener {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		switch (requestCode) {
-		case Item_GridDetails:
-			switch (resultCode) {
-			case RESULT_CODE_CANCEL:
-				AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
-						"onActivityResult - Item_GridDetails - CANCEL");
-				break;
-			case RESULT_CODE_DELETE:
-				AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
-						"onActivityResult - Item_GridDetails - Delete");
-				mUriList.remove(mFilePath);
-				mEditedItem.setUrlLocal(JSONHandler.putURIintoJSON(mUriList));
-				break;
+		try {
+			mEditedItem = data.getExtras().getParcelable(INTENT_TARGET);
+			mFilePath = data.getExtras().getString(INTENT_TARGET_URI);
+			switch (requestCode) {
+			case Item_GridDetails:
+				switch (resultCode) {
+				case RESULT_CODE_CANCEL:
+					AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
+							"onActivityResult - Item_GridDetails - CANCEL");
+					break;
+				case RESULT_CODE_DELETE:
+					AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
+							"onActivityResult - Item_GridDetails - Delete");
+					mUriList.remove(mFilePath);
+					mEditedItem.setUrlLocal(JSONHandler
+							.putURIintoJSON(mUriList));
 
-			case RESULT_CODE_COMMIT:
-				AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
-						"onActivityResult - Item_GridDetails - COMMIT");
+					mAdapter.notifyDataSetChanged();
+					break;
+
+				case RESULT_CODE_COMMIT:
+					AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
+							"onActivityResult - Item_GridDetails - COMMIT");
+					break;
+
+				default:
+					AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
+							"onActivityResult - Item_GridDetails - DEFAULT");
+					break;
+				}
 				break;
 
 			default:
 				AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
-						"onActivityResult - Item_GridDetails - DEFAULT");
+						"onActivityResult - default - default");
 				break;
 			}
-			break;
-
-		default:
-			AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
-					"onActivityResult - default - default");
-			break;
+		} catch (Exception e) {
+			AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW, e.getMessage()
+					.toString());
 		}
 	}
 
@@ -121,9 +133,15 @@ public class ScreenGrid extends Activity implements OnItemClickListener {
 		intentGridDetail.putExtra(INTENT_TARGET, mEditedItem);
 		intentGridDetail.putExtra(INTENT_TARGET_URI, mUriList.get(position));
 		startActivityForResult(intentGridDetail, Item_GridDetails);
+	}
 
-		Toast.makeText(ScreenGrid.this, Integer.valueOf(position).toString(),
-				Toast.LENGTH_SHORT).show();
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		Intent returnIntent = new Intent();
+		returnIntent.putExtra(INTENT_TARGET, mEditedItem);
+		setResult(RESULT_CODE_CANCEL, returnIntent);
+		finish();
 	}
 
 }

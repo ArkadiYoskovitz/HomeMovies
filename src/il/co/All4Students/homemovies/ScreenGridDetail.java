@@ -15,6 +15,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -24,7 +25,7 @@ public class ScreenGridDetail extends Activity {
 
 	// Attributes
 	private Item mEditedItem;
-	private String filePath;
+	private String mfilePath;
 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// System Events
@@ -44,12 +45,12 @@ public class ScreenGridDetail extends Activity {
 				mEditedItem = getIntent().getExtras().getParcelable(
 						INTENT_TARGET);
 			}
-			filePath = getIntent().getExtras().getString(INTENT_TARGET_URI);
+			mfilePath = getIntent().getExtras().getString(INTENT_TARGET_URI);
 
 			ImageView imageView = (ImageView) findViewById(R.id.gridDetailImageView1);
-			imageView.setImageURI(Uri.fromFile(new File(filePath)));
+			imageView.setImageURI(Uri.fromFile(new File(mfilePath)));
 
-			OkCancelBar okCancelBar = (OkCancelBar) findViewById(R.layout.okcancelbar);
+			OkCancelBar okCancelBar = (OkCancelBar) findViewById(R.id.okcancelbar);
 
 			Button btnSave = (Button) okCancelBar
 					.findViewById(R.id.okcancelbar_ok);
@@ -72,7 +73,7 @@ public class ScreenGridDetail extends Activity {
 				public void onClick(View v) {
 					Intent returnIntent = new Intent();
 					returnIntent.putExtra(INTENT_TARGET, mEditedItem);
-					returnIntent.putExtra(INTENT_TARGET_URI, filePath);
+					returnIntent.putExtra(INTENT_TARGET_URI, mfilePath);
 					setResult(RESULT_CODE_DELETE, returnIntent);
 					finish();
 				}
@@ -80,6 +81,8 @@ public class ScreenGridDetail extends Activity {
 		} catch (Exception e) {
 			AppLog.log(ScreenGridDetail.this, LOG_TAG_SCREEN_GRIDDETAILS,
 					e.getMessage());
+			Log.d(LOG_TAG_SCREEN_GRIDDETAILS, e.getMessage());
+			e.printStackTrace();
 		}
 	}
 

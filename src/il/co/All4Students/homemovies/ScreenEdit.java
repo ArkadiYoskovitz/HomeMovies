@@ -1,6 +1,7 @@
 package il.co.All4Students.homemovies;
 
 import static il.co.All4Students.homemovies.app.AppConstants.INTENT_TARGET;
+import static il.co.All4Students.homemovies.app.AppConstants.Item_Gallery;
 import static il.co.All4Students.homemovies.app.AppConstants.Item_Take_Picture;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_SCREEN_EDIT;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_SCREEN_WEB;
@@ -166,7 +167,9 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == Item_Take_Picture) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch (requestCode) {
+		case Item_Take_Picture:
 			try {
 				Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
 				ImageView imgTakenPhoto = (ImageView) findViewById(R.id.ScreenEditImageView1);
@@ -177,11 +180,34 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 							"Failed to retrive image, intent is empty");
 				} else {
 					AppLog.log(ScreenEdit.this, LOG_TAG_SCREEN_EDIT,
-							"Failed to retrive image");
+							"onActivityResult - Item_Take_Picture");
 				}
 			}
+			break;
+		case Item_Gallery:
+			switch (resultCode) {
+			case RESULT_CODE_CANCEL:
+				try {
+					mEditedItem = getIntent().getExtras().getParcelable(INTENT_TARGET);
+				} catch (Exception e) {
+					AppLog.log(ScreenEdit.this, LOG_TAG_SCREEN_EDIT,
+							e.getMessage());
+				}
+				break;
+
+			default:
+				AppLog.log(ScreenEdit.this, LOG_TAG_SCREEN_EDIT,
+						"onActivityResult - Item_Gallery");
+				break;
+			}
+
+			break;
+
+		default:
+			AppLog.log(ScreenEdit.this, LOG_TAG_SCREEN_EDIT,
+					"onActivityResult - default");
+			break;
 		}
-		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -307,7 +333,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 
 		Intent intent = new Intent(ScreenEdit.this, ScreenGrid.class);
 		intent.putExtra(INTENT_TARGET, mEditedItem);
-		startActivity(intent);
+		startActivityForResult(intent, Item_Gallery);
 	}
 
 	public void onClickEditShow(View view) {
