@@ -64,7 +64,6 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 		this.mSettings = new ApplicationPreference(mContext);
 		mInflater = (LayoutInflater) mContext
 				.getSystemService(android.content.Context.LAYOUT_INFLATER_SERVICE);
-
 		imageLoader = new ImageLoader(mContext.getApplicationContext());
 	}
 
@@ -173,8 +172,10 @@ public class ItemListAdapter extends ArrayAdapter<Item> implements Filterable {
 			viewHolder.rowTitle.setHeight((int) getContext().getResources()
 					.getDimension(R.dimen.Size30dp));
 		} else {
-			// imageLoader.DisplayImage(mItem.getUrlWeb(), viewHolder.rowImage);
-
+			if (mSettings.getEnablePreview()) {
+				imageLoader
+						.DisplayImage(mItem.getUrlWeb(), viewHolder.rowImage);
+			}
 			if (mSettings.getEnableColor()) {
 				convertView.setBackgroundColor(setColor());
 			}

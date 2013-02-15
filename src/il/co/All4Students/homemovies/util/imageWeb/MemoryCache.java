@@ -7,11 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import android.graphics.Bitmap;
 import android.util.Log;
-/**
- * 
- * @author Arkadi Yoskovitz
- * @date 2013-02-08
- */
+
 public class MemoryCache {
 	// Attributes
 	private static final String TAG = "MemoryCache";
@@ -36,8 +32,6 @@ public class MemoryCache {
 			if (!cache.containsKey(id)) {
 				return null;
 			}
-			// NullPointerException sometimes happen here
-			// http://code.google.com/p/osmdroid/issues/detail?id=78
 			return cache.get(id);
 		} catch (NullPointerException ex) {
 			ex.printStackTrace();
@@ -47,7 +41,7 @@ public class MemoryCache {
 
 	public void put(String id, Bitmap bitmap) {
 		try {
-			if (cache.containsKey(id)){				
+			if (cache.containsKey(id)) {
 				size -= getSizeInBytes(cache.get(id));
 			}
 			cache.put(id, bitmap);
@@ -76,8 +70,6 @@ public class MemoryCache {
 
 	public void clear() {
 		try {
-			// NullPointerException sometimes happen here
-			// http://code.google.com/p/osmdroid/issues/detail?id=78
 			cache.clear();
 			size = 0;
 		} catch (NullPointerException ex) {

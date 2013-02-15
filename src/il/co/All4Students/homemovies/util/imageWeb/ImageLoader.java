@@ -151,9 +151,11 @@ public class ImageLoader {
 					os.write(bytes, 0, count);
 				}
 			} catch (Exception ex) {
+				ex.printStackTrace();
+			} finally {
+				os.close();
+				bitmap = decodeFile(f);
 			}
-			os.close();
-			bitmap = decodeFile(f);
 			return bitmap;
 		} catch (Throwable ex) {
 			ex.printStackTrace();

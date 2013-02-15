@@ -3,11 +3,6 @@ package il.co.All4Students.homemovies.util.imageWeb;
 import java.io.File;
 import android.content.Context;
 
-/**
- * 
- * @author Arkadi Yoskovitz
- * @date 2013-02-08
- */
 public class FileCache {
 	// Attributes
 	private File cacheDirectory;
