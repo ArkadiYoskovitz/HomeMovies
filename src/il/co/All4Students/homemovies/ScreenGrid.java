@@ -33,7 +33,7 @@ public class ScreenGrid extends Activity implements OnItemClickListener {
 	private ArrayList<String> mUriList;
 	private ScreenGridAdapter mAdapter;
 	private GridView mGridView;
-	private String mFilePath;
+	// private String mFilePath;
 	private Item mEditedItem;
 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -50,13 +50,13 @@ public class ScreenGrid extends Activity implements OnItemClickListener {
 		super.onResume();
 		if (mEditedItem == null) {
 			mEditedItem = getIntent().getExtras().getParcelable(INTENT_TARGET);
-			try {
-				mFilePath = getIntent().getExtras()
-						.getString(INTENT_TARGET_URI);
-			} catch (Exception e) {
-				AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW, e
-						.getMessage().toString());
-			}
+			// try {
+			// mFilePath = getIntent().getExtras()
+			// .getString(INTENT_TARGET_URI);
+			// } catch (Exception e) {
+			// AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW, e
+			// .getMessage().toString());
+			// }
 
 			mUriList = JSONHandler.getURIFromJSON(mEditedItem.getUrlLocal());
 
@@ -79,45 +79,42 @@ public class ScreenGrid extends Activity implements OnItemClickListener {
 		super.onActivityResult(requestCode, resultCode, data);
 		try {
 			mEditedItem = data.getExtras().getParcelable(INTENT_TARGET);
-			mFilePath = data.getExtras().getString(INTENT_TARGET_URI);
-			switch (requestCode) {
-			case Item_GridDetails:
-				switch (resultCode) {
-				case RESULT_CODE_CANCEL:
-					AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
-							"onActivityResult - Item_GridDetails - CANCEL");
-					break;
-				case RESULT_CODE_DELETE:
-					AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
-							"onActivityResult - Item_GridDetails - Delete");
-					mUriList.remove(mFilePath);
-					mEditedItem.setUrlLocal(JSONHandler
-							.putURIintoJSON(mUriList));
-
-					mAdapter.notifyDataSetChanged();
-					break;
-
-				case RESULT_CODE_COMMIT:
-					AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
-							"onActivityResult - Item_GridDetails - COMMIT");
-					break;
-
-				default:
-					AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
-							"onActivityResult - Item_GridDetails - DEFAULT");
-					break;
-				}
-				break;
-
-			default:
-				AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
-						"onActivityResult - default - default");
-				break;
-			}
+			// mFilePath = data.getExtras().getString(INTENT_TARGET_URI);
 		} catch (Exception e) {
 			AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW, e.getMessage()
 					.toString());
 		}
+		switch (requestCode) {
+		case Item_GridDetails:
+			switch (resultCode) {
+			case RESULT_CODE_CANCEL:
+				AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
+						"onActivityResult - Item_GridDetails - CANCEL");
+				break;
+			case RESULT_CODE_DELETE:
+				AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
+						"onActivityResult - Item_GridDetails - Delete");
+				// TODO Implement delete option
+				break;
+
+			case RESULT_CODE_COMMIT:
+				AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
+						"onActivityResult - Item_GridDetails - COMMIT");
+				break;
+
+			default:
+				AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
+						"onActivityResult - Item_GridDetails - DEFAULT");
+				break;
+			}
+			break;
+
+		default:
+			AppLog.log(ScreenGrid.this, LOG_TAG_SCREEN_GRIDVIEW,
+					"onActivityResult - default - default");
+			break;
+		}
+
 	}
 
 	// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

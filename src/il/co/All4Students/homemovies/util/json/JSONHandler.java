@@ -62,4 +62,14 @@ public class JSONHandler {
 
 		return jsonString;
 	}
+	
+	public static String removeURIfromJSON(String jsonString,
+			String stringInfoToRemove) {
+
+		ArrayList<String> tmpArrayList = JSONHandler.getURIFromJSON(jsonString);
+		tmpArrayList.remove(stringInfoToRemove);
+		jsonString = JSONHandler.putURIintoJSON(tmpArrayList);
+
+		return jsonString;
+	}
 }

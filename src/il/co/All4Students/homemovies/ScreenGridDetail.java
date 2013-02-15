@@ -3,7 +3,6 @@ package il.co.All4Students.homemovies;
 import static il.co.All4Students.homemovies.app.AppConstants.INTENT_TARGET;
 import static il.co.All4Students.homemovies.app.AppConstants.INTENT_TARGET_URI;
 import static il.co.All4Students.homemovies.app.AppConstants.LOG_TAG_SCREEN_GRIDDETAILS;
-import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_CANCEL;
 import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_COMMIT;
 import static il.co.All4Students.homemovies.app.AppConstants.RESULT_CODE_DELETE;
 import il.co.All4Students.homemovies.core.Item;
@@ -20,6 +19,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class ScreenGridDetail extends Activity {
 
@@ -71,6 +71,9 @@ public class ScreenGridDetail extends Activity {
 
 				@Override
 				public void onClick(View v) {
+					Toast.makeText(ScreenGridDetail.this,
+							"This option curently unavalible",
+							Toast.LENGTH_SHORT).show();
 					Intent returnIntent = new Intent();
 					returnIntent.putExtra(INTENT_TARGET, mEditedItem);
 					returnIntent.putExtra(INTENT_TARGET_URI, mfilePath);
@@ -88,10 +91,12 @@ public class ScreenGridDetail extends Activity {
 
 	@Override
 	public void onBackPressed() {
-		super.onBackPressed();
+		Toast.makeText(ScreenGridDetail.this,
+				"This option curently unavalible", Toast.LENGTH_SHORT).show();
 		Intent returnIntent = new Intent();
 		returnIntent.putExtra(INTENT_TARGET, mEditedItem);
-		setResult(RESULT_CODE_CANCEL, returnIntent);
+		returnIntent.putExtra(INTENT_TARGET_URI, mfilePath);
+		setResult(RESULT_CODE_DELETE, returnIntent);
 		finish();
 	}
 

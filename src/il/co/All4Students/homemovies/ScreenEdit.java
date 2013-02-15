@@ -188,7 +188,8 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 			switch (resultCode) {
 			case RESULT_CODE_CANCEL:
 				try {
-					mEditedItem = getIntent().getExtras().getParcelable(INTENT_TARGET);
+					mEditedItem = getIntent().getExtras().getParcelable(
+							INTENT_TARGET);
 				} catch (Exception e) {
 					AppLog.log(ScreenEdit.this, LOG_TAG_SCREEN_EDIT,
 							e.getMessage());
@@ -196,6 +197,13 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 				break;
 
 			default:
+				try {
+					mEditedItem = getIntent().getExtras().getParcelable(
+							INTENT_TARGET);
+				} catch (Exception e) {
+					AppLog.log(ScreenEdit.this, LOG_TAG_SCREEN_EDIT,
+							e.getMessage());
+				}
 				AppLog.log(ScreenEdit.this, LOG_TAG_SCREEN_EDIT,
 						"onActivityResult - Item_Gallery");
 				break;
@@ -204,6 +212,7 @@ public class ScreenEdit extends Activity implements TextToSpeech.OnInitListener 
 			break;
 
 		default:
+
 			AppLog.log(ScreenEdit.this, LOG_TAG_SCREEN_EDIT,
 					"onActivityResult - default");
 			break;
