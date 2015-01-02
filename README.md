@@ -12,4 +12,6 @@ Also if you need a simple salite example your more then welcome to it
 
 # License
 
+This app is license under The MIT License (MIT)
+
 
